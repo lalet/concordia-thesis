@@ -1,49 +1,72 @@
 \chapter{Framework Architecture}
 \paragraph{Explanation about the figure}
 
-\section{Libraries Used}
-\paragraph{Software versions and details}
-\subsection{List all the libraries that are used}
+\section{Framework}
+\subsection{Pipeline Containerization}
+\subsubsection{Docker images}
 \begin{itemize}
- \item bc- calculator for fslreorient2std
- \item curl-devel - cURL is a software package which consists of command line tool and a library for transferring data using URL syntax
- \item epel-release to help pip installation
- \item expat-devel - xml parser library
- \item fontconfig - Fontconfig package contains a library and support programs used for configuring and customizing font access
- \item freetype contains a library which allows applications to properly render TrueType fonts
- \item gettext helps in producing multi-lingual messages
- \item git library for cloining pipelines repository.
- \item libpng - libpng is the official PNG reference library
- \item libSM - is a library of generally useful C abstractions
- \item libstdc++ - a powerful set of reuseable tools in the form of the C++ Standard Library
- \item libXrender - used when compiling programs that use freetype fonts
- \item libXext - Xorg libraries provide library routines that are used within all X Window applications
- \item openssl-devel - for secure communication
- \item perl-ExtUtils-MakeMaker - designed to write a Makefile for an extension module from a Makefile.PL
- \item tar,unzip - to extract .tar.gz and .zip files
- \item wget to get files or status from URL's
- \item zlib-devel - to support FMRIB file IO
- \item numpy - to support FMRIB pipeline execution
+  \item Linux CentOS 5.11
+  \item Linux CentOS 6.8 
+  \item Linux CentOS 7.2.1511
 \end{itemize}
 
-\section{Algorithms and Metrics}
-\paragraph{Algorithms}
-\subsection{Describe the ways in which the analysis is done}
+\subsubsection{Main Dependencies}
+\begin{itemize}
+  \item FSL - 5.0.6
+  \item FreeSurfer 5.3.0-HCP
+\end{itemize}
 
-\section{Inter Run}
-\paragraph{Inter run}
+\subsubsection{HCP Pipelines (v3.19.0)}
+\begin{itemize}
+  \item FreeSurfer,
+  \item PreFreesurfer
+  \item PostFreeSurfer
+  \item Images are available in Docker Hub
+\end{itemize}
 
-\section{Inter-OS}
-\paragraph{Inter OS}
+\subsection{Pipeline Encapsulation:Boutiques}
+\begin{itemize}
+  \item Describes the command-line interface of the pipeline
+  \item Adds checksum to prevent input data corruption
+  \item Checks container image identifier
+  \item Records all the software (library versions) and hardware specifications
+\end{itemize}
 
-\section{Multiple Run}
-\paragraph{Multiple Run}
 
-\section{Repro-tools}
-\subsection{Metrics}
-\subsubsection{NRMSE}
-\subsubsection{Checksum}
-\subsubsection{Dice}
-\subsubsection{Hardware Differences}
-\subsection{Provenance}
-\paragraph{Provenance Capture}
+\subsection{Pipeline Deployment:CBRAIN}
+\begin{itemize}
+  \item Single server to ensure no hardware differences
+  \item Able to process multiple subjects at once
+  \item CBRAIN HCP plugins available here
+\end{itemize}
+
+\subsection{Provenance Capture}
+\begin{flushleft}
+For every output file, Reprozip captures: 
+\end{flushleft}
+\begin{itemize}
+  \item Process that wrote the file
+  \item Command line arguments
+  \item Environment variables
+  \item Timestamp
+  \item Working Directory
+\end{itemize}
+
+\subsection{File content evaluation across conditions}
+\begin{itemize}
+ \item Identify the files that are common to all subjects and all conditions
+ \item Check intra-OS variability (e.g., due to pseudo-random processes)
+ \item Identifies files with differences (based on md5 checksum)
+ \item Associates file types with specific metrics (Normalized RMSE, Text filters, Dice coefficient)
+ \item Computes difference matrix for each metric and associates matrix with Reprozip trace
+\end{itemize}
+
+\subsubsection{Metrics}
+\begin{itemize}
+\item NRMSE
+\item Checksum
+\item Dice
+\item Hardware Differences
+\end{itemize}
+
+
