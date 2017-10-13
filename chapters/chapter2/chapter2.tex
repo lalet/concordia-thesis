@@ -1,10 +1,13 @@
 \chapter{Related Work}
 
-\section{Reproducibility across operating systems}
-\begin{itemize}
- \item Reproducibility of neuroimaging analyses across operating systems, T. Glatard, L. B. Lewis, R. Ferreira da Silva, R. Adalat, N. Beck, C. Lepage, P. Rioux, M. Rousseau, T. Sherif, E. Deelman, Najmeh Khalili-Mahani, Alan C. Evans, Frontiers in Neuroinformatics, vol. 9, no. 12, 2015.
- \item The Effects of FreeSurfer Version, Workstation Type, and Macintosh Operating System Version on Anatomical Volume and Cortical Thickness Measurements, Ed H. B. M. Gronenschild, Petra Habets, Heidi I. L. Jacobs, Ron Mengelers, Nico Rozendaal, Jim van Os, and Machteld Marcelis.
-\end{itemize}
+\section{Reproducibility of neuroimaging pipelines across operating systems}
+Neuroimaging pipelines are known to generate different results depending on the computing platform where they are compiled and executed. \cite{Gla15} Such reproducibility issues, also known as computing noise, arise from variations in harware architectures and software versions. The state-of-the-art solution to deal with these issues is to restrict studies to a single computing platform(harware and software), which has several drawbacks and, therefore, not feasible. So the best approach is to become aware of these differences.
+
+Study conducted on FSL, Freesurfer and CIVET and different versions of GNU/Linux \cite{Gla15} shows that the differences are occuring due to the evolution of math libraries used in the operating system on which the subjects are getting processed. A similiar study \cite{10.1371/journal.pone.0038234} concludes that the operating system updates and the software updates itself can cause diffrences in the results of neuroimaging pipelines.
+ 
+The Human Connectome Project(HCP) faces the challenging task of bringing multiple magnetic resonance imaging(MRI) modalities, structural, functional, and diffusion,together into a common automated preprocessing framework across a large cohort of subjects. This framework is open and freely accessible. \cite{Gla13} The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions and differing distortions. So these preprocessing pipelines creates preprocessing results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used. 
+
+HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependant on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on these HCP preprocessing pipelines.  
 
 \section{Containers}
 \subsection{What are containers?}
