@@ -4,6 +4,9 @@
 Neuroimaging pipelines are known to generate different results depending on the computing platform where they are compiled and executed \cite{Gla15}. Such reproducibility issues, also known as computing noise, arise from variations in harware architectures and software versions. The state-of-the-art solution to deal with these issues is to restrict studies to a single computing platform (harware and software), which has several drawbacks and, therefore, not feasible. So the best approach is to become aware of these differences.
 Study conducted on FSL, Freesurfer and CIVET and different versions of GNU/Linux \cite{Gla15} shows that the differences are occuring due to the evolution of math libraries used in the operating system on which the processing takes place. A similiar study \cite{10.1371/journal.pone.0038234} concludes that the operating system updates and the software updates itself can cause diffrences in the results of neuroimaging pipelines. Results from these studies shows that there is numerical instability in these pipelines which causes reproducibility issues.
 
+Explain differences.
+
+\section{Potential causes of differences}
 The issues regarding reproducbility could arise due to a variety of reasons other than the evolution of math libraries. The way in which the build takes place(static vs. dynamic),the nature of the language(compiler vs. interpreter), the version of the compiler used, the options used while compiling the code etc. 
 
 \section{Containers}
