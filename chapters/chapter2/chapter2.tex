@@ -6,10 +6,6 @@ Study conducted on FSL, Freesurfer and CIVET and different versions of GNU/Linux
 
 The issues regarding reproducbility could arise due to a variety of reasons other than the evolution of math libraries. The way in which the build takes place(static vs. dynamic),the nature of the language(compiler vs. interpreter), the version of the compiler used, the options used while compiling the code etc. 
 
-The Human Connectome Project(HCP) faces the challenging task of bringing multiple magnetic resonance imaging(MRI) modalities, structural, functional, and diffusion,together into a common automated preprocessing framework across a large cohort of subjects. This framework is open and freely accessible \cite{Gla13}. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions and differing distortions. So these preprocessing pipelines creates preprocessing results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used. 
-
-HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependant on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on HCP preprocessing pipelines.  
-
 \section{Containers}
 What are containers?
 Scientific softwares are loosely coupled with a lot of environment dependant variables and settings and installation, configuration and running many of the available softwares are a complex task by itself. Since experiments are carried out in specific lab or server environments, the reproducubility of the experiments by a group outside of the lab needs enormous amount of effort. Experiments might dependant on specific settings which the researchers might have forgotten to add in the documentation and thus such software dependancy could lead to a completely different result. 
@@ -43,6 +39,10 @@ Explain singularity, cite paper
 \hyperref[System Call Interception]{http://landley.net/kdocs/mirror/ols2007v1.pdf}
 
 \section{NeuroImaging Pipelines}
+The Human Connectome Project(HCP) faces the challenging task of bringing multiple magnetic resonance imaging(MRI) modalities, structural, functional, and diffusion,together into a common automated preprocessing framework across a large cohort of subjects. This framework is open and freely accessible \cite{Gla13}. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions and differing distortions. So these preprocessing pipelines creates preprocessing results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used.
+
+HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependant on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on HCP preprocessing pipelines.
+
 \begin{itemize}
  \item FSL
  \item FreeSurfer
