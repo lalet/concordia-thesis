@@ -17,7 +17,17 @@ Workflow softwares provides very elegant technical solutions to the challenges o
 A more lightweight solution is used widely among the scientific community thesedays, called containers. Container is similiar to a virtual machine, but it uses the same host operating system along with a containter manager. Containers have a closer access to operating systems than their counterpart virtualization tools such as native virtualization, paravirtualization, and hypervisors. In native virtualization, also known as full virtualization ,the guest OS is fully abstracted (completely decoupled) from the underlying hardware by the virtualization layer. Paravirtualization involves modifying the OS kernel to replace nonvirtualizable instructions with hypercalls(a hypercall is a way for the virtualized operating systems to make the hypervisor handle privileged operations) that communicate directly with the virtualization layer hypervisor \cite{citeulike:11530382}. Hypervisors present a simplified view of the native hardware to the virtual machines then they can barely access to the optimized set of instructions of actual processors.Containers subtract the hypervisor layer of the virtualization equations and relies on namespaces and cgroups in order to provide isolation and accounting of the consumed resources by the container instances.
 
 \begin{center}
-\includegraphics[width=0.5\textwidth]{fullvirtualization.png}
+\begin{minipage}{0.48\linewidth}
+\includegraphics[height=8cm,width=\linewidth]{novirtualization.png}
+\captionof{figure}{Machine with no virtualization}
+\label{fig:novirtualization}
+\end{minipage}%
+\hfill
+\begin{minipage}{0.49\linewidth}
+\includegraphics[height=8cm,width=\linewidth]{aftervirtualization.png}
+\captionof{figure}{Machine after virtualization}
+\label{fig:aftervirtualization}
+\end{minipage}
 \end{center}
 
 These containers allow an user to run application and its dependancies in resource-isolated processes. Containers have a closer access to operating system services than their counterpart virtualization tools which makes their performance closer to the performance exhibited on top of native environments\cite{Xavier:2013:PEC:2497369.2497577}.
