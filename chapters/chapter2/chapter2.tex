@@ -14,7 +14,9 @@ Computational reproducibility has become an issue of increasing importance in se
 
 Workflow softwares provides very elegant technical solutions to the challenges of communication between diverse software tools, capturing provenance in graphically driven interfaces but most workflow systems struggle with relatively low total adoption. Virtual machines offer a more direct approach to the problem of computational reproducibility but critics highlight that it is too much of a black box approach and thus is ill-suited for reproducibility. Also it is impossible to combine multiple studies into a pipeline if each study has its own self contained virtual machine environment\cite{Boettiger:2015:IDR:2723872.2723882}.
 
-A more lightweight solution is used widely among the scientific community thesedays, called containers. Container is similiar to a virtual machine, but it uses the same host operating system along with a containter manager. Containers have a closer access to operating systems than their counterpart virtualization tools such as native virtualization, paravirtualization, and hypervisors. In native virtualization, also known as full virtualization ,the guest OS is fully abstracted (completely decoupled) from the underlying hardware by the virtualization layer. Paravirtualization involves modifying the OS kernel to replace nonvirtualizable instructions with hypercalls(a hypercall is a way for the virtualized operating systems to make the hypervisor handle privileged operations) that communicate directly with the virtualization layer hypervisor \cite{citeulike:11530382}. Hypervisors present a simplified view of the native hardware to the virtual machines then they can barely access to the optimized set of instructions of actual processors.Containers subtract the hypervisor layer of the virtualization equations and relies on namespaces and cgroups in order to provide isolation and accounting of the consumed resources by the container instances.
+A more lightweight solution is used widely among the scientific community thesedays, called containers. Container is similiar to a virtual machine, but it uses the same host operating system along with a containter manager. Container technologies has been around for a while and there are numerous implementations of it. In the year 2000,FreeBSD (4.0) featured the Jails system which focused on providing an isolated filesystem. Later came OpenSolaris, providing not only isolation services but also mechanisms related to snapshots and cloning.In 2005, OpenVZ was announced as a containerization technology supporting Linux systems. Linux containers (LXC), took advantage of the namespace concept. LXC extended the isolation property to users, processes and networking. In 2006, Google started a project which implemented a functionality to limit the resource usage. This project was later merged into the Linux kernel and it was named as "cgroups" feature. Docker, was started as an open source project in 2013, which basically added an additional layer on top of LXC, exposing additional features such as mounted storage, network port redirection, and container catalog management. Singularity , was started in 2015, with main focus on experimental reproducbility and isolation \cite{Xavier:2013:PEC:2497369.2497577}. 
+
+Containers have a closer access to operating systems than their counterpart virtualization tools such as native virtualization, paravirtualization, and hypervisors. In native virtualization, also known as full virtualization ,the guest OS is fully abstracted (completely decoupled) from the underlying hardware by the virtualization layer. Paravirtualization involves modifying the OS kernel to replace nonvirtualizable instructions with hypercalls(a hypercall is a way for the virtualized operating systems to make the hypervisor handle privileged operations) that communicate directly with the virtualization layer hypervisor \cite{citeulike:11530382}. Hypervisors present a simplified view of the native hardware to the virtual machines then they can barely access to the optimized set of instructions of actual processors.Containers subtract the hypervisor layer of the virtualization equations and relies on namespaces and cgroups in order to provide isolation and accounting of the consumed resources by the container instances.
 
 \begin{center}
 \begin{minipage}{0.48\linewidth}
@@ -23,7 +25,7 @@ A more lightweight solution is used widely among the scientific community thesed
 \label{fig:novirtualization}
 \end{minipage}%
 \hfill
-\begin{minipage}{0.49\linewidth}
+\begin{minipage}{0.48\linewidth}
 \includegraphics[height=8cm,width=\linewidth]{aftervirtualization.png}
 \captionof{figure}{Machine after virtualization}
 \label{fig:aftervirtualization}
@@ -32,14 +34,14 @@ A more lightweight solution is used widely among the scientific community thesed
 
 These containers allow an user to run application and its dependancies in resource-isolated processes. Containers have a closer access to operating system services than their counterpart virtualization tools which makes their performance closer to the performance exhibited on top of native environments\cite{Xavier:2013:PEC:2497369.2497577}.
 
-How containers help reproducibility
-Even after knowing the software versions and tools, it is extremely hard to reproduce the workflow to reproduce an experiment. The operating system type, version and harwdware specifications used etc can have significant effect on the experiment. Containers can help in recreating the software environment used for the experiment in its entirety. This can help the researchers significantly since they don't have to go through the entire process of installation process. "Docker" and "Singularity" are two container based technologies widely used for containerizing the experiments.
+Even if we get access the software and tools used in an experiment, it is extremely hard to reproduce the workflow due to many undocumented assumptions, dependencies, and configurationsi \cite{7883438}. Containers can help in recreating the software environment used for the experiment in its entirety. This can help the researchers significantly since they don't have to go through the entire process of installation process. "Docker" and "Singularity" are two container based technologies widely used for containerizing the experiments.
 
-With the use of version control technologies(Github, Bitbucket) and Dockerhub, SingularityHub, we can create automated builds which creates images everytime there is a change in the build files. Thus making sure the images contain all the latest changes in it. 
+
 What are its limitations
 Include the problems listed in link https://goo.gl/zodrok
+
 \subsection{Docker}
-Explain docker, cite paper
+
 \subsection{Singularity}
 Explain singularity, cite paper
 \subsection{Boutiques}
