@@ -78,6 +78,13 @@ Docker and Singularity, greatly facilitate the sharing of software and improve t
 
 The formal descriptions, called manifests, are used for validation of input values to prevent errors and these manifests are intended to be produced by scientific applicaiton developers, for publishing them in common repositories and to be consumed by execution platforms. These manifests are JSON documents that describes the inputs and outputs.\\
 
+Here is an example of a typical command-line template:
+
+\begin{verbatim}
+          exampleTool [INPUT-FILE] [OUTPUT_FILE]
+\end{verbatim}
+
+The command line above invokes a tool named exampleTool that needs an two arguments, an input file and an output-folder.
 
 \section{Web platforms to run containers}
 \subsection{Why do we need these platforms?}
