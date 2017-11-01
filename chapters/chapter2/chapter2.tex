@@ -60,6 +60,7 @@ The Docker software runs as a daemon on host machine. This daemon can launch con
 \includegraphics[width=\linewidth]{docker_architecture.png}
 \captionof{figure}{Docker Architecture}
 \label{fig:docker_architecture}
+\caption*{Extracted from \cite{docker-documentation}}
 \end{center}
 
 The Dockerhub is an online repository that helps developers to manage the images. Anyone who sign up on the docker hub has access to images where they can push or pull images. There is also feature for making the image creation automated with the help of git technology. Any user can create repository under his account and the repositories are namespaced using the format, "\textless developer\textgreater/\textless repository\textgreater"\cite{7742298}.\\
@@ -73,6 +74,7 @@ Singularity is an open source initiative that harnesses the expertise of system 
 \includegraphics[width=\linewidth]{singularity.png}
 \captionof{figure}{Singularity usage workflow.}
 \label{fig:singularity_workflow}
+\caption*{Extracted from \cite{10.1371/journal.pone.0177459}}
 \end{center}
 
 The main goals of singularity are, 1)Mobility of compute 2)Reproducibility 3)User Freedom 4)Support on existing traditional HPC resources. The mobility of compute is the ability to create and maintian a workflow locally and being able to run the same worklfow across different hosts, operating systems or computing platforms without any problems or tweaks. Singularity achieves this by utilizing a distributable image format that encapsulates the entire container and stak into a single image file. The feature that supports reproducibility is the use of hashing. Any singularity image can make use of the hash feature to create hash and store it as metadata with built images. Users can verify these hashes to check if the image is modified or not. User freedom is granted by the ability to define their own working environment and copy the singularity image containing the entire details of that environment along with the code to a shared resource and reproduce the workflow inside that image. Singularity supports the existing and traditional HPC resources easily as installing a single package onto host operating system. Singularity is compatible with RHEL and Linux distributions dating back to Linux2.2. It natively supports the resource managers(e.g SLURM\footnote{\url{https://slurm.schedmd.com/}},Torque\footnote{\url{http://www.adaptivecomputing.com/products/open-source/torque/}}, SGE\footnote{\url{https://en.wikipedia.org/wiki/Oracle_Grid_Engine}}, etc.) and supports technologies such as InfiniBand\footnote{\url{https://en.wikipedia.org/wiki/InfiniBand}} and Lustre\footnote{\url{https://en.wikipedia.org/wiki/Lustre_(file_system)}}.\\
