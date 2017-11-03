@@ -83,9 +83,9 @@ The main goals of singularity are, 1)Mobility of compute 2)Reproducibility 3)Use
 Singularity contiainer image encapsulates the operating system environent and all application dependencies necessary to run a defined workflow. Singularity container supports different kinds of uniform resource identifiers and also other container formats like Docker. http://,https://,docker://(for pulling images from docker hub),shub://(for pulling images from singularity hub), all these mechanisms are supported by singularity for obtaining the images. One another notable feature of Singularity is that it does not provide a pathway for privilege escalation. At runtime, a user inside the Singularity container has the same role and privileges as the user outside the container.
  
 \subsection{Boutiques}
-To enable sharing of ideas and software, it is a common practise to port the applications to common platforms so that the community as a whole is able to make use of the ready-to-use applications. However, porting applications to a high performance computing infrastructure or a web platform is not so easy. Application porting needs considerable effort of manual effort to `` 1) install the application on the target infrastructure, 2) describing the application in a format compatible with the execution platform, and 3) generating proper user interfacesi" \cite{}. These installations and deployments are platform specific and thus the same tasks has to be repeated from one platform to another. Boutiques, an open source tool, can be used to save time and cost spent on these repeated actions to deploy applications on various platforms. \\
+To enable sharing of ideas and software, it is a common practise to port the applications to common platforms so that the community as a whole is able to make use of the ready-to-use applications. However, porting applications to a high performance computing infrastructure or a web platform is not so easy. Application porting needs considerable effort of manual effort to `` 1) install the application on the target infrastructure, 2) describing the application in a format compatible with the execution platform, and 3) generating proper user interfacesi" \cite{boutiques}. These installations and deployments are platform specific and thus the same tasks has to be repeated from one platform to another. Boutiques, an open source tool, can be used to save time and cost spent on these repeated actions to deploy applications on various platforms. \\
 
-``Docker and Singularity, greatly facilitate the sharing of software and improve the reproducibility of analysis by defining immutable, reusable execution environments". The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. ``The formal descriptions, also known as \textit{manifests}, are used for validation of input values to prevent errors. These manifests are intended to be produced by scientific application developers, for publishing them in common repositories and to be consumed by execution platforms". \\
+``Docker and Singularity, greatly facilitate the sharing of software and improve the reproducibility of analysis by defining immutable, reusable execution environments". The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. ``The formal descriptions, also known as \textit{manifests}, are used for validation of input values to prevent errors. These manifests are intended to be produced by scientific application developers, for publishing them in common repositories and to be consumed by execution platforms". The preferred way of describing these command line template, input and argument is through a JSON document. The manifest contains the details to a container where the intended application is installed. The proper command line argument is built at runtime with the help of maifest and the template gets replaced by the actual values given by the user. For validating the inputs an invocation schema is used. \\
 
 Here is an example of a typical command-line template:
 
@@ -94,6 +94,20 @@ Here is an example of a typical command-line template:
 \end{verbatim}
 
 The command line above invokes a tool named exampleTool that needs an two arguments, an input file and an output-folder.
+``\textit{Inputs} must have a name, a unique identifier and a type. They may be optional, have a description, a value key, a flag separator, and a default value. Inputs may also be ordered lists: in this case, value keys are substituted by the space-separated list of input values. \textit{Output} files must have a unique identifier, a name and a path template that specifies the file or directory name" \cite{boutiques}.
+
+\begin{center}
+\includegraphics[width=\linewidth]{input.png}
+\captionof{figure}{Boutiques input descriptor.}
+\label{fig:input}
+\end{center}
+
+\begin{center}
+\includegraphics[width=\linewidth]{output.png}
+\captionof{figure}{Boutiques output descriptor.}
+\label{fig:output}
+\end{center}
+
 
 \section{Web platforms to run containers}
 \subsection{Why do we need these platforms?}
