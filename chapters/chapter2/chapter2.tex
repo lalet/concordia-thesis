@@ -14,12 +14,7 @@ Since the claim that ``most published research findings are false” by Ioannidi
 
 As illustrated in Figure \ref{fig:Types of builds}, ``the execution of an application depends on its source code, on the compilation process, on software libraries, on an operating system (OS) kernel, and on a hardware processor. Libraries may be embedded in the application, i.e., statically linked, or loaded from the OS, i.e., dynamically linked. The reproducibility of results may be influenced by any variation in these elements, in particular: versions of the source code, compilation options, versions of the dynamic and static libraries(in particular when these libraries implement mathematical functions), or architecture of hardware systems" \cite{Gla15}. \\
 
-
-
-
-
-\section{Potential causes of differences}
-The issues regarding reproducbility could arise due to a variety of reasons other than the evolution of math libraries. The way in which the build takes place(static vs. dynamic),the nature of the language(compiler vs. interpreter), the version of the compiler used, the options used while compiling the code etc.\\ 
+The above studies points out the differences that can arise due to the differences in its source code, compilation process, software library version, kernel version or the architecture of the hardware it uses for execution. With the use of containers, these reproducibility issues can be minimized upto an extent but still the host operating system dependency can influence the output of an application since it might use the underlying operating system libraries from host machine. Our main focus is on the effect of operating system on neuroimaging pipelines (Human connectome project preprocessing pipelines). \\
 
 \section{Containers}
 The serious challenge associated with making an experiment reproducible is the rapidly changing nature of computer environments. Containers help in encapsulating of the complete software environment. Our study focus on quantifying the effect of operating system on the neuroimaging pipelines. For the ease of conducting experiments across different operating systems/versions, we containerized the different operating systems\footnote{\url{https://hub.docker.com/u/bigdatalabteam}} along with the neuroimaging pipelines that are required for conducting the experiments	. Some of the notable features of containers \cite{docker-run} \cite{DBLP:journals/corr/HaleLRW16} \cite{Julian:2016:CRI:2949550.2949562} \cite{10.1109/ISPASS.2015.7095802} which would help running the experiments with ease are listed below:
