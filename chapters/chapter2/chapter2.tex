@@ -3,9 +3,16 @@
 \section{Reproducibility of neuroimaging pipelines across operating systems}
 Since the claim that ``most published research findings are false” by Ioannidis in 2005 \cite{10.1371/journal.pmed.0020124}, a series of studies have questioned the reproducibility of research results in various disciplines. To mention only a few examples from the neuroinformatics domain, brain activation was found in a dead salmon \cite{BENNETT2009S125}, more than half of the publications in the field of psychology could not be reproduced \cite{aac4716}. The resulting “reproducibility crisis” is challenging the validity of scientific results in several disciplines and we are trying to focus our study on how the operating systems affect the Human connectome project preprocessing pipelines \cite{Gla13}.
  
-Neuroimaging pipelines are known to generate different results depending on the computing platform where they are compiled and executed \cite{Gla15}. Such reproducibility issues, also known as computing noise, arise from variations in harware architectures and software versions. The state-of-the-art solution to deal with these issues is to restrict studies to a single computing platform (harware and software), which has several drawbacks and, therefore, not feasible. So the best approach is to become aware of these differences.
+``Neuroimaging pipelines are known to generate different results depending on the computing platform where they are compiled and executed" \cite{Gla15}. Study conducted by Tristan G. et al. \cite{Gla15} on FSL\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}}, Freesurfer\footnote{\url{https://surfer.nmr.mgh.harvard.edu/}} and CIVET\footnote{\url{http://www.bic.mni.mcgill.ca/ServicesSoftware/CIVET}} and different versions of GNU/Linux found that the differences are occuring due to the evolution of math libraries used in the operating system. A similiar study conducted by Gronenschild et al. \cite{10.1371/journal.pone.0038234} concludes that the operating system updates and the software updates itself can cause differences in the results of neuroimaging pipelines. We are tying to create a framework that can identify and report these differences that hamper the reproducibility of experiments due to the influence of host operating system.\\
 
-Study conducted on FSL, Freesurfer and CIVET and different versions of GNU/Linux \cite{Gla15} shows that the differences are occuring due to the evolution of math libraries used in the operating system on which the processing takes place. A similiar study \cite{10.1371/journal.pone.0038234} concludes that the operating system updates and the software updates itself can cause differences in the results of neuroimaging pipelines. We are tying to identify the reasons that causes these differences.\\
+\begin{center}
+\includegraphics[width=\linewidth]{builds.jpg}
+\captionof{figure}{Source code, compilation, libraries, kernel and hardware}
+\label{fig:Types of builds}
+\caption*{Extracted from \cite{Gla15}}
+\end{center}
+
+As illustrated in Figure \ref{fig:Types of builds}, ``the execution of an application depends on its source code,on the compilation process,on software libraries,on an operating system (OS) kernel, and on a hardware processor. Libraries may be embedded in the application, i.e., statically linked, or loaded from the OS, i.e., dynamically linked. The reproducibility of results may be influenced by any variation in these elements, in particular:versions of the source code, compilation options, versions of the dynamic and static libraries (in particular when these libraries implement mathematical functions), or architecture of hardware systems" \cite{Gla15}.\\
 
 Explain differences.\\
 
