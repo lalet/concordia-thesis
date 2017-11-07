@@ -5,15 +5,15 @@
 %Summarize both papers and add the summary. 
 The study \cite{Gla15}, on FSL\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}}, Freesurfer\footnote{\url{https://surfer.nmr.mgh.harvard.edu/}} and CIVET\footnote{\url{http://www.bic.mni.mcgill.ca/ServicesSoftware/CIVET}} and different versions of GNU/Linux found that the differences are occuring due to the evolution of math libraries used in the operating system. As illustrated in Figure \ref{fig:Types of builds}, ``the execution of an application depends on its source code, on the compilation process, on software libraries, on an operating system (OS) kernel, and on a hardware processor. Libraries may be embedded in the application, i.e., statically linked, or loaded from the OS, i.e., dynamically linked. The reproducibility of results may be influenced by any variation in these elements, in particular: versions of the source code, compilation options, versions of the dynamic and static libraries (in particular when these libraries implement mathematical functions), or architecture of hardware systems" ~\cite{Gla15}. \\  
 
-%Gronenschild study summary
-A similiar study conducted by Gronenschild et al. \cite{10.1371/journal.pone.0038234} concludes that ``users are discouraged to update to a new major release of either FreeSurfer or operating system or to switch to a different type of workstation without repeating the analysis".\\
-
 \begin{center}
 \includegraphics[width=\linewidth]{builds.jpg}
 \captionof{figure}{Source code, compilation, libraries, kernel and hardware}
 \label{fig:Types of builds}
 \caption*{Extracted from \cite{Gla15}}
 \end{center}
+
+%Gronenschild study summary
+A similiar study \cite{10.1371/journal.pone.0038234} was conducted on FreeSurfer (A popular and freely available set of tools for Neuroimage processing) and the main focus was to identify the variabilities resulting from different data processing conditions like software version, operating system and hardware. This study identified differences in images due to updates in the operating system versions (OSX 10.6 and OSX 10.5) as well as FreeSurfer (v4.3.1 vs. v4.5.0, v4.3.1 vs. v5.0.0, and v4.5.0 vs. v5.0.0) software. They also identified differences in the images when the images were processed on different set of hardware (Mac vs HP systems). Study concludes that ``users are discouraged to update to a new major release of either FreeSurfer or operating system or to switch to a different type of workstation without repeating the analysis".\\
 
 The above studies points out the differences that can arise due to the differences in its source code, compilation process, software library version, kernel version or the architecture of the hardware it uses for execution. With the use of containers, these reproducibility issues can be minimized upto an extent but still the host operating system dependency can influence the output of an application since it might use the underlying operating system libraries from host machine.
 
