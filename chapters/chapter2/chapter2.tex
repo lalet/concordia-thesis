@@ -25,7 +25,7 @@ Containers allow a user to run an application and its dependencies in resource-i
 Container technologies has been around for a while and there are numerous implementations of it. In the year 2000, FreeBSD (4.0) featured the Jails system which focused on providing a virtual environment running on the host machine with its own files, processes, user and superuser accounts. Later came OpenSolaris, providing not only isolation services but also mechanisms related to snapshots(A snapshot is a read-only copy of a file system or volume)  and cloning (A clone is a writable volume or file system whose initial contents are the same as the dataset from which it was created and clones can be created only from snapshots). In 2005, OpenVZ was announced as a containerization technology supporting Linux systems. Linux containers (LXC), took advantage of the namespace concept. LXC extended the isolation property to users, processes and networking. In 2006, Google started a project which implemented a functionality to limit the resource usage of containers. This project was later merged into the Linux kernel and it was named as "cgroups" feature. ``Control cgroups, usually referred to as cgroups, are a Linux kernel feature which allow processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored" \cite{cgroups}. Docker, was started as an open source project in 2013, which basically added an additional layer on top of LXC, exposing additional features such as mounted storage, network port redirection, and container catalog management. Singularity, was started in 2015, with main focus on experimental reproducbility and isolation \cite{Xavier:2013:PEC:2497369.2497577}.\\
 
 % Features of containers
-Some of the notable features of containers \cite{docker-run} \cite{DBLP:journals/corr/HaleLRW16} \cite{Julian:2016:CRI:2949550.2949562} \cite{10.1109/ISPASS.2015.7095802} which would facilitate conducting experiments easily are listed below:
+Some of the notable features of containers \cite{docker-run} \cite{DBLP:journals/corr/HaleLRW16} \cite{Julian:2016:CRI:2949550.2949562} \cite{10.1109/ISPASS.2015.7095802} which facilitate conducting experiments easily are listed below:
 
 \begin{itemize}
   \item Helps in encapsulating the entire software environment
@@ -37,22 +37,13 @@ Some of the notable features of containers \cite{docker-run} \cite{DBLP:journals
 \end{itemize}
 
 %Differences container and virtual machine 
-Figures \ref{fig:novirtualization} and \ref{fig:aftervirtualization} illustrates the differences between a host machine with virtualization and without virtualization. ``Hypervisor also known as Virtual Machine Monitor (VMM), is the basic software for providing virtualization. Virtualization creates the environment for various operating system to run on a single node or host computer or machine. The main purpose of the hypervisor (VMM) is to monitor the Virtual Machine (VM) that runs above the VMM. This enables more than one guest machine to utilize the hardware resources of a single host machine" \cite{hypervisor}. Containers have a closer access to operating system services than their counterpart virtualization tools which makes their performance closer to the performance exhibited on top of native environments \cite{Xavier:2013:PEC:2497369.2497577}. Containers subtract the hypervisor layer and accesses the host operating system features directly making it lightweight. ``Docker" and ``Singularity" are two container based technologies widely used for containerizing the applications.\\
+Figure \ref{fig:Comparison of container vs. hypervisor} illustrates the differences between virtualization based on hypervisor and container. ``Hypervisor also known as Virtual Machine Monitor (VMM), is the basic software for providing virtualization. Virtualization creates the environment for various operating system to run on a single node or host computer or machine. The main purpose of the hypervisor (VMM) is to monitor the Virtual Machine (VM) that runs above the VMM. This enables more than one guest machine to utilize the hardware resources of a single host machine" \cite{hypervisor}. Containers have a closer access to operating system services than their counterpart virtualization tools which makes their performance closer to the performance exhibited on top of native environments \cite{Xavier:2013:PEC:2497369.2497577}. Containers subtract the hypervisor layer and accesses the host operating system features directly making it lightweight. ``Docker" and ``Singularity" are two container based technologies widely used for containerizing the applications.\\
 
 \begin{center}
-\begin{minipage}{0.48\linewidth}
-\includegraphics[height=8cm,width=\linewidth]{no_virtualization.png}
-\captionof{figure}{Machine with no virtualization}
-\label{fig:novirtualization}
-\caption*{Extracted from \cite{10.4236/ijcns.2015.87026} Figure 2}
-\end{minipage}%
-\hfill
-\begin{minipage}{0.48\linewidth}
-\includegraphics[height=8cm,width=\linewidth]{with_virtualization.png}
-\captionof{figure}{Machine after virtualization}
-\label{fig:aftervirtualization}
-\caption*{Extracted from \cite{10.4236/ijcns.2015.87026} Figure 3}
-\end{minipage}
+\includegraphics[width=\linewidth]{cont-vm.png}
+\captionof{figure}{Comparison of hypervisor (a) and container (b) —based instances.}
+\label{fig:Comparison of container vs. hypervisor}
+\caption*{Extracted from \cite{7382987}}
 \end{center}
 
 
