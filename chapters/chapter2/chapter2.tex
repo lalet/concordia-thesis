@@ -1,10 +1,24 @@
 %Add a more informatic name
 \chapter{Related Work}
-
-\section{Reproducibility of neuroimaging pipelines across operating systems}
 %Intro 
 %Explain freesurfer here
+\section{NeuroImaging Pipelines}
+%What is neuroimagaing
+%Check first sentence
+Neuroimaging pipelines are used for the analysis and visualization of human brain structure, function and connectivity. Neuroscientists are are relying on the neuroimaging techniques as an essential tool for understanding the complex spatial and temporal characteristics of human brain. Some of the popular neuroimaging techniques are  functional MRI\footnote{\url{https://en.wikipedia.org/wiki/Functional_magnetic_resonance_imaging}} (fMRI), diffusion tensor imaging\footnote{\url{https://en.wikipedia.org/wiki/Diffusion_MRI}} (DTI), voxel based morphometry\footnote{\url{https://en.wikipedia.org/wiki/Voxel-based_morphometry}} (VBM), magnetoencephalography \footnote{\url{https://en.wikipedia.org/wiki/Magnetoencephalography}} (MEG), electroencephalography\footnote{\url{https://en.wikipedia.org/wiki/Electroencephalography}} (EEG), and optical imaging. According to "fMRI measures brain activity by detecting changes associated with blood flow. DTI is an MRI-based neuroimaging technique which makes it possible to estimate the location, orientation, and anisotropy (The property of being directionally dependent, which implies different properties in different directions) of the brain's white matter tracts. VBM is a neuroimaging analysis technique that allows investigation of focal differences in brain anatomy, using the statistical approach of statistical parametric mapping. MEG is a functional neuroimaging technique for mapping brain activity by recording magnetic fields produced by electrical currents . EEG is an electrophysiological monitoring method to record electrical activity of the brain. ``Optical imaging involves shining light into a tissue with one or more sources, and measuring light output from the tissue using one or more detectors" \cite{doi:10.1080/23273798.2017.1290810}.\\
 
+``The Human Connectome Project (HCP) faces the challenging task of bringing multiple magnetic resonance imaging(MRI) modalities, structural, functional, and diffusion,together into a common automated preprocessing framework across a large cohort of subjects" \cite{}. This framework is open and freely accessible \cite{Gla13}. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions and differing distortions. So these preprocessing pipelines creates preprocessing results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used.\\
+
+%Rephrase the sentences
+HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependant on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on HCP preprocessing pipelines.\\
+
+\begin{itemize}
+ \item FSL
+ \item FreeSurfer
+ \item HCP Pipelines
+\end{itemize}
+
+\section{Reproducibility of neuroimaging pipelines across operating systems}
 %Summarize both papers and add the summary. 
 The study \cite{Gla15}, on FSL\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}}, Freesurfer\footnote{\url{https://surfer.nmr.mgh.harvard.edu/}} and CIVET\footnote{\url{http://www.bic.mni.mcgill.ca/ServicesSoftware/CIVET}} and different versions of GNU/Linux found that the differences are occuring due to the evolution of math libraries used in the operating system. As illustrated in Figure \ref{fig:Types of builds}, the study \cite{Gla15} states that, ``the execution of an application depends on its source code, on the compilation process, on software libraries, on an operating system (OS) kernel, and on a hardware processor. Libraries may be embedded in the application, i.e., statically linked, or loaded from the OS, i.e., dynamically linked. The reproducibility of results may be influenced by any variation in these elements, in particular: versions of the source code, compilation options, versions of the dynamic and static libraries (in particular when these libraries implement mathematical functions), or architecture of hardware systems".
 
@@ -101,7 +115,7 @@ INSTRUCTION arguments
 \end{center}
 
 %Docker build commands
-The development of standardized Dockerfile format \ref{fig:docker_format}\ref{fig:docker_file_format} for describing and managing software containers is very straightforward. FROM keyword is used to mention the parent image name. WORKDIR sets the current working directory and ADD helps to copy files or directories. RUN is used to run a specific command and EXPOSE keyword helps to open ports for access outside the container. ENV command is used for setting the environment variables and CMD command helps us to run scripts along with its arguments. There are many more commands and the complete documentation is avaialbe at ~\cite{docker_commands}. 
+The sample file format of a Dockerfile is shown in Figure ~\ref{fig:docker_format}. The development of standardized Dockerfile format as illustrated in Figure ~\ref{fig:docker_file_format}, for describing and managing software containers is very straightforward. FROM keyword is used to mention the parent image name. WORKDIR sets the current working directory and ADD helps to copy files or directories. RUN is used to run a specific command and EXPOSE keyword helps to open ports for access outside the container. ENV command is used for setting the environment variables and CMD command helps us to run scripts along with its arguments. There are many more commands and the complete documentation is avaialbe at ~\cite{docker_commands}. 
 
 %How it helps run experiments
 Docker helps developers to easily create standard containers for their software applications or services. For a system administrator, Docker helps in the automation of depolyment and management of business level services with the help of containers. Docker can be used as a part of virtualization layer for deploying and managing the execution environments. Another advantage is that Docker containers provide reliable and predicatable execution environments and thus helps in reducing the issues related to deployment \cite{DBLP:journals/corr/MorrisVHM17}.
@@ -189,20 +203,4 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 \subsection{Library call interception}
 \subsection{Reprozip tool}
 \hyperref[System Call Interception]{http://landley.net/kdocs/mirror/ols2007v1.pdf}
-
-\section{NeuroImaging Pipelines}
-%What is neuroimagaing
-%Check first sentence
-Neuroimaging pipelines are used for the analysis and visualization of human brain structure, function and connectivity. Neuroscientists are are relying on the neuroimaging techniques as an essential tool for understanding the complex spatial and temporal characteristics of human brain. Some of the popular neuroimaging techniques are  functional MRI\footnote{\url{https://en.wikipedia.org/wiki/Functional_magnetic_resonance_imaging}} (fMRI), diffusion tensor imaging\footnote{\url{https://en.wikipedia.org/wiki/Diffusion_MRI}} (DTI), voxel based morphometry\footnote{\url{https://en.wikipedia.org/wiki/Voxel-based_morphometry}} (VBM), magnetoencephalography \footnote{\url{https://en.wikipedia.org/wiki/Magnetoencephalography}} (MEG), electroencephalography\footnote{\url{https://en.wikipedia.org/wiki/Electroencephalography}} (EEG), and optical imaging. According to "fMRI measures brain activity by detecting changes associated with blood flow. DTI is an MRI-based neuroimaging technique which makes it possible to estimate the location, orientation, and anisotropy (The property of being directionally dependent, which implies different properties in different directions) of the brain's white matter tracts. VBM is a neuroimaging analysis technique that allows investigation of focal differences in brain anatomy, using the statistical approach of statistical parametric mapping. MEG is a functional neuroimaging technique for mapping brain activity by recording magnetic fields produced by electrical currents . EEG is an electrophysiological monitoring method to record electrical activity of the brain. ``Optical imaging involves shining light into a tissue with one or more sources, and measuring light output from the tissue using one or more detectors" \cite{doi:10.1080/23273798.2017.1290810}.\\
-
-``The Human Connectome Project (HCP) faces the challenging task of bringing multiple magnetic resonance imaging(MRI) modalities, structural, functional, and diffusion,together into a common automated preprocessing framework across a large cohort of subjects" \cite{}. This framework is open and freely accessible \cite{Gla13}. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions and differing distortions. So these preprocessing pipelines creates preprocessing results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used.\\
-
-%Rephrase the sentences
-HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependant on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on HCP preprocessing pipelines.\\
-
-\begin{itemize}
- \item FSL
- \item FreeSurfer
- \item HCP Pipelines
-\end{itemize}
 
