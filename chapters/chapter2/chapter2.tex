@@ -84,15 +84,23 @@ What are its limitations
 Include the problems listed in link https://goo.gl/zodrok
 
 \begin{center}
-\begin{tabular}{ | m{5em} | m{1cm}| m{1cm} | } 
+%\begin{tabular}{ | c | c | c | c | } 
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] |}
   \hline
-  cell1 & cell2 & cell3 \\ 
+  Error type & Cause & Software &  Solved by containers? \\ 
   \hline
-  cell1 & cell5 & cell6 \\ 
+  Numerical differences & OS libraries & FSL, Freesurfer, CIVET & Masked \\ 
   \hline
-  cell7 & cell8 & cell9 \\ 
+  Numerical differences & Unnoticed crash & FSL (epi\_reg) & Depends on crash cause \\ 
   \hline
-\end{tabular}
+  Crash & Hardware-specific instructions & Mrtrix3 (default compilation options have architecture-specific compilation flags) & No \\
+  \hline
+  Crash & Out of memory & FSL (applywarp) & No \\
+  \hline
+  Numerical differences & Kernel? & Niak (To be confirmed)  & No \\
+  \hline
+%\end{tabular}
+\end{tabu}
 \end{center}
 
 \subsection{Docker}
