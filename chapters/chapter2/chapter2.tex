@@ -14,10 +14,9 @@ Among the neuroimaging techniques listed above, fMRI became so popular amoung ne
 In neuroimaging, revelant information has to be extracted from noisy images of the brain \cite{WOOLRICH2009S173}. To help extraction of structural, functional or diffusion MRI data, there are several pipelines freely available. Some of the most popular pipelines are The FMRIB Software Library\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}} (FSL), FreeSurfer\footnote{\url{https://surfer.nmr.mgh.harvard.edu/}} and HCP Pipelines\footnote{\url{https://github.com/Washington-University/Pipelines}}.
 
 %Add more details
-FSL pipeline \cite{JENKINSON2012782}, ``is a comprehensive library of analysis tools for FMRI, MRI and DTI brain imaging data". This tool consists of over 230 individual command line tools and 23 GUIs. Eventhough there are a high number of tools, there is only a very less number of tools that are so commonly used. Table \ref{tab:tools_fsl} lists the most popular tool among the FSL tools. With the use of FSL preprocessing pipeline, standard preprocessing can be applied on Task fMRI (to identify and characterize functionally distinct nodes in the human brain) as well as Resting-state fMRI (method for evaluating regional interactions that occur when a subject is not performing an explicit task) \cite{hcp_protocol} \cite{FSL}. FSL can also do motion correction, distortion correction, spatial smoothing, temporal filtering and registration of images. 
- 
-According to \cite{freesurfer_website}, ``FreeSurfer is a software package for the analysis and visualization of structural and functional neuroimaging data from cross-sectional or longitudinal studies". It consists of a set of tools that provide automated analysis of main features of human brain. The main tasks include volumetric segmentation, hippocambal subfield segmentation, inter-subject alignment based on the folding pattern of cortex, cortical gray matter thickness detection and human cerebral cortex surface model construction \cite{Fischl2012}.
-HCP pipelines also makes use of Freesurfer for the preprocessing of structural images.
+FSL pipeline \cite{JENKINSON2012782}, ``is a comprehensive library of analysis tools for FMRI, MRI and DTI brain imaging data". This tool consists of over 230 individual command line tools and 23 GUIs. Eventhough there are a high number of tools, there is only a very less number of tools that are so commonly used. Table \ref{tab:tools_fsl} lists the most popular tool among the FSL tools. With the use of FSL preprocessing pipeline, standard preprocessing can be applied on Task fMRI (to identify and characterize functionally distinct nodes in the human brain) as well as Resting-state fMRI (method for evaluating regional interactions that occur when a subject is not performing an explicit task) \cite{hcp_protocol} \cite{FSL}. FSL can also do motion correction, distortion correction, spatial smoothing, temporal filtering and registration of images.
+
+According to \cite{freesurfer_website}, ``FreeSurfer is a software package for the analysis and visualization of structural and functional neuroimaging data from cross-sectional or longitudinal studies". It consists of a set of tools that provide automated analysis of main features of human brain. The main tasks include volumetric segmentation, hippocambal subfield segmentation, inter-subject alignment based on the folding pattern of cortex, cortical gray matter thickness detection and human cerebral cortex surface model construction \cite{Fischl2012}.HCP pipelines also makes use of Freesurfer for the preprocessing of structural images.
 
 \begin{center}
 \tabulinesep=1.2mm
@@ -25,9 +24,9 @@ HCP pipelines also makes use of Freesurfer for the preprocessing of structural i
   \hline
   Use & Tool name \\
   \hline
-  FMRI: task-based, using General Linear Model & FEAT \\
+  FMRI: task-based & FEAT \\
   \hline
-  FMRI: resting-state or task-based, using ICA and no temporal model & MELODIC \\
+  FMRI: resting-state or task-based & MELODIC \\
   \hline
   ASL (perfusion imaging of flow) & FABBER \\
   \hline
@@ -37,7 +36,7 @@ HCP pipelines also makes use of Freesurfer for the preprocessing of structural i
   \hline
   Brain extraction & BET \\
   \hline
-  Tissue-type segmentation (GM/WM/CSF) & FAST \\
+  Tissue-type segmentation  & FAST \\
   \hline
   Subcortical segmentation & FIRST \\
   \hline
@@ -45,7 +44,7 @@ HCP pipelines also makes use of Freesurfer for the preprocessing of structural i
   \hline
   Voxel-wise analysis of grey matter density & FSL-VBM \\
   \hline
-  Whole brain atrophy (longitudinal and cross-sectional & SIENA and SIENAX \\
+  Whole brain atrophy (longitudinal and cross-sectional) & SIENA and SIENAX \\
   \hline
 \end{tabu}
 \captionof{table}{The major tools within FSL}
@@ -54,9 +53,11 @@ HCP pipelines also makes use of Freesurfer for the preprocessing of structural i
 \end{center}
 
 %Workbench
-``The Human Connectome Project (HCP) faces the challenging task of bringing multiple magnetic resonance imaging modalities, structural, functional and diffusion, together into a common automated preprocessing framework across a large cohort of subjects" \cite{Gla13}. The pipeline for processing the images from HCP is open and freely accessible \cite{Gla13}. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions.So these preprocessing pipelines creates results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used \cite{HODGE20161102}. The pipeline consists of seperate processing flow for structural and functional images. The structural processing consists of PreFreeSurfer, FreeSurfer and PostFreeSurfer and functional processing consists of fMRIVolume and fMRISurface \cite{FSL}.
+``The Human Connectome Project (HCP) faces the challenging task of bringing multiple magnetic resonance imaging modalities, structural, functional and diffusion, together into a common automated preprocessing framework across a large cohort of subjects" \cite{Gla13}. The pipeline for processing the images from HCP is open and freely accessible. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions. So these preprocessing pipelines creates results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used \cite{HODGE20161102}. The pipeline consists of seperate processing flow for structural and functional images. The structural pre-processing consists of PreFreeSurfer, FreeSurfer and PostFreeSurfer. Functional pre-processing consists of fMRIVolume and fMRISurface \cite{FSL}.
 
-Connectome Workbench \cite{wb_workbench} is, ``an open source, freely available visualization and discovery tool used to map neuroimaging data, especially data generated by the Human Connectome Project. The distribution includes wb\_view, a GUI-based visualiation platform, and wb\_command, a command-line program for performing a variety of algorithmic tasks using volume, surface, and grayordinate data". The data generated by HCP preprocessing and analysis pipelines are of different modalities and connectome workbench can be used for visualizing them. Workbench extended its support to include CIFTI\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}} files also other than standard neuroimaging formats like NIfTI\footnote{\url{https://nifti.nimh.nih.gov}} and GIFTI\footnote{\url{https://www.nitrc.org/projects/gifti/}} \cite{journals/neuroimage/MarcusHSJWGBABRHHHOMHHRHCSECE13}.  
+The main goals of strctural and functional pipelines \cite{Gla13} are provided below. The main goals fof PreFreeSurfer are, 1) Produce an undistorted "native" structural volume space for each subject. 2) Align T1W and T2W images. 3) Perform Bias Field correction. 4) Registration of the structual volume to MNI space (a statistical MRI atlas for brain mapping). FreeSurfer goals are, 1) Segmentation of the volume into predefined structures. 2) Reconstruction of white and pial cortical surfaces. 3) Surface registration. PostFreeSurfer main goals are, 1) Creation of myelin maps and brain mask. 2) Preparation of registered surfaces for connectivity analysis by downsampling. 3) Surface Registration. 4) Production of GIFTI\footnote{\url{https://www.nitrc.org/projects/gifti}} and NIfTI\footnote{\url{https://nifti.nimh.nih.gov}} files which are used for visualizing data by Connectome Workbench (a tool for visualizing HCP data). fMRIVolume pipeline 1) Removes spatial distortions. 2) Corrects subject motion. 3) Reduces bias field. 4) Redcution of 4D images to global mean. 5) Application of final brain mask to data. The main goal of fMRISurface, is the creation of CIFTI files.
+
+Connectome Workbench \cite{wb_workbench} is, ``an open source, freely available visualization and discovery tool used to map neuroimaging data, especially data generated by the Human Connectome Project. The distribution includes wb\_view, a GUI-based visualiation platform, and wb\_command, a command-line program for performing a variety of algorithmic tasks using volume, surface, and grayordinate data". The data generated by HCP preprocessing and analysis pipelines are of different modalities and connectome workbench can be used for visualizing them. Workbench extended its support to include CIFTI\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}} files also other than standard neuroimaging formats like NIfTI and GIFTI \cite{journals/neuroimage/MarcusHSJWGBABRHHHOMHHRHCSECE13}.
  
 %Rephrase the sentences
 %HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependant on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on HCP preprocessing pipelines.
