@@ -270,6 +270,15 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 \subsection{System call interception}
 \subsection{Library call interception}
 \subsection{Reprozip tool}
-Reprozip was developed in order to make existing computational experiments reproducible across different platforms \cite{Chirigati:2013:RUP:2482613.2482614}.
+Reprozip\footnote{\url{https://reprozip.readthedocs.io/en/1.0.x/reprozip.html}} is a tool that helps to make computational experiments reproducible across different platforms \cite{Chirigati:2013:RUP:2482613.2482614}.Reprozip creates a package of the whole experiment by tracking and recording all the processes and dependencies. This package can be shared among the researches and Reprozip also has the capability to unpack and run the package on a different or same platform. To package the experiment, a Linux operating system is needed but the packaged experiment can be unpacked and ran on Linux, Mac or Windows operating system. Figure \ref{fig:Reprozip_packing_and_unpacking} illustrates the packing and unpacking steps in Reprozip.
+
+\begin{center}
+\includegraphics[width=\linewidth]{reprozip}
+  \captionof{figure}{Reprozip packing and unpacking}
+\label{fig:Reprozip_packing_and_unpacking}
+\caption*{Extracted from \cite{Rampin2016}}
+\end{center}
+
+
 \hyperref[System Call Interception]{http://landley.net/kdocs/mirror/ols2007v1.pdf}
 
