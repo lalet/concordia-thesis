@@ -267,8 +267,10 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 
 \section{Interposition Techniques}
 
-\subsection{System call interception}
-\subsection{Library call interception}
+\subsection{System call interposition}
+System call interposition is the mechanism of monitoring the a process monitors the system calls made by another process \cite{Jain00user-levelinfrastructure}. System call interposition techniques can be used to implement several important features such as 1) system call tracing and monitoring. 2) the facility to emulate other system call implementations. 3) wrapper environment for testing untrusted binaries. 4) transactional software environments which keeps track of all the operations and can record a commit or abort message based on the transactions etc. \cite{i53e9b807b7602d97043b9309}.
+
+\subsection{Library call interposition}
 \subsection{Reprozip tool}
 %What is reprozip
 Reprozip\footnote{\url{https://reprozip.readthedocs.io/en/1.0.x/reprozip.html}} is a tool that helps to make computational experiments reproducible across different platforms \cite{Chirigati:2013:RUP:2482613.2482614}.Reprozip creates a package of the whole experiment by tracking and recording all the processes and dependencies. The main two tasks of Reprozip are packing and unpacking. 
