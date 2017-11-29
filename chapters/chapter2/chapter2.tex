@@ -267,10 +267,10 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 
 \section{Interposition Techniques}
 
-\subsection{System call interposition}
+\subsection{System and Library call interposition}
 System call interposition is the mechanism where a process monitors the system calls made by another process \cite{Jain00user-levelinfrastructure}. System call interposition techniques can be used to implement several important features such as 1) system call tracing and monitoring. 2) the facility to emulate other system call implementations. 3) wrapper environment for testing untrusted binaries. 4) transactional software environments which keeps track of all the operations and can record a commit or abort message based on the transactions etc. \cite{Jones93}.
 
-\subsection{Library call interposition}
+Library call interposition techniques are used for monitoring and logging the calls made to the shared libraries by different applications or processes. According to \cite{Curry:1994:PTD:1267257.1267275}, ``The process of placing a new or different library function between the application and its reference to a library function", is called library call interposing. This technique uses wrapper functions which are modified to collect information before and after calling the real library function and thus it doesn't require to modify either the system call or the application. 
 \subsection{Reprozip tool}
 %What is reprozip
 Reprozip\footnote{\url{https://reprozip.readthedocs.io/en/1.0.x/reprozip.html}} is a tool that helps to make computational experiments reproducible across different platforms \cite{Chirigati:2013:RUP:2482613.2482614}.Reprozip creates a package of the whole experiment by tracking and recording all the processes and dependencies. The main two tasks of Reprozip are packing and unpacking. 
@@ -280,14 +280,15 @@ To package the experiment, a Linux operating system is needed but the packaged e
 
 \begin{center}
 \includegraphics[width=\linewidth]{reprozip}
-  \captionof{figure}{Reprozip packing and unpacking}
+\captionof{figure}{Reprozip packing and unpacking}
 \label{fig:Reprozip_packing_and_unpacking}
 \caption*{Extracted from \cite{Rampin2016}}
 \end{center}
 
 %Packing
-The tedious task of producing a package containing all the necessary details of an experiment is made possible using four modules. System Call Tracing, Provenance Analysis, Package Customization, and Package Generation \cite{Chirigati:2013:RUP:2482613.2482614}.
+The tedious task of producing a package containing all the necessary details of an experiment is made possible using four modules. System Call Tracing, Provenance Analysis, Package Customization, and Package Generation \cite{Chirigati:2013:RUP:2482613.2482614}. Reprozip uses ptrace\footnote{\url{http://man7.org/linux/man-pages/man2/ptrace.2.html}} (process trace) to trace all the system calls and hence it needs a Linux operating system for packing the experiments. Tracing includes command-line arguments, environment variables, files read, and files written, and stores everything in a SQLite database. The provenance data analysis is done in order to identify the software packages, input files and output files that are used by the experiment. All these sort of collected information is then written into a configuration file. Package customization gives the researchers the power to customize the experiment by editing the configuration files. Thus researchers can rerun the experiment with intended changes and thus Reprozip helps to make the experiments more flexible. After tracing all the system calls, provenance analysis, optional editing of the configuration files, the experiment package can be created using the ``reprozip pack" command. The end result is a ``.rpz" file, containing all the information required for reproducing an experiment.
 
-Reprozip uses ptrace\footnote{\url{http://man7.org/linux/man-pages/man2/ptrace.2.html}} (process trace) to trace all the system calls and hence it needs a Linux operating system for packing the experiments. Tracing includes command-line arguments, environment variables, files read, and files written, and stores everything in a SQLite database. The provenance data analysis is done in order to identify the software packages, input files and output files that are used by the experiment. All these sort of collected information is then written into a configuration file. Package customization gives the researchers the power to customize the experiment by editing the configuration files. Thus researchers can rerun the experiment with intended changes and thus Reprozip helps to make the experiments more flexible. After tracing all the system calls, provenance analysis, optional editing of the configuration files, the experiment package can be created using the ``reprozip pack" command. The end result is a ```.rpz" file, which comprises of all the information required for reproducing an experiment.
+%Unpacking
+The unpacking process makes use of the ``.rpz" file. The unpacking can be done in three ways. If the host operating system is similiar to the one on which the experiment was packed, the experiment can be reproduced on the host operating system itself by installing the dependencies on the host. If the host operating system is a totally different platform, then vagrant\footnote{\url{https://www.vagrantup.com/}} or docker can be used to unpack and reproduce the experiment. Irrespective of platforms the unpacking process consists of experiment setup and experiment reproduction steps. Experiment setup is done by calling the ``setup" command. This command copies the experiment to the intended destination and it is followed by ``run" command which reruns the experiment. The ``upload" and ``download" command can be used to replace an input file and download a processed file respectively.
 
 \hyperref[System Call Interception]{http://landley.net/kdocs/mirror/ols2007v1.pdf}
