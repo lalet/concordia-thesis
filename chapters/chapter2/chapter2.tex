@@ -84,12 +84,11 @@ A similiar study \cite{Gla15}, on FSL\footnote{\url{https://fsl.fmrib.ox.ac.uk/f
 
 %Gronenschild study summary
 
-The above studies points out the reasons that can cause differences in the output images. The difference in the pipeline's source code due to updates, compilation process, software library version, kernel version or the architecture of the hardware it uses for execution are some of the main reasons. With the use of containers, the variance in these reproducibility issues can be minimized to a certain extent. \todo{1 sentence on what will be the contribution of your thesis compared to these studies.}
+The above studies points out the reasons that can cause differences in the output images. The difference in the pipeline's source code due to updates, compilation process, software library version, kernel version or the architecture of the hardware it uses for execution are some of the main reasons. With the use of containers, the variance in these reproducibility issues can be minimized to a certain extent. We focus on the reproducibility aspect of HCP pipelines across operating systems, like how stable the pipeline is , if the results are different across operating systems, quantify them and find the reason behind the differences.
 
 \section{Containers}
 %Containers intro
-Containers allow a user to run an application and its dependencies in resource-isolated processes by encapsulating the entire software environment. Containers thus help in tackling one of the serious challenges associated with making an experiment computationally reproducible, i.e., the rapidly changing nature of computer environments. \todo{check if this is from a paper}
-
+Containers allow a user to run an application and its dependencies in resource-isolated processes by encapsulating the entire software environment. Containers thus help in tackling one of the serious challenges associated with making an experiment computationally reproducible, i.e., the rapidly changing nature of computer environments.
 %2 History of containers
 % Clone and snapshot
 % Clone and snapshot explanation
@@ -131,16 +130,12 @@ Some of the notable features of containers \cite{docker-run} \cite{DBLP:journals
   \item Avoids the software version conflicts with the host OS by packaging the right software versions and dependencies in the container environment.
   \item Simplifies collaboration and sharing ability.
   \item Improves reproducibility and portability of applications.
-  \item Is not specific to the host OS. \todo{what do you mean?}
   \item Facilitates the rapid deployment and execution at scale.
 \end{itemize}
 
-\todo{Write this: What are its limitations. Introduce and comment on the table.
+\todo{Write this: What are its limitations. Introduce and comment on the table.}
 
-However, containers are not the ultimate solution for reproducible
-computations. Reproducibility issues may arise from other causes than
-software libraries, for instance amount of available resources or
-hardware heterogeneity, which are not covered by containers. Table X shows that ...}
+However, containers are not the ultimate solution for reproducible computations. Reproducibility issues may arise from other causes than software libraries, for instance amount of available resources or hardware heterogeneity, which are not covered by containers. Table \ref{tab:table_docker} shows the various issues found while using Docker containers.
 %Include the problems listed in link https://goo.gl/zodrok
 
 \begin{center}
@@ -149,9 +144,9 @@ hardware heterogeneity, which are not covered by containers. Table X shows that 
   \hline
   Error type & Cause & Software &  Solved by containers? \\
   \hline
-  Numerical differences & OS libraries & FSL, Freesurfer, CIVET & Masked \\ 
+  Numerical differences & OS libraries & FSL, Freesurfer, CIVET & Masked \\
   \hline
-  Numerical differences & Unnoticed crash & FSL (epi\_reg) & Depends on crash cause \\ 
+  Numerical differences & Unnoticed crash & FSL (epi\_reg) & Depends on crash cause \\
   \hline
   Crash & Hardware-specific instructions & Mrtrix3 (default compilation options have architecture-specific compilation flags) & No \\
   \hline
