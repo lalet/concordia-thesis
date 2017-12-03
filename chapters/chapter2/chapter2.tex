@@ -148,7 +148,7 @@ However, containers are not the ultimate solution for reproducible computations.
 \end{center}
 
 %Numerical issues in containers
-Containers help in reducing the variability in the images occuring due to the numerical instability of pipelines. The differences found in FSL, FreeSurfer and CIVET are actually masked by the use of containers, since, the condition on which the processing takes place doesn't change if we are using the same container image. If the image gets updated, the results might have differences. 
+Containers help in reducing the variability in the images caused due to the numerical instability of pipelines. The differences found in FSL, FreeSurfer and CIVET are actually masked by the use of containers, since, the condition on which the processing takes place doesn't change if we are using the same container image. If the image gets updated, the results might be different.
 
 Niak\footnote{\url{http://niak.simexp-lab.org/niak\_pipelines.html}} is a preprocessing pipeline consisting of tools for the connectivity analysis in fMRI. Niak pipeline has numerical instability stemming from the differences in the host kernel used by the container. 
 
