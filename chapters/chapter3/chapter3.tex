@@ -1,5 +1,6 @@
 \chapter{Framework Architecture}
-The framework for the processing and analysis of reproducibility of human connectome preprocessing pipelines consists of below described steps.
+The reprotools \todo{name subject to change } is a set of tools developed to for the analysis of files to identify the reproducibility issues occuring in the neuroimages. Though this framework is particularly developed with neuroimaging in focus, it can be used to analyze files belonging to any discipline. In this particular usecase, the HCP data containing the neuroimaging data processed under different conditions is analyzed. Under an ideal scenario, different HCP subjects, irrespective of the condition under which the processing takes place, are supposed to have identical checksum. Reprozip tool helps to in identifying the files having differences and also it can quantify these differences with the help of metrics. Reprotools can also trace the provenance of these differences with the help of data captured with the help of Reprozip.
+\section{}
 \begin{itemize}
   \item Collecting data from the Human Connectome Preprocessing Pipelines \cite{DBHumanConnectome}
   \item Creation of docker images containing the HCP Preprocessing pipelines
