@@ -7,21 +7,22 @@ The reprotools \todo{name subject to change } is a set of tools developed to for
   \item Deploying the docker images with the help of Boutiques (A cross-platform application repository for data-analysis platforms) to CBRAIN
   \item Processing of HCP data set using pipelines and measures to check file corruption, recording the software and hardware specifications, provenance capture
   \item Analysis of processed HCP data
-  \end{itemize} 
+  \end{itemize}
 
 Explain in detailed steps
 
 \section{Pipeline Containerization}
 \subsection{Docker images}
-The study of neuroimaging pipelines is conducted on CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System). According to \cite{CentOS}, ``CentOS is for people who need an enterprise class operating system stability without the cost of certification and support". CentOS operating system is known for its rock-solid reliability, safety, portability, openness and the long product lifecycle \cite{5665431}. All these qualities make CentOS a popular choice among the research community and
-high performance computing clusters.
+The study of neuroimaging pipelines is conducted on CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System). According to~\cite{CentOS}, ``CentOS is for people who need an enterprise class operating system stability without the cost of certification and support". CentOS operating system is known for its rock-solid reliability, safety, portability, openness and the long product lifecycle~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and
+high performance computing clusters. We conducted our study across the below listed CentOS operating system versions.
 
 \begin{itemize}
   \item Linux CentOS 5.11
-  \item Linux CentOS 6.8 
+  \item Linux CentOS 6.8
   \item Linux CentOS 7.2.1511
 \end{itemize}
 
+Containers were created out of the base version images listed above. These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines.
 \subsubsection{Main Dependencies}
 \begin{itemize}
   \item FSL - 5.0.6
