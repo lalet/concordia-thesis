@@ -9,12 +9,11 @@ The reprotools \todo{name subject to change } is a set of tools developed to for
   \item Analysis of processed HCP data
   \end{itemize}
 
-Explain in detailed steps
-
 \section{Pipeline Containerization}
+
 \subsection{Docker images}
 The study of neuroimaging pipelines is conducted on CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System). According to~\cite{CentOS}, ``CentOS is for people who need an enterprise class operating system stability without the cost of certification and support". CentOS operating system is known for its rock-solid reliability, safety, portability, openness and the long product lifecycle~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and
-high performance computing clusters. We conducted our study across the below listed CentOS operating system versions.
+high performance computing clusters. We conducted our study across the below listed CentOS operating system versions.\\
 
 \begin{itemize}
   \item Linux CentOS 5.11
@@ -22,19 +21,23 @@ high performance computing clusters. We conducted our study across the below lis
   \item Linux CentOS 7.2.1511
 \end{itemize}
 
-Containers were created out of the base version images listed above. These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines.
-\subsubsection{Main Dependencies}
+Docker containers were created out of the base version images listed above. These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,\\
+
 \begin{itemize}
-  \item FSL - 5.0.6
-  \item FreeSurfer 5.3.0-HCP
+\item A 64-bit Linux Operating System
+\item FSL Version - 5.0.6
+\item FreeSurfer Version - 5.3.0-HCP
+\item Connectome Workbench Version - 1.0
+\item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
 \end{itemize}
+
 
 \subsubsection{HCP Pipelines (v3.19.0)}
 \begin{itemize}
-  \item FreeSurfer,
+  \item FreeSurfer
   \item PreFreesurfer
   \item PostFreeSurfer
-  \item Images are available in Docker Hub
+  \item fMRIVolume
 \end{itemize}
 
 \section{Pipeline Encapsulation}
@@ -44,7 +47,6 @@ Containers were created out of the base version images listed above. These conta
   \item Checks container image identifier
   \item Records all the software (library versions) and hardware specifications
 \end{itemize}
-
 
 \section{Pipeline Deployment}
 \begin{itemize}
