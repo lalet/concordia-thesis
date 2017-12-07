@@ -1,6 +1,12 @@
 \chapter{Framework Architecture}
 The reprotools \todo{name subject to change } is a set of tools developed to for the analysis of files to identify the reproducibility issues occuring in the neuroimages. Though this framework is particularly developed with neuroimaging in focus, it can be used to analyze files belonging to any discipline. In this particular usecase, the HCP data containing the neuroimaging data processed under different conditions is analyzed. Under an ideal scenario, different HCP subjects, irrespective of the condition under which the processing takes place, are supposed to have identical checksum. Repro-tool helps in identifying the files having differences and also it can quantify these differences with the help of metrics. Reprotools can also trace the provenance of these differences with the help of data captured with the help of Reprozip.
 
+\begin{center}
+\includegraphics[width=\linewidth]{framework_architecture.jpg}
+\captionof{figure}{Framework Architecture}
+\label{fig:framework_architecture}
+\end{center}
+
   \begin{itemize}
   \item Collecting data from the Human Connectome Preprocessing Pipelines \cite{DBHumanConnectome}
   \item Creation of docker images containing the HCP Preprocessing pipelines
@@ -30,7 +36,6 @@ Docker containers were created out of the base version images listed above. Thes
 \item Connectome Workbench Version - 1.0
 \item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
 \end{itemize}
-
 
 \subsubsection{HCP Pipelines (v3.19.0)}
 \begin{itemize}
