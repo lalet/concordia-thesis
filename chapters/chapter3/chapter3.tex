@@ -30,12 +30,14 @@ high performance computing clusters. We conducted our study across the below lis
 Docker containers were created out of the base version images listed above. These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,\\
 
 \begin{itemize}
-\item A 64-bit Linux Operating System
-\item FSL Version - 5.0.6
-\item FreeSurfer Version - 5.3.0-HCP
-\item Connectome Workbench Version - 1.0
-\item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
+ \item A 64-bit Linux Operating System
+ \item FSL Version - 5.0.6
+ \item FreeSurfer Version - 5.3.0-HCP
+ \item Connectome Workbench Version - 1.0
+ \item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
 \end{itemize}
+
+We used CentOS 5.11, CentOS 6.8 and Centos7.2.1511 64 bit operating system versions for our study. FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the Docker images.
 
 \subsubsection{HCP Pipelines (v3.19.0)}
 \begin{itemize}
