@@ -16,12 +16,18 @@ The repro-tools \todo{name subject to change } is a framework developed for anal
   \end{itemize}
 
 \section{Pipeline Containerization}
-A container is a self-contained, ready-to-use software component with all the necessary dependencies and softwares~\cite{7158965}. Figure~\ref{fig:container_architecture} describes the container image architecture. The architecture is based on LXC which makes use of  cgroups and namespaces. The images are layered on top of each other and the writable container image is kept at the top. The top layer is executable and it can have a state. It can be considered as a directory containing everything needed for exectuion of an application ~\cite{7158965}.
+A container is a self-contained, ready-to-use software component with all the necessary dependencies and softwares~\cite{7158965}. Figure~\ref{fig:container_architecture} illustrates the container image architecture. The architecture is based on LXC which makes use of  cgroups and namespaces. The images are layered on top of each other and the writable container image is kept at the top. The top layer is executable and it can have a state. It can be considered as a directory containing everything needed for exectuion of an application ~\cite{7158965}.
+
 \begin{center}
    \includegraphics[width=\linewidth]{container_architecture.png}
    \captionof{figure}{Container Architecture}
    \label{fig:container_architecture}
-   \end{center}
+\end{center}
+
+Namespace isolation prevents processes from seeing resources allocated to each other. Container technologies use seperate namespaces dedicated for each functionality, such as, process isolation, network interfaces, interprocess communication etc. Control groups manage and limit resource access for process groups through limit enforcement, accounting and isolation. Thus namespace and cgroups makes it easier to manage and execute multitenant containers on the host system.
+
+The container technology used for our study is Docker. A docker image is made up of file systems layered on top of each other using AuFS. The underlying technology is LXC containers. In a traditional Linux boot mechanism, the kernel first mounts the root file system as read-only, makes the integrity check and changes the rootfs volume to read-write mode. But in a Docker container, instead of converting the rootfs to read-write mode, it uses a writable file system as illustrated in~\ref{fig:container_architecture}. 
+
 \subsection{Docker images}
 The study of neuroimaging pipelines is conducted on CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System). According to~\cite{CentOS}, ``CentOS is for people who need an enterprise class operating system stability without the cost of certification and support". CentOS operating system is known for its rock-solid reliability, safety, portability, openness and the long product lifecycle~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and
 high performance computing clusters. We conducted our study across the below listed CentOS operating system versions.
