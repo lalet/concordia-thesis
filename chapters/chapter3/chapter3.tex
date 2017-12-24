@@ -1,5 +1,5 @@
 \chapter{Framework Architecture}
-The repro-tools \todo{name subject to change } is a framework developed for analysing the reproducibility issues occuring in the neuroimages. Though this framework is developed with neuroimaging in focus, it can be used to analyze files belonging to any discipline. In this particular usecase, the HCP data containing the neuroimaging data processed under different conditions is analyzed. The term `condition` here refers to different operating system on which the processing takes place. Under an ideal scenario, different HCP subjects, irrespective of the condition under which the processing takes place, are supposed to have identical checksum. Repro-tool helps in identifying the files having differences by comparing the checksum values. It can also quantify these differences with the help of metrics. Repro-tool can also trace the provenance of these differences with the help of data captured by Reprozip.
+The repro-tools \todo{name subject to change} is a framework developed for analysing the reproducibility issues occuring in the neuroimages. Though this framework is developed with neuroimaging in focus, it can be used to analyze files belonging to any discipline. In this particular usecase, the HCP data containing the neuroimaging data processed under different conditions is analyzed. The term `condition` here refers to different operating system on which the processing takes place. Under an ideal scenario, different HCP subjects, irrespective of the condition under which the processing takes place, are supposed to have identical checksum. Repro-tool helps in identifying the files having differences by comparing the checksum values. It can also quantify these differences with the help of metrics. Repro-tool can also trace the provenance of these differences with the help of data captured by Reprozip.
 
 \begin{center}
 \includegraphics[width=\linewidth]{framework_architecture.jpg}
@@ -59,7 +59,7 @@ We used CentOS 5.11, CentOS 6.8 and Centos7.2.1511 64 bit operating system versi
   \item fMRIVolume
 \end{itemize}
 
-The HCP pipeline is open source, and we used the version 3.19.0 for our study. The details of pipeines are listed below.
+The HCP pipeline is open source, and we used the version 3.19.0 for our study. The details of pipeines are listed below. 
 PreFreeSurfer, FreeSurfer and PostFreeSurfer diagrams.
 
 \section{Pipeline Encapsulation}
