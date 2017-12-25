@@ -16,7 +16,7 @@ The repro-tools \todo{name subject to change} is a framework developed for analy
   \end{itemize}
 
 \section{Pipeline Containerization}
-A container is a self-contained, ready-to-use software component with all the necessary dependencies and softwares~\cite{7158965}. Figure~\ref{fig:container_architecture} illustrates the container image architecture. The architecture is based on LXC which makes use of  cgroups and namespaces. The images are layered on top of each other and the writable container image is kept at the top. The top layer is executable and it can have a state. It can be considered as a directory containing everything needed for exectuion of an application~\cite{7158965}.
+A container is a self-contained, ready-to-use software component with all the necessary dependencies and softwares~\cite{7158965}. Figure~\ref{fig:container_architecture} illustrates the container image architecture. The architecture is based on LXC which makes use of  cgroups and namespaces. The images are layered on top of each other and the writable container image is kept at the top. The top layer is executable and it can have a state. It can be considered as a directory containing everything needed for exectuion of an application~\cite{7158965}.\\
 
 \begin{center}
    \includegraphics[width=\linewidth]{container_architecture_unedit.png}
