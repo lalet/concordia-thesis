@@ -51,16 +51,19 @@ Docker containers were created out of the base version images listed above. Thes
 We used CentOS 5.11, CentOS 6.8 and CentOS 7.2.1511, 64 bit operating system versions for our study. FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the Docker images.
 
 \subsubsection{HCP Pipelines (v3.19.0)}
+%Intro to HCP preprocessing 
+HCP preprocessing pipelines are designed to minimize the amount of information removed from the HCP data. The minimal preprocessed subjects are available in standard format which makes it easier to compare it with subjects from other studies. This standardization makes it easier for researchers to report their findings and replicate the studies. HCP pipelines consists of three structural pipelines (PreFreeSurfer, FreeSurfer and PostFreeSurfer), two functional pipelines (fMRIVolume and fMRISurface) and a Diffusion PreProcessing pipeline~\cite{Gla13}. According to~\cite{Gla13}, the overall goals of HCP Preprocessing pipelines are, ``1) to remove spatial artifacts and distortions; 2) to generate cortical surfaces, segmentations, and myelin maps; 3) to make the data easily viewable in the Connectome Workbench visualization software; 4) to generate precise within-subject cross-modal registrations; 5) to handle surface and volume cross-subject registrations to standard volume and surface spaces; and 6) to make the data available in the Connectivity Informatics Technology Initiative (CIFTI) format in a standard ``grayordinate" space". Grayordinate represents the gray matter in the brain using a surface vertex or a volume voxel~\cite{Grayordinate}.
 
+Out of the six pipelines liste above, we are using three structural pipelines and one functional pipeline. They are listed below, 
 \begin{itemize}
-  \item FreeSurfer
-  \item PreFreesurfer
+  \item PreFreeSurfer
+  \item Freesurfer
   \item PostFreeSurfer
   \item fMRIVolume
 \end{itemize}
 
 The HCP pipeline is open source, and we used the version 3.19.0 for our study. The details of pipeines are listed below. 
-PreFreeSurfer, FreeSurfer and PostFreeSurfer diagrams.
+PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume diagrams.
 
 \section{Pipeline Encapsulation}
 
