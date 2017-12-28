@@ -124,7 +124,7 @@ A wrapper script\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-
 The checksums were computed before and after execution so that we can crosscheck them under different conditions to understand if there are any differences. These checksums are the primary criterion we use to find out if the files are having differeces. The execution directory creation copies the subject folder and thus it prevents the corruption of the HCP data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the HCP Processing.
 
 \section{Pipeline Deployment}
-
+The Docker container containing the HCP Pipeline along with the Boutiques descriptor was deployed on a single server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process multiple HCP subjects at once. Single server was used in order to prevent differences occuring in the files due to differences in the hardware.
 \begin{itemize}
   \item Single server to ensure no hardware differences
   \item Able to process multiple subjects at once
