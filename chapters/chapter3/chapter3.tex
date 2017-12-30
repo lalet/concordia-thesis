@@ -137,7 +137,9 @@ Repro-tools framework compares the files across different conditions based on ch
 
 Two types of differences can occur due to the minimal preprocessing. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occur due to pseudo-random processes used in the pipelines. Repro-tools can be used to identify both kind of differences.
 
-The first step is identification of files with differences in their checksums. For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. These metric values help us understand how big or small the differences are. Apart from quanitfying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters. These detailed information is helpful in debugging since we can recreate the processing step by step and identify the processes that creates the differences.
+The first step is identification of files with differences in their checksums. For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. Normalized root mean square error, Dice Coefficient, Text filter etc. are the various metrics used for quantifying the differences. Section \ref{sec:num1} explains the metrics in detail. 
+
+These metric values help us understand how big or small the differences are. Apart from quanitfying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters. These detailed information is helpful in debugging since we can recreate the processing step by step and identify the processes that creates the differences.
 
 %\begin{itemize}
  %\item Identify the files that are common to all subjects and all conditions
@@ -160,7 +162,16 @@ SELECT DISTINCT executed\_files.name, executed\_files.argv, executed\_files.envp
 
 Query makes use of details about the 1) processes that wrote the file; 2) command line arguments used by those processes; 3) Environment variables used; 4) timstamp; 5) working directory. By the help of the details we get out of the query, we can reproduce the steps to debug the processes that create these differences.
 
-\subsection{Metrics}
+\section{Metrics} \label{sec:num1}
+The metrics those are used to quantify the differences are described below.
+
+\subsection{Normalized Root Mean Sqaure Error (NRMSE)}
+As defined in \cite{khosrow2017handbook}, ``The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE) is a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". Normalizing the RMSD value makes it easier to compare between models or datasets.
+
+The RMSE of predicted values ${\displaystyle {\hat {y}}_{t}}$ $\hat y_t$ for times t of a regression's dependent variable ${\displaystyle y_{t}}$ $y_{t}$ is computed for n different predictions as the square root of the mean of the squares of the deviations:\\
+\begin{center}
+  $RMSE = {\sqrt {\frac{1} {n}{\sum\limits_{t = 1}^n {(\hat{y}_{t} - {y}_{t} } })^{2} } }$
+\end{center}
 
 \begin{itemize}
 \item NRMSE
