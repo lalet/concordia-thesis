@@ -168,9 +168,17 @@ The metrics those are used to quantify the differences are described below.
 \subsection{Normalized Root Mean Sqaure Error (NRMSE)}
 As defined in \cite{khosrow2017handbook}, ``The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE) is a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". Normalizing the RMSD value makes it easier to compare between models or datasets.
 
-The RMSE of predicted values ${\displaystyle {\hat {y}}_{t}}$ $\hat y_t$ for times t of a regression's dependent variable ${\displaystyle y_{t}}$ $y_{t}$ is computed for n different predictions as the square root of the mean of the squares of the deviations:\\
+The RMSE of predicted values ${\displaystyle {\hat {y}}_{t}}$  for times t of a regression's dependent variable ${\displaystyle y_{t}}$ is computed for n different predictions as the square root of the mean of the squares of the deviations:\\
 \begin{center}
-  $RMSE = {\sqrt {\frac{1} {n}{\sum\limits_{t = 1}^n {(\hat{y}_{t} - {y}_{t} } })^{2} } }$
+  \begin{equation}
+     RMSE = {\sqrt {\frac{1} {n}{\sum\limits_{t = 1}^n {(\hat{y}_{t} - {y}_{t} } })^{2} } }
+  \end{equation}
+\end{center}
+
+\begin{center}
+  \begin{equation}
+    NRMSE = {\frac{RMSE} {y_{max} - y_{min}}}
+  \end{equation}
 \end{center}
 
 \begin{itemize}
