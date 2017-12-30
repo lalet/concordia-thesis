@@ -124,12 +124,28 @@ A wrapper script\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-
 The checksums were computed before and after execution so that we can crosscheck them under different conditions to understand if there are any differences. These checksums are the primary criterion we use to find out if the files are having differeces. The execution directory creation copies the subject folder and thus it prevents the corruption of the HCP data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the HCP Processing.
 
 \section{Pipeline Deployment}
-The Docker container containing the HCP Pipeline along with the Boutiques descriptor was deployed on a single server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process multiple HCP subjects at once. Single server was used in order to prevent differences occuring in the files due to differences in the hardware.
-\begin{itemize}
-  \item Single server to ensure no hardware differences
-  \item Able to process multiple subjects at once
-  \item CBRAIN HCP plugins available here
-\end{itemize}
+The Docker container containing the HCP Pipeline along with the Boutiques descriptor was deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process HCP subjects. Single server was used in order to prevent differences occuring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the HCP Pipelines on CBRAIN is available at \cite{HCP_descriptors}.
+
+%\begin{itemize}
+ % \item Single server to ensure no hardware differences
+  %\item Able to process multiple subjects at once
+  %\item CBRAIN HCP plugins available here
+%\end{itemize}
+
+\section{File comparisions across conditions}
+Repro-tools framework compares the files across different conditions based on checksum of files. HCP subjects processed under different conditions are kept in different directories. The basic check is making sure that the files are common to all conditions for comparision. A pair of condition is taken at a time for comparison. The checksum of the files are recorded before and after the processing. Repro-tools can compute the checksums locally as well. 
+
+Two types of differences can occur due to the minimal preprocessing. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occur due to pseudo-random processes used in the pipelines. Repro-tools can be used to identify both kind of differences.
+
+The first step is identification of files with differences in their checksums. For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. These metric values help us understand how big or small the differences are. Apart from quanitfying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters. These detailed information is helpful in debugging since we can recreate the processing step by step and identify the processes that creates the differences.
+
+%\begin{itemize}
+ %\item Identify the files that are common to all subjects and all conditions
+ %\item Check intra-OS variability (e.g., due to pseudo-random processes)
+ %\item Identifies files with differences (based on md5 checksum)
+ %\item Associates file types with specific metrics (Normalized RMSE, Text filters, Dice coefficient)
+ %\item Computes difference matrix for each metric and associates matrix with Reprozip trace
+%\end{itemize}
 
 \section{Provenance Capture}
 According to~\cite{Ikeda:2010:PSP:1855795.1855800}, ``provenance captures where data came from, how it was derived, manipulated, and combined, and how it has been updated over time". Provenance information can be used to explain the source or evolution of a data set. Thus it can help in generating a deeper understanding of the data set. It can also be used to verify and confirm that there were no bugs in the processing. Provenance information can be used to identify the bugs in the processing. Thus it can help in recomputing the steps that got corrupted and send the corrected data downstream~\cite{Ikeda:2010:PSP:1855795.1855800}.
@@ -143,16 +159,6 @@ SELECT DISTINCT executed\_files.name, executed\_files.argv, executed\_files.envp
 \label{fig:provenance-query}
 
 Query makes use of details about the 1) processes that wrote the file; 2) command line arguments used by those processes; 3) Environment variables used; 4) timstamp; 5) working directory. By the help of the details we get out of the query, we can reproduce the steps to debug the processes that create these differences.
-
-\section{File comparisions across conditions}
-
-\begin{itemize}
- \item Identify the files that are common to all subjects and all conditions
- \item Check intra-OS variability (e.g., due to pseudo-random processes)
- \item Identifies files with differences (based on md5 checksum)
- \item Associates file types with specific metrics (Normalized RMSE, Text filters, Dice coefficient)
- \item Computes difference matrix for each metric and associates matrix with Reprozip trace
-\end{itemize}
 
 \subsection{Metrics}
 
