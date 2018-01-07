@@ -76,9 +76,22 @@ Main goals of, PreFreeSurfer, according to~\cite{Gla13} are, 1) to produce an un
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-PreFreeSurfer starts with correcting the distortions caused by magnetic resonance gradient nonlinearity \cite{Gla13}. According to \cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans". All images used in structural processing (T1w, T2w, the field map and phase) must be corrected from gradient nonlinearity distortion. The correction is done with a customized version of gradient\_nonlin\_unwarp package available in FreeSurfer. As per the definition given by \cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebro spinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebro spinal fluid and brain tissue.
+PreFreeSurfer starts with correcting the distortions caused by magnetic resonance gradient nonlinearity \cite{Gla13}. According to \cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans". All images used in structural processing (T1w, T2w, the field map and phase) must be corrected from gradient nonlinearity distortion. The correction is done with a customized version of gradient\_nonlin\_unwarp package available in FreeSurfer. As per the definition given by \cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebro spinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebro spinal fluid and brain tissue. Figures \ref{fig:T1w} and \ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
 
 %Add images
+\begin{center}
+  \includegraphics[width=\linewidth]{T1_v3}
+  \caption{T1-weighted image}
+  \label{fig:T1w}
+  \caption*{Extracted from \cite{t1w_t2w}}
+\end{center}
+
+\begin{center}
+  \includegraphics[width=\linewidth]{T2_v1}
+  \caption{T2-weighted image}
+  \label{fig:T2w}
+  \caption*{Extracted from \cite{t1w_t2w}}
+\end{center}
 
 Next step is aligning the T1w and T2w images, with a 6 degree of freedom (DOF) rigid body transformation using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the template for the ease of visualization.
 
