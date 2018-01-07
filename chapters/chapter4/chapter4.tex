@@ -149,14 +149,134 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
 \label{tab:freesurfer_processing_centos6}
 \end{center}
 
-\begin{itemize}
-  \item PreFreeSurfer
-  \item FreeSurfer
-  \item PostFreeSurfer
-  \item fMRIVolume
-\end{itemize}
+\subsection{PostFreeSurfer}
 
-\section{Evaluation}
+\begin{center}
+\tabulinesep=1.2mm
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | } 
+  \hline
+  Subject & Run no. & Time \\
+  \hline
+  101006 & RUN-1 & 24min \\
+  \hline
+  101107 & RUN-1 & 20min \\
+  \hline
+  101410 & RUN-1 & 23min \\
+  \hline
+  104820 & RUN-1 & 19min \\
+  \hline
+  105216 & RUN-1 & 29min \\
+  \hline
+  101006 & RUN-2 & 21min \\
+  \hline
+  101107 & RUN-2 & 24min \\
+  \hline
+  101410 & RUN-2 & 22min \\
+  \hline
+  104820 & RUN-2 & 21min \\
+  \hline
+  105216 & RUN-2 & Add item \\
+  \hline
+\end{tabu}
+\captionof{table}{PostFreeSurfer Processing Details on CentOS6}
+\label{tab:postfreesurfer_processing_centos6}
+\end{center}
+
+\begin{center}
+\tabulinesep=1.2mm
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
+  \hline
+  Subject & Run no. & Time \\
+  \hline
+  101006 & RUN-1 & 31min \\
+  \hline
+  101107 & RUN-1 & 31min \\
+  \hline
+  101410 & RUN-1 & 28min \\
+  \hline
+  104820 & RUN-1 & 29min \\
+  \hline
+  105216 & RUN-1 & 32min \\
+  \hline
+  101006 & RUN-2 & 28min \\
+  \hline
+  101107 & RUN-2 & 22min \\
+  \hline
+  101410 & RUN-2 & 28min \\
+  \hline
+  104820 & RUN-2 & 26min \\
+  \hline
+  105216 & RUN-2 & 28min \\
+  \hline
+\end{tabu}
+\captionof{table}{PostFreeSurfer Processing Details on CentOS7}
+\label{tab:postfreesurfer_processing_centos7}
+\end{center}
+
+\subsection{fMRIVolume}
+
+\begin{center}
+\tabulinesep=1.2mm
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
+  \hline
+  Subject & Run no. & Time \\
+  \hline
+  101006 & RUN-1 & 1 day 5 hours 17 min \\
+  \hline
+  101107 & RUN-1 & 1 day 5 hours 07 min\\
+  \hline
+  101410 & RUN-1 & 18 hours 20 min \\
+  \hline
+  104820 & RUN-1 & 17 hours 53 min \\
+  \hline
+  105216 & RUN-1 & add details \\
+  \hline
+  101006 & RUN-2 & 1 day 5 hours 07 min \\
+  \hline
+  101107 & RUN-2 & 1 day 4 hours 49 min \\
+  \hline
+  101410 & RUN-2 & 18 hours 26 min \\
+  \hline
+  104820 & RUN-2 & 17 hours 10 min \\
+  \hline
+  105216 & RUN-2 & add details \\
+  \hline
+\end{tabu}
+\captionof{table}{fMRIVolume Processing Details on CentOS6}
+\label{tab:fMRIVolume_processing_centos6}
+\end{center}
+
+\begin{center}
+\tabulinesep=1.2mm
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
+  \hline
+  Subject & Run no. & Time \\
+  \hline
+  101006 & RUN-1 & 1 day 4 hours 18 min \\
+  \hline
+  101107 & RUN-1 & 1 day 4 hours 22 min\\
+  \hline
+  101410 & RUN-1 & 17 hours 46 min \\
+  \hline
+  104820 & RUN-1 & 17 hours 08 min \\
+  \hline
+  105216 & RUN-1 & 1 day 5 hours 7 min \\
+  \hline
+  101006 & RUN-2 & Add details  \\
+  \hline
+  101107 & RUN-2 & Add details  \\
+  \hline
+  101410 & RUN-2 & Add details  \\
+  \hline
+  104820 & RUN-2 & 1 day 4 hours 15 min \\
+  \hline
+  105216 & RUN-2 & 1 day 5 hours 27 min\\
+  \hline
+\end{tabu}
+\captionof{table}{fMRIVolume Processing Details on CentOS7}
+\label{tab:fMRIVolume_processing_centos7}
+\end{center}
+
 \paragraph{File comparision across conditions using metrics}
 \begin{itemize}
   \item NRMSE
