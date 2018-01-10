@@ -112,11 +112,13 @@ After the PreFreeSurfer processing, FreeSurfer's recon-all pipeline is used for 
 
 The T1w registration in the FreeSurfer is aided using the initial brain mask generated in PreFreeSurfer. The important steps that takes place before the recon-all process includes, automated segmentation of the T1w volume and tessellation and topology correction of the initial white matter surface. The resultant white matter surface is generated using a segmentation of the 1 mm downsampled T1w image.
 
-The white matter surface placement is done using the original high resolution T1w images. The requisite FreeSurfer volume and surface files brought into the .7 mm native volume space, the high resolution T1w volume is intensity normalized and the white matter surface position is adjusted based on intensity gradients in the .7 mm T1w image.
+The white matter surface placement is done using the original high resolution T1w images. The FreeSurfer volume and surface files brought into the .7 mm native volume space, the high resolution T1w volume is intensity normalized and the white matter surface position is adjusted based on intensity gradients in the .7 mm T1w image.
 
 The T2w to T1w registration is fine-tuned using FreeSurfer's BBRegister algorithm. The corrected white matter surfaces are then brought back into FreeSurfer space and recon-all processing continues.
 
 Next step is the generation of the Pial surfaces. The initial pial surfaces are generated from the high-resolution PreFreeSurfer bias-corrected T1w image.
+The T2w images are used to remove any dura and blood vessels present in the image.
+
 
 \subsubsection{PostFreeSurfer}
 Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of the NIFTI volume and GIFTI surface files necessary for viewing the data in Connectome Workbench,2) application of surface registration; According to \cite{DBLP:journals/corr/HrgeticP13}, ''task of the surface registration algorithms is to determine the corresponding surface parts in the pair of observed clouds of 3D points, and on that basis to determine the spatial translation and rotation between the two views"; 3) downsampling registered surfaces for connectivity analyses; 4) creating the final brain mask, and creating myelin maps. Figure \ref{fig:postfreesurfer_overview} illustrates the workflow of PostFreeSurfer.\\
