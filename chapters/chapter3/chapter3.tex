@@ -119,7 +119,6 @@ The T2w to T1w registration is fine-tuned using FreeSurfer's BBRegister algorith
 Next step is the generation of the Pial surfaces. The initial pial surfaces are generated from the high-resolution PreFreeSurfer bias-corrected T1w image.
 The T2w images are used to remove any dura and blood vessels present in the image.
 
-
 \subsubsection{PostFreeSurfer}
 Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of the NIFTI volume and GIFTI surface files necessary for viewing the data in Connectome Workbench,2) application of surface registration; According to \cite{DBLP:journals/corr/HrgeticP13}, ''task of the surface registration algorithms is to determine the corresponding surface parts in the pair of observed clouds of 3D points, and on that basis to determine the spatial translation and rotation between the two views"; 3) downsampling registered surfaces for connectivity analyses; 4) creating the final brain mask, and creating myelin maps. Figure \ref{fig:postfreesurfer_overview} illustrates the workflow of PostFreeSurfer.\\
 
