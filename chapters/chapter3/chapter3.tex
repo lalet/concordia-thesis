@@ -160,7 +160,7 @@ The Docker container containing the HCP Pipeline along with the Boutiques descri
 %\end{itemize}
 
 \section{File comparisions across conditions}
-Repro-tools framework compares the files across different conditions based on checksum of files. HCP subjects processed under different conditions are kept in different directories. The basic check is making sure that the files are common to all conditions for comparision. A pair of condition is taken at a time for comparison. The checksum of the files are recorded before and after the processing. Repro-tools can compute the checksums locally as well. 
+Repro-tools framework can compare the files across different conditions based on the checksum. HCP subjects processed under different conditions are kept in different directories. The basic check is making sure that the files are common to all conditions for comparision. A pair of condition is taken at a time for comparison. The checksum of the files are recorded before and after the processing. Repro-tools can compute the checksums locally as well. 
 
 Two types of differences can occur due to the minimal preprocessing. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occur due to pseudo-random processes used in the pipelines. Repro-tools can be used to identify both kind of differences.
 
