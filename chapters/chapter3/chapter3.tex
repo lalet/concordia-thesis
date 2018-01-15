@@ -1,7 +1,7 @@
 \chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}
 The Repro-tools \todo{name subject to change } is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term `condition` with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term `subject' with respect to this framework is used to denote the directories that are kept under each condition. 
 
-I contributed a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}, which could compare the subjects processed under different conditions. The result of this comparison can give a summary of files that has differences due to the operating system on which the processing took place.
+I contributed a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}. The tool can compare and summarize the files, that has differences, due to the operating system on which the processing took place.
 
 The script works under the assumption that, under an ideal scenario, files belonging to each subject is supposed to have equal checksum under different conditions. Repro-tools help in identifying the files having differences by comparing the checksum values of files stored under different conditions. This tool can also check for corruption of files. It can compute the checksum locally and compare it against the recorded checksum to find if the files are corrupted or not.
 
@@ -32,7 +32,7 @@ I created a wrapper script\footnote{\url{https://github.com/big-data-lab-team/Do
   \item Ability to trace the execution using Reprozip (optional)
 \end{itemize}
 
-The checksums were computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the HCP data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the HCP Processing so that it is used as referrence for provenance tracing.
+The checksums are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the HCP data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the HCP Processing so that it is used as referrence for provenance tracing.
 
 \section{Pipeline Deployment}
 The Docker container containing the HCP Pipeline along with the Boutiques descriptor was deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process HCP subjects. Single server was used in order to prevent differences occurring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the HCP Pipelines on CBRAIN is available at \cite{HCP_descriptors}.
@@ -66,7 +66,7 @@ SELECT DISTINCT executed\_files.name, executed\_files.argv, executed\_files.envp
 \captionof{figure}{Query for provenance information}
 \label{fig:provenance-query}
 
-Query makes use of details about the 1) processes that wrote the file; 2) command line arguments used by those processes; 3) Environment variables used; 4) timestamp; 5) working directory. By the help of the details we get out of the query, we can reproduce the steps to debug the processes that create these differences.
+Query makes use of details about the 1) processes that wrote the file; 2) command line arguments used by those processes; 3) Environment variables used; 4) timestamp; 5) working directory. By the help of query shown in \ref{fig:provenance-query}, we can identify the processes in the pipeline that create these differences.
 
 \section{Metrics} \label{sec:num1}
 The metrics that are used to quantify the differences are described below.
