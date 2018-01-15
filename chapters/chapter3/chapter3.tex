@@ -24,7 +24,8 @@ Repro-tools framework uses Docker containers for reproducibility studies. A Dock
 Repro-tools, before the beginning of processing a subject, makes a check to ensure that the image that is getting used is the latest one. This check makes sure that the processing is done with the up-to-date changes in the Docker images.
 
 \section{Pipeline Encapsulation}
-I created a wrapper script\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} on top of the HCP Pipelines to have the features which are listed below,
+%Add Why wrapper and advantages
+I created a wrapper script\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} on top of the pipeline to have the features which are listed below,
 \begin{itemize}
   \item Compute the checksum of the files in each subject before and after the execution
   \item Create execution directory and copy the subject to prevent corrupting the input data
@@ -32,10 +33,10 @@ I created a wrapper script\footnote{\url{https://github.com/big-data-lab-team/Do
   \item Ability to trace the execution using Reprozip (optional)
 \end{itemize}
 
-The checksums are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the HCP data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the HCP Processing so that it is used as referrence for provenance tracing.
+The checksums are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the input data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the pipeline while the processing takes place so that it can be used as a referrence for provenance tracing.
 
 \section{Pipeline Deployment}
-The Docker container containing the HCP Pipeline along with the Boutiques descriptor was deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process HCP subjects. Single server was used in order to prevent differences occurring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the HCP Pipelines on CBRAIN is available at \cite{HCP_descriptors}.
+The Docker container containing the pipelines along with the Boutiques descriptor was deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process the subjects. Single server was used in order to prevent differences occurring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the pipelines on CBRAIN is available at \cite{HCP_descriptors}.
 
 %\begin{itemize}
  % \item Single server to ensure no hardware differences
