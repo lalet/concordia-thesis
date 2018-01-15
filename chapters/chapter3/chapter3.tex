@@ -1,7 +1,7 @@
 \chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}
 The Repro-tools \todo{name subject to change } is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term `condition` with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term `subject' with respect to this framework is used to denote the directories that are kept under each condition. 
 
-My contribution to this framework is a script, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}, which could compare the subjects processed under different conditions. The result of this comparison can give a summary of files that has differences due to the operating system on which the processing took place.
+I contributed a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}, which could compare the subjects processed under different conditions. The result of this comparison can give a summary of files that has differences due to the operating system on which the processing took place.
 
 The script works under the assumption that, under an ideal scenario, files belonging to each subject is supposed to have equal checksum under different conditions. Repro-tools help in identifying the files having differences by comparing the checksum values of files stored under different conditions. This tool can also check for corruption of files. It can compute the checksum locally and compare it against the recorded checksum to find if the files are corrupted or not.
 
@@ -45,29 +45,20 @@ The Docker container containing the HCP Pipeline along with the Boutiques descri
 
 \section{File comparisons across conditions}
 %Checksum
-Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint" or ``message digest"~\cite{md5}.
+Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint" or ``message digest"~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integity than security and how fast the algorithm is able to create the checksum. These qualities make MD5 the best choice for checksum generation in Repro-tools.
 
+Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occur due to pseudo-random processes used in the pipelines. An example of such a function is, a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
 
-HCP subjects processed under different conditions are kept in different directories. The basic check is making sure that the files are common to all conditions for comparison. A pair of condition is taken at a time for comparison. The checksum of the files are recorded before and after the processing. Repro-tools can compute the checksums locally as well. 
+The files that are common to all the subjects only are taken into consideration for comparison. The first step is identification of files with differences in their checksums. This is identified using the checksums that are recorded after the processing. Intra-OS differences are identified using the run-number added as the suffix for the conditions. For example, the two batches of subjects processed under the same condition (CentOS6) are stored as run-1 and run-2. The folders belonging to these subjects are treated as intra-OS runs.
 
-Two types of differences can occur due to the minimal preprocessing. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occur due to pseudo-random processes used in the pipelines. Repro-tools can be used to identify both kind of differences.
+For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. Normalized root mean square error, Dice Coefficient, Text filter etc. are the various metrics used for quantifying the differences. Section \ref{sec:num1} explains the metrics in detail. 
 
-The first step is identification of files with differences in their checksums. For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. Normalized root mean square error, Dice Coefficient, Text filter etc. are the various metrics used for quantifying the differences. Section \ref{sec:num1} explains the metrics in detail. 
+These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters that wrote the files having differences. These details about various processes is helpful in debugging the pipelines. This information helps in recreating the processing step by step and also to identify the processes that creates the differences.
 
-These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters. These detailed information is helpful in debugging since we can recreate the processing step by step and identify the processes that creates the differences.
-
-%\begin{itemize}
- %\item Identify the files that are common to all subjects and all conditions
- %\item Check intra-OS variability (e.g., due to pseudo-random processes)
- %\item Identifies files with differences (based on md5 checksum)
- %\item Associates file types with specific metrics (Normalized RMSE, Text filters, Dice coefficient)
- %\item Computes difference matrix for each metric and associates matrix with Reprozip trace
-%\end{itemize}
+%Add algorithm
 
 \section{Provenance Capture}
-According to~\cite{Ikeda:2010:PSP:1855795.1855800}, ``provenance captures where data came from, how it was derived, manipulated, and combined, and how it has been updated over time". Provenance information can be used to explain the source or evolution of a data set. Thus it can help in generating a deeper understanding of the data set. It can also be used to verify and confirm that there were no bugs in the processing. Provenance information can be used to identify the bugs in the processing. Thus it can help in recomputing the steps that got corrupted and send the corrected data downstream~\cite{Ikeda:2010:PSP:1855795.1855800}.
-
-The data recorded by Reprozip is recorded in an SQLite\footnote{\url{https://www.sqlite.org/}} database. Repro-tools framework queries this database to find out the provenance information about the files that has a difference in their checksum. Figure \ref{fig:provenance-query} contains the query used for finding the provenance information.\\
+Repro-tools traces the provenance of differences using the data captured by Reprozip. Reprozip records the data in an SQLite\footnote{\url{https://www.sqlite.org/}} database. Repro-tools framework queries this database to find out the provenance information about the files that has a difference in their checksum. Figure \ref{fig:provenance-query} contains the query used for finding the provenance information.\\
 
 \begin{tcolorbox}[colback=black!5!white,colframe=black!75!black]
 SELECT DISTINCT executed\_files.name, executed\_files.argv, executed\_files.envp, executed\_files.timestamp, executed\_files.workingdir from executed\_files INNER JOIN opened\_files where opened\_files.process = executed\_files.process and opened\_files.name like ? and opened\_files.mode=2 and opened\_files.is\_directory=0',('\%/'+file\_name,)
