@@ -44,7 +44,11 @@ The Docker container containing the HCP Pipeline along with the Boutiques descri
 %\end{itemize}
 
 \section{File comparisons across conditions}
-Repro-tools framework can compare the files across different conditions based on the checksum. HCP subjects processed under different conditions are kept in different directories. The basic check is making sure that the files are common to all conditions for comparison. A pair of condition is taken at a time for comparison. The checksum of the files are recorded before and after the processing. Repro-tools can compute the checksums locally as well. 
+%Checksum
+Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint" or ``message digest"~\cite{md5}.
+
+
+HCP subjects processed under different conditions are kept in different directories. The basic check is making sure that the files are common to all conditions for comparison. A pair of condition is taken at a time for comparison. The checksum of the files are recorded before and after the processing. Repro-tools can compute the checksums locally as well. 
 
 Two types of differences can occur due to the minimal preprocessing. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occur due to pseudo-random processes used in the pipelines. Repro-tools can be used to identify both kind of differences.
 
