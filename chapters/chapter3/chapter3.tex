@@ -61,6 +61,8 @@ These metric values help us understand how big or small the differences are. Apa
 \section{Provenance Capture}
 Repro-tools traces the provenance of differences using the data captured by Reprozip. Reprozip records the data in an SQLite\footnote{\url{https://www.sqlite.org/}} database. Repro-tools framework queries this database to find out the provenance information about the files that has a difference in their checksum. Figure \ref{fig:provenance-query} contains the query used for finding the provenance information.\\
 
+%Add the tracing command example
+
 \begin{tcolorbox}[colback=black!5!white,colframe=black!75!black]
 SELECT DISTINCT executed\_files.name, executed\_files.argv, executed\_files.envp, executed\_files.timestamp, executed\_files.workingdir from executed\_files INNER JOIN opened\_files where opened\_files.process = executed\_files.process and opened\_files.name like ? and opened\_files.mode=2 and opened\_files.is\_directory=0',('\%/'+file\_name,)
 \end{tcolorbox}
