@@ -90,28 +90,6 @@ Example from \cite{NRMSE}, the RMSE of predicted values ${\displaystyle {\hat {y
   \end{equation}
 \end{center}
 
-\begin{algorithmic}[1]
-    \Function{Euclid1}{$image_1, image_2b$}\Comment{The g.c.d. of a and b}
-    \State $r\gets a\bmod b$
-    \While{$r\not=0$}\Comment{We have the answer if r is 0}
-      \State $a\gets b$
-      \State $b\gets r$
-      \State $r\gets a\bmod b$
-    \EndWhile
-    \State \textbf{return} $b$\Comment{The gcd is b}
-    \EndFunction
-    \Statex
-    \Function{Convert}{$image_1, image_2$}\Comment{Images to be converted}
-    \if{$extension is .mgz$} 
-      \State {$convert image to .nii.gz$}
-    \else 
-      \State {$Do nothing$} 
-    \endif
-    \State \textbf{return} $b$\Comment{The gcd is b}
-    \EndFunction
-\end{algorithmic}
-\caption{Euclid's algorithm}\label{euclid2}
-
 \subsection{Dice Similarity Coefficient}
 Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}.
 \begin{center}
