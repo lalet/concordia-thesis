@@ -90,6 +90,18 @@ Example from \cite{NRMSE}, the RMSE of predicted values ${\displaystyle {\hat {y
   \end{equation}
 \end{center}
 
+\begin{algorithmic}
+  \State \multilinestate{$\var{maxWeight} \assign{}$value of \var{e.weight} where~\var{e} has maximum value of weight from all elements}
+  \State \multilinestate{$\var{minWeight} \assign{}$value of \var{e.weight} where~\var{e} has minimum value of weight from all elements}
+  \State $\var{maxDrawValue} \assign{}$value of element maximum size in visualization
+  \State $\var{minDrawValue} \assign{}$value of element minimum size in visualization
+  \Function{CountDrawValue}{\var{elementWeight}}
+    \If{$\var{maxWeight} = \var{minWeight}$}
+      \State\Return $(\var{maxWeight} + \var{minWeight}) / 2$
+    \EndIf
+  \EndFunction
+\end{algorithmic}
+
 \subsection{Dice Similarity Coefficient}
 Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}.
 \begin{center}
