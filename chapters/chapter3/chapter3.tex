@@ -90,17 +90,38 @@ Example from \cite{NRMSE}, the RMSE of predicted values ${\displaystyle {\hat {y
   \end{equation}
 \end{center}
 
-\begin{algorithmic}
-  \State \multilinestate{$\var{maxWeight} \assign{}$value of \var{e.weight} where~\var{e} has maximum value of weight from all elements}
-  \State \multilinestate{$\var{minWeight} \assign{}$value of \var{e.weight} where~\var{e} has minimum value of weight from all elements}
-  \State $\var{maxDrawValue} \assign{}$value of element maximum size in visualization
-  \State $\var{minDrawValue} \assign{}$value of element minimum size in visualization
-  \Function{CountDrawValue}{\var{elementWeight}}
-    \If{$\var{maxWeight} = \var{minWeight}$}
-      \State\Return $(\var{maxWeight} + \var{minWeight}) / 2$
-    \EndIf
-  \EndFunction
-\end{algorithmic}
+
+
+\DontPrintSemicolon
+\SetKwFunction{FMain}{Convert\_image}
+\SetKwProg{Fn}{Function}{:}{}
+\Fn{\FMain{$image$}}{
+  \begin{algorithmic}
+    \IF{image extension is ``.mgz":}
+      \STATE convert image to ``.nii"
+    \ELSE
+      \STATE do nothing
+    \ENDIF
+  \end{algorithmic}
+\KwRet image\;
+}
+\;
+\SetKwFunction{FNrmse}{Get\_NRMSE}
+\SetKwProg{Pn}{Function}{:}{\KwRet}
+\Pn{\FNrmse{$image\-1$,$image\-2$}}{
+  \begin{algorithmic}
+    \STATE image\_1=Convert\_image(image\-1);
+    \STATE image\_2=Convert\_image(image\-2);
+    \STATE mininmum\_intensity=get using fsl from image\_1; \COMMENT{using fslstats command}
+    \STATE maximum\_intensity=get using fsl from image\_2;  \COMMENT{using fslstats command}
+    \STATE \textbf{fslmaths} image\-1  \-sub image\-2 \-sqr diff; \COMMENT{computing the mean square difference using FSL}
+    \STATE meandifference=\textbf{fslstats} diff -m; \COMMENT{get the mean square difference}
+    \STATE \textbf{NRMSE}=$\sqrt{(meandifference/(max-min))}$; \COMMENT{Normalized root mean square error value}
+  \end{algorithmic}
+\KwRet NRMSE\;
+}
+\caption*{Algorithm for finding NRMSE Value of a pair of images}
+\label{alg:algorithm_nrmse}
 
 \subsection{Dice Similarity Coefficient}
 Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}.
