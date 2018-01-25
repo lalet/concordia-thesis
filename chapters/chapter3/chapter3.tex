@@ -90,8 +90,6 @@ Example from \cite{NRMSE}, the RMSE of predicted values ${\displaystyle {\hat {y
   \end{equation}
 \end{center}
 
-
-
 \DontPrintSemicolon
 \SetKwFunction{FMain}{Convert\_image}
 \SetKwProg{Fn}{Function}{:}{}
@@ -105,16 +103,17 @@ Example from \cite{NRMSE}, the RMSE of predicted values ${\displaystyle {\hat {y
   \end{algorithmic}
 \KwRet image\;
 }
-\;
+\hfill \break
+\hfill \break
 \SetKwFunction{FNrmse}{Get\_NRMSE}
-\SetKwProg{Pn}{Function}{:}{\KwRet}
+\SetKwProg{Pn}{Function}{:}{}
 \Pn{\FNrmse{$image\-1$,$image\-2$}}{
   \begin{algorithmic}
     \STATE image\_1=Convert\_image(image\-1);
     \STATE image\_2=Convert\_image(image\-2);
-    \STATE mininmum\_intensity=get using fsl from image\_1; \COMMENT{using fslstats command}
-    \STATE maximum\_intensity=get using fsl from image\_2;  \COMMENT{using fslstats command}
-    \STATE \textbf{fslmaths} image\-1  \-sub image\-2 \-sqr diff; \COMMENT{computing the mean square difference using FSL}
+    \STATE mininmum\_intensity=get the value using FSL from image\_1; \COMMENT{using fslstats command}
+    \STATE maximum\_intensity=get the value using FSL from image\_2;  \COMMENT{using fslstats command}
+    \STATE \textbf{fslmaths} image\-1 \text{-sub} image\-2 \text{-sqr} diff; \COMMENT{computing the mean square difference using FSL}
     \STATE meandifference=\textbf{fslstats} diff -m; \COMMENT{get the mean square difference}
     \STATE \textbf{NRMSE}=$\sqrt{(meandifference/(max-min))}$; \COMMENT{Normalized root mean square error value}
   \end{algorithmic}
