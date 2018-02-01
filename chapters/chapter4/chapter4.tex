@@ -91,7 +91,10 @@ Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-As mentioned in the above paragraph, the first task of PostFreeSurfer is to convert the files to NIFT and GIFTI formats. The white, pial, spherical and registered spherical surfaces are all converted GIFTI surface files and thickness, curvature and sulc files are converted into GIFTI shape files. 
+As mentioned in the above paragraph, the first task of PostFreeSurfer is to convert the files to NIFT and GIFTI formats. The white, pial, spherical and registered spherical surfaces are all converted GIFTI surface files and thickness, curvature and sulc files are converted into GIFTI shape files. The cortical parcellations from FreeSurfer are converted to GIFTI label files and three full subcortical volume parcellations are converted into NIFTI label files. One among the three volume parcellations (wmparc) is used to create a final gray and white matter brain mask, which is used as the reference in the subsequent steps.
+
+Another task carried out by the PostFreeSurfer pipeline is to combine the structural transforms for T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images and they are brought to the native volume and MNI spaces. 
+
 
 \subsubsection{fMRIVolume}
 Main goals of, fMRIVolume, according to~\cite{Gla13} are, 1) remove spatial distortions; 2) realignment of volumes to adjust subject motion; 3) registration of fMRI data to structural volume; 4) normalizaton of the 4D image; 5) mask the data with final brain mask. Figure \ref{fig:fMRIVolume_overview} illustrates the workflow of fMRIVolume pipeline.\\
