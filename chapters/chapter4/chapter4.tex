@@ -93,7 +93,14 @@ Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of
 
 As mentioned in the above paragraph, the first task of PostFreeSurfer is to convert the files to NIFT and GIFTI formats. The white, pial, spherical and registered spherical surfaces are all converted GIFTI surface files and thickness, curvature and sulc files are converted into GIFTI shape files. The cortical parcellations from FreeSurfer are converted to GIFTI label files and three full subcortical volume parcellations are converted into NIFTI label files. One among the three volume parcellations (wmparc) is used to create a final gray and white matter brain mask, which is used as the reference in the subsequent steps.
 
-Another task carried out by the PostFreeSurfer pipeline is to combine the structural transforms for T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images and they are brought to the native volume and MNI spaces. 
+Another task carried out by the PostFreeSurfer pipeline is to combine the structural transforms of T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images and they are brought to the native volume and MNI spaces. Next step is creating a mid-thickness surface. It is created by averaging the white and pial surfaces. Mid-thickness file is used for creating inflated and very inflated files. The volume, label and metric files are then organized into a file called as specification file (spec file) which is used for easy visualization of anatomical data using Connectome Workbench. The surface files are stored as GIFTI files while the specs files are CIFTI files.
+
+As the next step, registration of surfaces of individual subject's native-mesh surfaces to the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php//Caret:Atlases/Conte69\_Atlas}} (Human Surface-based Atlas and Reference Data) population-average surfaces. This step consists of combined surface registration applied to all surfaces and surface data files. The end goal of this step is to bring the images to 164k\_fs\_LR standard surface mesh space. 
+
+Registration step is followed by the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR space. These lower resolution images are suited for functional and connectivity analyses. The last step in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space. 
+
+
+%Specification File (commonly called “Spec File”) is a file used to organize a set of data files (such as volume, label, and metric files) to be loaded into Workbench
 
 
 \subsubsection{fMRIVolume}
