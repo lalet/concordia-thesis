@@ -106,7 +106,7 @@ Registration step is followed by the downsampling of the 164k Registered surface
 \subsubsection{fMRIVolume}
 Main goals of, fMRIVolume, according to~\cite{Gla13} are, 1) remove spatial distortions; 2) realignment of volumes to adjust subject motion; 3) registration of fMRI data to structural volume; 4) normalizaton of the 4D image; 5) mask the data with final brain mask. Figure \ref{fig:fMRIVolume_overview} illustrates the workflow of fMRIVolume pipeline.
 
-It is a prerequisite of fMRIVolume pipeline that the input files should have completed the structural processing (PreFreeSurfer, FreeSurfer and PostFreeSurfer).
+It is a prerequisite of fMRIVolume pipeline that the input files should have completed the structural processing (PreFreeSurfer, FreeSurfer and PostFreeSurfer). Similiar to the PreFreeSurfer pipeline, the first step in fMRIVolume pipeline is the gradient-nonlinearity-induced distortion correction.
 
 \begin{center}
   \includegraphics[width=\linewidth]{fMRI_Volume}
