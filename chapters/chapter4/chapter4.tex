@@ -21,17 +21,8 @@ Out of the six pipelines illustrated in Figure \ref{fig:hcp_pipelines_overview},
 
 The HCP pipeline is open sourced, and the study is conducted using the version 3.19.0\footnote{\url{https://github.com/Washington-University/Pipelines/releases/tag/v3.19.0}}. The details of pipeines are listed below.
 
-\subsubsection{PreFreeSurfer}
-Main goals of, PreFreeSurfer, according to~\cite{Gla13} are, 1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
-
-\begin{center}
-  \includegraphics[width=\linewidth]{PreFreeSurfer_Architecture}
-  \captionof{figure}{PreFreeSurfer Overview}
-  \label{fig:prefreesurfer_overview}
-  \caption*{Extracted from \cite{Gla13}}
-\end{center}
-
-PreFreeSurfer starts with correcting the distortions caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans". Gradient nonlinearity distorition must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting the gradient nonlinearity distortion from these images. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
+\subsection{T1w and T2w Images}
+The terms T1w and T2w is quite often used at different steps in the processing of HCP Processing Pipelines. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
 
 \begin{center}
   \includegraphics[width=\linewidth]{T1_v3}
@@ -47,18 +38,32 @@ PreFreeSurfer starts with correcting the distortions caused by magnetic resonanc
   \caption*{Extracted from \cite{t1w_t2w}}
 \end{center}
 
-Next step is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the template for the ease of visualization.
 
-After the ACPC (Anterior commisure, Posterior commisure) alignment step, a robust initial brain extraction step is performed using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step in creating the subject's undistorted native volume space. %Readout distortion is caused when the digital data is retrieved from an electronic medium and is is displayed in a human understandable format.
+\subsubsection{PreFreeSurfer}
+Main goals of, PreFreeSurfer, according to~\cite{Gla13} are, 1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
+
+\begin{center}
+  \includegraphics[width=\linewidth]{PreFreeSurfer_Architecture}
+  \captionof{figure}{PreFreeSurfer Overview}
+  \label{fig:prefreesurfer_overview}
+  \caption*{Extracted from \cite{Gla13}}
+\end{center}
+
+Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of steps in the PreFreeSurfer pipeline. The input to the pipeline are T1w and T2w images and the registerted field map. Second step(2) is gradient nonlinearity correction. This distorition is caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans". Gradient nonlinearity distorition must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting this distortion. For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space". Gradient nonlinearity distortion is then corrected on mean magnitude and field map images. Warping of the field map magnitude image is done according to the readout distortion and separate registrations are done to the T1w and T2w images using FLIRT.
+
+Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the reference template for the ease of visualization.
+
+Step (4) is ACPC (Anterior commisure, Posterior commisure) alignment. Step (5) includes a robust initial brain extraction, using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step (6) in creating the subject's undistorted native volume space. %Readout distortion is caused when the digital data is retrieved from an electronic medium and is is displayed in a human understandable format.
 %Readout distortion definition
-For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space". Gradient nonlinearity distortion is then corrected on mean magnitude and field map images. 
 
-Warping of the field map magnitude image is done according to the readout distortion and separate registrations are done to the T1w and T2w images using FLIRT. The transformation of the field map according to the registrations happens in the next step. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image having the readout-distortion corrected and has no spatial distortion in it, represents the native volume space for each subject. The undistorted T2w image is then, cross-modally registered to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the main focus of boundary based registration. Once T1w and T2w images are in the same space, intensity inhomogeneity correction is applied on these images. After the bias field correction, T1w image is registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
+The distortion corrected images are used as the input for the next series of steps. To completetely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject.
+
+Step (9) consist of cross-modally registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the main focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogenity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
 
 The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
 
 \subsubsection{FreeSurfer}
-HCP pipelines uses FreeSurfer version 5.2 with a lot of enhancements made particulariy focusing HCP data. The main goals, according to~\cite{Gla13} are, 1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage). The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
+HCP pipelines uses FreeSurfer version 5.2 with a lot of enhancements made particularly focusing HCP data. The main goals, according to~\cite{Gla13} are, 1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage). The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
 
 \begin{center}
   \includegraphics[width=\linewidth]{FreeSurfer_Architecture}
@@ -69,17 +74,15 @@ HCP pipelines uses FreeSurfer version 5.2 with a lot of enhancements made partic
 
 After the PreFreeSurfer processing, FreeSurfer's recon-all (cortical reconstruction process)\footnote{\url{https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all}} pipeline is used widely in FreeSurfer pipeline. One limitation with the recon-all pipeline is that it is not able to process structural images having high resolution. So HCP data has to be downsampled to meet the requirements of the recon-all pipeline.
 
-The input to the FreeSurfer pipeline is the disortion and bias free native volume space image. The T1w registration in the FreeSurfer is aided using the initial brain mask generated in PreFreeSurfer. The important steps that takes place before the recon-all process includes, automated segmentation of the T1w volume and tessellation and topology correction of the initial white matter surface. 
+The first step (1) in the FreeSurfer pipeline is inputting the disortion and bias free native volume space image from PreFreeSurfer. The T1w registration in the FreeSurfer is aided using the initial brain mask generated in PreFreeSurfer. The important steps that takes place before the recon-all process includes, automated segmentation of the T1w volume and tessellation and topology correction of the initial white matter surface. Also downsampling of images to a lower resolution takes place at step (2), such that it matches the requirements of recon-all process.
 
-The white-matter surface is created with the help of recon-all process. The resultant white matter surface is generated using a segmentation of the 1 mm downsampled T1w image.
+The output of step (3) is white-matter surface created with the help of recon-all process. The resultant white matter surface is generated using a segmentation of the 1 mm downsampled T1w image.
 
-Final white matter surface placement is done with the help of the original high resolution T1w images. The required FreeSurfer volume and surface files are brought into the .7 mm native volume space and intensity normalization is done on the high resolution T1w image. Also the white matter surface position is adjusted at those points, where it is placed too superficially into the gray matter, based on intensity gradients in the .7 mm T1w image.
+Final white matter surface placement is done with the help of the original high resolution T1w images at step (4). The required FreeSurfer volume and surface files are brought into the .7 mm native volume space and intensity normalization is done on the high resolution T1w image. Also the white matter surface position is adjusted at those points, where it is placed too superficially into the gray matter, based on intensity gradients in the .7 mm T1w image. The latter part of step (4) handles T2w to T1w registration. This registration step is fine-tuned using FreeSurfer's BBRegister algorithm since it gives more accurate results than FLIRT's BBR implementation. The corrected white matter surfaces are then brought back into FreeSurfer space and recon-all processing resumes.
 
-The T2w to T1w registration is fine-tuned using FreeSurfer's BBRegister algorithm since it gives more accurate results than FLIRT's BBR implementation. The corrected white matter surfaces are then brought back into FreeSurfer space and recon-all processing resumes.
+The set of steps in the FreeSurfer pipeline is for generating the Pial surfaces. The first step (5) in pial surface generation is normalization of T1w and T2w images to a standard mean white matter intensity. The initial pial surfaces are generated (6) from the high-resolution PreFreeSurfer bias-corrected T1w image and not the FreeSurfer white matter specific intensity normalized image. This kind of generation of pial surfaces tend to include large amounts of dura (a thick membrane that is the outermost of the three layers of the meninges that surround the brain and spinal cord) and blood vessels. The dura and blood vessels present in the image are removed (7) with the help of T2w images since dura and blood vessels are very different in intensity from gray matter in the T2w image. This initially generated pial surface is smoothened and high pass filtering is done in order to generate the final pial surface.
 
-Next step in the pipeline is the generation of the Pial surfaces. The first step in pial surface generation is normalization of T1w and T2w images to a standard mean white matter intensity. The initial pial surfaces are generated from the high-resolution PreFreeSurfer bias-corrected T1w image and not the FreeSurfer white matter specific intensity normalized image. This kind of generation of pial surfaces tend to include large amounts of dura (a thick membrane that is the outermost of the three layers of the meninges that surround the brain and spinal cord) and blood vessels. The dura and blood vessels present in the image are removed with the help of T2w images since dura and blood vessels are very different in intensity from gray matter in the T2w image. This initially generated pial surface is smoothened and high pass filtering is done in order to generate the final pial surface.
-
-After the pial surface generation, recon-all continues. Final steps include anatomical parcellations (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
+After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellations (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
 
 \subsubsection{PostFreeSurfer}
 Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of the NIFTI volume and GIFTI surface files necessary for viewing the data in Connectome Workbench,2) application of surface registration; According to \cite{DBLP:journals/corr/HrgeticP13}, ''task of the surface registration algorithms is to determine the corresponding surface parts in the pair of observed clouds of 3D points, and on that basis to determine the spatial translation and rotation between the two views"; 3) downsampling registered surfaces for connectivity analyses; 4) creating the final brain mask, and creating myelin maps. Figure \ref{fig:postfreesurfer_overview} illustrates the workflow of PostFreeSurfer.\\
@@ -344,7 +347,7 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
   \hline
   104820 & RUN-1 & 17 hours 53 min \\
   \hline
-  105216 & RUN-1 & 1 day 5 hours 19 min\
+  105216 & RUN-1 & 1 day 5 hours 19 min \\
   \hline
   101006 & RUN-2 & 1 day 5 hours 07 min \\
   \hline
