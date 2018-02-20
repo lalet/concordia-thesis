@@ -74,21 +74,12 @@ Query above returns us the details about the 1) processes that wrote the file; 2
 The metrics that are used to quantify the differences are described below.
 
 \subsection{Normalized Root Mean Square Error (NRMSE)}
-As defined in \cite{khosrow2017handbook}, ``The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE) is a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". Normalizing the RMSD value makes it easier to compare between models or datasets.
+The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), according to~\cite{khosrow2017handbook} is, ``a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". Normalizing the RMSD value makes it easier to compare between models or datasets. The equation for NRMSE is shown in equation~\ref{eq_one}. The algorithm along with the implementation details in shown in Algorithm 1.
 
-%Example from \cite{NRMSE}, the RMSE of predicted values ${\displaystyle {\hat {y}}_{t}}$  for times t of a regression's dependent variable ${\displaystyle y_{t}}$ is computed for n different predictions as the square root of the mean of the squares of the deviations:\\
-
-%\begin{center}
- %\begin{equation}
-     %RMSE = {\sqrt {\frac{1} {n}{\sum\limits_{t = 1}^n {(\hat{y}_{t} - {y}_{t} } })^{2} } }
-  %\end{equation}
-%\end{center}
-
-%\begin{center}
-  %\begin{equation}
-    %NRMSE = {\frac{RMSE} {y_{max} - y_{min}}}
-  %\end{equation}
-%\end{center}
+\begin{equation}
+  \label{eq_one}
+    NRMSE = \sqrt{\frac{mean\_difference}{{maximum\_intensity} - {minimum\_intensity}}}
+\end{equation}
 
 \DontPrintSemicolon
 \SetKwFunction{FMain}{Convert\_image}
@@ -115,15 +106,23 @@ As defined in \cite{khosrow2017handbook}, ``The Root Mean Square Deviation (RMSD
     \STATE maximum\_intensity $\leftarrow$ get the max. intensity value from image\_1;
     \STATE \textbf{fslmaths} image\-1 \text{-sub} image\-2 \text{-sqr} $\rightarrow$ diff; \COMMENT{computing the mean square difference using FSL}
     \STATE meandifference $\leftarrow$ \textbf{fslstats} diff -m ; \COMMENT{get the mean square difference}
-    \STATE \textbf{NRMSE} $\leftarrow$ $\sqrt{(meandifference/(max-min))}$; \COMMENT{Normalized root mean square error value}
+    \STATE \textbf{NRMSE} $\leftarrow$ $\sqrt{\frac{mean\_difference}{maximum\_intensity-minimum\_intensity}}$; \COMMENT{Normalized root mean square error value}
   \end{algorithmic}
 \KwRet NRMSE\;
 }
-\caption*{Algorithm for finding NRMSE Value of a pair of images}
+\caption*{Algorithm 1: Algorithm for finding NRMSE Value of a pair of images}
 \label{alg:algorithm_nrmse}
 
 \subsection{Dice Similarity Coefficient}
-Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from 0.0 to 1. 1 meaning the images are exactly similiar and 0 meaning there is zero similarity.
+Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from 0.0 to 1. 1 meaning the images are exactly similiar and 0 meaning there is zero similarity. The equation used for finding the dice coefficient is given in \ref{eq:eq_two}.
+
+\begin{equation}
+  \label{eq:eq_two}
+  \begin{split}
+    Dice\_coefficient = \{ ((A + B) - (A - B)) / (A + B) \\
+    & ,\text{A\&B, are non-zero voxels from two images} \}
+  \end{split}
+\end{equation}
 
 \DontPrintSemicolon
 \SetKwFunction{FMain}{Convert\_image}
