@@ -57,6 +57,8 @@ For the files that are identified to have differences, different kind of metrics
 These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters that wrote the files having differences. These details about various processes is helpful in debugging the pipelines. This information helps in recreating the processing step by step and also to identify the processes that creates the differences.
 
 %Add algorithm
+\Section{Metrics calculation using Apache Spark}
+In order to parallelize the analysis and metric calulation and to harness the power of high performance computing power (Compute Canada), an Apache Spark based variant of verifyFiles script was created. Parallelized analysis and metrics calculation could reduce the time taken for analysis considerably.
 
 \section{Provenance Capture}
 Repro-tools traces the provenance of differences using the data captured by Reprozip. Reprozip records the data in an SQLite\footnote{\url{https://www.sqlite.org/}} database. Repro-tools framework queries this database to find out the provenance information about the files that has a difference in their checksum. Figure \ref{fig:provenance-query} contains the query used for finding the provenance information.\\
@@ -155,3 +157,6 @@ Dice Similarity Coefficient can be used as a statistical validation metric for m
 }
 \caption*{Algorithm 2: Algorithm for finding Dice coefficient similarity from images}
 \label{alg:dice_algorithm}
+
+\subsection{Text Filtering}
+Since the hardware architecture used for processing the neuroimages has an effect on the output images~\ref{10.1371/journal.pone.0038234}, text filtering is done in order to make sure that, the hardware specifications remains the same throughout the experiment. The wrapper script around the HCP preprocessing pipelines records the hardware specification of the machine on which the subject gets processed. This recorded text file contains the details about the processor, vendor\_id, cpu family, model name etc. With the help of these details, text filtering metric return a '0' if the records are equal and '1' if any of these details are found to be different. This metric is more ideal in cas of a study that uses high performance cluster with heterogeneous machines for processing the data. For this study, we used a single sever to maintain the homogeneity of the processing environment.
