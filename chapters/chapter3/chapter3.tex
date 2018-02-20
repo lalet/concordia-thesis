@@ -119,8 +119,8 @@ Dice Similarity Coefficient can be used as a statistical validation metric for m
 \begin{equation}
   \label{eq:eq_two}
   \begin{split}
-    Dice\_coefficient = \{ ((A + B) - (A - B)) / (A + B) \\
-    & ,\text{A\&B, are non-zero voxels from two images} \}
+    Dice\_coefficient = \{((A + B) - (A - B))/(A + B) \\
+    & \text{; A\&B, are non-zero voxels from two images} \}
   \end{split}
 \end{equation}
 
@@ -149,9 +149,9 @@ Dice Similarity Coefficient can be used as a statistical validation metric for m
     \STATE nonzero\_voxels\_image1 $\leftarrow$ get the $\textless$non-zero voxels$\textgreater$ $\textless$volume$\textgreater$ from image\_1; \COMMENT{using FSL}
     \STATE nonzero\_voxels\_image2 $\leftarrow$ get the $\textless$non-zero voxels$\textgreater$ $\textless$volume$\textgreater$ from image\_2;
     \STATE nonzero\_voxels\_difference $\leftarrow$ get the $\textless$non-zero voxels$\textgreater$ $\textless$volume$\textgreater$ from difference of images;
-    \STATE \textbf{Dice\_coeff} $\leftarrow$ (((nonzero\_voxels\_image1+nonzero\_voxels\_image2)-nonzero\_voxels\_difference)/(nonzero\_voxels\_image1+nonzero\_voxels\_image2));
+    \STATE \textbf{Dice\_coeff} $\leftarrow$ $\frac{(nonzero\_voxels\_image1+nonzero\_voxels\_image2)-nonzero\_voxels\_difference}{(nonzero\_voxels\_image1+nonzero\_voxels\_image2)}$;
   \end{algorithmic}
 \KwRet \textbf{Dice\_coeff}\;
 }
-\caption*{Algorithm for finding Dice coefficient similarity from images}
+\caption*{Algorithm 2: Algorithm for finding Dice coefficient similarity from images}
 \label{alg:dice_algorithm}
