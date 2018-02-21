@@ -110,6 +110,7 @@ Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of
 
 As mentioned in the previous paragraph, the first task (1) of PostFreeSurfer is to convert the recon-all outputs to NIFTI and GIFTI formats. The white, pial, spherical and registered spherical surfaces are all converted GIFTI surface files. Thickness, curvature and sulc files are converted into GIFTI shape files. The cortical parcellations from FreeSurfer are converted to GIFTI label files and three full subcortical volume parcellations are converted into NIFTI label files. One among the three volume parcellations (wmparc) is used to create a final gray and white matter brain mask (2), which is used as the reference in the subsequent steps. Step (3) creates cortical ribbon volume and that step is followed by (4) cortical myelin map creation. Next step (5) is the generation of Conte69 Group Average by normalizing the Myelin Maps. Figure \ref{fig:residual_bias_correction} illustrates the residual bias field correction that takes place in myelin maps.
 
+\vspace{0.2cm}%
 \begin{center}
   \includegraphics[width=\linewidth]{residual_bias_correction}
   \captionof{figure}{The effect of residual bias field correction on a particularly inhomogeneous HCP subject. (A) Original Myelin Map. (B) Reference group average myelin map (C) Estimated residual bias field. (D) Bias corrected myelin map.}

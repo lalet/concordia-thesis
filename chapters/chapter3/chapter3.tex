@@ -57,6 +57,35 @@ For the files that are identified to have differences, different kind of metrics
 These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters that wrote the files having differences. These details about various processes is helpful in debugging the pipelines. This information helps in recreating the processing step by step and also to identify the processes that creates the differences.
 
 %Add algorithm
+\DontPrintSemicolon
+\SetKwFunction{FMain}{\textbf{find\_differences\_and\_calculate\_metrics}}
+\SetKwProg{Fn}{Function}{:}{}
+\Fn{\FMain{conditions}}{
+\begin{algorithmic}[1]
+\FOR{each condition C}
+\FOR{each subject S}
+\STATE{L\textsubscript{S,C} = list of {timestamp,file\_name,file\_size} objects, ordered by timestamp, where timestamp is the file modification time and file\_name refers to a file produced in subject S and condition C}
+\ENDFOR
+\ENDFOR
+\FOR{each pair of conditions:C1,C2 in conditions}
+  \FOR{each file name f in L\textsubscript{S,C}}
+    \STATE{n\_differences[f][C1][C2] = 0}
+    \STATE{distance[f][C1][C2] = 0}
+      \FOR{each subject S in condition C1}
+        \STATE{metric[f][C1][C2][S] = 0}
+        \STATE{differ = 0}
+          \IF{size(f,S,C1)!=size(f,S,C2) $\parallel$ checksum(f,S,C1)!=checksum(f,S,C2)}
+            \STATE{metric[f][C1][C2][S]=metric(f,C1,C2,S)}
+            \STATE{differ = 1}
+          \ENDIF
+        \STATE{n\_differences[f][C1][C2] += differ}
+        \STATE{metric[f][C1][C2] += metric[f][C1][C2][S]}
+      \ENDFOR
+  \ENDFOR
+\ENDFOR
+\end{algorithmic}
+\KwRet n\_differences,metric;
+}
 
 \section{Metrics calculation using Apache Spark}
 In order to parallelize the analysis and metric calulation and to harness the power of high performance computing power (Compute Canada), an Apache Spark based variant of verifyFiles script was created\footnote{\url{https://github.com/lalet/Big-Data-Spark}}. Parallelized analysis and metrics calculation could reduce the time taken for analysis considerably. The sequence of steps followed in the Apache Spark function is described below,
@@ -97,7 +126,7 @@ The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), accordin
 \SetKwFunction{FMain}{Convert\_image}
 \SetKwProg{Fn}{Function}{:}{}
 \Fn{\FMain{$image$}}{
-  \begin{algorithmic}
+  \begin{algorithmic}[1]
     \IF{image extension is ``.mgz":}
       \STATE convert image to ``.nii"
     \ELSE
@@ -111,7 +140,7 @@ The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), accordin
 \SetKwFunction{FNrmse}{Get\_NRMSE}
 \SetKwProg{Pn}{Function}{:}{}
 \Pn{\FNrmse{$image\-1$,$image\-2$}}{
-  \begin{algorithmic}
+  \begin{algorithmic}[1]
     \STATE image\_1 $\leftarrow$ Convert\_image(image\-1);
     \STATE image\_2 $\leftarrow$ Convert\_image(image\-2);
     \STATE minimum\_intensity $\leftarrow$ get the min. intensity value from image\_1; \COMMENT{using FSL}
@@ -126,20 +155,18 @@ The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), accordin
 \label{alg:algorithm_nrmse}
 
 \subsection{Dice Similarity Coefficient}
-Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from 0.0 to 1. 1 meaning the images are exactly similiar and 0 meaning there is zero similarity. The equation used for finding the dice coefficient is given in \ref{eq:eq_two}. The algorithm used for finding the dice similarity coefficient is described as Algorithm 2. Consider image1\& image2, as non-zero voxels from two images.
+Dice Similarity Coefficient can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from 0.0 to 1. 1 meaning the images are exactly similiar and 0 meaning there is zero similarity. The equation used for finding the dice coefficient is given in \ref{eq:eq_two}. The algorithm used for finding the dice similarity coefficient is described as Algorithm 2. Consider im1 \& im2, as non-zero voxels from two images.
 
 \begin{equation}
   \label{eq:eq_two}
-  \begin{split}
-    Dice\_coefficient = \{((image1 + image2) - (image1 - image2))/(image1 + image2) \}
-  \end{split}
+    Dice\_coefficient = {((im1 + im2) - (im1 - im2))/(im1 + im2)}
 \end{equation}
 
 \DontPrintSemicolon
 \SetKwFunction{FMain}{Convert\_image}
 \SetKwProg{Fn}{Function}{:}{}
 \Fn{\FMain{$image$}}{
-  \begin{algorithmic}
+  \begin{algorithmic}[1]
     \IF{image extension is ``.mgz":}
       \STATE convert image to ``.nii"
     \ELSE
@@ -153,7 +180,7 @@ Dice Similarity Coefficient can be used as a statistical validation metric for m
 \SetKwFunction{FDice}{Get\_NRMSE}
 \SetKwProg{Pn}{Function}{:}{}
 \Pn{\FDice{$image\-1$,$image\-2$}}{
-  \begin{algorithmic}
+  \begin{algorithmic}[1]
     \STATE image\_1 $\leftarrow$ Convert\_image(image\-1);
     \STATE image\_2 $\leftarrow$ Convert\_image(image\-2);
     \STATE \textbf{fslmaths} image\_1 \text{-sub} image\_2 $\rightarrow$ diff;
