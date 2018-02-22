@@ -57,6 +57,11 @@ For the files that are identified to have differences, different kind of metrics
 These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters that wrote the files having differences. These details about various processes is helpful in debugging the pipelines. This information helps in recreating the processing step by step and also to identify the processes that creates the differences.
 
 %Add algorithm
+\hrulefill
+\caption*{\textbf{Algorithm 1:} Algorithm for finding the file differences and metric values}
+\label{alg:algorithm_diff}
+\hrulefill
+
 \DontPrintSemicolon
 \SetKwFunction{FMain}{\textbf{find\_differences\_and\_calculate\_metrics}}
 \SetKwProg{Fn}{Function}{:}{}
