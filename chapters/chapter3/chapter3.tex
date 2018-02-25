@@ -79,10 +79,10 @@ These metric values help us understand how big or small the differences are. Apa
      \STATE{metric[f][C1][C2] = 0} \COMMENT{Initialize the metric value dictionary}
       \FOR{each subject S in condition C1}
         \STATE{metric[f][C1][C2][S] = 0}
-        \STATE{differ = 0} \COMMENT{Variable to hold the value if file is different}
+        \STATE{difference = 0} \COMMENT{Variable to hold the value if file is different}
           \IF{size(f,S,C1) $\neq$ size(f,S,C2) $\parallel$ checksum(f,S,C1) $\neq$ checksum(f,S,C2)}
-            \STATE{metric[f][C1][C2][S]=metric(f,C1,C2,S)}
-            \STATE{differ = 1}
+            \STATE{dictionary\_metrics\_value=calculate\_metric\_value(f,C1,C2,S)}
+            \STATE{difference = 1}
           \ENDIF
         \STATE{n\_differences[f][C1][C2] += differ} \COMMENT{Cumulative sum of differences}
         \STATE{metric[f][C1][C2] += metric[f][C1][C2][S]} \COMMENT{Cumulative sum of metric values}
@@ -94,8 +94,8 @@ These metric values help us understand how big or small the differences are. Apa
 }
 \vskip 0.2in
 
-Algorithm 1 shows the high-level idea of identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files  that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
-A pair of condition is taken at a time as the following step (Line 6). The files under the subject in two different conditions are then comapred to see if their file sizes or checksums differ (Line 13). If a difference is observed, then the metric value is computed it is stored in a dictionary with the file name, subject and condition as the key value.The file difference is denoted with a value `1' into a variable (Lines 14-15).
+Algorithm 1 shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files  that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
+A pair of condition is taken at a time as the following step (Line 6). The files under the subject in two different conditions are then comapred to see if their file sizes or checksums differ (Line 13). If a difference is observed, then the metric value is computed it is stored in a dictionary with the file name, subject and condition as the key value.The difference in the file is denoted with a value `1' into a variable (Lines 14-15).
 
 \section{Metrics calculation using Apache Spark}
 In order to parallelize the analysis and metric calulation and to harness the power of high performance computing power (Compute Canada), an Apache Spark based variant of verifyFiles script was created\footnote{\url{https://github.com/lalet/Big-Data-Spark}}. Parallelized analysis and metrics calculation could reduce the time taken for analysis considerably. The sequence of steps followed in the Apache Spark function is described below,
