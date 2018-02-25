@@ -15,6 +15,7 @@ It can also quantify the differences in image files with the help of metrics lik
 \captionof{figure}{Workflow of Reproducibility Analysis in neuroimaging pipelines}
 \label{fig:framework_architecture}
 \end{center}
+\vskip 0.2in
 
 Figure \ref{fig:framework_architecture} illustrates the overall workflow. The Docker image creation is automated. For each commit, made to the Dockerfile stored in Github\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer}}, a new build is triggered in Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These images are then used by CBRAIN for processing the subjects. Boutiques helps in deploying these containers to CBRAIN platform. CBRAIN can harness the power of computational clusters as well. The subjects processed under different conditions are then analyzed using the Repro-tools.
 
@@ -55,7 +56,7 @@ The files that are common to all the subjects only are taken into consideration 
 For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. Normalized root mean square error, Dice Coefficient, Text filter etc. are the various metrics used for quantifying the differences. Section \ref{sec:num1} explains the metrics in detail. 
 
 These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters that wrote the files having differences. These details about various processes is helpful in debugging the pipelines. This information helps in recreating the processing step by step and also to identify the processes that creates the differences.
-
+\newpage
 %Add algorithm
 \hrulefill
 \caption*{\textbf{Algorithm 1:} Algorithm for finding the file differences and metric values}

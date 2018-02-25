@@ -40,7 +40,8 @@ Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of str
   \caption*{Extracted from \cite{t1w_t2w}}
 \end{center}
 
-Functional data consists of resting state and task based data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance.
+Functional data consists of task based and resting state fMRI data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data available in the HCP Subjects. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance. Task based fMRI analyses can identify and characterize functionally distinct nodes in human brain\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}. Resting state fMRI consists of data that is collected when the subject is not performing an explicit task. This can be used to map the regional intercations happening in the brain at the time of rest~\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}.
+
 \section{PreFreeSurfer} \label{sec:PrefreeSurfer}
 Main goals of, PreFreeSurfer, according to~\cite{Gla13} are, 1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
 
@@ -65,9 +66,9 @@ Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent 
 Step (4) is ACPC (Anterior commisure, Posterior commisure) alignment. Step (5) includes a robust initial brain extraction, using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step (6) in creating the subject's undistorted native volume space. %Readout distortion is caused when the digital data is retrieved from an electronic medium and is is displayed in a human understandable format.
 %Readout distortion definition
 
-The distortion corrected images are used as the input for the next series of steps. To completetely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject.
+The distortion corrected images are used as the input for the next series of steps. To completely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject.
 
-Step (9) consist of cross-modally registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the main focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogenity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
+Step (9) consist of cross-modal registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the main focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogeneity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
 
 The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
 
@@ -98,7 +99,7 @@ The set of steps in the FreeSurfer pipeline is for generating the Pial surfaces.
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellations (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
+After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellation (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
 
 \section{PostFreeSurfer} \label{sec:PostFreeSurfer}
 Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of the NIFTI volume and GIFTI surface files necessary for viewing the data in Connectome Workbench,2) application of surface registration; According to \cite{DBLP:journals/corr/HrgeticP13}, ''task of the surface registration algorithms is to determine the corresponding surface parts in the pair of observed clouds of 3D points, and on that basis to determine the spatial translation and rotation between the two views"; 3) downsampling registered surfaces for connectivity analyses; 4) creating the final brain mask, and creating myelin maps. Figure \ref{fig:postfreesurfer_overview} illustrates the workflow of PostFreeSurfer.\\
@@ -444,7 +445,7 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
 %Add average time of all the processes
 
 \subsection{HCP Docker images}
-We conducted our study across Docker containers created out of CentOS 5.11, CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the neuroscience community. CentOS operating system is known for its rock-solid reliability, safety, portability, openness and the long product lifecycle~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
+We conducted our study across Docker containers created out of CentOS 5.11, CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
 
 These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
 
@@ -457,11 +458,3 @@ These containers were installed with all the necessary softwares and libraries r
 \end{itemize}
 
 FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the containers with the help of DockerFiles.
-
-\paragraph{File comparision across conditions using metrics}
-\begin{itemize}
-  \item NRMSE
-  \item Dice
-  \item Checksum
-  \item Hardware
-\end{itemize}
