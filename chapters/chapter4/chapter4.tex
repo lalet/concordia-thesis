@@ -1,6 +1,6 @@
 \chapter{Application to HCP pre-processing pipelines}
 
-\subsubsection{HCP Pipelines (v3.19.0)}
+\section{HCP Pipelines (v3.19.0) and Data}
 %Intro to HCP preprocessing 
 HCP preprocessing pipelines are designed to minimize the amount of information removed from the HCP data. Figure \ref{fig:hcp_pipelines_overview} illustrates the HCP Preprocessing Pipelines overview. HCP pipelines consists of three structural pipelines (PreFreeSurfer, FreeSurfer and PostFreeSurfer), two functional pipelines (fMRIVolume and fMRISurface) and a Diffusion PreProcessing pipeline~\cite{Gla13}. According to~\cite{Gla13}, the overall goals of HCP Preprocessing pipelines are, ``1) to remove spatial artifacts and distortions; 2) to generate cortical surfaces, segmentations, and myelin maps; 3) to make the data easily viewable in the Connectome Workbench visualization software; 4) to generate precise within-subject cross-modal registrations; 5) to handle surface and volume cross-subject registrations to standard volume and surface spaces; and 6) to make the data available in the Connectivity Informatics Technology Initiative (CIFTI) format in a standard ``grayordinate" space". Grayordinate represents the gray matter in the brain using a surface vertex or a volume voxel~\cite{Grayordinate}. The minimal preprocessed subjects are available in standard format which makes it easier to compare it with subjects from other studies. This standardization makes it easier for researchers to report their findings and replicate the studies.
 
@@ -13,16 +13,18 @@ HCP preprocessing pipelines are designed to minimize the amount of information r
 
 Out of the six pipelines illustrated in Figure \ref{fig:hcp_pipelines_overview}, we used three structural pipelines and one functional pipeline for study. The pipelines are listed below, 
 \begin{itemize}
-  \item PreFreeSurfer
-  \item FreesSurfer
-  \item PostFreeSurfer
-  \item fMRIVolume
+  \item PreFreeSurfer (Section \ref{sec:PrefreeSurfer})
+  \item FreesSurfer   (Section \ref{sec:FreeSurfer})
+  \item PostFreeSurfer (Section \ref{sec:PostFreeSurfer})
+  \item fMRIVolume    (Section \ref{sec:fMRIVolume})
 \end{itemize}
 
 The HCP pipeline is open sourced, and the study is conducted using the version 3.19.0\footnote{\url{https://github.com/Washington-University/Pipelines/releases/tag/v3.19.0}}. The details of pipeines are listed below.
 
-\subsection{T1w and T2w Images}
-The terms T1w and T2w is quite often used at different steps in the processing of HCP Processing Pipelines. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
+\subsection{HCP Data}
+HCP Data is collected from a population of adult twins and their non-twin siblings in the age range of 22 - 35 years. Data from 1200 subjects is available in the ConnectomeDB drepository \footnote{\url{https://db.humanconnectome.org/}}. According to HCP data set, data collected from each individula is denoted by the term ``subject". Each subject contains data belonging to four modalities. They are structural MRI, resting-state fMRI (rfMRI), task fMRI(tfMRI), and diffusion MRI (dMRI)~\cite{HCPData}.
+
+Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of structural images. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
 
 \begin{center}
   \includegraphics[width=\linewidth]{T1_v3}
@@ -38,8 +40,8 @@ The terms T1w and T2w is quite often used at different steps in the processing o
   \caption*{Extracted from \cite{t1w_t2w}}
 \end{center}
 
-
-\subsubsection{PreFreeSurfer}
+Functional data consists of resting state and task based data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance.
+\section{PreFreeSurfer} \label{sec:PrefreeSurfer}
 Main goals of, PreFreeSurfer, according to~\cite{Gla13} are, 1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
 
 \begin{center}
@@ -69,7 +71,7 @@ Step (9) consist of cross-modally registration of undistorted T2w image to the T
 
 The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
 
-\subsubsection{FreeSurfer}
+\section{FreeSurfer} \label{sec:FreeSurfer}
 HCP pipelines uses FreeSurfer version 5.2 with a lot of enhancements made particularly focusing HCP data. The main goals, according to~\cite{Gla13} are, 1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage). The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
 
 \begin{center}
@@ -98,7 +100,7 @@ The set of steps in the FreeSurfer pipeline is for generating the Pial surfaces.
 
 After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellations (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
 
-\subsubsection{PostFreeSurfer}
+\section{PostFreeSurfer} \label{sec:PostFreeSurfer}
 Main goals of, PostFreeSurfer, according to~\cite{Gla13} are, 1) produces all of the NIFTI volume and GIFTI surface files necessary for viewing the data in Connectome Workbench,2) application of surface registration; According to \cite{DBLP:journals/corr/HrgeticP13}, ''task of the surface registration algorithms is to determine the corresponding surface parts in the pair of observed clouds of 3D points, and on that basis to determine the spatial translation and rotation between the two views"; 3) downsampling registered surfaces for connectivity analyses; 4) creating the final brain mask, and creating myelin maps. Figure \ref{fig:postfreesurfer_overview} illustrates the workflow of PostFreeSurfer.\\
 
 \begin{center}
@@ -128,7 +130,7 @@ Registration step is followed by (9) the downsampling of the 164k Registered sur
 %Specification File (commonly called “Spec File”) is a file used to organize a set of data files (such as volume, label, and metric files) to be loaded into Workbench
 
 
-\subsubsection{fMRIVolume}
+\section{fMRIVolume} \label{sec:fMRIVolume}
 Main goals of, fMRIVolume, according to~\cite{Gla13} are, 1) remove spatial distortions; 2) realignment of volumes to adjust subject motion; 3) registration of fMRI data to structural volume; 4) normalizaton of the 4D image; 5) mask the data with final brain mask. Figure \ref{fig:fMRIVolume_overview} illustrates the workflow of fMRIVolume pipeline.
 
 It is a prerequisite of fMRIVolume pipeline that the input files should have completed the structural processing (PreFreeSurfer, FreeSurfer and PostFreeSurfer). Similiar to the PreFreeSurfer pipeline, fMRIVolume pipeline starts with the gradient-nonlinearity-induced distortion correction step (2), though it is optional. It is followed by (3) subject motion correction using FLIRT. The distortion in the phase encoding direction is corrected in the next step (4). In the next step (5), with the use of FLIRT, BBR cost function and FreeSurfer's BBRegister, an accurate registration between fMRI data and the structural data is created. The final step (8) in the fMRIVolume pipeline consists of concatenating all of the transforms for each registration and distortion correction into a single nonlinear transformation.
@@ -140,8 +142,8 @@ It is a prerequisite of fMRIVolume pipeline that the input files should have com
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-\section{Data}
-\paragraph{HCP Data Acquisition}
+\section{Subjects used for the study}
+\subsection{HCP Data Acquisition}
 The data was acquired from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Figures \ref{fig:subject_details} and \ref{fig:subject_scan_details} gives more insight about the HCP subjects that were used for our study. 
 
 \begin{center}
