@@ -171,7 +171,7 @@ The data was acquired from Human Connectome Project\footnote{\url{https://db.hum
   105216 & 14.4 GB \\
   \hline
 \end{tabu}
-\captionof{table}{HCP Subject Size}
+\captionof{table}{HCP Subject Size before preprocessing}
   \label{tab:hcp_subject_size}
 \end{center}
 
@@ -187,6 +187,45 @@ The data was acquired from Human Connectome Project\footnote{\url{https://db.hum
 The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume.
 Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_processing_centos7} and \ref{tab:prefreesurfer_processing_centos6} shows the details about processing subjects on CentOS7 and CentOS6 respectively.
 
+\subsection{PreFreeSurfer}
+\centering
+\includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
+\includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
+\captionof{figure}{PreFreeSurfer processing on CentOS6 and CentOS7}
+\label{fig:prefreesurfer_run}
+
+\begin{center}
+\tabulinesep=1.2mm
+  \begin{tabu} to \textwidth { | X[l] | X[l] | X[l] |}
+  \hline
+    Subject ID & Run no. & Size \\
+  \hline
+    101006 & RUN-1 & 15 GB \\
+  \hline
+    101107 & RUN-1 & 15 GB \\
+  \hline
+    101410 & RUN-1 & 9.8 GB \\
+  \hline
+    104820 & RUN-1 & 8.6 GB \\
+  \hline
+    105216 & RUN-1 & 17 GB \\
+  \hline
+    101006 & RUN-2 & 15 GB \\
+  \hline
+    101107 & RUN-2 & 15 GB \\
+  \hline
+    101410 & RUN-2 & 9.8 GB \\
+  \hline
+    104820 & RUN-2 & 8.6 GB \\
+  \hline
+    105216 & RUN-2 & 17 GB \\
+  \hline
+\end{tabu}
+\captionof{table}{HCP Subject Size after PreFreeSurfer Processing on CentOS6}
+\label{tab:hcp_subject_size}
+\end{center}
+
+\iffalse
 \subsection{PreFreeSurfer}
 \begin{center}
 \tabulinesep=1.2mm
@@ -216,9 +255,11 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
   \hline
 \end{tabu}
 \captionof{table}{PreFreeSurfer Processing Details on CentOS7}
-  \label{tab:prefreesurfer_processing_centos7}
+\label{tab:prefreesurfer_processing_centos7}
 \end{center}
+\fi
 
+\iffalse
 \begin{center}
 \tabulinesep=1.2mm
 \begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
@@ -247,9 +288,11 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
   \hline
 \end{tabu}
 \captionof{table}{PreFreeSurfer Processing Details on CentOS6}
-  \label{tab:prefreesurfer_processing_centos6}
+\label{tab:prefreesurfer_processing_centos6}
 \end{center}
+\fi
 %Prefreesurfer average timings to be calculated
+
 \subsection{FreeSurfer}
 
 \begin{center}
