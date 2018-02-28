@@ -188,303 +188,69 @@ The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer an
 Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_processing_centos7} and \ref{tab:prefreesurfer_processing_centos6} shows the details about processing subjects on CentOS7 and CentOS6 respectively.
 
 \subsection{PreFreeSurfer}
-\centering
+
+\begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
-\captionof{figure}{PreFreeSurfer processing on CentOS6 and CentOS7}
+\captionof{figure}{PreFreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:prefreesurfer_run}
-
-\begin{center}
-\tabulinesep=1.2mm
-  \begin{tabu} to \textwidth { | X[l] | X[l] | X[l] |}
-  \hline
-    Subject ID & Run no. & Size \\
-  \hline
-    101006 & RUN-1 & 15 GB \\
-  \hline
-    101107 & RUN-1 & 15 GB \\
-  \hline
-    101410 & RUN-1 & 9.8 GB \\
-  \hline
-    104820 & RUN-1 & 8.6 GB \\
-  \hline
-    105216 & RUN-1 & 17 GB \\
-  \hline
-    101006 & RUN-2 & 15 GB \\
-  \hline
-    101107 & RUN-2 & 15 GB \\
-  \hline
-    101410 & RUN-2 & 9.8 GB \\
-  \hline
-    104820 & RUN-2 & 8.6 GB \\
-  \hline
-    105216 & RUN-2 & 17 GB \\
-  \hline
-\end{tabu}
-\captionof{table}{HCP Subject Size after PreFreeSurfer Processing on CentOS6}
-\label{tab:hcp_subject_size}
 \end{center}
 
-\iffalse
-\subsection{PreFreeSurfer}
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1  & 0h and 56min \\
-  \hline
-  101107 & RUN-1  & 1h and 16min \\
-  \hline
-  101410 & RUN-1  & 1h and 27min \\
-  \hline
-  104820 & RUN-1  & 1h and 16min \\
-  \hline
-  105216 & RUN-1  & 1h and 36min \\
-  \hline
-  101006 & RUN-2  & 1h and 28min \\
-  \hline
-  101107 & RUN-2  & 1h and 26min \\
-  \hline
-  101410 & RUN-2  & 1h and 18min \\
-  \hline
-  104820 & RUN-2  & 1h and 10min \\
-  \hline
-  105216 & RUN-2  & 1h and 29min \\
-  \hline
-\end{tabu}
-\captionof{table}{PreFreeSurfer Processing Details on CentOS7}
-\label{tab:prefreesurfer_processing_centos7}
+\includegraphics[width=.5\linewidth]{prefreesurfer_CentOS6_filesize.png}%
+  \includegraphics[width=.5\linewidth]{prefreesurfer_CentOS7_filesize.png}
+\captionof{figure}{PreFreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\label{fig:prefreesurfer_file_size}
 \end{center}
-\fi
 
-\iffalse
-\begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1  & 1h and 17min \\
-  \hline
-  101107 & RUN-1  & 1h and 19min \\
-  \hline
-  101410 & RUN-1  & 1h and 09min \\
-  \hline
-  104820 & RUN-1  & 1h and 00min \\
-  \hline
-  105216 & RUN-1  & 1h and 17min \\
-  \hline
-  101006 & RUN-2  & 1h and 18min \\
-  \hline
-  101107 & RUN-2  & 1h and 16min \\
-  \hline
-  101410 & RUN-2  & 1h and 12min \\
-  \hline
-  104820 & RUN-2  & 0h and 58 min \\
-  \hline
-  105216 & RUN-2  & 1h and 31min \\
-  \hline
-\end{tabu}
-\captionof{table}{PreFreeSurfer Processing Details on CentOS6}
-\label{tab:prefreesurfer_processing_centos6}
-\end{center}
-\fi
 %Prefreesurfer average timings to be calculated
 
 \subsection{FreeSurfer}
 
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1  & 07h and 17min \\
-  \hline
-  101107 & RUN-1  & 06h and 56min \\
-  \hline
-  101410 & RUN-1  & 08h and 32min \\
-  \hline
-  104820 & RUN-1  & 06h and 20min \\
-  \hline
-  105216 & RUN-1  & 08h and 31min \\
-  \hline
-  101006 & RUN-2  & 06h and 52min \\
-  \hline
-  101107 & RUN-2  & 07h and 01min \\
-  \hline
-  101410 & RUN-2  & 09h and 14min \\
-  \hline
-  104820 & RUN-2  & 07h and 34min \\
-  \hline
-  105216 & RUN-2  & 07h and 40min \\
-  \hline
-\end{tabu}
-\captionof{table}{FreeSurfer Processing Details on CentOS7}
-\label{tab:freesurfer_processing_centos7}
+\includegraphics[width=.5\linewidth]{freesurfer_run_CentOS6.png}%
+\includegraphics[width=.5\linewidth]{freesurfer_run_CentOS7.png}
+\captionof{figure}{FreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
 \end{center}
 
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1 & 06h and 15min \\
-  \hline
-  101107 & RUN-1 & 06h and 46min \\
-  \hline
-  101410 & RUN-1 & 08h and 11min \\
-  \hline
-  104820 & RUN-1 & 06h and 13min \\
-  \hline
-  105216 & RUN-1 & 10h and 03min \\
-  \hline
-  101006 & RUN-2 & 05h and 46min \\
-  \hline
-  101107 & RUN-2 & 07h and 18min \\
-  \hline
-  101410 & RUN-2 & 08h and 06min \\
-  \hline
-  104820 & RUN-2 & 06h and 21min \\
-  \hline
-  105216 & RUN-2 & 09h and 12min \\
-  \hline
-\end{tabu}
-\captionof{table}{FreeSurfer Processing Details on CentOS6}
-\label{tab:freesurfer_processing_centos6}
+\includegraphics[width=.5\linewidth]{freesurfer_CentOS6_filesize.png}%
+\includegraphics[width=.5\linewidth]{freesurfer_CentOS7_filesize.png}
+\captionof{figure}{FreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\label{fig:freesurfer_file_size}
 \end{center}
 
 \subsection{PostFreeSurfer}
 
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | } 
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1 & 24min \\
-  \hline
-  101107 & RUN-1 & 20min \\
-  \hline
-  101410 & RUN-1 & 23min \\
-  \hline
-  104820 & RUN-1 & 19min \\
-  \hline
-  105216 & RUN-1 & 29min \\
-  \hline
-  101006 & RUN-2 & 21min \\
-  \hline
-  101107 & RUN-2 & 24min \\
-  \hline
-  101410 & RUN-2 & 22min \\
-  \hline
-  104820 & RUN-2 & 21min \\
-  \hline
-  105216 & RUN-2 & 22min \\
-  \hline
-\end{tabu}
-\captionof{table}{PostFreeSurfer Processing Details on CentOS6}
-\label{tab:postfreesurfer_processing_centos6}
+\includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS6.png}%
+\includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS7.png}
+\captionof{figure}{PostFreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+\label{fig:postfreesurfer_run}
 \end{center}
 
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1 & 31min \\
-  \hline
-  101107 & RUN-1 & 31min \\
-  \hline
-  101410 & RUN-1 & 28min \\
-  \hline
-  104820 & RUN-1 & 29min \\
-  \hline
-  105216 & RUN-1 & 32min \\
-  \hline
-  101006 & RUN-2 & 28min \\
-  \hline
-  101107 & RUN-2 & 22min \\
-  \hline
-  101410 & RUN-2 & 28min \\
-  \hline
-  104820 & RUN-2 & 26min \\
-  \hline
-  105216 & RUN-2 & 28min \\
-  \hline
-\end{tabu}
-\captionof{table}{PostFreeSurfer Processing Details on CentOS7}
-\label{tab:postfreesurfer_processing_centos7}
+\includegraphics[width=.5\linewidth]{postfreesurfer_CentOS6_filesize.png}%
+\includegraphics[width=.5\linewidth]{postfreesurfer_CentOS7_filesize.png}
+\captionof{figure}{PostFreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\label{fig:postfreesurfer_file_size}
 \end{center}
 
 \subsection{fMRIVolume}
 
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1 & 1 day 5 hours 17 min \\
-  \hline
-  101107 & RUN-1 & 1 day 5 hours 07 min\\
-  \hline
-  101410 & RUN-1 & 18 hours 20 min \\
-  \hline
-  104820 & RUN-1 & 17 hours 53 min \\
-  \hline
-  105216 & RUN-1 & 1 day 5 hours 19 min \\
-  \hline
-  101006 & RUN-2 & 1 day 5 hours 07 min \\
-  \hline
-  101107 & RUN-2 & 1 day 4 hours 49 min \\
-  \hline
-  101410 & RUN-2 & 18 hours 26 min \\
-  \hline
-  104820 & RUN-2 & 17 hours 10 min \\
-  \hline
-  105216 & RUN-2 & 1 day 5 hours 24 min\\
-  \hline
-\end{tabu}
-\captionof{table}{fMRIVolume Processing Details on CentOS6}
-\label{tab:fMRIVolume_processing_centos6}
+\includegraphics[width=.5\linewidth]{fmri_run_CentOS6.png}%
+\includegraphics[width=.5\linewidth]{fmri_run_CentOS7.png}
+\captionof{figure}{fMRIVolume processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+\label{fig:fmri_run}
 \end{center}
 
 \begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | }
-  \hline
-  Subject & Run no. & Time \\
-  \hline
-  101006 & RUN-1 & 1 day 4 hours 18 min \\
-  \hline
-  101107 & RUN-1 & 1 day 4 hours 22 min\\
-  \hline
-  101410 & RUN-1 & 17 hours 46 min \\
-  \hline
-  104820 & RUN-1 & 17 hours 08 min \\
-  \hline
-  105216 & RUN-1 & 1 day 5 hours 7 min \\
-  \hline
-  101006 & RUN-2 & 1 day 3 hours 39 min \\
-  \hline
-  101107 & RUN-2 & 1 day 3 hours 50 min  \\
-  \hline
-  101410 & RUN-2 & 17 hours 7 min  \\
-  \hline
-  104820 & RUN-2 & 1 day 4 hours 15 min \\
-  \hline
-  105216 & RUN-2 & 1 day 4 hours 54 min\\
-  \hline
-\end{tabu}
-\captionof{table}{fMRIVolume Processing Details on CentOS7}
-\label{tab:fMRIVolume_processing_centos7}
+\includegraphics[width=.5\linewidth]{fmri_CentOS6_filesize.png}%
+\includegraphics[width=.5\linewidth]{fmri_CentOS7_filesize.png}
+\captionof{figure}{fMRIVolume processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\label{fig:fmri_file_size}
 \end{center}
-
 %Add average time of all the processes
 
 \subsection{HCP Docker images}
