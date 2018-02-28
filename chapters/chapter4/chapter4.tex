@@ -184,11 +184,11 @@ The data was acquired from Human Connectome Project\footnote{\url{https://db.hum
 \end{center}
 
 \section{Processing}
-The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume.
-Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_processing_centos7} and \ref{tab:prefreesurfer_processing_centos6} shows the details about processing subjects on CentOS7 and CentOS6 respectively.
-
+The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume. Two runs were made on CentOS6 and CentOS7 using the five subjects listed in Table ~\ref{tab:hcp_subject_size}.
 \subsection{PreFreeSurfer}
-
+Figures \ref{fig:prefreesurfer_run} and \ref{fig:prefreesurfer_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Average time taken for PreFreeSurfer processing is 73.7 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.08 GB (5 subjects) on CentOS6.
+Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.10 GB (5 subjects) on CentOS7.
 \begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
@@ -203,14 +203,17 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
 \label{fig:prefreesurfer_file_size}
 \end{center}
 
-%Prefreesurfer average timings to be calculated
 
 \subsection{FreeSurfer}
+Figures \ref{fig:freesurfer_run} and \ref{fig:freesurfer_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Average time taken for FreeSurfer processing is 7.4 hours (10 runs) and average output file size of FreeSurfer processing is 15.2 GB (5 subjects) on CentOS6.
+Average time taken for FreeSurfer processing is 7.58 hours (10 runs) and average output file size of FreeSurfer processing is 15.2 GB (5 subjects) on CentOS7.
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{freesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{freesurfer_run_CentOS7.png}
 \captionof{figure}{FreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+\label{fig:freesurfer_run}
 \end{center}
 
 \begin{center}
@@ -221,7 +224,9 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
 \end{center}
 
 \subsection{PostFreeSurfer}
-
+Figures \ref{fig:postfreesurfer_run} and \ref{fig:postfreesurfer_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Average time taken for FreeSurfer processing is 22.5 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS6.
+Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS7.
 \begin{center}
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS7.png}
@@ -237,6 +242,9 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
 \end{center}
 
 \subsection{fMRIVolume}
+Figures \ref{fig:fmri_run} and \ref{fig:fmri_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Average time taken for FreeSurfer processing is 24.68 hours (10 runs) and average output file size of FreeSurfer processing is 221.2 GB (10 subjects) on CentOS6.
+Average time taken for FreeSurfer processing is 24.76 hours (10 runs) and average output file size of FreeSurfer processing is 220.8 GB (10 subjects) on CentOS7.
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{fmri_run_CentOS6.png}%
@@ -251,7 +259,6 @@ Two runs were made on CentOS6 and CentOS7. Tables \ref{tab:prefreesurfer_process
 \captionof{figure}{fMRIVolume processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
 \label{fig:fmri_file_size}
 \end{center}
-%Add average time of all the processes
 
 \subsection{HCP Docker images}
 We conducted our study across Docker containers created out of CentOS 5.11, CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
