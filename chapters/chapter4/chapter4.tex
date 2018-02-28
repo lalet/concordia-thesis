@@ -127,9 +127,7 @@ Step (7) uses the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php
 
 Registration step is followed by (9) the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR MNI volume space. These lower resolution images are suited for functional and connectivity analyses. The last step (10) in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space. 
 
-
 %Specification File (commonly called “Spec File”) is a file used to organize a set of data files (such as volume, label, and metric files) to be loaded into Workbench
-
 
 \section{fMRIVolume} \label{sec:fMRIVolume}
 Main goals of, fMRIVolume, according to~\cite{Gla13} are, 1) remove spatial distortions; 2) realignment of volumes to adjust subject motion; 3) registration of fMRI data to structural volume; 4) normalizaton of the 4D image; 5) mask the data with final brain mask. Figure \ref{fig:fMRIVolume_overview} illustrates the workflow of fMRIVolume pipeline.
@@ -172,9 +170,8 @@ The data was acquired from Human Connectome Project\footnote{\url{https://db.hum
   \hline
 \end{tabu}
 \captionof{table}{HCP Subject Size before preprocessing}
-  \label{tab:hcp_subject_size}
+\label{tab:hcp_subject_size}
 \end{center}
-
 
 \begin{center}
 \includegraphics[width=\linewidth]{subject_scan_details.png}
@@ -189,6 +186,7 @@ The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer an
 Figures \ref{fig:prefreesurfer_run} and \ref{fig:prefreesurfer_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for PreFreeSurfer processing is 73.7 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.08 GB (5 subjects) on CentOS6.
 Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.10 GB (5 subjects) on CentOS7.
+
 \begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
@@ -198,11 +196,10 @@ Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and av
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_CentOS6_filesize.png}%
-  \includegraphics[width=.5\linewidth]{prefreesurfer_CentOS7_filesize.png}
+\includegraphics[width=.5\linewidth]{prefreesurfer_CentOS7_filesize.png}
 \captionof{figure}{PreFreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
 \label{fig:prefreesurfer_file_size}
 \end{center}
-
 
 \subsection{FreeSurfer}
 Figures \ref{fig:freesurfer_run} and \ref{fig:freesurfer_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
@@ -227,6 +224,7 @@ Average time taken for FreeSurfer processing is 7.58 hours (10 runs) and average
 Figures \ref{fig:postfreesurfer_run} and \ref{fig:postfreesurfer_file_size} shows the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for FreeSurfer processing is 22.5 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS7.
+
 \begin{center}
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS7.png}
@@ -261,16 +259,24 @@ Average time taken for FreeSurfer processing is 24.76 hours (10 runs) and averag
 \end{center}
 
 \subsection{HCP Docker images}
-We conducted our study across Docker containers created out of CentOS 5.11, CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
+We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
 
 These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
 
 \begin{itemize}
- \item A 64-bit Linux Operating System
- \item FSL Version - 5.0.6
- \item FreeSurfer Version - 5.3.0-HCP
- \item Connectome Workbench Version - 1.0
- \item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
+\item A 64-bit Linux Operating System
+\item FSL Version - 5.0.6
+\item FreeSurfer Version - 5.3.0-HCP
+\item Connectome Workbench Version - 1.0
+\item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
 \end{itemize}
 
 FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the containers with the help of DockerFiles.
+Docker container creation was automated with the help of GitHub and DockerHub. All the containers that are used for this study is aviable in the Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/tags/}}.
+
+\begin{center}
+  \includegraphics[width=\linewidth]{automated_build}
+  \caption{Docker automated build}
+  \label{fig:Docker_build}
+  \caption*{Docker logo retrieved from Docker \url{https://secure.gravatar.com/avatar/7510e100f7ebeca4a0b8c3c617349295.jpg} and GitHub logo retrieved from \url{https://github.com/logos}}
+\end{center}
