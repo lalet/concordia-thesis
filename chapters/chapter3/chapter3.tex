@@ -1,5 +1,5 @@
 \chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}
-The Repro-tools \todo{name subject to change } is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term `condition` with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term `subject' with respect to this framework is used to denote the directories containing the data,that are kept under each condition. 
+The Repro-tools \todo{name subject to change} is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term ``condition" with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term ``subject" with respect to this framework is used to denote the directories containing the data, that are kept under each condition. 
 
 I contributed a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}. The tool can compare and summarize the files, that have differences, due to the operating system on which the processing took place.
 
@@ -20,9 +20,16 @@ It can also quantify the differences in image files with the help of metrics lik
 Figure \ref{fig:framework_architecture} illustrates the overall workflow. The Docker image creation is automated. For each commit, made to the Dockerfile stored in Github\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer}}, a new build is triggered in Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These images are then used by CBRAIN for processing the subjects. Boutiques helps in deploying these containers to CBRAIN platform. CBRAIN can harness the power of computational clusters as well. The subjects processed under different conditions are then analyzed using the Repro-tools.
 
 \section{Docker images}
-Repro-tools framework uses Docker containers for reproducibility studies. A Docker container is the running instance of a Docker image. Dockerfiles are used for specifiying the operating system and the libraries needed for creating a Docker image. With the help of automated image creation feature in Dockerhub, whenever a commit is made to the Dockerfile, a new image build gets triggered. Thus, the automated build makes sure that the changes are always reflected in the Docker images. 
+Repro-tools framework uses Docker containers for reproducibility studies. A Docker container is the running instance of a Docker image. Dockerfiles are used for specifiying the operating system and the libraries needed for creating a Docker image. With the help of automated image creation feature in Dockerhub, whenever a commit is made to the Dockerfile, a new image build gets triggered (Figure~\ref{fig:Docker_build}). Thus, the automated build makes sure that the changes are always reflected in the Docker images.
 
 Repro-tools, before the beginning of processing a subject, makes a check to ensure that the image that is getting used is the latest one. This check makes sure that the processing is done with the up-to-date changes in the Docker images.
+
+\begin{center}
+  \includegraphics[width=\linewidth]{automated_build}
+  \caption{Docker automated build}
+  \label{fig:Docker_build}
+  \caption*{Docker logo retrieved from Docker \url{https://secure.gravatar.com/avatar/7510e100f7ebeca4a0b8c3c617349295.jpg} and GitHub logo retrieved from \url{https://github.com/logos}}
+\end{center}
 
 \section{Pipeline Encapsulation}
 %Add Why wrapper and advantages
@@ -49,7 +56,7 @@ The Docker container containing the pipelines along with the Boutiques descripto
 %Checksum
 Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint" or ``message digest"~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integity than security and how fast the algorithm is able to create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
 
-Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference which occur due the the operating system library updates and the other type, intra-OS differences occurs due to the pseudo-random processes used in the pipelines or due to silent crashes due to various reasons reported similiar to Table \ref{tab:table_docker}. An example of a pseudo-random process function is, a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
+Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference which occur due the operating system library updates and the other type, intra-OS differences occurs due to the pseudo-random processes used in the pipelines or due to silent crashes due to various reasons reported similiar to Table \ref{tab:table_docker}. An example of a pseudo-random process function is, a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
 
 The files that are common to all the subjects only are taken into consideration for comparison. The first step is identification of files with differences in their checksums. This is identified using the checksums that are recorded after the processing. Intra-OS differences are identified using the run-number added as the suffix for the conditions. For example, the two batches of subjects processed under the same condition (CentOS6) are stored as run-1 and run-2. The files belonging to the subjects stored under the above mentioned conditions are treated as intra-OS runs.
 
@@ -90,12 +97,13 @@ These metric values help us understand how big or small the differences are. Apa
   \ENDFOR
 \ENDFOR
 \end{algorithmic}
-\KwRet n\_differences,metric;
+\KwRet n\_differences, metric;
 }
 \vskip 0.2in
 
-Algorithm 1 shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files  that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
-A pair of condition is taken at a time as the following step (Line 6). The files under the subject in two different conditions are then comapred to see if their file sizes or checksums differ (Line 13). If a difference is observed, then the metric value is computed it is stored in a dictionary with the file name, subject and condition as the key value.The difference in the file is denoted with a value `1' into a variable (Lines 14-15).
+Algorithm 1 shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
+
+A pair of condition is taken at a time as the following step (Line 6). The files under the subject in two different conditions are then comapred to see if their file sizes or checksums differ (Line 13). If a difference is observed, then the metric value is computed it is stored in a dictionary with the file name, subject and condition as the key value. The difference in the file is denoted with a value ``1" into a variable (Lines 14-15).
 
 \section{Metrics calculation using Apache Spark}
 In order to parallelize the analysis and metric calulation and to harness the power of high performance computing power (Compute Canada), an Apache Spark based variant of verifyFiles script was created\footnote{\url{https://github.com/lalet/Big-Data-Spark}}. Parallelized analysis and metrics calculation could reduce the time taken for analysis considerably. The sequence of steps followed in the Apache Spark function is described below,
