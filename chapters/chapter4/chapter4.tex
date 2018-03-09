@@ -150,13 +150,34 @@ It is a prerequisite of fMRIVolume pipeline that the input files should have com
 
 \section{Subjects used for the study}
 \subsection{HCP Data Selection}
-The data was obtained from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Figures \ref{fig:subject_details} and \ref{fig:subject_scan_details} give more insight about the HCP subjects that were used for our study. \todo{Redo the figures as tables.}
+The data was obtained from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Tables \ref{tab:hcp_subject_details} and \ref{tab:subject_scan_details} give more insight about the HCP subjects that were used for our study. 
+
+%\begin{center}
+%\includegraphics[width=\linewidth]{subjects_details.png}
+%\captionof{figure}{Subject Details}
+%\label{fig:subject_details}
+%\caption*{Extracted from \cite{DBConnectomeSite}}
+%\end{center}
 
 \begin{center}
-\includegraphics[width=\linewidth]{subjects_details.png}
-\captionof{figure}{Subject Details}
-\label{fig:subject_details}
-\caption*{Extracted from \cite{DBConnectomeSite}}
+\tabulinesep=1.2mm
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] | X[l] | } 
+  \hline
+  Subject & Release & Acquisition & Gender & Age \\
+  \hline
+  101006 & S500 & Q06 & F & 31-35 \\
+  \hline
+  101107 & S500 & Q06 & M & 22-25 \\
+  \hline
+  101410 & S500 & Q06 & M & 26-30 \\
+  \hline
+  104820 & S500 & Q06 & F & 36+ \\
+  \hline
+  105216 & Q3 & Q03 & M & 26-30 \\
+  \hline
+\end{tabu}
+\captionof{table}{HCP Details}
+\label{tab:hcp_subject_details}
 \end{center}
 
 \begin{center}
@@ -180,11 +201,31 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 \label{tab:hcp_subject_size}
 \end{center}
 
+%\begin{center}
+%\includegraphics[width=\linewidth]{subject_scan_details.png}
+%\captionof{figure}{Subject Scan Details}
+%\label{fig:subject_scan_details}
+%\caption*{Extracted from \cite{DBConnectomeSite}}
+%\end{center}
+
 \begin{center}
-\includegraphics[width=\linewidth]{subject_scan_details.png}
-\captionof{figure}{Subject Scan Details}
-\label{fig:subject_scan_details}
-\caption*{Extracted from \cite{DBConnectomeSite}}
+  \begin{longtabu} to \textwidth{ | X[l] | X[l] | X[l] | X[l] | }  
+  \hline
+  Subject & MR Session Scanner 3T & MR Session Scans 3T & MR Session Label 3T \\
+  \hline
+  101006 & HCP 3T & Bias Receive(8), Bias Transmit(1), dMRI(6), dMRI SBRef(6), FieldMap(2), FieldMap SE EPI(8), rfMRI(4), rfMRI SBRef(4), T1w(2), T2w(2), tFMRI(14), tfMRI SBRef(14) & 101006 3T \\
+  \hline
+  101107 & HCP 3T & Bias Receive(8), Bias Transmit(1), dMRI(6), dMRI SBRef(6), FieldMap(2), FieldMap SE EPI(8), rfMRI(4), rfMRI SBRef(4), T1w(2), T2w(2), tFMRI(14), tfMRI SBRef(14) & 101107 3T \\
+  \hline
+  101410 & HCP 3T & Bias Receive(10), Bias Transmit(1), dMRI(6), dMRI SBRef(6), FieldMap(2), FieldMap SE EPI(6), rfMRI(2), rfMRI SBRef(2), T1w(2), T2w(1), tFMRI(14), tfMRI SBRe(14) & 101410 3T \\
+  \hline
+  104820 & HCP 3T & Bias Receive(8), Bias Transmit(1), dMRI(6), dMRI SBRef(6), FieldMap(2), FieldMap SE EPI(8), rfMRI(4), rfMRI SBRef(4), T1w(1), T2w(1), tFMRI(14), tfMRI SBRef(14) & 104820 3T\\
+  \hline
+  105216 & HCP 3T & Bias Receive(8), Bias Transmit(1), dMRI(6), dMRI SBRef(6), FieldMap(2), FieldMap SE EPI(8), rfMRI(4), rfMRI SBRef(4), T1w(2), T2w(2), tFMRI(14), tfMRI SBRef(14) & 105216 3T\\
+  \hline
+\end{longtabu}
+\captionof{table}{Subject Scan Details}
+\label{tab:subject_scan_details}
 \end{center}
 
 \section{Processing}
