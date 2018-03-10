@@ -9,7 +9,7 @@ processing (Section~\ref{zzz}).
 
 \section{HCP Pipelines (v3.19.0) and Data}
 %Intro to HCP preprocessing 
-HCP preprocessing pipelines are designed to minimize the amount of information removed from the HCP data. Figure \ref{fig:hcp_pipelines_overview} illustrates the HCP Preprocessing Pipelines overview. HCP pipelines consists of three structural pipelines (PreFreeSurfer, FreeSurfer and PostFreeSurfer), two functional pipelines (fMRIVolume and fMRISurface) and a Diffusion PreProcessing pipeline~\cite{Gla13}. According to~\cite{Gla13}, the overall goals of HCP Preprocessing pipelines are, ``1) to remove spatial artifacts and distortions; 2) to generate cortical surfaces, segmentations, and myelin maps; 3) to make the data easily viewable in the Connectome Workbench visualization software; 4) to generate precise within-subject cross-modal registrations; 5) to handle surface and volume cross-subject registrations to standard volume and surface spaces; and 6) to make the data available in the Connectivity Informatics Technology Initiative (CIFTI) format in a standard ``grayordinate" space". Grayordinate represents the gray matter in the brain using a surface vertex or a volume voxel~\cite{Grayordinate}. The minimal preprocessed subjects are available in standard format which makes it easier to compare it with subjects from other studies. This standardization makes it easier for researchers to report their findings and replicate the studies.
+Figure \ref{fig:hcp_pipelines_overview} illustrates the HCP Preprocessing Pipelines overview. HCP pipelines consists of three structural pipelines (PreFreeSurfer, FreeSurfer and PostFreeSurfer), two functional pipelines (fMRIVolume and fMRISurface) and a Diffusion PreProcessing pipeline~\cite{Gla13}. According to~\cite{Gla13}, the overall goals of HCP Preprocessing pipelines are, ``1) to remove spatial artifacts and distortions; 2) to generate cortical surfaces, segmentations, and myelin maps; 3) to make the data easily viewable in the Connectome Workbench visualization software; 4) to generate precise within-subject cross-modal registrations; 5) to handle surface and volume cross-subject registrations to standard volume and surface spaces; and 6) to make the data available in the Connectivity Informatics Technology Initiative (CIFTI) format in a standard ``grayordinate" space". Grayordinate represents the gray matter in the brain using a surface vertex or a volume voxel~\cite{Grayordinate}. The minimal preprocessed subjects are available in standard format which makes it easier to compare it with subjects from other studies. This standardization makes it easier for researchers to report their findings and replicate the studies. HCP preprocessing pipelines are designed to minimize the amount of information removed from the HCP data.
 
 \begin{center}
    \includegraphics[width=\linewidth]{hcp_preprocessing_overview}
@@ -49,6 +49,8 @@ Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of str
 
 Functional data consists of task based and resting state fMRI data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data available in the HCP Subjects. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance. Task based fMRI analyses can identify and characterize functionally distinct nodes in human brain\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}. Resting state fMRI consists of data that is collected when the subject is not performing an explicit task. This can be used to map the regional intercations happening in the brain at the time of rest~\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}.
 
+
+
 \section{PreFreeSurfer} \label{sec:PrefreeSurfer}
 Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space''. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
 
@@ -59,7 +61,7 @@ Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an u
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of steps in the PreFreeSurfer pipeline. The input to the pipeline are T1w and T2w images and the registerted field map. Second step(2) is gradient nonlinearity correction. This distortion is caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans". Gradient nonlinearity distortion must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Figure \ref{fig:gradient_nonlinearity} represent gradient nonlinearity distortion correction. Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting this distortion. For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space". Gradient nonlinearity distortion is then corrected with the help of field map. This is followed by warping of the field map magnitude image, according to the readout distortion. Separate registrations of the field map are then done to the T1w and T2w images using FLIRT.
+Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of steps in the PreFreeSurfer pipeline. The input to the pipeline are T1w and T2w images and the registerted field map. Second step(2) is gradient nonlinearity correction. This distortion is caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans''. Gradient nonlinearity distortion must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Figure~\ref{fig:gradient_nonlinearity} represent gradient nonlinearity distortion correction. Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting this distortion. For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space''. Gradient nonlinearity distortion is then corrected with the help of field map. This is followed by warping of the field map magnitude image, according to the readout distortion. Separate registrations of the field map are then done to the T1w and T2w images using FLIRT.
 
 \begin{center}
   \includegraphics[width=\linewidth]{gradient_nonlinearity_distortion}
@@ -176,7 +178,8 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
   105216 & Q3 & Q03 & M & 26-30 \\
   \hline
 \end{tabu}
-\captionof{table}{HCP Details}
+  \captionof{table}{HCP Subject Details}
+  \caption*{Data retrieved from \cite{DBConnectomeSite}}
 \label{tab:hcp_subject_details}
 \end{center}
 
@@ -197,7 +200,7 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
   105216 & 14.4 GB \\
   \hline
 \end{tabu}
-\captionof{table}{HCP Subject Size before preprocessing}
+\captionof{table}{Unprocessed HCP Subject Size}
 \label{tab:hcp_subject_size}
 \end{center}
 
@@ -225,10 +228,27 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
   \hline
 \end{longtabu}
 \captionof{table}{Subject Scan Details}
+\caption*{Data retrieved from \cite{DBConnectomeSite}}
 \label{tab:subject_scan_details}
 \end{center}
 
-\section{Processing}
+\section{HCP Docker Images}
+We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
+
+These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
+
+\begin{itemize}
+\item A 64-bit Linux Operating System
+\item FSL Version - 5.0.6
+\item FreeSurfer Version - 5.3.0-HCP
+\item Connectome Workbench Version - 1.0 
+\item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
+\end{itemize}
+
+FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the containers with the help of DockerFiles.
+Docker container creation was automated with the help of GitHub and DockerHub. All the containers that are used for this study are available in the Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/tags/}}.
+
+\section{Processing subjects}
 The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume. Two runs were made on CentOS6 and CentOS7 using the five subjects listed in Table ~\ref{tab:hcp_subject_size}.
 \subsection{PreFreeSurfer}
 Figures \ref{fig:prefreesurfer_run} and \ref{fig:prefreesurfer_file_size} show the details about processing time and file-size on CentOS6 and CentOS7 respectively.
@@ -238,14 +258,16 @@ Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and av
 \begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
-\captionof{figure}{PreFreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+  \captionof{figure}{PreFreeSurfer processing times }
+  \caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:prefreesurfer_run}
 \end{center}
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_CentOS6_filesize.png}%
 \includegraphics[width=.5\linewidth]{prefreesurfer_CentOS7_filesize.png}
-\captionof{figure}{PreFreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\captionof{figure}{PreFreeSurfer processing file-sizes}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:prefreesurfer_file_size}
 \end{center}
 
@@ -257,14 +279,16 @@ Average time taken for FreeSurfer processing is 7.58 hours (10 runs) and average
 \begin{center}
 \includegraphics[width=.5\linewidth]{freesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{freesurfer_run_CentOS7.png}
-\captionof{figure}{FreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+\captionof{figure}{FreeSurfer processing times}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:freesurfer_run}
 \end{center}
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{freesurfer_CentOS6_filesize.png}%
 \includegraphics[width=.5\linewidth]{freesurfer_CentOS7_filesize.png}
-\captionof{figure}{FreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\captionof{figure}{FreeSurfer processing file-sizes}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:freesurfer_file_size}
 \end{center}
 
@@ -276,14 +300,16 @@ Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and avera
 \begin{center}
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS7.png}
-\captionof{figure}{PostFreeSurfer processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+\captionof{figure}{PostFreeSurfer processing times}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:postfreesurfer_run}
 \end{center}
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{postfreesurfer_CentOS6_filesize.png}%
 \includegraphics[width=.5\linewidth]{postfreesurfer_CentOS7_filesize.png}
-\captionof{figure}{PostFreeSurfer processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\captionof{figure}{PostFreeSurfer processing file-sizes}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:postfreesurfer_file_size}
 \end{center}
 
@@ -295,30 +321,16 @@ Average time taken for FreeSurfer processing is 24.76 hours (10 runs) and averag
 \begin{center}
 \includegraphics[width=.5\linewidth]{fmri_run_CentOS6.png}%
 \includegraphics[width=.5\linewidth]{fmri_run_CentOS7.png}
-\captionof{figure}{fMRIVolume processing time on (i) CentOS6 (left) (ii)CentOS7 (right)}
+\captionof{figure}{fMRIVolume processing times}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:fmri_run}
 \end{center}
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{fmri_CentOS6_filesize.png}%
 \includegraphics[width=.5\linewidth]{fmri_CentOS7_filesize.png}
-\captionof{figure}{fMRIVolume processing file-size on (i) CentOS6 (left) (ii) CentOS7 (right)}
+\captionof{figure}{fMRIVolume processing file-sizes}
+\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
 \label{fig:fmri_file_size}
 \end{center}
-
-\subsection{HCP Docker images}
-We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
-
-These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
-
-\begin{itemize}
-\item A 64-bit Linux Operating System
-\item FSL Version - 5.0.6
-\item FreeSurfer Version - 5.3.0-HCP
-\item Connectome Workbench Version - 1.0
-\item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
-\end{itemize}
-
-FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the containers with the help of DockerFiles.
-Docker container creation was automated with the help of GitHub and DockerHub. All the containers that are used for this study are available in the Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/tags/}}.
 

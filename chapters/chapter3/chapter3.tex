@@ -54,7 +54,7 @@ The Docker container containing the pipelines along with the Boutiques descripto
 
 \section{File comparisons across conditions}
 %Checksum
-Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint" or ``message digest"~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integity than security and how fast the algorithm is able to create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
+Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint'' or ``message digest''~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integrity than security and how fast the algorithm is able to create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
 
 Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference which occur due the operating system library updates and the other type, intra-OS differences occurs due to the pseudo-random processes used in the pipelines or due to silent crashes due to various reasons reported similiar to Table \ref{tab:table_docker}. An example of a pseudo-random process function is, a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
 
@@ -105,15 +105,15 @@ Algorithm 1 shows the high-level logic for identifying the files with difference
 
 A pair of condition is taken at a time as the following step (Line 6). The files under the subject in two different conditions are then comapred to see if their file sizes or checksums differ (Line 13). If a difference is observed, then the metric value is computed it is stored in a dictionary with the file name, subject and condition as the key value. The difference in the file is denoted with a value ``1" into a variable (Lines 14-15).
 
-\section{Metrics calculation using Apache Spark}
-In order to parallelize the analysis and metric calulation and to harness the power of high performance computing power (Compute Canada), an Apache Spark based variant of verifyFiles script was created\footnote{\url{https://github.com/lalet/Big-Data-Spark}}. Parallelized analysis and metrics calculation could reduce the time taken for analysis considerably. The sequence of steps followed in the Apache Spark function is described below,
-\begin{enumerate}
-  \item Map a pair of files along with its checksum
-  \item Check if the checksums are equal
-  \item If they are not equal compute the metric associated with the type of file
-  \item Reduce the values using filenames as the key
-  \item Write the keys and values to a csv file
-\end{enumerate}
+%\section{Metrics calculation using Apache Spark}
+%In order to parallelize the analysis and metric calulation and to harness the power of high performance computing power (Compute Canada), an Apache Spark based variant of verifyFiles script was created\footnote{\url{https://github.com/lalet/Big-Data-Spark}}. Parallelized analysis and metrics calculation could reduce the time taken for analysis considerably. The sequence of steps followed in the Apache Spark function is described below,
+%\begin{enumerate}
+ % \item Map a pair of files along with its checksum
+  %\item Check if the checksums are equal
+  %\item If they are not equal compute the metric associated with the type of file
+  %\item Reduce the values using filenames as the key
+  %\item Write the keys and values to a csv file
+%\end{enumerate}
 
 %Add brief description about Map and reduce
 
