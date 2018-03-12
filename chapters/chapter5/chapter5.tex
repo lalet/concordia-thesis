@@ -1,11 +1,61 @@
 \chapter{Results}
 
 \section{PreFreeSurfer}
-  \begin{itemize}
-    \item Inter-run
-    \item Inter-OS
-  \end{itemize}
-  
+
+\subsection{Inter-OS differences}
+
+\centering
+\newcolumntype{C}{>{\Centering\arraybackslash}X}
+\caption{My caption}
+\label{my-label}
+\begin{longtabu} to \textwidth {| p{5cm} | p{2cm} | p{2cm} | p{3cm} |}
+\hline
+\hline
+File Name                                                                    & Differences & NRMSE        & Dice         \\ \hline
+\seqsplit{T1w/ACPCAlignment/acpc\_final.nii.gz}                                         & 5                   & 0.01  & 0.11165  \\ \hline
+\seqsplit{T1w/BrainExtraction\_FNIRTbased/T1w\_acpc\_to\_MNI\_roughlin.nii.gz}          & 5                   & 0.034 & 0.50219  \\ \hline
+\seqsplit{T1w/BrainExtraction\_FNIRTbased/NonlinearReg.nii.gz}                          & 5                   & 0.029 & 0        \\ \hline
+\seqsplit{T1w/BrainExtraction\_FNIRTbased/NonlinearIntensities.nii.gz}                  & 5                   & 0.017 & 2.00E-05 \\ \hline
+\seqsplit{T1w/BrainExtraction\_FNIRTbased/standard2str.nii.gz}                          & 5                   & 0.035 & 0.0003   \\ \hline
+\seqsplit{T2w/T2w.nii.gz}                                                               & 3                   & 0.001 & 1.9101   \\ \hline
+\seqsplit{T2w/ACPCAlignment/acpc\_final.nii.gz}                                         & 5                   & 0.043 & 0.19405  \\ \hline
+\seqsplit{T2w/T2w\_acpc.nii.gz}                                                         & 5                   & 0.041 & 1.07052  \\ \hline
+\seqsplit{T2w/BrainExtraction\_FNIRTbased/NonlinearReg.nii.gz}                          & 5                   & 0.077 & 0        \\ \hline
+\seqsplit{T2w/BrainExtraction\_FNIRTbased/NonlinearRegJacobians.nii.gz}                 & 5                   & 0.057 & 2.00E-05 \\ \hline
+\seqsplit{T2w/BrainExtraction\_FNIRTbased/NonlinearIntensities.nii.gz}                  & 5                   & 0.06  & 0        \\ \hline
+\seqsplit{T2w/BrainExtraction\_FNIRTbased/T2w\_acpc\_to\_MNI\_nonlin.nii.gz}            & 5                   & 0.092 & 0.41979  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap/Magnitude.nii.gz}                & 0                   & -     & 0        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap/Magnitude\_brain.nii.gz}         & 0                   & -     & 0        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap.nii.gz}                          & 0                   & -     & 0        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap\_ShiftMapT1w.nii.gz}             & 0                   & -     & 0        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap\_WarpT1w.nii.gz}                 & 0                   & -     & 0        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap2T1w\_acpc.nii.gz}                & 5                   & 0.001 & 3.75512  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap2T1w\_acpc\_ShiftMap.nii.gz}      & 5                   & 0.001 & 3.75307  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap2T1w\_acpc\_Warp.nii.gz}          & 5                   & 0     & 4.60654  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/T1w\_acpc.nii.gz}                         & 5                   & 0.007 & 0.28043  \\ \hline
+\seqsplit{T1w/T1w\_acpc\_dc\_brain.nii.gz}                                              & 5                   & 0.027 & 4.60654  \\ \hline
+\seqsplit{T1w/xfms/T1w\_dc.nii.gz}                                                      & 5                   & 0     & 4.60654  \\ \hline
+\seqsplit{T1w/T1w\_acpc\_dc.nii.gz}                                                     & 5                   & 0.007 & 0.28043  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap\_ShiftMapT2w.nii.gz}             & 0                   & -     & -        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/Magnitude\_warppedT2w.nii.gz}             & 5                   & -     & -        \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/FieldMap2T2w\_acpc\_Warp.nii.gz}          & 5                   & 0.004 & 4.63958  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/T2w\_acpc.nii.gz}                         & 5                   & 0.04  & 0.85883  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/T2w2T1w/T2w\_dc\_reg.nii.gz}              & 5                   & 0.227 & 0.00031  \\ \hline
+\seqsplit{T2w/T2wToT1wDistortionCorrectAndReg/T2w2T1w/sqrtT1wbyT2w.nii.gz}              & 5                   & 0.018 & 0.39752  \\ \hline
+\seqsplit{T1w/BiasFieldCorrection\_sqrtT1wXT1w/T1wmulT2w.nii.gz}                        & 5                   & 0.018 & 0.16758  \\ \hline
+\seqsplit{T1w/BiasFieldCorrection\_sqrtT1wXT1w/T1wmulT2w\_brain\_norm\_s5.nii.gz}       & 5                   & 0.045 & 1.83282  \\ \hline
+\seqsplit{T1w/BiasFieldCorrection\_sqrtT1wXT1w/T1wmulT2w\_brain\_norm\_modulate.nii.gz} & 5                   & 0.034 & 3.85976  \\ \hline
+\seqsplit{T1w/BiasFieldCorrection\_sqrtT1wXT1w/bias\_raw.nii.gz}                        & 5                   & 0.034 & 4.00E-05 \\ \hline
+\seqsplit{MNINonLinear/xfms/T1w\_acpc\_dc\_restore\_brain\_to\_MNILinear.nii.gz}        & 5                   & 0.016 & 0.70766  \\ \hline
+\seqsplit{MNINonLinear/xfms/NonlinearIntensities.nii.gz.txt}                            & 5                   & -     & -        \\ \hline
+\seqsplit{MNINonLinear/xfms/NonlinearRegJacobians.nii.gz}                               & 5                   & 0.021 & .00009   \\ \hline
+\seqsplit{MNINonLinear/xfms/NonlinearIntensities.nii.gz}                                & 5                   & 0.059 & 0        \\ \hline
+\seqsplit{MNINonLinear/xfms/2mmReg.nii.gz}                                              & 5                   & 0.025 & 0.07215  \\ \hline
+\seqsplit{MNINonLinear/T1w.nii.gz}                                                      & 5                   & 0.028 & 0.3004   \\ \hline
+\seqsplit{MNINonLinear/T1w\_restore.nii.gz}                                             & 5                   & 0.024 & 0.16632  \\ \hline
+\seqsplit{MNINonLinear/T2w\_restore.nii.gz}                                             & 5                   & 0.044 & 0.16631  \\ \hline
+\end{longtabu}
+
 \section{FreeSurfer}
 \begin{itemize}
     \item Inter-run
