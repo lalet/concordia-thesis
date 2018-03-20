@@ -2,32 +2,62 @@
 This chapter discusses the results we obtained by processing data on HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results and last section \ref{sec:fMRI} discusses fMRIVolume pipeline results.
 
 \section{PreFreeSurfer} \label{sec:Prefreesurfer}
+We analyzed the subjects processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline and among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the nifti files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficient values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+Item               & NRMSE       & DICE        \\ \hline
+Mean               & 0.006998923 & 0.229517835 \\ \hline
+Median             & 0.003744135 & 0.02166149  \\ \hline
+Standard Deviation & 0.013993721 & 0.337104803 \\ \hline
+\end{tabular}
+\captionof{table}{NRMSE \& DICE values for PreFreeSurfer processing on CentOS6 and CentOS7}
+\label{tab:PreFreeSurfer_Metic_Values}
+\end{center}
 
 \subsection{Inter-OS differences}
-\begin{center}
-  \includegraphics[width=\linewidth]{prefreesurfer_dice.png}
-   \captionof{figure}{Prefreesurfer Dice}
-   \label{fig:Prefreesurfer_Dice}
-\end{center}
 
 \begin{center}
-  \includegraphics[width=\linewidth]{prefreesurfer_nrmse.png}
-   \captionof{figure}{Prefreesurfer NRMSE}
-   \label{fig:Prefreesurfer_NRMSE}
+\includegraphics[width=.5\linewidth]{prefreesurfer_nrmse.png}%
+\includegraphics[width=.5\linewidth]{prefreesurfer_dice.png}
+\captionof{figure}{PreFreeSurfer metric values}
+\caption*{(i) NRMSE (left) (ii)Dice coefficient (right)}
+\label{fig:prefreesurfer_metric_values}
 \end{center}
+
+%\begin{center}
+%  \includegraphics[width=\linewidth]{prefreesurfer_dice.png}
+%   \captionof{figure}{Prefreesurfer Dice}
+%   \label{fig:Prefreesurfer_Dice}
+%\end{center}
+
+%\begin{center}
+%  \includegraphics[width=\linewidth]{prefreesurfer_nrmse.png}
+%   \captionof{figure}{Prefreesurfer NRMSE}
+%   \label{fig:Prefreesurfer_NRMSE}
+%\end{center}
 
 \section{FreeSurfer} \label{sec:Freesurfer}
 \begin{center}
-  \includegraphics[width=\linewidth]{freesurfer-dice.png}
-   \captionof{figure}{Freesurfer Dice}
-   \label{fig:Freesurfer_Dice}
+\includegraphics[width=.5\linewidth]{freesurfer-nrmse.png}%
+\includegraphics[width=.5\linewidth]{freesurfer-dice.png}
+\captionof{figure}{FreeSurfer metric values}
+\caption*{(i) NRMSE (left) (ii)Dice coefficient (right)}
+\label{fig:freesurfer_metric_values}
 \end{center}
 
-\begin{center}
-  \includegraphics[width=\linewidth]{freesurfer-nrmse.png}
-   \captionof{figure}{Freesurfer NRMSE}
-   \label{fig:Freesurfer_NRMSE}
-\end{center}
+%\begin{center}
+%  \includegraphics[width=\linewidth]{freesurfer-dice.png}
+%   \captionof{figure}{Freesurfer Dice}
+%   \label{fig:Freesurfer_Dice}
+%\end{center}
+
+%\begin{center}
+%  \includegraphics[width=\linewidth]{freesurfer-nrmse.png}
+%   \captionof{figure}{Freesurfer NRMSE}
+%   \label{fig:Freesurfer_NRMSE}
+%\end{center}
 
 \section{PostFreeSurfer}\label{sec:Postfreesurfer}
 \begin{center}
