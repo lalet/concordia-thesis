@@ -10,7 +10,7 @@ Among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files di
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
-Item               & NRMSE       & DICE        \\ \hline
+  \textbf{Item}               & \textbf{Nrmse}       & \textbf{Dice}        \\ \hline
 Mean               & 0.006998923 & 0.229517835 \\ \hline
 Median             & 0.003744135 & 0.02166149  \\ \hline
 Standard Deviation & 0.013993721 & 0.337104803 \\ \hline
@@ -61,15 +61,15 @@ Files with Dice coefficient that vary specifically for each subject is listed be
 \end{center}
 
 \section{FreeSurfer} \label{sec:Freesurfer}
-FreeSurfer results presented in this section does not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that has differences and which are common to all the subjects, was found to be 61 files (23 .nii.gz files and 38 .mgz files). Table~\ref{tab:FreeSurfer_Metic_Values} gives the details about the mean, median and standard deviation of NRMSE and Dice coefficient values. Figure~\ref{fig:freesurfer_metric_values} illustrates the NRMSE and Dice coefficient values in the form of mat
+FreeSurfer results presented in this section does not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that has differences and which are common to all the subjects, was found to be 61 files (23 .nii.gz files and 38 .mgz files). Table~\ref{tab:FreeSurfer_Metic_Values} contains the details about the mean, median and standard deviation of NRMSE and Dice coefficient values. Figure~\ref{fig:freesurfer_metric_values} illustrates the NRMSE and Dice coefficient values in the form of mat
 \hfill \break
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
-Item               & NRMSE       & DICE        \\ \hline
-Mean               & 0.017669782 & 0.695379753 \\ \hline
-Median             & 0.009735296 & 0.926226795 \\ \hline
-Standard Deviation & 0.018183193 & 0.405144714 \\ \hline
+\textbf{Item}      & \textbf{Nrmse} & \textbf{Dice} \\ \hline
+Mean               & 0.017669782    & 0.695379753   \\ \hline
+Median             & 0.009735296    & 0.926226795   \\ \hline
+Standard Deviation & 0.018183193    & 0.405144714   \\ \hline
 \end{tabular}
 \captionof{table}{NRMSE \& DICE values for FreeSurfer processing on CentOS6 and CentOS7}
 \label{tab:FreeSurfer_Metic_Values}
@@ -115,15 +115,15 @@ Files with Dice coefficient that vary specifically for each subject is listed be
 \end{center}
 
 \section{PostFreeSurfer}\label{sec:Postfreesurfer}
-25 (.nii.gz) files that were common to all the subjects and which were produced as part of PostFreeSurfer processing was found to have differences. Table~\ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values we obtained from these 25 files across the subjects. 
+25 (.nii.gz) were found to have inter-OS differences after postfreesurfer processing. These files are created as part of PostFreeSurfer processing alone and they are common to all the five subjects. Table~\ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values of the files having differences across all the subjects. 
 \hfill \break
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
-Item               & NRMSE       & DICE        \\ \hline
-Mean               & 0.03474272  & 0.676874536 \\ \hline
-Median             & 0.038619041 & 0.982912774 \\ \hline
-Standard Deviation & 0.025485142 & 0.458426209 \\ \hline
+  \textbf{Item}    & \textbf{Nrmse} & \textbf{Dice} \\ \hline
+Mean               & 0.03474272     & 0.676874536   \\ \hline
+Median             & 0.038619041    & 0.982912774   \\ \hline
+Standard Deviation & 0.025485142    & 0.458426209   \\ \hline
 \end{tabular}
 \captionof{table}{NRMSE \& DICE values for PostFreeSurfer processing on CentOS6 and CentOS7}
 \label{tab:PostFreeSurfer_Metic_Values}
@@ -147,7 +147,7 @@ Files with NRMSE value that vary specifically for each subject are listed below 
   \item T1w/T1wDividedByT2w.nii.gz
 \end{itemize}
 
-Files that are consistently different across subjects are listed below with respect to the Dice coefficient are listed below (Std. Deviation $\leq$ .000008).
+Files that are consistently different across subjects are listed below with respect to the Dice coefficient (Std. Deviation $\leq$ .00008).
 \begin{itemize}
   \item MNINonLinear/ROIs/Atlas\_wmparc.2.nii.gz
   \item MNINonLinear/T2w\_restore.2.nii.gz
@@ -176,14 +176,56 @@ Files with Dice coefficient that vary specifically for each subject is listed be
 \end{center}
 
 \section{fMRIVolume}\label{sec:fMRI}
+1152 files were found to have inter-OS differences after fMRIVolume processing which were common to all subjects. Table~\ref{tab:fMRIVolume_Metric_Values} contains the mean, median and standard deviation values of the files having differences after fMRIVolume processing.
+\hfill \break
 \begin{center}
-  \includegraphics[width=\linewidth]{fmri_DICE.png}
-   \captionof{figure}{fMRI Volume Dice}
-   \label{fig:fMRI_Dice}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Item}      & \textbf{Nrmse}  & \textbf{Dice} \\ \hline
+Mean               & 0.016025213     & 0.560550964   \\ \hline
+Median             & 0.009066946     & 0.751177948   \\ \hline
+Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
+\end{tabular}
+\captionof{table}{NRMSE \& DICE values for fMRIVolume processing on CentOS6 and CentOS7}
+\label{tab:fMRIVolume_Metric_Values}
 \end{center}
+\hfill \break
+
+The files listed below are consistently different across the subjects with respect to the NRMSE value (Std. Deviation $\leq$ .0000258).
+\begin{itemize}
+  \item {tfMRI\_WM\_RL/MotionCorrection/tfMRI\_WM\_RL\_mc\_mask.nii.gz}
+  \item {tfMRI\_SOCIAL\_RL/MotionCorrection/tfMRI\_SOCIAL\_RL\_mc\_mask.nii.gz}
+  \item {tfMRI\_WM\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/SBRef2PhaseTwo\_gdc.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/SBRef\_dc\_jac.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/Scout\_gdc\_undistorted.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/SBRef\_dc.nii.gz}
+  \item {tfMRI\_MOTOR\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/SBRef\_dc\_jac.nii.gz}
+  \item {tfMRI\_MOTOR\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/Scout\_gdc\_undistorted.nii.gz}
+  \item {tfMRI\_WM\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/SBRef\_dc.nii.gz}
+\end{itemize}
+
+Files with NRMSE value that vary specifically for each subject are listed below (Std. Deviation $\geq$ 0.013).
+\begin{itemize}
+  \item {tfMRI\_GAMBLING\_LR/DistortionCorrectionAndEPIToT1wReg
+         \_FLIRTBBRAndFreeSurferBBRbased/ComputeSpinEchoBiasField/SE\_BCdivGRE\_brain.nii.gz}
+  \item {tfMRI\_MOTOR\_RL/DistortionCorrectionAndEPIToT1wReg
+         \_FLIRTBBRAndFreeSurferBBRbased/ComputeSpinEchoBiasField/SEdivGRE.nii.gz}
+  \item {tfMRI\_RELATIONAL\_LR/DistortionCorrectionAndEPIToT1wReg
+         \_FLIRTBBRAndFreeSurferBBRbased/ComputeSpinEchoBiasField/SEdivGRE.nii.gz}
+  \item {tfMRI\_MOTOR\_LR/MotionCorrection/tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz}
+\end{itemize}
 
 \begin{center}
-  \includegraphics[width=\linewidth]{fmri_NRMSE.png}
-   \captionof{figure}{fMRI Volume NRMSE}
-   \label{fig:fMRI_NRMSE}
+\includegraphics[width=.5\linewidth]{fmri_NRMSE.png}%
+\includegraphics[width=.5\linewidth]{fmri_DICE.png}
+\captionof{figure}{fMRIVolume metric values}
+\caption*{(i) NRMSE (left) (ii)Dice Coefficient (right)}
+\label{fig:fMRI_metric_values}
 \end{center}
