@@ -2,18 +2,16 @@
 This chapter discusses the results we obtained by processing data on HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results and last section \ref{sec:fMRI} discusses fMRIVolume pipeline results.
 
 \section{PreFreeSurfer} \label{sec:Prefreesurfer}
-I analyzed the subjects processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. The differences found in files due to the processing on two different operating systemis described in this section.
+The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the nifti files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficien values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
 
-\subsection{Inter-OS differences}
-Among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the nifti files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficien values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
 \hfill \break
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
-  \textbf{Item}               & \textbf{Nrmse}       & \textbf{Dice}        \\ \hline
-Mean               & 0.006998923 & 0.229517835 \\ \hline
-Median             & 0.003744135 & 0.02166149  \\ \hline
-Standard Deviation & 0.013993721 & 0.337104803 \\ \hline
+\textbf{Item}      & \textbf{Nrmse} & \textbf{Dice} \\ \hline
+Mean               & 0.006998923    & 0.229517835   \\ \hline
+Median             & 0.003744135    & 0.02166149    \\ \hline
+Standard Deviation & 0.013993721    & 0.337104803   \\ \hline
 \end{tabular}
 \captionof{table}{NRMSE \& DICE values for PreFreeSurfer processing on CentOS6 and CentOS7}
 \label{tab:PreFreeSurfer_Metic_Values}
@@ -220,6 +218,54 @@ Files with NRMSE value that vary specifically for each subject are listed below 
   \item {tfMRI\_RELATIONAL\_LR/DistortionCorrectionAndEPIToT1wReg
          \_FLIRTBBRAndFreeSurferBBRbased/ComputeSpinEchoBiasField/SEdivGRE.nii.gz}
   \item {tfMRI\_MOTOR\_LR/MotionCorrection/tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz}
+\end{itemize}
+
+Files with Dice coefficient value which are consistent across the subjects are listed below (Std. Deviation $\leq$ 0.00000175).
+\begin{itemize}
+  \item {tfMRI\_MOTOR\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_LANGUAGE\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRIi\_LANGUAGE\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_LANGUAGE\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_MOTOR\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_WM\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_MOTOR\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_RELATIONAL\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_GAMBLING\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_RELATIONAL\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_SOCIAL\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_MOTOR\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_GAMBLING\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_RELATIONAL\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_EMOTION\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_LANGUAGE\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_SOCIAL\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_SOCIAL\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_RELATIONAL\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_EMOTION\_RL/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_SOCIAL\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_WM\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_WM\_LR/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_EMOTION\_RL/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_EMOTION\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+  \item {tfMRI\_WM\_LR/OneStepResampling/T1w\_restore.2.nii.gz}
+\end{itemize}
+
+Files with Dice coefficient value which vary specific to each subject are listed below (Std. Deviation $\geq$ 0.053).
+\begin{itemize}
+  \item {tfMRI\_MOTOR\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/WarpField.nii.gz}
+  \item {tfMRI\_MOTOR\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/WarpField.nii.gz}
+  \item {tfMRI\_LANGUAGE\_LR/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/WarpField.nii.gz}
+  \item {tfMRI\_LANGUAGE\_LR/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/WarpField.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/WarpField.nii.gz}
+  \item {tfMRI\_GAMBLING\_RL/DistortionCorrectionAndEPIToT1wReg
+          \_FLIRTBBRAndFreeSurferBBRbased/FieldMap/WarpField.nii.gz}
 \end{itemize}
 
 \begin{center}
