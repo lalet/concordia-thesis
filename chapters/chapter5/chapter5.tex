@@ -2,7 +2,7 @@
 This chapter discusses the results we obtained by processing data on HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results and last section \ref{sec:fMRI} discusses fMRIVolume pipeline results.
 
 \section{PreFreeSurfer} \label{sec:Prefreesurfer}
-The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the nifti files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficien values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
+The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the nifti files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficient values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
 
 \hfill \break
 \begin{center}
@@ -17,6 +17,33 @@ Standard Deviation & 0.013993721    & 0.337104803   \\ \hline
 \label{tab:PreFreeSurfer_Metic_Values}
 \end{center}
 \hfill \break
+
+\hfill \break
+\begin{center}
+\begin{tabularx}{\textwidth}{|l|X|X|X|X|}
+\cline{1-5}
+\textbf{Category} & \multicolumn{2}{|c|}{\textbf{NRMSE}} & \multicolumn{2}{c|}{\textbf{DICE}} \\\cline{1-5}
+\multirow{5}{3cm}{Files consistently different across subjects (low std.dev)}   & \multicolumn{2}{|l|}{FieldMap2T1w\_acpc\_ShiftMap.nii.gz}    & \multicolumn{2}{l|}{T1w\_acpc\_dc.nii.gz} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{bias\_raw.nii.gz}                       & \multicolumn{2}{l|}{acpc\_final.nii.gz} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{NonlinearIntensities.nii.gz}            & \multicolumn{2}{l|}{T2w.nii.gz} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{sqrtT1wbyT2w.nii.gz}                    & \multicolumn{2}{l|}{T1w\_acpc\_to\_MNI\_roughlin.nii.gz} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{sqrtT1wbyT2w.nii.gz}                    & \multicolumn{2}{l|}{NonlinearIntensities.nii.gz} \\\cline{1-5}
+\multirow{5}{3cm}{Files with differences that vary across subjects (med std. dev)}   & \multicolumn{2}{|l|}{T2w\_restore.nii.gz}  & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{acpc\_final.nii.gz}                        & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T1w\_dc.nii.gz}                            & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T1w\_acpc\_dc.nii.gz}                      & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T1w\_acpc.nii.gz}                          & \multicolumn{2}{l|}{0.000} \\\cline{1-5}
+\multirow{5}{3cm}{Files with differences that vary specific to each subject (large std. dev)}   & \multicolumn{2}{|l|}{acpc\_final.nii.gz}  & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T1w\_acpc\_to\_MNI\_roughlin.nii.gz}                 & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T2w.nii.gz}                            & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T1wmulT2w\_brain\_norm\_s5.nii.gz}     & \multicolumn{2}{l|}{0.000} \\\cline{2-5}
+                                                                & \multicolumn{2}{|l|}{T2w\_dc\_reg.nii.gz}                   & \multicolumn{2}{l|}{0.000} \\\cline{1-5}
+\end{tabularx}
+\captionof{table}{NRMSE \& DICE comparison of files with differences on CentOS6 and CentOS7}
+\label{tab:PreFreeSurfer_comparison_table}
+\end{center}
+\hfill \break
+
 The below list of files  are consistently different across the subjects (Std. Deviation (NRMSE) $\leq$ .003).
 \begin{itemize} 
   \item T2w/T2wToT1wDistortionCorrectAndReg/FieldMap2T1w\_acpc\_ShiftMap.nii.gz
@@ -113,12 +140,12 @@ Files with Dice coefficient that vary specifically for each subject is listed be
 \end{center}
 
 \section{PostFreeSurfer}\label{sec:Postfreesurfer}
-25 (.nii.gz) were found to have inter-OS differences after postfreesurfer processing. These files are created as part of PostFreeSurfer processing alone and they are common to all the five subjects. Table~\ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values of the files having differences across all the subjects. 
+25 (.nii.gz) were found to have inter-OS differences after postfreesurfer processing. These files are created as part of PostFreeSurfer processing alone and they are common to all the five subjects. Table~\ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values of the files having differences across all the subjects.
 \hfill \break
 \begin{center}
 \begin{tabular}{|l|l|l|}
 \hline
-  \textbf{Item}    & \textbf{Nrmse} & \textbf{Dice} \\ \hline
+\textbf{Item}      & \textbf{Nrmse} & \textbf{Dice} \\ \hline
 Mean               & 0.03474272     & 0.676874536   \\ \hline
 Median             & 0.038619041    & 0.982912774   \\ \hline
 Standard Deviation & 0.025485142    & 0.458426209   \\ \hline
