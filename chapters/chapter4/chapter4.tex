@@ -231,51 +231,94 @@ Docker container creation was automated with the help of GitHub and DockerHub. A
 \section{Processing of subjects} \label{processing_subjects}
 The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume. Two runs were made on CentOS6 and CentOS7 using the five subjects listed in Table ~\ref{tab:hcp_subject_size}.
 \subsection{PreFreeSurfer}
-Figures \ref{fig:prefreesurfer_run} and \ref{fig:prefreesurfer_file_size} show the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Table \ref{tab:prefreesurfer_processing_details} contains the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for PreFreeSurfer processing is 73.7 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.08 GB (5 subjects) on CentOS6.
 Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.10 GB (5 subjects) on CentOS7.
 
 \begin{center}
-\includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
-\includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
-  \captionof{figure}{PreFreeSurfer processing times }
-  \caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
-\label{fig:prefreesurfer_run}
+\tabulinesep=1.2mm
+\begin{tabular}{ | l | l | l | } 
+  \hline
+    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+  \hline
+    CentOS 6 & 73.7 min. & 13.08 GB \\
+  \hline
+    CentOS 7 & 80.2 min. & 13.10 GB \\
+  \hline
+\end{tabular}
+\captionof{table}{PreFreeSurfer processing details}
+\label{tab:prefreesurfer_processing_details}
 \end{center}
 
-\begin{center}
-\includegraphics[width=.5\linewidth]{prefreesurfer_CentOS6_filesize.png}%
-\includegraphics[width=.5\linewidth]{prefreesurfer_CentOS7_filesize.png}
-\captionof{figure}{PreFreeSurfer processing file-sizes}
-\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
-\label{fig:prefreesurfer_file_size}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS6.png}%
+%\includegraphics[width=.5\linewidth]{prefreesurfer_run_CentOS7.png}
+%\captionof{figure}{PreFreeSurfer processing times }
+%\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
+%\label{fig:prefreesurfer_run}
+%\end{center}
+
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{prefreesurfer_CentOS6_filesize.png}%
+%\includegraphics[width=.5\linewidth]{prefreesurfer_CentOS7_filesize.png}
+%\captionof{figure}{PreFreeSurfer processing file-sizes}
+%\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
+%\label{fig:prefreesurfer_file_size}
+%\end{center}
 
 \subsection{FreeSurfer}
-Figures \ref{fig:freesurfer_run} and \ref{fig:freesurfer_file_size} show the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Table \ref{tab:freesurfer_processing_details} contains the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for FreeSurfer processing is 7.4 hours (10 runs) and average output file size of FreeSurfer processing is 15.2 GB (5 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 7.58 hours (10 runs) and average output file size of FreeSurfer processing is 15.2 GB (5 subjects) on CentOS7.
 
 \begin{center}
-\includegraphics[width=.5\linewidth]{freesurfer_run_CentOS6.png}%
-\includegraphics[width=.5\linewidth]{freesurfer_run_CentOS7.png}
-\captionof{figure}{FreeSurfer processing times}
-\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
-\label{fig:freesurfer_run}
+\begin{tabular}{ | l | l | l | }
+  \hline
+    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+  \hline
+    CentOS 6 & 73.7 min. & 13.08 GB \\
+  \hline
+    CentOS 7 & 80.2 min. & 13.10 GB \\
+  \hline
+\end{tabular}
+\captionof{table}{FreeSurfer processing details}
+\label{tab:freesurfer_processing_details}
 \end{center}
 
-\begin{center}
-\includegraphics[width=.5\linewidth]{freesurfer_CentOS6_filesize.png}%
-\includegraphics[width=.5\linewidth]{freesurfer_CentOS7_filesize.png}
-\captionof{figure}{FreeSurfer processing file-sizes}
-\caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
-\label{fig:freesurfer_file_size}
-\end{center}
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{freesurfer_run_CentOS6.png}%
+%\includegraphics[width=.5\linewidth]{freesurfer_run_CentOS7.png}
+%  \captionof{figure}{FreeSurfer processing times}
+%  \caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
+%\label{fig:freesurfer_run}
+%\end{center}
+
+%\begin{center}
+%\includegraphics[width=.5\linewidth]{freesurfer_CentOS6_filesize.png}%
+%\includegraphics[width=.5\linewidth]{freesurfer_CentOS7_filesize.png}
+%  \captionof{figure}{FreeSurfer processing file-sizes}
+%  \caption*{(i) CentOS6 (left) (ii)CentOS7 (right)}
+%\label{fig:freesurfer_file_size}
+%\end{center}
 
 \subsection{PostFreeSurfer}
-Figures \ref{fig:postfreesurfer_run} and \ref{fig:postfreesurfer_file_size} show the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Table \ref{tab:postfreesurfer_processing_details} contains the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for FreeSurfer processing is 22.5 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS7.
+
+\begin{center}
+\begin{tabular}{ | l | l | l | }
+  \hline
+    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+  \hline
+    CentOS 6 & 22.5 min. & 16.02 GB \\
+  \hline
+    CentOS 7 & 28.3 min. & 16.02 GB \\
+  \hline
+\end{tabular}
+\captionof{table}{PostFreeSurfer processing details}
+\label{tab:postfreesurfer_processing_details}
+\end{center}
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{postfreesurfer_run_CentOS6.png}%
@@ -294,9 +337,23 @@ Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and avera
 \end{center}
 
 \subsection{fMRIVolume}
-Figures \ref{fig:fmri_run} and \ref{fig:fmri_file_size} show the details about processing time and file-size on CentOS6 and CentOS7 respectively.
+Table \ref{tab:fmrivolume_processing_details} contains the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for FreeSurfer processing is 24.68 hours (10 runs) and average output file size of FreeSurfer processing is 221.2 GB (10 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 24.76 hours (10 runs) and average output file size of FreeSurfer processing is 220.8 GB (10 subjects) on CentOS7.
+
+\begin{center}
+\begin{tabular}{ | l | l | l | }
+  \hline
+    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+  \hline
+    CentOS 6 & 24.68 hours & 221.2 GB \\
+  \hline
+    CentOS 7 & 24.76 hours & 220.8 GB \\
+  \hline
+\end{tabular}
+\captionof{table}{fMRIVolume processing details}
+\label{tab:fmrivolume_processing_details}
+\end{center}
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{fmri_run_CentOS6.png}%
