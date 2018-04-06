@@ -255,9 +255,17 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \hfill \break
 \begin{center}
 \includegraphics[width=.75\linewidth]{Frontview2.png}%
-  \captionof{figure}{All Grey Matter file visualizatoin (Blue shaded region shows the CentOS 6 output and yellow region shows the CentOS 7 output).}
+\captionof{figure}{All Grey Matter file visualizatoin (Blue shaded region shows the CentOS 6 output and yellow region shows the CentOS 7 output).}
 \caption*{(Subject: 101006; Filename: AllGreyMatter.nii.gz; Dice coeff.; 0.99; NRMSE; .074)}
 \label{fig:allgrey_matter} 
+\end{center}
+
+\begin{center}
+\includegraphics[width=.5\linewidth]{tfMRI_MOTOR_LR_mc_mask_centos6.png}%
+\includegraphics[width=.5\linewidth]{tfMRI_MOTOR_LR_mc_mask_centos7.png}
+\captionof{figure}{tfMRI Mask file}
+\caption*{(i) tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz file from CentOS6(left) (ii) tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz file from CentOS7}
+\label{fig:tfMRI_mask_file}
 \end{center}
 
 \section{Effect of changing Subject Vs. changing Condition}\label{sec:comparison}
@@ -265,12 +273,12 @@ In order to quantify the effect of operating system on the output image and to c
 
 \hfill \break
 \begin{center}
-\begin{tabularx}{\textwidth}{|c|c|c|c|c|c|c|}
+\begin{tabularx}{.99\textwidth}{|c|c|c|c|c|c|c|}
 \hline
-Item  & \makecell[l]{NRMSE\\(Between\\subjects)} & \makecell[l]{Dice Coeff.\\(Between\\subjects)} & \makecell[l]{NRMSE\\101006\\CentOS\\(6Vs7)} & \makecell[l]{Dice Coeff.\\101006\\CentOS\\(6Vs7)} & \makecell[l]{NRMSE\\101107\\CentOS\\(6Vs7)} & \makecell[l]{Dice Coeff.\\101107\\CentOS\\(6Vs7)} \\ \hline
-Average            & 0.092                                        & .265                                               & 0.0066                                                & 0.3014                                                      & .0077                                                 & .3001                                                       \\ \hline
-Median             & 0.078                                        & .0109                                              & 0.004                                                 & 0.0217                                                      & .0045                                                 & .021                                                        \\ \hline
-\makecell[l]{Std.\\Dev} & 0.073                                        & 0.377                                              & 0.0092         & 0.3898   & .0100                                                 & .385                                        \\ \hline
+Item  & \makecell[l]{NRMSE\\(Between\\subjects)} & \makecell[l]{Dice Coeff.\\(Between\\subjects)} & \makecell[l]{NRMSE\\101006\\CentOS\\(6Vs7)} & \makecell[l]{Dice Coeff.\\ 101006\\CentOS\\(6Vs7)} & \makecell[l]{NRMSE\\101107\\CentOS\\(6Vs7)} & \makecell[l]{Dice Coeff.\\ 101107\\CentOS\\(6Vs7)} \\ \hline
+Average            & 0.092        & .265      & 0.0066     & 0.3014   & .0077   & .3001     \\ \hline
+Median             & 0.078    & .0109       & 0.004          & 0.0217           & .0045     & .021  \\ \hline
+\makecell[l]{Std.\\Dev} & 0.073     & 0.377           & 0.0092         & 0.3898   & .0100       & .385 \\ \hline
 \end{tabularx}
 \captionof{table}{Comparison: Anatomical differences vs. Effect of operating system}
 \label{tab:comparison_table}
