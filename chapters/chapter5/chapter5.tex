@@ -18,7 +18,6 @@ Standard Deviation & 0.013993721    & 0.337104803   \\ \hline
 \end{center}
 \hfill \break
 
-
 \begin{center}
 \begin{longtable}{|p{.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}
 \cline{1-3}
@@ -41,6 +40,40 @@ Standard Deviation & 0.013993721    & 0.337104803   \\ \hline
 \end{longtable}
 \captionof{table}{NRMSE \& DICE comparison of PreFreeSurfer files with differences on CentOS6 and CentOS7}
 \label{tab:PreFreeSurfer_comparison_table}
+\end{center}
+\hfill \break
+
+\hfill \break
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Process}      & \textbf{Filename} \\ \hline
+T2wToT1wDistortionCorrectAndReg               & FieldMap2T1w\_acpc.nii.gz    \\ \hline
+MNINonLinear             & NonlinearIntensities.nii.gz    \\ \hline
+BrainExtraction\_FNIRTbased & NonlinearRegJacobians.nii.gz   \\ \hline
+BrainExtraction\_FNIRTbased & standard2str.nii.gz \\ \hline
+T2wToT1wDistortionCorrectAndReg & T2w\_dc\_reg.nii.gz \\ \hline
+T2wToT1wDistortionCorrectAndReg & sqrtT1wbyT2w.nii.gz \\ \hline
+\end{tabular}
+\captionof{table}{Processes and corresponding files with the top mean to std. dev ratio (NRMSE)}
+\label{tab:PreFreeSurfer_NRMSE_processes}
+\end{center}
+\hfill \break
+
+\hfill \break
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Process}      & \textbf{Filename} \\ \hline
+T1w              & T1w\_acpc\_dc\_brain.nii.gz    \\ \hline
+BiasFieldCorrection\_sqrtT1wXT1w             & \makecell[l]{T1wmulT2w\_brain\\\_norm\_modulate.nii.gz}    \\ \hline
+T2wToT1wDistortionCorrectAndReg & FieldMap2T2w\_acpc\_Warp.nii.gz   \\ \hline
+MNINonLinear & \makecell[l]{T1w\_acpc\_dc\_restore\\\_brain\_to\_MNILinear.nii.gz} \\ \hline
+BrainExtraction\_FNIRTbased & NonlinearIntensities.nii.gz \\ \hline
+BiasFieldCorrection\_sqrtT1wXT1w & T1wmulT2w.nii.gz \\ \hline
+\end{tabular}
+\captionof{table}{Processes and corresponding files with the top mean to std. dev ratio (DICE)}
+\label{tab:PreFreeSurfer_NRMSE_processes}
 \end{center}
 \hfill \break
 
@@ -160,6 +193,16 @@ Standard Deviation & 0.025485142    & 0.458426209   \\ \hline
 \label{fig:postfreesurfer_metric_values}
 \end{center}
 
+Figure \ref{fig:postfreesurfer_high_nrmse} illustrates the file with the highest NRMSE value out of the postfreesurfer results between CentOS6 and CentOS7. The filename is ``aparc.a2009s+aseg.nii.gz" with the NRMSE value (0.101) from the subject 101410. The red dots in the image shows the differences in the images between two conditions.
+
+\hfill \break
+\begin{center}
+\includegraphics[width=\linewidth]{postfreesurfer-nrmse-aparc-a2009s+aseg.png}
+\captionof{figure}{Illustrating the differences in the file with the highest NRMSE value in PostFreeSurfer Processing}
+\caption*{(Subject: 101410; Filename: aparc.a2009s+aseg.nii.gz; Dice coeff.: 0.97 ; NRMSE: 0.101)}
+\label{fig:postfreesurfer_high_nrmse}
+\end{center}
+
 \section{fMRIVolume}\label{sec:fMRI}
 1152 files were found to have inter-OS differences after fMRIVolume processing which were common to all subjects. Table~\ref{tab:fMRIVolume_Metric_Values} contains the mean, median and standard deviation values of the files having differences after fMRIVolume processing.
 \hfill \break
@@ -207,4 +250,28 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \captionof{figure}{fMRIVolume metric values}
 \caption*{(i) NRMSE (left) (ii)Dice Coefficient (right)}
 \label{fig:fMRI_metric_values}
+\end{center}
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.75\linewidth]{Frontview2.png}%
+  \captionof{figure}{All Grey Matter file visualizatoin (Blue shaded region shows the CentOS 6 output and yellow region shows the CentOS 7 output).}
+\caption*{(Subject: 101006; Filename: AllGreyMatter.nii.gz; Dice coeff.; 0.99; NRMSE; .074)}
+\label{fig:allgrey_matter} 
+\end{center}
+
+\section{Effect of changing Subject Vs. changing Condition}\label{sec:comparison}
+In order to quantify the effect of operating system on the output image and to compare the difference with the anatomical differences between subjects, we made a comparison with subjects processed in the same condition (two subjects processed in the same condition) vs. the same subjects processed in two different conditions. Subjects 101107 and 101006 processed using PreFreeSurfer on CentOS7 was compared against 101006,101007 processed on (CentOS6 and CentOS7). Table \ref{tab:comparison_table} contains the mean, median and std. deviation across the said conditions.
+
+\hfill \break
+\begin{center}
+\begin{tabularx}{\textwidth}{|c|c|c|c|c|c|c|}
+\hline
+Item  & \makecell[l]{NRMSE\\(Between\\subjects)} & \makecell[l]{Dice Coeff.\\(Between\\subjects)} & \makecell[l]{NRMSE\\101006\\CentOS\\(6Vs7)} & \makecell[l]{Dice Coeff.\\101006\\CentOS\\(6Vs7)} & \makecell[l]{NRMSE\\101107\\CentOS\\(6Vs7)} & \makecell[l]{Dice Coeff.\\101107\\CentOS\\(6Vs7)} \\ \hline
+Average            & 0.092                                        & .265                                               & 0.0066                                                & 0.3014                                                      & .0077                                                 & .3001                                                       \\ \hline
+Median             & 0.078                                        & .0109                                              & 0.004                                                 & 0.0217                                                      & .0045                                                 & .021                                                        \\ \hline
+\makecell[l]{Std.\\Dev} & 0.073                                        & 0.377                                              & 0.0092         & 0.3898   & .0100                                                 & .385                                        \\ \hline
+\end{tabularx}
+\captionof{table}{Comparison: Anatomical differences vs. Effect of operating system}
+\label{tab:comparison_table}
 \end{center}
