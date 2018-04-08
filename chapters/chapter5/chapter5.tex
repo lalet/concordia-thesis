@@ -144,6 +144,32 @@ Standard Deviation & 0.018183193    & 0.405144714   \\ \hline
 \label{fig:freesurfer_metric_values}
 \end{center}
 
+\hfill \break
+\begin{center}
+\includegraphics[width=\linewidth]{ribbon_screenshot_freesurfer.png}
+\captionof{figure}{Illustrates the differences in the ribbon file from FreeSurfer Result}
+\caption*{(Subject: 105216; Filename: ribbon.nii.gz; Dice coeff.: 0.993 ; NRMSE: 0.081)}
+\label{fig:freesurfer_ribbon_file}
+\end{center}
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{aseg-diff3_freesurfer.png}%
+\includegraphics[width=.5\linewidth]{aseg-diff2_freesurfer.png}
+\captionof{figure}{FreeSurfer Aseg hires file (Yellow shaded region shows the file containing the difference)}
+\caption*{(Subject: 105216; Filename: aseg.hires.mgz; Dice coeff.: 0.987 ; NRMSE: 0.010)}
+\label{fig:freesurfer_aseg_file}
+\end{center}
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{wm-freesurfer1.png}%
+\includegraphics[width=.5\linewidth]{wm-freesurfer3.png}
+\captionof{figure}{FreeSurfer WM hire file (Blue shaded region shows the file containing the difference)}
+\caption*{(Subject: 105216; Filename: wm.hires.nii.gz; Dice coeff.: 0.994 ; NRMSE: 0.074)}
+\label{fig:freesurfer_wm_file}
+\end{center}
+
 \section{PostFreeSurfer}\label{sec:Postfreesurfer}
 25 (.nii.gz) were found to have inter-OS differences after postfreesurfer processing. These files are created as part of PostFreeSurfer processing alone and they are common to all the five subjects. Table~\ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values of the files having differences across all the subjects.
 \hfill \break
@@ -198,9 +224,26 @@ Figure \ref{fig:postfreesurfer_high_nrmse} illustrates the file with the highest
 \hfill \break
 \begin{center}
 \includegraphics[width=\linewidth]{postfreesurfer-nrmse-aparc-a2009s+aseg.png}
-\captionof{figure}{Illustrating the differences in the file with the highest NRMSE value in PostFreeSurfer Processing}
+\captionof{figure}{Illustrates the differences in the file with the highest NRMSE value in PostFreeSurfer Processing}
 \caption*{(Subject: 101410; Filename: aparc.a2009s+aseg.nii.gz; Dice coeff.: 0.97 ; NRMSE: 0.101)}
 \label{fig:postfreesurfer_high_nrmse}
+\end{center}
+
+\hfill \break
+\begin{center}
+\includegraphics[width=\linewidth]{postfreesurfer-ribbon.png}
+\captionof{figure}{Illustrates the differences in the T1w Ribbon file}
+\caption*{(Subject: 105216; Filename: T1w/ribbon.nii.gz; Dice coeff.: 0.995 ; NRMSE: 0.038)}
+\label{fig:postfreesurfer_ribbon_file}
+\end{center}
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{psotfreesurfer-aparc-seg.png}%
+\includegraphics[width=.5\linewidth]{psotfreesurfer-aparc-seg1.png}
+\captionof{figure}{Illustrates the differences in the segmentation file}
+\caption*{(Subject: 101006; Filename: MNINonlinear/aparc+aseg.nii.gz; Dice coeff.: 0.98 ; NRMSE: 0.073)}
+\label{fig:postfreesurfer_ribbon_file}
 \end{center}
 
 \section{fMRIVolume}\label{sec:fMRI}
@@ -263,13 +306,13 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \begin{center}
 \includegraphics[width=.5\linewidth]{tfMRI_MOTOR_LR_mc_mask_centos6.png}%
 \includegraphics[width=.5\linewidth]{tfMRI_MOTOR_LR_mc_mask_centos7.png}
-\captionof{figure}{tfMRI Mask file}
-\caption*{(i) tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz file from CentOS6(left) (ii) tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz file from CentOS7}
+\captionof{figure}{Differences in tfMRI Motor MC Mask file}
+\caption*{(Subject: 105216; Filename: tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz (CentOS6 on left, CentOS7 on right); Dice coeff.; 0.0002; NRMSE; 0.275)}
 \label{fig:tfMRI_mask_file}
 \end{center}
 
 \section{Effect of changing Subject Vs. changing Condition}\label{sec:comparison}
-In order to quantify the effect of operating system on the output image and to compare the difference with the anatomical differences between subjects, we made a comparison with subjects processed in the same condition (two subjects processed in the same condition) vs. the same subjects processed in two different conditions. Subjects 101107 and 101006 processed using PreFreeSurfer on CentOS7 was compared against 101006,101007 processed on (CentOS6 and CentOS7). Table \ref{tab:comparison_table} contains the mean, median and std. deviation across the said conditions.
+In order to quantify the effect of operating system on the output image and to compare the difference with the anatomical differences between subjects, we made a comparison wit subjects processed in the same condition (two subjects processed in the same condition) vs. the same subjects processed in two different conditions. Subjects 101107 and 101006 processed using PreFreeSurfer on CentOS7 was compared against 101006,101007 processed on (CentOS6 and CentOS7). Table \ref{tab:comparison_table} contains the mean, median and std. deviation across the said conditions.
 
 \hfill \break
 \begin{center}
