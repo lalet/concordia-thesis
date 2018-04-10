@@ -377,6 +377,17 @@ Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``tfMRI\_MOTO
 \label{fig:tfMRI_mask_file}
 \end{center}
 
+Figure~\ref{fig:scout_gdc_file} illustrates the differences in the ``Scout\_gdc\_undistorted2T1w.nii.gz" file. The files are taken from subject ``101410". The files illustrated here has an NRMSE value of ``0.010" and the Dice coefficient value is``0.778". The blue shaded region shows the differences in the images in between the two conditions.
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{scout_gdc_view.png}%
+\includegraphics[width=.5\linewidth]{scout_gdc_view1.png}
+\captionof{figure}{Differences in the Scout\_gdc\_undistorted2T1w file}
+\caption*{(Subject: 101410; Filename: Scout\_gdc\_undistorted2T1w.nii.gz ; Dice coeff.; 0.778; NRMSE; 0.010)}
+\label{fig:scout_gdc_file}
+\end{center}
+
 \section{Effect of changing Subject Vs. changing Condition}\label{sec:comparison}
 In order to quantify the effect of operating system on the output image and to compare the difference with the anatomical differences between subjects, we made a comparison wit subjects processed in the same condition (two subjects processed in the same condition) vs. the same subjects processed in two different conditions. Subjects 101107 and 101006 processed using PreFreeSurfer on CentOS7 was compared against 101006,101007 processed on (CentOS6 and CentOS7). Table \ref{tab:comparison_table} contains the mean, median and standard deviation across the said conditions.
 
