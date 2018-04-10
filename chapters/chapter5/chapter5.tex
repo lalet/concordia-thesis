@@ -18,6 +18,7 @@ Standard Deviation & 0.013993721    & 0.337104803   \\ \hline
 \end{center}
 \hfill \break
 
+\iffalse
 \begin{center}
 \begin{longtable}{|p{.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}
 \cline{1-3}
@@ -42,6 +43,7 @@ Standard Deviation & 0.013993721    & 0.337104803   \\ \hline
 \label{tab:PreFreeSurfer_comparison_table}
 \end{center}
 \hfill \break
+\fi
 
 \hfill \break
 \begin{center}
@@ -77,16 +79,9 @@ BiasFieldCorrection\_sqrtT1wXT1w & T1wmulT2w.nii.gz \\ \hline
 \end{center}
 \hfill \break
 
-%\begin{center}
-%  \begin{tabular}{|p{.30\textwidth}|p{.30\textwidth}|p{.30\textwidth}|}
-%  \hline
-%  \multirow{3}{.30\textwidth}{looooooong cell} & cell1 & cell2 \\ \cline{2-3}
-%   & cell3 & cell4 \\ \cline{2-3}
-%   & cell5 & cell6 \\ \hline
-%\end{tabular}
-%\end{center}
-%\hfill \break
+Figure \ref{fig:prefreesurfer_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right). Each line in the matrix corresponds to a file sorted in the order of its modification time. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears white if the images are similiar.
 
+\hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{prefreesurfer_nrmse.png}%
 \includegraphics[width=.5\linewidth]{prefreesurfer_dice.png}
@@ -94,6 +89,43 @@ BiasFieldCorrection\_sqrtT1wXT1w & T1wmulT2w.nii.gz \\ \hline
 \caption*{(i) NRMSE (left) (ii)Dice coefficient (right)}
 \label{fig:prefreesurfer_metric_values}
 \end{center}
+\hfill \break
+
+Figure~\ref{fig:prefreesurfer_t1w_acpc} illustrates the binarized differences in the ``T1wmulT2w\_brain\_norm\_s5.nii.gz file". The file was taken from subject ``101410". File has an NRMSE value of ``0.021" and the Dice coefficient value is ``0.007". The thick blue shaded region shows the difference in between the images in two conditions (CentOS6 and CentOS7).
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{T1w_bin_differences.png}%
+\includegraphics[width=.5\linewidth]{T1w_bin_differences2.png}
+\captionof{figure}{PreFreeSurfer T1wmulT2w brain normalization file (Thick Blue shaded region shows the binarized differences).}
+\caption*{(Subject: 101410; Filename: T1wmulT2w\_brain\_norm\_s5.nii.gz; Dice coeff.: 0.007 ; NRMSE: 0.021)}
+\label{fig:prefreesurfer_t1w_acpc}
+\end{center}
+\hfill \break
+
+Figure~\ref{fig:prefreesurfer_t2w_acpc} illustrates the differences in the ``T2w\_acpc\_nii.gz". The file was taken from subject ``105216". File has an NRMSE value of ``0.0065" and the Dice coefficient value is ``0.6*10\textsuperscript{-6}". The blue shaded region shows the difference in between the images in two conditions (CentOS6 and CentOS7).
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{T2w_acpc_prefreesurfer1.png}%
+\includegraphics[width=.5\linewidth]{T2w_acpc_prefreesurfer3.png}
+\captionof{figure}{PreFreeSurfer T2w ACPC file (Blue shaded region shows the differences).}
+\caption*{(Subject: 105216; Filename: T2w\_acpc\_nii.gz; Dice coeff.: 0.6*10\textsuperscript{-6} ; NRMSE: 0.0065)}
+\label{fig:prefreesurfer_t2w_acpc}
+\end{center}
+\hfill \break
+
+Figure~\ref{fig:prefreesurfer_std_file} illustrates the differences in the ``standard2str.nii.gz". The file was taken from subject ``105216". File has an NRMSE value of ``0.036" and the Dice coefficient value is ``0.2*10\textsuperscript{-7}". The blue and red shades towards the margin of the images shows the difference in between the images in two conditions (CentOS6 and CentOS7).
+
+\hfill \break
+\begin{center}
+\includegraphics[width=.5\linewidth]{str1.png}%
+\includegraphics[width=.5\linewidth]{str2.png}
+\captionof{figure}{Illustrates the differences in the standard2std file}
+\caption*{(Subject: 105216; Filename: standard2str.nii.gz; Dice coeff.: 0.2*10\textsuperscript{-7} ; NRMSE: 0.036)}
+\label{fig:prefreesurfer_std_file}
+\end{center}
+\hfill \break
 
 \section{FreeSurfer} \label{sec:Freesurfer}
 FreeSurfer results presented in this section does not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that has differences and which are common to all the subjects, was found to be 61 files (23 .nii.gz files and 38 .mgz files). Table~\ref{tab:FreeSurfer_Metic_Values} contains the details about the mean, median and standard deviation of NRMSE and Dice coefficient values. Figure~\ref{fig:freesurfer_metric_values} illustrates the NRMSE and Dice coefficient values in the form of mat
@@ -111,6 +143,7 @@ Standard Deviation & 0.018183193    & 0.405144714   \\ \hline
 \end{center}
 \hfill \break
 
+\iffalse
 \begin{center}
 \begin{longtable}{|p{.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}
 \cline{1-3}
@@ -135,6 +168,9 @@ Standard Deviation & 0.018183193    & 0.405144714   \\ \hline
 \label{tab:FreeSurfer_comparison_table}
 \end{center}
 \hfill \break
+\fi
+
+Figure \ref{fig:freesurfer_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right). Each line in the matrix corresponds to a file sorted in the order of its modification time. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears white if the images are similiar.
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{freesurfer-nrmse.png}%
@@ -144,6 +180,7 @@ Standard Deviation & 0.018183193    & 0.405144714   \\ \hline
 \label{fig:freesurfer_metric_values}
 \end{center}
 
+Figure~\ref{fig:freesurfer_ribbon_file} illustrates the differences in the ``ribbon.nii.gz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.081" and the Dice coefficient value is ``0.993". The red color in the image shows the difference in between the images in two conditions (CentOS6 and CentOS7).
 \hfill \break
 \begin{center}
 \includegraphics[width=\linewidth]{ribbon_screenshot_freesurfer.png}
@@ -151,15 +188,20 @@ Standard Deviation & 0.018183193    & 0.405144714   \\ \hline
 \caption*{(Subject: 105216; Filename: ribbon.nii.gz; Dice coeff.: 0.993 ; NRMSE: 0.081)}
 \label{fig:freesurfer_ribbon_file}
 \end{center}
+\hfill \break
 
+Figure~\ref{fig:freesurfer_aseg_file} illustrates the differences in the ``aseg.hires.mgz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.010" and the Dice coefficient value is ``0.987". The yellow color in the image shows the difference in between the images in two conditions (CentOS6 and CentOS7).
 \hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{aseg-diff3_freesurfer.png}%
 \includegraphics[width=.5\linewidth]{aseg-diff2_freesurfer.png}
-\captionof{figure}{FreeSurfer Aseg hires file (Yellow shaded region shows the file containing the difference)}
+\captionof{figure}{FreeSurfer Aseg hires file (Yellow shaded region shows the differences in the image in between two conditions)}
 \caption*{(Subject: 105216; Filename: aseg.hires.mgz; Dice coeff.: 0.987 ; NRMSE: 0.010)}
 \label{fig:freesurfer_aseg_file}
 \end{center}
+\hfill \break
+
+Figure~\ref{fig:freesurfer_wm_file} illustrates the differences in the ``wm.hires.nii.gz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.074" and the Dice coefficient value is ``0.994". The grey color around the yellow shaded parts in the image shows the difference in between the images in two conditions (CentOS6 and CentOS7).
 
 \hfill \break
 \begin{center}
@@ -186,6 +228,7 @@ Standard Deviation & 0.025485142    & 0.458426209   \\ \hline
 \end{center}
 \hfill \break
 
+\iffalse
 \begin{center}
 \begin{longtable}{|p{.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}
 \cline{1-3}
@@ -210,7 +253,11 @@ Standard Deviation & 0.025485142    & 0.458426209   \\ \hline
 \label{tab:PostFreeSurfer_comparison_table}
 \end{center}
 \hfill \break
+\fi
 
+Figure \ref{fig:postfreesurfer_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right). Each line in the matrix corresponds to files sorted in the order of its modification time. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears bright if the images are similiar.
+
+\hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{postfreesurfer-nrmse.png}%
 \includegraphics[width=.5\linewidth]{postfreesurfer-dice.png}
@@ -218,8 +265,9 @@ Standard Deviation & 0.025485142    & 0.458426209   \\ \hline
 \caption*{(i) NRMSE (left) (ii)Dice Coefficient (right)}
 \label{fig:postfreesurfer_metric_values}
 \end{center}
+\hfill \break
 
-Figure \ref{fig:postfreesurfer_high_nrmse} illustrates the file with the highest NRMSE value out of the postfreesurfer results between CentOS6 and CentOS7. The filename is ``aparc.a2009s+aseg.nii.gz" with the NRMSE value (0.101) from the subject 101410. The red dots in the image shows the differences in the images between two conditions.
+Figure~\ref{fig:postfreesurfer_high_nrmse} illustrates the differences in the ``aparc.a2009s+aseg.nii.gz" file. The file was taken from subject ``101410". The file illustrated here has an NRMSE value of ``0.101" and the Dice coefficient value is ``0.97". The red colored regions in the image shows the difference in the image in between two conditions (CentOS6 and CentOS7).
 
 \hfill \break
 \begin{center}
@@ -228,6 +276,9 @@ Figure \ref{fig:postfreesurfer_high_nrmse} illustrates the file with the highest
 \caption*{(Subject: 101410; Filename: aparc.a2009s+aseg.nii.gz; Dice coeff.: 0.97 ; NRMSE: 0.101)}
 \label{fig:postfreesurfer_high_nrmse}
 \end{center}
+\hfill \break
+
+Figure~\ref{fig:postfreesurfer_ribbon_file} illustrates the differences in the ``T1w/ribbon.nii.gz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.038" and the Dice coefficient value is ``0.995". The red colored regions in the image shows the difference in the image in between two conditions (CentOS6 and CentOS7).
 
 \hfill \break
 \begin{center}
@@ -236,7 +287,9 @@ Figure \ref{fig:postfreesurfer_high_nrmse} illustrates the file with the highest
 \caption*{(Subject: 105216; Filename: T1w/ribbon.nii.gz; Dice coeff.: 0.995 ; NRMSE: 0.038)}
 \label{fig:postfreesurfer_ribbon_file}
 \end{center}
+\hfill \break
 
+Figure~\ref{fig:postfreesurfer_ribbon_file} illustrates the differences in the ``MNINonlinear/aparc+aseg.nii.gz" file. The file was taken from subject ``101006". The file illustrated here has an NRMSE value of ``0.073" and the Dice coefficient value is ``0.98". The yellow, green and violet colored regions in the image shows the difference in the image in between two conditions (CentOS 6 and CentOS7).
 \hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{psotfreesurfer-aparc-seg.png}%
@@ -245,6 +298,7 @@ Figure \ref{fig:postfreesurfer_high_nrmse} illustrates the file with the highest
 \caption*{(Subject: 101006; Filename: MNINonlinear/aparc+aseg.nii.gz; Dice coeff.: 0.98 ; NRMSE: 0.073)}
 \label{fig:postfreesurfer_ribbon_file}
 \end{center}
+\hfill \break
 
 \section{fMRIVolume}\label{sec:fMRI}
 1152 files were found to have inter-OS differences after fMRIVolume processing which were common to all subjects. Table~\ref{tab:fMRIVolume_Metric_Values} contains the mean, median and standard deviation values of the files having differences after fMRIVolume processing.
@@ -262,6 +316,7 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \end{center}
 \hfill \break
 
+\iffalse
 \begin{center}
 \begin{longtable}{|p{.3\textwidth}|p{.3\textwidth}|p{.3\textwidth}|}
 \cline{1-3}
@@ -286,7 +341,10 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \label{tab:fMRIVolume_comparison_table}
 \end{center}
 \hfill \break
+\fi
 
+Figure \ref{fig:fMRI_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right) with respect to the files having differences from the fMRIVolume pipeline preprocessing. Each line in the matrix corresponds to a file sorted in the order of its modification time. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears white if the images are similiar.
+\hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{fmri_NRMSE.png}%
 \includegraphics[width=.5\linewidth]{fmri_DICE.png}
@@ -294,7 +352,9 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \caption*{(i) NRMSE (left) (ii)Dice Coefficient (right)}
 \label{fig:fMRI_metric_values}
 \end{center}
+\hfill \break
 
+Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``AllGreyMatter.nii.gz" file. The file was taken from subject ``101006". The file illustrated here has an NRMSE value of ``0.074" and the Dice coefficient value is ``0.99". The yellow colored regions in the image shows the difference in the image in between two conditions (CentOS 6 and CentOS7).
 \hfill \break
 \begin{center}
 \includegraphics[width=.75\linewidth]{Frontview2.png}%
@@ -302,7 +362,11 @@ Standard Deviation & 0.019648208     & 0.376997518   \\ \hline
 \caption*{(Subject: 101006; Filename: AllGreyMatter.nii.gz; Dice coeff.; 0.99; NRMSE; .074)}
 \label{fig:allgrey_matter} 
 \end{center}
+\hfill \break
 
+Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz" file. The image on the left is the output from from CentOS6 and the output on the right is the image from CentOS7. The files are taken from subject ``101006". The files illustrated here has an NRMSE value of ``0.275" and the Dice coefficient value is ``0.002". While comparing the images, we can find the differences visually.
+
+\hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{tfMRI_MOTOR_LR_mc_mask_centos6.png}%
 \includegraphics[width=.5\linewidth]{tfMRI_MOTOR_LR_mc_mask_centos7.png}
