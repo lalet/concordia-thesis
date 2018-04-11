@@ -1,2 +1,16 @@
 \chapter{Conclusion}
-\paragraph{Conclusion}
+From the results we obtained from running the preprocessing pipelines PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume, we identified and quantified the differences. This chapter discusses the general findings from our study in detail.
+
+From the results obtained through the study of HCP Preprocessing pipelines, we can conclude that the effect of operating system libraries on the output images is significant. The output images obtained using the same pipeline on different operating systems tend to have differences in between them. The likely causes, of these differences are, (i) the evolution of math libraries over the time (ii) The pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries. 
+
+The NRMSE value from the PreFreeSurfer pipeline has an average of ``0.0069" and the Dice Coefficient average is ``0.229". On an average ``0.69\%" of the results differed betweenPreFreeSurfer processing (CentOS6 and CentOS7) with respect to the NRMSE value. Dice Coefficient shows that out of the results we obtained from PreFreeSurfer processing on two conditions, there was only ``22\%" similarity on an average.
+
+The NRMSE value from the FreeSurfer pipeline has an average of ``0.0176" and the Dice Coefficient average is ``0.69". On an average ``1.76\%" of the results differed between FreeSurfer processing (CentOS6 and CentOS7) with respect to the NRMSE value. Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was ``69\%" similarity on an average.
+
+The NRMSE value from the PostFreeSurfer pipeline has an average of ``0.034" and the Dice Coefficient average is ``0.67". On an average ``3.4\%" of the results differed between PostFreeSurfer processing (CentOS6 and CentOS7) with respect to the NRMSE value. Dice Coefficient shows that out of the results we obtained from PostFreeSurfer processing on two conditions, there was ``67\%" similarity on an average.
+
+The NRMSE value from the fMRIVolume pipeline has an average of ``0.016" and the Dice Coefficient average is ``0.56". On an average ``1.6\%" of the results differed between fMRIVolume processing (CentOS6 and CentOS7) with respect to the NRMSE value. Dice Coefficient shows that out of the results we obtained from fMRIVolume processing on two conditions, there was ``56\%" similarity on an average.
+
+From the visualized results and referring to the matrices that are obtained from the quantified metric values, the similarity measure ranges from 0.0 - 1.0. And the NRMSE value ranges from 0.0 to 0.27. The highest NRMSE value is for the file ``tfMRI\_MOTOR\_LR\_mc\_Mask.nii.gz" from the fMRIVolume preprocessing pipeline.
+
+

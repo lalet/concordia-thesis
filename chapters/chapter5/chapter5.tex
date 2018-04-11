@@ -2,7 +2,7 @@
 This chapter discusses the results we obtained by processing data on HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results and last section \ref{sec:fMRI} discusses fMRIVolume pipeline results.
 
 \section{PreFreeSurfer} \label{sec:Prefreesurfer}
-The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIFTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the nifti files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficient values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
+The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIfTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the NIfTI files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficient values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
 
 \hfill \break
 \begin{center}
@@ -190,7 +190,7 @@ Figure~\ref{fig:freesurfer_ribbon_file} illustrates the differences in the ``rib
 \end{center}
 \hfill \break
 
-Figure~\ref{fig:freesurfer_aseg_file} illustrates the differences in the ``aseg.hires.mgz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.010" and the Dice coefficient value is ``0.987". The yellow color in the image shows the difference in between the images in two conditions (CentOS6 and CentOS7).
+Figure~\ref{fig:freesurfer_aseg_file} illustrates the differences in the ``aseg.hires.mgz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.010" and the Dice coefficient value is ``0.987". The yellow color in the image shows the difference in the images in between two conditions (CentOS6 and CentOS7).
 \hfill \break
 \begin{center}
 \includegraphics[width=.5\linewidth]{aseg-diff3_freesurfer.png}%
@@ -201,7 +201,7 @@ Figure~\ref{fig:freesurfer_aseg_file} illustrates the differences in the ``aseg.
 \end{center}
 \hfill \break
 
-Figure~\ref{fig:freesurfer_wm_file} illustrates the differences in the ``wm.hires.nii.gz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.074" and the Dice coefficient value is ``0.994". The grey color around the yellow shaded parts in the image shows the difference in between the images in two conditions (CentOS6 and CentOS7).
+Figure~\ref{fig:freesurfer_wm_file} illustrates the differences in the ``wm.hires.nii.gz" file. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of ``0.074" and the Dice coefficient value is ``0.994". The grey color around the yellow shaded parts in the image shows the difference in the images in between two conditions (CentOS6 and CentOS7).
 
 \hfill \break
 \begin{center}
@@ -366,7 +366,7 @@ Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``AllGreyMatt
 \end{center}
 \hfill \break
 
-Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz" file. The image on the left is the output from CentOS6 and the image on the right is the output from CentOS7. The files are taken from subject ``101006". The files illustrated here has an NRMSE value of ``0.275" and the Dice coefficient value is``0.002". While comparing the images, we can find the differences visually.
+Figure~\ref{fig:tfMRI_mask_file} illustrates the differences in the ``tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz" file. The image on the left is the output from CentOS6 and the image on the right is the output from CentOS7. The files are taken from subject ``101006". The files illustrated here has an NRMSE value of ``0.275" and the Dice coefficient value is``0.002". While comparing the images, we can find the differences visually.
 
 \hfill \break
 \begin{center}
@@ -376,8 +376,9 @@ Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``tfMRI\_MOTO
 \caption*{(Subject: 105216; Filename: tfMRI\_MOTOR\_LR\_mc\_mask.nii.gz (CentOS6 on left, CentOS7 on right); Dice coeff.; 0.0002; NRMSE; 0.275)}
 \label{fig:tfMRI_mask_file}
 \end{center}
+\hfill \break
 
-Figure~\ref{fig:scout_gdc_file} illustrates the differences in the ``Scout\_gdc\_undistorted2T1w.nii.gz" file. The files are taken from subject ``101410". The files illustrated here has an NRMSE value of ``0.010" and the Dice coefficient value is``0.778". The blue shaded region shows the differences in the images in between the two conditions.
+Figure~\ref{fig:scout_gdc_file} illustrates the differences in the ``Scout\_gdc\_undistorted2T1w.nii.gz" file. The files are taken from subject ``101410". The files illustrated here has an NRMSE value of ``0.010" and the Dice coefficient value is ``0.778". The blue shaded region shows the difference in the image in between the two conditions.
 
 \hfill \break
 \begin{center}
@@ -389,7 +390,7 @@ Figure~\ref{fig:scout_gdc_file} illustrates the differences in the ``Scout\_gdc\
 \end{center}
 
 \section{Effect of changing Subject Vs. changing Condition}\label{sec:comparison}
-In order to quantify the effect of operating system on the output image and to compare the difference with the anatomical differences between subjects, we made a comparison wit subjects processed in the same condition (two subjects processed in the same condition) vs. the same subjects processed in two different conditions. Subjects 101107 and 101006 processed using PreFreeSurfer on CentOS7 was compared against 101006, 101007 processed on CentOS6 and CentOS7 respectively. Table \ref{tab:comparison_table} contains the mean, median and standard deviation across the said conditions.
+In order to quantify the effect of operating system on the output image and to compare the difference with the anatomical differences between subjects, we made a comparison with two subjects processed in the same condition (101107 and 101006) vs. the same subjects processed in two different conditions (CentOS6 and CentOS7). Subjects 101107 and 101006 processed using PreFreeSurfer on CentOS7 was compared against 101006, 101007 processed on CentOS6 and CentOS7 respectively. Table \ref{tab:comparison_table} contains the mean, median and standard deviation across the said conditions.
 
 \hfill \break
 \begin{center}
