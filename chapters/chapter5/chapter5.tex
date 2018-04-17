@@ -1,8 +1,8 @@
 \chapter{Results}
-This chapter discusses the results we obtained by processing data on HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results and last section \ref{sec:fMRI} discusses fMRIVolume pipeline results.
+This chapter discusses the results we obtained by processing data using the HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results and finally section \ref{sec:fMRI} discusses fMRIVolume pipeline results.
 
 \section{PreFreeSurfer} \label{sec:Prefreesurfer}
-The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIfTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient value and NRMSE values of the NIfTI files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficient values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
+The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIfTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient and NRMSE values of the NIfTI files that were found to have differences in between operating systems. The mean, median and standard deviation NRMSE and Dice coefficient values are given in Table~\ref{tab:PreFreeSurfer_Metic_Values}.
 
 \hfill \break
 \begin{center}
@@ -18,7 +18,7 @@ Standard Deviation & 0.0139    & 0.3371   \\ \hline
 \end{center}
 \hfill \break
 
-Table \ref{tab:PreFreeSurfer_Metic_Values} contains the average mean, median and standard deviation we calculated for on the metircs, NRMSE value and Dice coefficient. The NRMSE value from the PreFreeSurfer pipeline has an average of 0.0069 and the Dice Coefficient average is 0.229. Dice Coefficient shows that out of the results we obtained from PreFreeSurfer processing on two conditions, there was only 22\% similarity while taking the average of dice coeffiecient of every file that we found to have a checksum difference.
+Table \ref{tab:PreFreeSurfer_Metic_Values} contains the average mean, median and standard deviation we calculated for the metrics, NRMSE value and Dice coefficient. The NRMSE value from the PreFreeSurfer pipeline has an average of 0.0069 and the Dice coefficient average is 0.229. Dice coefficient shows that out of the results we obtained from PreFreeSurfer processing on two conditions, there was only 22\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference.
 
 \vskip 0.2in
 Figure \ref{fig:prefreesurfer_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right). Each line in the matrix corresponds to a file common to all the subjects. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears white if the images are similiar.
@@ -70,7 +70,7 @@ Figure~\ref{fig:prefreesurfer_std_file} illustrates the differences in the ``sta
 \hfill \break
 
 \section{FreeSurfer} \label{sec:Freesurfer}
-FreeSurfer results presented in this section does not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that has differences and which are common to all the subjects, was found to be 61 files (23 .nii.gz files and 38 .mgz files). Table~\ref{tab:FreeSurfer_Metic_Values} contains the details about the mean, median and standard deviation of NRMSE and Dice coefficient values. Figure~\ref{fig:freesurfer_metric_values} illustrates the NRMSE and Dice coefficient values in the form of mat
+FreeSurfer results presented in this section do not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that have differences and which are common to all the subjects, was found to be 61 files (23 .nii.gz files and 38 .mgz files). Table~\ref{tab:FreeSurfer_Metic_Values} contains the details about the mean, median and standard deviation of NRMSE and Dice coefficient values. Figure~\ref{fig:freesurfer_metric_values} illustrates the NRMSE and Dice coefficient values in the form of mat
 \hfill \break
 \begin{center}
 \begin{tabular}{|l|l|l|}
@@ -85,7 +85,7 @@ Standard Deviation & 0.0181     & 0.4051   \\ \hline
 \end{center}
 \hfill \break
 
-Table \ref{tab:FreeSurfer_Metic_Values} contains the mean, median and standard deviation of files having differences from FreeSurfer preprocessing on CentOS6 and CentOS7. The NRMSE value from the FreeSurfer pipeline has an average of 0.0176 and the Dice Coefficient average is 0.69. Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was 69\% similarity while taking the average of dice coeffiecient of every file that we found to have a checksum difference.
+Table \ref{tab:FreeSurfer_Metic_Values} contains the mean, median and standard deviation of files having differences from FreeSurfer preprocessing on CentOS6 and CentOS7. The NRMSE value from the FreeSurfer pipeline has an average of 0.0176 and the Dice Coefficient average is 0.69. Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was 69\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference.
 \vskip 0.2in
 Figure \ref{fig:freesurfer_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right). Each line in the matrix corresponds to a file common to all the subjects. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimilar and appears white if the images are similiar.
 
@@ -144,7 +144,7 @@ Standard Deviation & 0.0254    & 0.4584   \\ \hline
 \end{center}
 \hfill \break
 
-Table \ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values of files having differences from PostFreeSurfer pipeline on CentOS6 and CentOS7 operating systems. The NRMSE value from the PostFreeSurfer pipeline has an average of 0.034 and the Dice Coefficient average is 0.67. Dice Coefficient shows that out of the results we obtained from PostFreeSurfer processing on two conditions, there was 67\% similarity while taking the average of dice coeffiecient of every file that we found to have a checksum difference.
+Table \ref{tab:PostFreeSurfer_Metic_Values} contains the mean, median and standard deviation values of files having differences from PostFreeSurfer pipeline on CentOS6 and CentOS7 operating systems. The NRMSE value from the PostFreeSurfer pipeline has an average of 0.034 and the Dice Coefficient average is 0.67. Dice Coefficient shows that out of the results we obtained from PostFreeSurfer processing on two conditions, there was 67\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference.
 \vskip 0.2in
 Figure \ref{fig:postfreesurfer_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right). Each line in the matrix corresponds to a file common to all the subjects. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears bright if the images are similiar.
 
@@ -206,9 +206,9 @@ Standard Deviation & 0.0196     & 0.3769   \\ \hline
 \end{center}
 \hfill \break
 
-Table \ref{tab:fMRIVolume_Metric_Values} contains the mean, median and standard deviation of the files having differences produced by the fMRIVolume pipeline on CentOS6 and CentOS7 operating systems. The NRMSE value from the fMRIVolume pipeline has an average of 0.016 and the Dice Coefficient average is 0.56. Dice Coefficient shows that out of the results we obtained from fMRIVolume processing on two conditions, there was 56\% similarity while taking the average of dice coeffiecient of every file that we found to have a checksum difference.
+Table \ref{tab:fMRIVolume_Metric_Values} contains the mean, median and standard deviation of the files having differences produced by the fMRIVolume pipeline on CentOS6 and CentOS7 operating systems. The NRMSE value from the fMRIVolume pipeline has an average of 0.016 and the Dice Coefficient average is 0.56. Dice Coefficient shows that out of the results we obtained from fMRIVolume processing on two conditions, there was 56\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference.
 \vskip 0.2in
-Figure \ref{fig:fMRI_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right) with respect to the files having differences from the fMRIVolume pipeline preprocessing. Each line in the matrix corresponds to a file common to all the subjects. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the values are high and it appears darker if the values are low. The Dice coefficient values appears darker if the images are dissimiliar and appears white if the images are similiar.
+Figure \ref{fig:fMRI_metric_values} contains the matrices showing the plotted values of NRMSE (left) and Dice Coefficient (right) with respect to the files having differences from the fMRIVolume pipeline preprocessing. Each line in the matrix corresponds to a file common to all the subjects. Each column represents a subject and each row represents the same file in 5 different subjects. The NRMSE value appears brighter if the images are dissimilar and it appears darker if the images are similar. Conversely, the Dice coefficient value appears darker if the images are dissimiliar and appears brighter if the images are similiar.
 
 \hfill \break
 \begin{center}

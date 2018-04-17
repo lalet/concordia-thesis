@@ -3,15 +3,15 @@ From the results we obtained from the preprocessing pipelines, PreFreeSurfer, Fr
 
 From this study, we can conclude that the effect of operating system libraries on the output images from HCP Preprocessing pipelines is significant. The output images obtained using the same pipeline on different operating systems are different and hence they are not reproducible. Also the differences in these images are visually significant.
 
-The likely causes, of these differences are, (i) the evolution of math libraries over the time (ii) The pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
+The likely causes, of these differences are, (i) the evolution of math libraries over the time (ii) the pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
 
-There are two ways to tackle this problem. The bad solution for this problem would bemasking the instablitlies. On the other hand, the preffered soulution is to fix the instablilties in the pipeline, that is, to make the processes more stable.
+There are two ways to tackle this problem. The bad solution for this problem would be masking the instabilities. On the other hand, the preferred solution is to fix the instablilities in the pipeline, that is, to make the processes more stable.
 
-The masking of instablilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerzing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following more stricter truncation and rounding standard (IEEE 754), (v) Building static executables by removing the host operating system library dependancy.
+The masking of instabilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerizing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following more stricter truncation and rounding standard (IEEE 754), (v) Building static executables by removing the host operating system library dependency.
 
 The above mentioned way is said to be a bad solution because it just makes the problem invisible but the instability still remains. If we conduct the study on a different operating system, the results we obtain would be different.
 
-The preferred soultion is to fix the particular functions/scripts in the preprocessing pipelines that are unstable. This would reduce the variance in results considerabley and thus it makes the output more stable and reliable.
+The preferred solution is to fix the particular functions/scripts in the preprocessing pipelines that are unstable. This would reduce the variance in results considerably and thus it makes the output more stable and reliable.
 
 %From the visualized results and referring to the matrices that are obtained from the quantified metric values, the similarity measure ranges from 0.0 - 1.0. And the NRMSE value ranges from 0.0 to 0.27. The highest NRMSE value is for the file ``tfMRI\_MOTOR\_LR\_mc\_Mask.nii.gz" from the fMRIVolume preprocessing pipeline.
 
