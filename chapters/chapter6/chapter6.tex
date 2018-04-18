@@ -5,9 +5,9 @@ From this study, we can conclude that the effect of operating system libraries o
 
 The likely causes, of these differences are, (i) the evolution of math libraries over the time (ii) the pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
 
-There are two ways to tackle this problem. The bad solution for this problem would be masking the instabilities. On the other hand, the preferred solution is to fix the instablilities in the pipeline, that is, to make the processes more stable.
+There are two ways to tackle this problem. The bad solution for this problem would be masking the instabilities. On the other hand, the preferred solution is to fix the instablities in the pipeline, that is, to make the processes more stable.
 
-The masking of instabilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerizing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following more stricter truncation and rounding standard (IEEE 754), (v) Building static executables by removing the host operating system library dependency.
+The masking of instabilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerizing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following more stricter truncation and rounding standard (IEEE 754), (v) Building static executable by removing the host operating system library dependency.
 
 The above mentioned way is said to be a bad solution because it just makes the problem invisible but the instability still remains. If we conduct the study on a different operating system, the results we obtain would be different.
 
