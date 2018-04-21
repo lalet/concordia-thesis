@@ -1,7 +1,7 @@
 \chapter{Introduction}
-This chapter introduces the concept of reproducibiltity, reproducibility crisis, the general opinion of scientific community about reproducibile experiments and the reproducibility issues in the field of neuroimaging. 
+This chapter introduces the concept of reproducibility, reproducibility crisis, the general opinion of scientific community about reproducible experiments and the reproducibility issues in the field of neuroimaging. 
 
-\section{Reproducibility}
+\section{A brief note on ``Reproducibility" and the confusion around the terminology}
 
 ``Reproducibility" is defined by the Oxford English Dictionary as ``the extent to which consistent results are obtained when produced repeatedly". The R-words, ``Repeatability, Replicability and Reproducibility" are used as a substitute of each other and there are many variations of definitions available for each of these terms \cite{Plesser2018}. Drummond defined clear distinction between reproducibility and replicability, as reproducibility accommodates changes, but replicability avoids them \cite{Drummond}. The Association of Computer Machinery defined these terms to make the usage uniform across the community, which is listed below \cite{ACM2016}.
 
@@ -14,22 +14,29 @@ This chapter introduces the concept of reproducibiltity, reproducibility crisis,
       ``The measurement can be obtained with stated precision by a different team, a different measuring system, in a different location on multiple trials. For computational experiments, this means that an independent group can obtain the same result using artifacts which they develop completely independently."
 \end{itemize}
 
-Though the ACM terminology clearly defines the distinction between the R-words, Goodman et. al, defined a new lexicon exclusively for reproducbility \cite{Goodman2016} which is listed below,
-\begin{itemize}
-\item {Methods reproducibility: provide sufficient detail about procedures and data so that the same procedures could be exactly repeated.}
-\item {Results reproducibility: obtain the same results from an independent study with procedures as closely matched to the original study as possible.}
-\item {Inferential reproducibility: draw the same conclusions from either an independent replication of a study or a reanalysis of the original study.}
-\end{itemize}
-Reproducibility of scientifc claims should be the measure with which a scientific study should be given credits~\cite{Estimating-reproducibility}. According to~\cite{Plesser2018}, ``A cornerstone of science is the possibility to critically assess the correctness of scientific claims made and conclusions drawn by other scientists".
-To make a study reproducible, it is necessary to have, a good documentation about the methods/experiment, resources and availability of data used for the study. In an ideal scenario, an experiment described in sufficient detail could undergo reproducibility test carried out by other scientists with sufficient knowlidege, and, if the results are within the range of experimental deviation, the experiment can be considered as reproducible \cite{Plesser2018}. The lack of well documented methodologies and reluctancy to make the data publicly available leads to reproducibility crisis~\cite{Baker2016}.
+Though the ACM terminology clearly defines the distinction between the R-words, the definition of reproducibility was not complete. To avoid this confusion, Goodman et. al, defined a new lexicon exclusively for reproducibility \cite{Goodman2016} which is listed below,
 
-The reproduciblity crisis across several domains in the field of science has been attaining a lot of attention in the recent years \cite{aac4716,Begley2012,Button2013,Baker2016,Estimating-reproducibility,Gla15}. The study on conducted on reproducibility of psychological experiments revealed that over half of them failed reproducibility test \cite{aac4716}. Another study in the field of cancer biology also had similar findings that majority of the effort to reproduce well-known studies failed \cite{Begley2012}. From the survery conducted on 1576 scientists spanning across several scientific disciplines, 52\% responded that there is reproducibility crisis.
+\begin{itemize}
+\item {Methods reproducibility: ``provide sufficient detail about procedures and data so that the same procedures could be exactly repeated."}
+\item {Results reproducibility: ``obtain the same results from an independent study with procedures as closely matched to the original study as possible".}
+\item {Inferential reproducibility: ``draw the same conclusions from either an independent replication of a study or a reanalysis of the original study".}
+\end{itemize}
+
+In the context of this study, conducted on Human Connectome Project (HCP) Pipelines~\cite{Gla13}, ``reproducibility" refers to ``inferential reproducibility". We have tried to do a reanalysis of the original study with the data and procedures as close as possible to the original study and the only factor that has changed is the operating system.
+
+\section{Reproducibility crisis and it's relevance}
+Reproducibility of scientific claims should be the measure with which a scientific study should be given credits~\cite{Estimating-reproducibility}. According to~\cite{Plesser2018}, ``A cornerstone of science is the possibility to critically assess the correctness of scientific claims made and conclusions drawn by other scientists".
+To make a study reproducible, it is necessary to have, a good documentation about the methods/experiment, resources and availability of data used for the study. In an ideal scenario, an experiment described in sufficient detail could undergo reproducibility test carried out by other scientists with sufficient knowledge, and, if the results are within the range of experimental deviation, the experiment can be considered as reproducible \cite{Plesser2018}. The lack of well documented methodologies and reluctance to make the data publicly available leads to reproducibility crisis~\cite{Baker2016}.
+
+The reproducibility crisis across several domains in the field of science has been attaining a lot of attention in the recent years \cite{aac4716,Begley2012,Button2013,Baker2016,Estimating-reproducibility,Gla15}. The study on conducted on reproducibility of psychological experiments revealed that over half of them failed reproducibility test \cite{aac4716}. Another study in the field of cancer biology also had similar findings that majority of the effort to reproduce well-known studies failed \cite{Begley2012}. From the survey conducted on 1576 scientists spanning across several scientific disciplines, 52\% responded that there is reproducibility crisis.
+
+With the rapid changes happening in the computational softwares and infrastructure, several external factors like the version of libraries, hardware architecture plays an important role in the reproducibilityi \cite{10.1371/journal.pone.0038234,Gla15}. Peng defined a reproducibility standard, and emphasized on the importance on sharing of code and data among the scientific community \cite{Peng2011}.
 
 We focus on the pre-processing of data from the Human Connectome Project (HCP) \cite{Gla13}.
 A key component of the scientific method is the ability to revisit and replicate previous results. Registering information about an experiment allows scientists to interpret and
 understand results, as well as verifying that the experiment was performed according to acceptable procedures. To carry out a computer science experiment we make use of the entirety of the computer which is used for running the experiment. Repeating a computer science experiment doesn't require a scientist to rewrite the code from scratch but getting access to the code and resources suffice. Thus, in principle a well documented code should be easily reproducible, but that is not the case. Computing environments change rapidly in terms of hardware as well as software. So just documenting the code base won't be adequate for easily reproducing the experiments.
 
-Thus, the rapid changes occuring in computing environments are complex and might cause differences in outputs eventhough the correct version of the code was run on the exact same computing environment. To address this problem virtual machines could be used. But the overheads in terms of performance and management(creating, storing and transferring them) can be high and, in some fields of Computer Science such as Computer Systems research it can't be accounted easily. \cite{7092948}
+Thus, the rapid changes occurring in computing environments are complex and might cause differences in outputs even though the correct version of the code was run on the exact same computing environment. To address this problem virtual machines could be used. But the overheads in terms of performance and management(creating, storing and transferring them) can be high and, in some fields of Computer Science such as Computer Systems research it can't be accounted easily. \cite{7092948}
 
 Since the claim that ``most published research findings are false” by Ioannidis in 2005 \cite{10.1371/journal.pmed.0020124}, a series of studies have questioned the reproducibility of research results in various disciplines. To mention only a few examples from the neuroinformatics domain, brain activation was found in a dead salmon \cite{BENNETT2009S125}, more than half of the publications in the field of psychology could not be reproduced \cite{aac4716}. The resulting “reproducibility crisis” is challenging the validity of scientific results in several disciplines, and we are trying to focus our study on how the operating systems affect the Human connectome project preprocessing pipelines \cite{Gla13}.
 

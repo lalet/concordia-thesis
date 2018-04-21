@@ -1,5 +1,6 @@
 \chapter{Application to HCP pre-processing pipelines}
-
+\setlength{\parskip}{1em}
+\setlength{\parindent}{4em}
 We applied the framework described in the previous chapter to the reproducibility evaluation of the pipelines developed by the Human Conectome Project. This chapter introduces the HCP pipelines (Section~\ref{hcp_pipelines}), the data used in our expriments (Section~\ref{HCP_Data}) and describes the computing conditions used for processing (Section~\ref{processing_subjects}).
 
 \section{HCP Pipelines (v3.19.0)} \label{hcp_pipelines}
@@ -26,7 +27,7 @@ The HCP pipeline is open sourced, and the study is conducted using the version 3
 \section{HCP Data} \label{HCP_Data}
 HCP Data is collected from a population of adult twins and their non-twin siblings in the age range of 22-35 years. Data from 1200 subjects is available in the ConnectomeDB repository \footnote{\url{https://db.humanconnectome.org/}}. Each HCP data set, is data collected from an individual person and such a directory containing the HCP data is denoted by the term, ``subject". Each subject contains data belonging to four modalities. They are structural MRI, resting-state fMRI (rfMRI), task fMRI (tfMRI), and diffusion MRI (dMRI)~\cite{HCPData}.
 
-Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of structural images. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
+\indent Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of structural images. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
 
 \begin{center}
   \includegraphics[width=\linewidth]{T1_v3}
@@ -42,7 +43,7 @@ Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of str
   \caption*{Extracted from \cite{t1w_t2w}}
 \end{center}
 
-Functional data consists of task based and resting state fMRI data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data available in the HCP Subjects. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance. Task based fMRI analyses can identify and characterize functionally distinct nodes in human brain\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}. Resting state fMRI consists of data that is collected when the subject is not performing an explicit task. This can be used to map the regional intercations happening in the brain at the time of rest~\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}.
+\indent Functional data consists of task based and resting state fMRI data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data available in the HCP Subjects. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance. Task based fMRI analyses can identify and characterize functionally distinct nodes in human brain\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}. Resting state fMRI consists of data that is collected when the subject is not performing an explicit task. This can be used to map the regional intercations happening in the brain at the time of rest~\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}.
 
 \section{PreFreeSurfer} \label{sec:PrefreeSurfer}
 Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space''. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
@@ -54,7 +55,7 @@ Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an u
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of steps in the PreFreeSurfer pipeline. The input to the pipeline are T1w and T2w images and the registerted field map. Second step(2) is gradient nonlinearity correction. This distortion is caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans''. Gradient nonlinearity distortion must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Figure~\ref{fig:gradient_nonlinearity} represent gradient nonlinearity distortion correction. Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting this distortion. For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space''. Gradient nonlinearity distortion is then corrected with the help of field map. This is followed by warping of the field map magnitude image, according to the readout distortion. Separate registrations of the field map are then done to the T1w and T2w images using FLIRT.
+\indent Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of steps in the PreFreeSurfer pipeline. The input to the pipeline are T1w and T2w images and the registerted field map. Second step(2) is gradient nonlinearity correction. This distortion is caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans''. Gradient nonlinearity distortion must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Figure~\ref{fig:gradient_nonlinearity} represent gradient nonlinearity distortion correction. Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting this distortion. For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space''. Gradient nonlinearity distortion is then corrected with the help of field map. This is followed by warping of the field map magnitude image, according to the readout distortion. Separate registrations of the field map are then done to the T1w and T2w images using FLIRT.
 
 \begin{center}
   \includegraphics[width=\linewidth]{gradient_nonlinearity_distortion}
@@ -63,16 +64,16 @@ Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of ste
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the reference template for the ease of visualization.
+\indent Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the reference template for the ease of visualization.
 
-Step (4) is ACPC (Anterior commisure, Posterior commisure) alignment. Step (5) includes a robust initial brain extraction, using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step (6) in creating the subject's undistorted native volume space. %Readout distortion is caused when the digital data is retrieved from an electronic medium and is displayed in a human understandable format.
+\indent Step (4) is ACPC (Anterior commisure, Posterior commisure) alignment. Step (5) includes a robust initial brain extraction, using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step (6) in creating the subject's undistorted native volume space. %Readout distortion is caused when the digital data is retrieved from an electronic medium and is displayed in a human understandable format.
 %Readout distortion definition
 
-The distortion corrected images are used as the input for the next series of steps. To completely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject.
+\indent The distortion corrected images are used as the input for the next series of steps. To completely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject.
 
-Step (9) consist of cross-modal registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogeneity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
+\indent Step (9) consist of cross-modal registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogeneity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
 
-The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
+\indent The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
 
 \section{FreeSurfer} \label{sec:FreeSurfer}
 HCP pipelines uses FreeSurfer version 5.2 with a lot of enhancements made particularly focusing HCP data. The main goals, according to~\cite{Gla13} are, ``1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage)''. The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
@@ -115,7 +116,6 @@ Main goals of PostFreeSurfer, according to~\cite{Gla13} are, ``1) produces all t
 
 As mentioned in the previous paragraph, the first task (1) of PostFreeSurfer is to convert the recon-all outputs to NIFTI and GIFTI formats. The white, pial, spherical and registered spherical surfaces are all converted GIFTI surface files. Thickness, curvature and sulc files are converted into GIFTI shape files. The cortical parcellations from FreeSurfer are converted to GIFTI label files and three full subcortical volume parcellations are converted into NIFTI label files. One among the three volume parcellations (wmparc) is used to create a final gray and white matter brain mask (2), which is used as the reference in the subsequent steps. Step (3) creates cortical ribbon volume and that step is followed by (4) cortical myelin map creation. Next step (5) is the generation of Conte69 Group Average by normalizing the Myelin Maps. Figure \ref{fig:residual_bias_correction} illustrates the residual bias field correction that takes place in myelin maps.
 
-\vspace{0.2cm}%
 \begin{center}
   \includegraphics[width=\linewidth]{residual_bias_correction}
   \captionof{figure}{The effect of residual bias field correction on a particularly inhomogeneous HCP subject. (A) Original Myelin Map. (B) Reference group average myelin map (C) Estimated residual bias field. (D) Bias corrected myelin map.}
@@ -211,12 +211,9 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 %\captionof{table}{Subject Scan Details}
 \caption*{Data retrieved from \cite{DBConnectomeSite}}
 \end{center}
-
 \section{HCP Docker Images}
 We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
-
 These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
-
 \begin{itemize}
 \item A 64-bit Linux Operating System
 \item FSL Version - 5.0.6
@@ -224,7 +221,6 @@ These containers were installed with all the necessary softwares and libraries r
 \item Connectome Workbench Version - 1.0 
 \item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
 \end{itemize}
-
 FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the containers with the help of DockerFiles.
 Docker container creation was automated with the help of GitHub and DockerHub. All the containers that are used for this study are available in the Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/tags/}}.
 
@@ -235,7 +231,6 @@ Table \ref{tab:prefreesurfer_processing_details} contains the details about proc
 Average time taken for PreFreeSurfer processing is 73.7 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.08 GB (5 subjects) on CentOS6.
 Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.10 GB (5 subjects) on CentOS7.
 
-\hfill \break
 \begin{center}
 \tabulinesep=1.2mm
 \begin{tabular}{ | l | l | l | } 
@@ -272,7 +267,6 @@ Table \ref{tab:freesurfer_processing_details} contains the details about process
 Average time taken for FreeSurfer processing is 7.4 hours (10 runs) and average output file size of FreeSurfer processing is 15.2 GB (5 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 7.58 hours (10 runs) and average output file size of FreeSurfer processing is 15.2 GB (5 subjects) on CentOS7.
 
-\hfill \break
 \begin{center}
 \begin{tabular}{ | l | l | l | }
   \hline
@@ -308,7 +302,6 @@ Table \ref{tab:postfreesurfer_processing_details} contains the details about pro
 Average time taken for FreeSurfer processing is 22.5 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and average output file size of FreeSurfer processing is 16.2 GB (5 subjects) on CentOS7.
 
-\hfill \break
 \begin{center}
 \begin{tabular}{ | l | l | l | }
   \hline
@@ -344,7 +337,6 @@ Table \ref{tab:fmrivolume_processing_details} contains the details about process
 Average time taken for FreeSurfer processing is 24.68 hours (10 runs) and average output file size of FreeSurfer processing is 221.2 GB (10 subjects) on CentOS6.
 Average time taken for FreeSurfer processing is 24.76 hours (10 runs) and average output file size of FreeSurfer processing is 220.8 GB (10 subjects) on CentOS7.
 
-\hfill \break
 \begin{center}
 \begin{tabular}{ | l | l | l | }
   \hline

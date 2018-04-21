@@ -26,7 +26,7 @@ Repro-tools, before the beginning of processing a subject, makes a check to ensu
 
 \begin{center}
   \includegraphics[width=\linewidth]{automated_build}
-  \caption{Docker automated build}
+  \captionof{figure}{Docker automated build}
   \label{fig:Docker_build}
   \caption*{Docker logo retrieved from Docker \url{https://secure.gravatar.com/avatar/7510e100f7ebeca4a0b8c3c617349295.jpg} and GitHub logo retrieved from \url{https://github.com/logos}}
 \end{center}
@@ -63,17 +63,14 @@ The files that are common to all the subjects only are taken into consideration 
 For the files that are identified to have differences, different kind of metrics are used base on the file type to quantify the differences. Normalized root mean square error, Dice Coefficient, Text filter etc. are the various metrics used for quantifying the differences. Section \ref{sec:num1} explains the metrics in detail. 
 
 These metric values help us understand how big or small the differences are. Apart from quantifying the differences using type specific metrics, Repro-tools can also be used to trace the provenance of these differences. It is able to identify all the processes and associated parameters that wrote the files having differences. These details about various processes is helpful in debugging the pipelines. This information helps in recreating the processing step by step and also to identify the processes that creates the differences.
-\newpage
-%Add algorithm
-\hrulefill
-\caption*{\textbf{Algorithm 1:} Algorithm for finding the file differences and metric values}
-\label{alg:algorithm_diff}
-\hrulefill
 
+\newpage
+\textbf{\\Algorithm 1: \underline{Algorithm for finding the file differences and metric values}\label{alg:algorithm_diff}\\}
 \DontPrintSemicolon
 \SetKwFunction{FMain}{\textbf{find\_differences\_and\_calculate\_metrics}}
 \SetKwProg{Fn}{Function}{:}{}
-\Fn{\FMain{conditions}}{
+\Fn{\FMain{conditions}}
+{
 \begin{algorithmic}[1]
 \FOR{each condition C}
 \FOR{each subject S}
@@ -101,7 +98,7 @@ These metric values help us understand how big or small the differences are. Apa
 }
 \vskip 0.2in
 
-Algorithm 1 shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
+Algorithm 1, Section \ref{alg:algorithm_diff} shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
 
 A pair of condition is taken at a time as the following step (Line 6). The files under the subject in two different conditions are then comapred to see if their file sizes or checksums differ (Line 13). If a difference is observed, then the metric value is computed it is stored in a dictionary with the file name, subject and condition as the key value. The difference in the file is denoted with a value ``1" into a variable (Lines 14-15).
 
