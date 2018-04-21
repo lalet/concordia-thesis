@@ -39,7 +39,7 @@ Each column represents a subject and each row represents the same file in 5 diff
 The NRMSE value appears brighter if the images are dissimilar and it appears darker if the images are similar. Conversely, the Dice coefficient value appears darker if the images are dissimilar and appears brighter if the images are similar. We can also observe that the magnitude of differences varies across the files as well as the subjects.
 
 \subsection{Comparison of specific files}
-Figure~\ref{fig:prefreesurfer_t1w_mul} illustrates the binarized differences in the ``T1wmulT2w\_brain\_norm\_s5.nii.gz" file. This file gets created as part of bias field correction (step (10), Figure \ref{fig:prefreesurfer_overview}). The file was taken from BiasFieldCorrection\_sqrtT1wXT1w folder in subject ``101410". File has an NRMSE value of 0.009 and the Dice coefficient value is 0.328. The thick blue shaded region shows the image from CentOS6 and green shaded region shows the parts of CentOS7 image.
+Figure~\ref{fig:prefreesurfer_t1w_mul} illustrates the differences in the ``T1wmulT2w\_brain\_norm\_s5.nii.gz" file. This file gets created as part of bias field correction (step (10), Figure \ref{fig:prefreesurfer_overview}). The file was taken from BiasFieldCorrection\_sqrtT1wXT1w folder in subject ``101410". File has an NRMSE value of 0.009 and the Dice coefficient value is 0.328. The thick blue shaded region shows the image from CentOS6 and green shaded region shows the parts of CentOS7 image.
 The link given below at the caption of the image contains the CentOS6 and CentOS7 files alternating in between each other. We can identify the differences around the border visually.
 
 \hfill \break
@@ -65,7 +65,7 @@ The link given below at the caption of the image contains the CentOS6 and CentOS
 \end{center}
 \vskip 0.2in
 
-The visualization of the differences in T2w ACPC file given in the link above, shows that the images from two conditions are totally out of alignment. This difference is the result of PreFreeSurfer processing (step (4), Figure \ref{fig:prefreesurfer_overview}). The linear registration done using FLIRT creates the difference.
+The visualization of the differences in T2w ACPC file given in the link above, shows that the images from two conditions are totally out of alignment. This difference is the created due to linear registration done using FLIRT (step (4), Figure \ref{fig:prefreesurfer_overview}) in PreFreeSurfer preprocessing pipeline.
 
 \vskip 0.2in
 Figure~\ref{fig:prefreesurfer_std_file} illustrates the differences in the ``bias\_raw.nii.gz".
@@ -83,7 +83,7 @@ The link given below at the caption of the image contains the CentOS6 and CentOS
 \hfill \break
 
 \section{FreeSurfer} \label{sec:Freesurfer}
-FreeSurfer results presented in this section do not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that have differences and which are common to all the subjects, was found to be 61 files (23 .nii.gz files and 38 .mgz files).
+FreeSurfer results presented in this section do not take into account the files that were found to be different in PreFreeSurfer pipeline. The number of files that have differences and which are common to all the subjects, was found to be 61 (23 .nii.gz files and 38 .mgz files).
 
 \subsection{Global comparison}
 The general findings about the differences in the output images due to the FreeSurfer processing is discussed in this section.
@@ -101,7 +101,7 @@ Standard Deviation & 0.0181     & 0.4051   \\ \hline
 \end{center}
 \hfill \break
 
-Table \ref{tab:FreeSurfer_Metic_Values} contains the mean, median and standard deviation of files having differences from FreeSurfer preprocessing on CentOS6 and CentOS7.Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was 69\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference. Average Dice coefficient value is high, which indicates that the FreeSurfer pipeline is more reliable than PreFreeSurfer pipeline.
+Table \ref{tab:FreeSurfer_Metic_Values} contains the mean, median and standard deviation of files having differences from FreeSurfer preprocessing on CentOS6 and CentOS7. Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was 69\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference. Average Dice coefficient value is high, which indicates that the FreeSurfer pipeline is more reliable than PreFreeSurfer pipeline.
 
 \begin{center}
 \includegraphics[width=.5\linewidth]{freesurfer-nrmse.png}%
@@ -128,7 +128,7 @@ The link given below at the caption of the image contains the visualized CentOS6
 \end{center}
 \hfill \break
 
-Figure~\ref{fig:freesurfer_aseg_file} illustrates the differences in the ``aseg.hires.mgz" file. This file gets created under mri directory inside T1w file directory. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of 0.010 and the Dice coefficient value is 0.987. The bright spots in the image shows the difference in the images in between two conditions (CentOS6 and CentOS7). These localized images are spread across the image. This image is the result of segmentation which is done for identiying and segmenting the smaller structures inside the brain. Each color represents a different structure and we can find important differences in all structures. The link given below at the caption of the image contains the visualized CentOS6 and CentOS7 files with differences, alternating in between each other.
+Figure~\ref{fig:freesurfer_aseg_file} illustrates the differences in the ``aseg.hires.mgz" file. This file gets created under mri directory inside T1w file directory. The file was taken from subject ``105216". The file illustrated here has an NRMSE value of 0.010, and the Dice coefficient value is 0.987. The bright spots in the image shows the difference in the images in between two conditions (CentOS6 and CentOS7). These localized images are spread across the image. This image is the result of segmentation which is done for identiying and segmenting the smaller structures inside the brain. Each color represents a different structure and we can find important differences in all structures. The link given below at the caption of the image contains the visualized CentOS6 and CentOS7 files with differences, alternating in between each other.
 
 \hfill \break
 \begin{center}
@@ -262,7 +262,7 @@ Figure~\ref{fig:allgrey_matter} illustrates the differences in the ``AllGreyMatt
 \includegraphics[width=.5\linewidth]{grey-fmri2.png}%
 \captionof{figure}{All Grey Matter file with differences (Bright spots shows the differences). \href{https://drive.google.com/file/d/1dzpyMalJ6_ox8jLedKvhKrP2ew7C7N-r/view?usp=sharing}{Link}}
 \caption*{(Subject: 101006; Filename: AllGreyMatter.nii.gz; Dice coeff.; 0.99; NRMSE; .074)}
-\label{fig:allgrey_matter} 
+\label{fig:allgrey_matter}
 \end{center}
 \hfill \break
 
