@@ -1,4 +1,4 @@
-\chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}
+\chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}\label{framework}
 The Repro-tools \todo{name subject to change} is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term ``condition" with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term ``subject" with respect to this framework is used to denote the directories containing the data, that are kept under each condition. 
 
 I contributed a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}. The tool can compare and summarize the files, that have differences, due to the operating system on which the processing took place.
