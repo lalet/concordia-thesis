@@ -1,3 +1,7 @@
 \begin{abstract}
-  Text of abstract.  
+The lack of computational reproducibility threatens data science in several domains~\cite{Gla15}. We aim at (1) quantifying the effect of operating system version updates on biological results and (2) identifying the software tools in a pipeline that are responsible for this effect. We focus on the pre-processing of data from the Human Connectome Project (HCP)~\cite{Gla13}.
+
+We used raw data of 5 subjects in the HCP S500 Release. The HCP pre-processing pipelines (v3.19.0) PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume were executed in Docker containers created from CentOS versions 6.8 and 7.2. We deployed the containers on a server using CBRAIN (a web-platform to manage computing resources and data)~\cite{DBLP:journals/fini/DasGRSPMSRSKMKR17}. File checksums were recorded before and after execution to check for file corruption. The software versions as well as the hardware details of the system were also recorded to make sure that the processing condition does not change. For each subject, pre-processing was repeated two times on both versions of CentOS to check for inter-OS and inter-run differences. We also recorded file accesses by executable(s) using the Reprozip~\cite{Chirigati:2013:RUP:2482613.2482614}, a system-level monitoring tool. Normalized root mean square error and Dice coefficient metrics were used to quantify the differences.
+
+We could identify differnences in the output images between these operating systems (inter-OS differences). The differences we have identified are visually significant. No inter-run differences were identified. Our CBRAIN plugins, Dockerfiles and analysis scripts are available in Github\footnote{https://github.com/big-data-lab-team/repro-tools}.
 \end{abstract}
