@@ -1,11 +1,11 @@
 \chapter{Conclusions}\label{conclusion}
 From the results we obtained from the preprocessing pipelines, PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume, we identified and quantified the differences. This chapter discusses the general findings from our study.
 
-From this study, we can conclude that the effect of operating system libraries on the output images from HCP Preprocessing pipelines is significant. The output images obtained using the same pipeline on different operating systems are producing different results and hence they are not reproducible. Also the differences in these images are visually significant.
+From this study, we can conclude that the effect of operating system libraries on the output images from HCP Preprocessing pipelines is significant. HCP preprocessing pipeline results are influenced by the operating systems on which the processing takes place. Also the differences in these images are visually substantial.
 
 The likely causes, of these differences are, (i) the evolution of math libraries over the time (ii) the pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
 
-There are two ways to tackle this problem. The easy but less preferred solution to this problem would be masking the instabilities. But, the preferred solution is to fix the instablities in the pipeline, that is, to make the pipelines more stable.
+There are two ways to tackle this problem. The easy but less preferred solution to this problem would be masking the instabilities. But, the preferred solution is to fix the instabilities in the pipeline, that is, to make the pipelines more stable.
 
 The masking of instabilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerizing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following more stricter truncation and rounding standard (IEEE 754), (v) Building static executable by removing the host operating system library dependency.
 
