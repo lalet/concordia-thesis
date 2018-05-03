@@ -1,12 +1,12 @@
 \chapter{Conclusion}\label{conclusion}
-From the results we obtained from the preprocessing pipelines, PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume, we identified and quantified the differences. This chapter discusses the general findings from our study.
+This chapter discusses the general conclusions from this study and the future work.
 
-\section{General inferences}
-From this study, we can conclude that the operating system library version updates are affecting the output images from HCP Preprocessing pipelines. The analysis of results we obtained by processing subjects in different CentOS versions, shows that inter-OS differences in these images are visually substantial. These variations in the output images due to the operating system library updates are causing reproducibility issues in HCP pipelines.
+\section{General conclusions}
+From this study, we can conclude that the operating system library version updates are affecting the output images from HCP preprocessing pipelines. The analysis of results obtained by processing subjects in different CentOS versions, shows that inter-OS differences in these images are visually substantial.
 
-We had also analyzed the inter-run results where we ran PreFreeSurfer, FreeSurfer, PostFreeSurfer and fMRIVolume pipeline twice for each subject in the same condition. No inter-run differences were identified.
+For finding the inter-run differences, analysis was done on results obtained from processing subjects twice in the same condition. No inter-run differences were identified from these results. From this, we can conclude that there are no pseudo random-processes or silent crashes occuring in the HCP preprocessing pipelines.
 
-The likely causes, of these differences are, (i) the evolution of math libraries over the time (ii) the pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
+The likely causes, of the inter-OS differences are, (i) the evolution of math libraries over the time (ii) the pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
 
 There are two ways to tackle this problem. The easy but less preferred solution to this problem would be masking the instabilities. But, the preferred solution is to fix the instabilities in the pipeline, that is, to make the pipelines more stable.
 
