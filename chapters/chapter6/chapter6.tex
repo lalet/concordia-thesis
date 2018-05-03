@@ -10,7 +10,7 @@ The likely causes, of these differences are, (i) the evolution of math libraries
 
 There are two ways to tackle this problem. The easy but less preferred solution to this problem would be masking the instabilities. But, the preferred solution is to fix the instabilities in the pipeline, that is, to make the pipelines more stable.
 
-The masking of instabilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerizing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following more stricter truncation and rounding standard (IEEE 754), (v) Building static executable by removing the host operating system library dependency.
+The masking of instabilities can be done by using, (i) single operating system for the processing of subjects, (ii) containerizing the pipelines so that the processing is done on a more controlled environment (researchers can control the updates to libraries and operating system), (iii) Increasing the numerical precision of the pipelines, (iv) Following stricter truncation and rounding standard (IEEE 754), (v) Building static executable by removing the host operating system library dependency.
 
 The above mentioned way is said to be less preferred because it just makes the problem invisible but the instability still remains. If we conduct the study with a change of condition like a newer version of operating system or on an entirely different operating system, the results we obtain would be different.
 
@@ -19,5 +19,5 @@ The preferred solution is to fix the particular functions/scripts in the preproc
 \section{Future work}
 Though we could identify the files that are having differences and quantify these differences using the metrics, the functions in the pipeline that causes these differences should be identified.
 Pipelines should be studied in detail to identify the first instance of difference that gets created and how this difference is propagated through the pipeline.
-Since the pipelines are linked to each other (previous pipeline's output becomes next pipeline's input), each pipeline needs to be examined in detail to find out if the pipelinejust propagates the error, whether it amplfies them and also if it creates new files with differences as well. 
+Since the pipelines are linked to each other (previous pipeline's output becomes next pipeline's input), each pipeline needs to be examined in detail to find out if the pipeline just propagates the error, whether it amplifies them and also if it creates new files with differences as well. 
 Study can be extended to other pipelines in the HCP pipelines (e.g., fMRISurface and Diffusion Preprocessing pipeline).
