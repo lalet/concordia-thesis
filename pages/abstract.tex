@@ -7,14 +7,12 @@ effect of operating system on neuroimaging pipelines (ii) quantify this effect w
  Inter-OS differences are created due to the differences in the operating system libraries (different OS versions) as a result of various system updates.
  Inter-run differences are differences that occur with in the same operating system, due to reasons like pseudo-random process, silent
 crashes etc. in the operating system or in the pipeline.
-
 %framework
 To conduct this study, a framework for evaluating the reproducibility of these neuroimaging pipelines was developed. 
 The two major functionalities of this framework being, processing of the subjects and the analysis of the processed data. 
 The framework consists of Docker containers, CBRAIN web portal and Reprozip for provenance capture (record the system calls and arguments).
 A tool (Repro-tool) was developed for the analysis of the results. Normalized root mean square error and
 Dice coefficient of similarity were the metrics used for quantifying the differences.
-
 % Experiment description
 We applied our reproducibility framework to the evaluation of the effect of the
 operating system on results produced by pipelines from the Human
@@ -23,7 +21,6 @@ human brain. In particular, we focused on pre-processing pipelines for
 anatomical and functional data, namely PreFreeSurfer, FreeSurfer,
 PostFreeSurfer and fMRIVolume. We used data from 5 subjects released by
 the HCP.
-
 % Results
 Results highlight substantial differences in the output of the HCP
 pipelines obtained in two versions of Linux (CentOS6 and CentOS7):
@@ -34,7 +31,6 @@ differences for various pipeline steps. No meaningful inter-run
 differences were observed, which shows that the inter-OS differences do
 not originate from the use of pseudo-random numbers or silent crashes
 of the pipelines.
-
 % Discussion
 We hypothesize that the observed inter-OS differences come from
 numerical instabilities in the pipelines, triggered by rounding and
