@@ -12,4 +12,6 @@ With the help of the framework that was developed, pre-processing of data from t
 Inter-OS differences were identified in the output images from the HCP preprocessing pipelines between conditions (CentOS6 and CentOS7). With the help of Repro-tools, normalized root mean square error and dice coefficient value of these differences was computed. Normalized root mean sqaure error ranges from 0 to 0.27 and dice coefficient value ranges from 0 to 1. No inter-run differences were identified.
 
 No inter-run differences shows that the pipelines are not using pseudo-random processes and there are no unreported crashes. The inter-OS differences acorss the pipelines identified are visually substantial. There is a high chance that these inter-OS differences are coming from the numerical instability of these HCP preprocessing pipelines.
+
+With the use of containers and sticking to the same condition for conducting the experiments, the variations in these differences can be masked. But the better solution to this problem is to fix the numerical instability of HCP preprocessing pipelines.
 \end{abstract}
