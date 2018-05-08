@@ -35,33 +35,52 @@ The NRMSE value appears brighter if the images are dissimilar and it appears dar
 
 \subsection{Comparison of specific files}
 Figure~\ref{fig:prefreesurfer_t1w_mul} illustrates the differences in the ``T1wmulT2w\_brain\_norm\_s5.nii.gz" file. This file gets created as part of bias field correction (step (10), Figure \ref{fig:prefreesurfer_overview}). Figure~\ref{fig:prefreesurfer_t1w_mul} is a checkerboard image with a patch size 5. Checker board image is created by alternating between the patches belonging to two different images. No two adajacent squares would belong to the same image.
-The file was taken from BiasFieldCorrection\_sqrtT1wXT1w folder in subject ``101410". File has an NRMSE value of 0.009 and the Dice coefficient value is 0.328. Small squares in the figure indicates the differences.
+The file was taken from BiasFieldCorrection\_sqrtT1wXT1w folder in subject ``101410". File has an NRMSE value of 0.009 and the Dice coefficient value is 0.328. Small squares in the figure indicates the differences. Figure~\ref{fig:prefreesurfer_zoom} shows the zoomed version of part of the checkerboard image (Figure~\ref{fig:prefreesurfer_t1w_mul}) marked in red square.
 The link given below at the caption of the image contains the CentOS6 and CentOS7 files alternating in between each other. We can identify the differences around the border visually.
 
 \begin{center}
-\includegraphics[width=.9\linewidth]{t1wmul_checkerboard_patchsize5.png}
-  \captionof{figure}[Differences in T1wmulT2w brain normalization file]{Differences in T1wmulT2w brain normalization file. (checkerboard image) \href{https://drive.google.com/file/d/1eHyrs180QbF4a-kSSz5mFkdirTgdXhc_/view?usp=sharing}{Link}\\(Subject: 101410; Filename: T1wmulT2w\_brain\_norm\_s5.nii.gz; Dice coeff.: 0.328 ; NRMSE: 0.009)}
+\includegraphics[width=.9\linewidth]{t1wmul_checkerboard_patchsize5_copy.png}
+\captionof{figure}[Differences in T1wmulT2w brain normalization file]{Differences in T1wmulT2w brain normalization file. (checkerboard image) \href{https://drive.google.com/file/d/1eHyrs180QbF4a-kSSz5mFkdirTgdXhc_/view?usp=sharing}{Link}\\(Subject: 101410; Filename: T1wmulT2w\_brain\_norm\_s5.nii.gz; Dice coeff.: 0.328 ; NRMSE: 0.009)}
 \label{fig:prefreesurfer_t1w_mul}
 \end{center}
 
-Figure~\ref{fig:prefreesurfer_t2w_acpc} illustrates the differences in the ``T2w\_acpc\_nii.gz". This file gets created as a part of ACPC alignment (step (4), Figure \ref{fig:prefreesurfer_overview}). This file was taken from T2w directory in subject ``105216". File has an NRMSE value of 0.0352 and the Dice coefficient value is 5.53*10\textsuperscript{-2}. The square pixels in the image shows the differences in between two conditions (CentOS6 and CentOS7). The link given below at the caption of the Figure\ref{fig:prefreesurfer_t2w_acpc} contains the CentOS6 and CentOS7 files alternating in between each other.
+\begin{center}
+\includegraphics[width=.9\linewidth]{t1w_zoom.png}
+  \captionof{figure}[Zoomed in version of T1wmulT2w brain normalization file]{{Zoomed in version of part of checkerboard image marked with red square given in Figure~\ref{fig:prefreesurfer_t1w_mul}}}
+\label{fig:prefreesurfer_zoom}
+\end{center}
+
+Figure~\ref{fig:prefreesurfer_t2w_acpc} illustrates the differences in the ``T2w\_acpc\_nii.gz". This file gets created as a part of ACPC alignment (step (4), Figure \ref{fig:prefreesurfer_overview}). This file was taken from T2w directory in subject ``105216". File has an NRMSE value of 0.0352 and the Dice coefficient value is 5.53*10\textsuperscript{-2}. The square pixels in the image shows the differences in between two conditions (CentOS6 and CentOS7). Figure~\ref{fig:prefreesurfer_zoom_t2w} illustrates the zoomed version of portion of image marked with red square containing differences in the checkerboard image (Figure~\ref{fig:prefreesurfer_t2w_acpc}). The link given below at the caption of the Figure\ref{fig:prefreesurfer_t2w_acpc} contains the CentOS6 and CentOS7 files alternating in between each other.
 
 \begin{center}
-\includegraphics[width=\linewidth]{t2w_acpc_patchsize_5.png}
+\includegraphics[width=\linewidth]{t2w_acpc_patchsize_5_copy.png}
 \captionof{figure}[Differences in T2w ACPC file]{Differences in T2w ACPC file (checkerboard image).\href{https://drive.google.com/file/d/1NrNl7POyCS_SZm3an00wOLUnkmLJ_ngo/view?usp=sharing}{Link}\\(Subject: 105216; Filename: T2w\_acpc\_nii.gz; Dice coeff.: 5.53*10\textsuperscript{-02} ; NRMSE: 0.0352)}
 \label{fig:prefreesurfer_t2w_acpc}
+\end{center}
+
+\begin{center}
+\includegraphics[width=.8\linewidth]{zoom_t2w_acpc.png}
+\captionof{figure}[Zoomed in version of T2w ACPC checkerboard image]{Zoomed in version of part of checkerboard image marked with red square given in Figure~\ref{fig:prefreesurfer_t2w_acpc}}
+\label{fig:prefreesurfer_zoom_t2w}
 \end{center}
 
 The visualization of the differences in T2w ACPC file given in the link above, shows that the images from two conditions are totally out of alignment. This difference is the created due to linear registration done using FLIRT (step (4), Figure \ref{fig:prefreesurfer_overview}) in PreFreeSurfer preprocessing pipeline.
 
 Figure~\ref{fig:prefreesurfer_std_file} illustrates the differences in the ``bias\_raw.nii.gz".
 This file gets created as part of bias field correction (step (10), Figure \ref{fig:prefreesurfer_overview}). The file was taken from subject ``105216". File has an NRMSE value of 0.036 and the Dice coefficient value is 0.2*10\textsuperscript{-7}. The small squares in the image shows the differences in between two conditions (CentOS6 and CentOS7).
+Figure~\ref{fig:prefreesurfer_raw_file} illustrates the zoomed version of portion of image marked with red square containing differences in the checkerboard image (Figure~\ref{fig:prefreesurfer_std_file})
 The link given below at the caption of the image contains the CentOS6 and CentOS7 files alternating in between each other.
 
 \begin{center}
-\includegraphics[width=\linewidth]{raw_bias_patchsize5.png}
+\includegraphics[width=\linewidth]{raw_bias_patchsize5_copy.png}
 \captionof{figure}[Differences in bias raw file]{Differences in bias raw file (checkerboard image). \href{https://drive.google.com/file/d/1rbGR0zGPQsOPzEVkiR6NynudbfjDFLvn/view?usp=sharing}{Link}\\(Subject: 105216; Filename: bias\_raw.nii.gz; Dice coeff.: 6.04*10\textsuperscript{-6} ; NRMSE: 0.0065)}
 \label{fig:prefreesurfer_std_file}
+\end{center}
+
+\begin{center}
+\includegraphics[width=\linewidth]{raw_bias_ps.png}
+\captionof{figure}[Zoomed in bias raw file]{Zoomed in version of part of checkerboard image marked with red square given in Figure~\ref{fig:prefreesurfer_std_file}}
+\label{fig:prefreesurfer_raw_file}
 \end{center}
 
 \section{FreeSurfer} \label{sec:Freesurfer}

@@ -4,7 +4,7 @@ This chapter discusses the general conclusions from this study and the future wo
 \section{General conclusions}
 From this study, we can conclude that the operating system library version updates are affecting the output images from HCP preprocessing pipelines. The analysis of results obtained by processing subjects in different CentOS versions shows that inter-OS differences in these images are visually substantial.
 
-For finding the inter-run differences, analysis was done on results obtained from processing subjects twice in the same condition. No inter-run differences were identified from these results. From this, we can conclude that there are no pseudo-random processes or silent crashes occuring in the HCP preprocessing pipelines.
+For finding the inter-run differences, analysis was done on results obtained from processing subjects twice in the same condition. No inter-run differences were identified from these results. From this, we can conclude that there are no pseudo-random processes or silent crashes occouring in the HCP preprocessing pipelines.
 
 The likely causes, of the inter-OS differences are, (i) the evolution of math libraries over the time (ii) the pipelines are unstable, i.e, these pipelines amplify the small numerical differences that are created by the differences in the underlying operating system libraries.
 
@@ -15,6 +15,11 @@ The masking of instabilities can be done by using, (i) single operating system f
 The above mentioned way is said to be less preferred because it just makes the problem invisible but the instability still remains. If we conduct the study with a change of condition like a newer version of operating system or on an entirely different operating system, the results we obtain would be different.
 
 The preferred solution is to fix the particular functions/scripts in the preprocessing pipelines that are unstable. This would reduce the variance in results considerably and thus, it could make the output more stable and reliable.
+
+\section{Contributions of this thesis to the neuroimaging community}
+All the software tools and the data used for this project is available as open-source. Docker images created for this study is hosted on Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These docker images can be used for preprocessing of neuroimages using Human Connectome Project pipelines. Dockerhub status shows that these images has been pulled from the repository more than 8000 times.
+Repro-tools can be used to analyze the datasets in order to find out the differences in checksum or size of files. It can also quantify the differences with the use of metrics. Different metrics can be configured in Repro-tools (verifyFiles script) to quantify the differences with respect to the file formats.
+The visualizations we have added to the results section clearly portrays the effect of changing the operating system for conducting the experiments. These images clearly convey the message that operating systems on which the preprocessing takes place has a strong effect on the output image.
 
 \section{Future work}
 Though we could identify the files that are having differences and quantify these differences using the metrics, the functions in the pipeline that causes these differences should be identified.
