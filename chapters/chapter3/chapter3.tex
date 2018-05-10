@@ -1,15 +1,17 @@
 \chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}\label{framework}
 The Repro-tools is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term ``condition" with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term ``subject" with respect to this framework is used to denote the directories containing the data, that are kept under each condition. 
 
-I contributed a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}. The tool can compare and summarize the files, that have differences, due to the operating system on which the processing took place.
+This chapter discusses the overall workflow of the framework, docker images, how the pipelines were encapsulated, how they were deployed, analysis of results, provenance capture and the metrics used for quantifying the differences.
 
-The script works under the assumption that, under an ideal scenario, files belonging to each subject is supposed to have equal checksum under different conditions. Repro-tools help in identifying the files having differences by comparing the checksum values of files stored under different conditions. This tool can also check for corruption of files. It can compute the checksum locally and compare it against the recorded checksum (checksum recorded immediately after processing the subject) to find if the files are corrupted or not.
+%In order to analyze the results, we created a tool, which can compare the files to find differences in their checksum, called verifyFiles\footnote{\url{https://github.com/big-data-lab-team/repro-tools/blob/master/verifyFiles.py}}. 
 
-It can also quantify the differences in image files with the help of metrics like Normalized root mean square error (NRMSE), Dice coefficient etc (Refer \ref{sec:num1}). Additional metrics can be configured which could be used for quantifying differences occurring in different types of files. Repro-tools can also trace the provenance of these files having the differences. It helps us identify the processes that wrote the files having differences. Provenance tracing is done with the use of data captured by Reprozip.
+%This tool was developed under the assumption that, under an ideal scenario, files belonging to each subject is supposed to have equal checksum under different conditions. Repro-tools help in identifying the files having differences by comparing the checksum values of files stored under different conditions. This tool can also check for corruption of files. It can compute the checksum locally and compare it against the recorded checksum (checksum recorded immediately after processing the subject) to find if the files are corrupted or not.
+
+%It can also quantify the differences in image files with the help of metrics like Normalized root mean square error (NRMSE), Dice coefficient etc (Refer \ref{sec:num1}). Additional metrics can be configured which could be used for quantifying differences occurring in different types of files. Repro-tools can also trace the provenance of these files having the differences. It helps us identify the processes that wrote the files having differences. Provenance tracing is done with the use of data captured by Reprozip.
 
 %Refer what is subject also in the above paragraph
 %Compute Canada in architecture
-
+\section{Repro-tools Workflow}
 \begin{center}
 \includegraphics[width=\linewidth]{framework_architecture.png}
 \captionof{figure}{Workflow of Reproducibility Analysis in neuroimaging pipelines}
@@ -19,7 +21,7 @@ It can also quantify the differences in image files with the help of metrics lik
 
 Figure \ref{fig:framework_architecture} illustrates the overall workflow. The Docker image creation is automated. For each commit, made to the Dockerfile stored in Github\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer}}, a new build is triggered in Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These images are then used by CBRAIN for processing the subjects. Boutiques helps in deploying these containers to CBRAIN platform. CBRAIN can harness the power of computational clusters as well. The subjects processed under different conditions are then analyzed using the Repro-tools.
 
-\section{Docker images}
+\section{Docker Images}
 Repro-tools framework uses Docker containers for reproducibility studies. A Docker container is the running instance of a Docker image. Dockerfiles are used for specifiying the operating system and the libraries needed for creating a Docker image. With the help of automated image creation feature in Dockerhub, whenever a commit is made to the Dockerfile, a new image build gets triggered (Figure~\ref{fig:Docker_build}). Thus, the automated build makes sure that the changes are always reflected in the Docker images.
 
 Repro-tools, before the beginning of processing a subject, makes a check to ensure that the image that is getting used is the latest one. This check makes sure that the processing is done with the up-to-date changes in the Docker images.
