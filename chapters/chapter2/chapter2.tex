@@ -130,13 +130,11 @@ However, containers are not the ultimate solution for reproducible computations.
 \tabulinesep=1.2mm
 \begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] |}
   \hline
-  Error type & Cause & Software &  Solved by containers? \\
+  \textbf{Error type} & \textbf{Cause} & \textbf{Software} &  \textbf{Solved by containers?} \\
   \hline
   Numerical differences & OS libraries & FSL, Freesurfer, CIVET & Masked \\
   \hline
   Numerical differences & Unnoticed crash & FSL (epi\_reg) & Depends on crash cause \\
-  \hline
-  Numerical differences & Kernel (To be confirmed) & Niak (To be confirmed)  & No \\
   \hline
   Crash & Hardware-specific instructions & MRtrix3 (default compilation options have architecture-specific compilation flags) & No \\
   \hline
