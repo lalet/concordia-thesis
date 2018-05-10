@@ -35,7 +35,7 @@ Repro-tools, before the beginning of processing a subject, makes a check to ensu
 
 \section{Pipeline Encapsulation}
 %Add Why wrapper and advantages
-I created a wrapper script\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} on top of the pipeline to have the features which are listed below,
+Wrapper scripts\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} were created on top of the pipeline to have the features which are listed below,
 \begin{itemize}
   \item Compute the checksum of the files in each subject before and after the execution
   \item Create execution directory and copy the subject to prevent corrupting the input data
@@ -132,7 +132,7 @@ Query above returns us the details about the 1) processes that wrote the file; 2
 The metrics that are used to quantify the differences are described below.
 
 \subsection{Normalized Root Mean Square Error (NRMSE)}
-The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), according to~\cite{khosrow2017handbook} is, ``a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". Normalizing the RMSD value makes it easier to compare between models or datasets. The equation for NRMSE is shown in equation~\ref{eq_one}.
+The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), according to~\cite{khosrow2017handbook} is, ``a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". The equation we used for computing the NRMSE value is shown in equation~\ref{eq_one}. We computed the minimum and maximum intensities as well as the mean square difference between the images with the help of FSL tools. The script we used to compute NRMSE value is available in \href{https://github.com/lalet/repro-tools/blob/master/metrics/nrmse.sh}{GitHub}.
 
 \begin{equation}
   \label{eq_one}
@@ -177,7 +177,7 @@ The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), accordin
 \fi
 
 \subsection{Dice Similarity Coefficient}
-Dice Similarity Coefficient~\cite{ECY:ECY1945263297} can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from [0.0,1.0]. 1.0 meaning the images are exactly similiar and 0 meaning there is zero similarity. The equation used for finding the dice coefficient is given in \ref{eq:eq_two}. Consider I1 \& I2, as non-zero voxels from two images.
+Dice Similarity Coefficient~\cite{ECY:ECY1945263297} can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from [0.0,1.0]. 1.0 meaning the images are exactly similiar and 0 meaning there is zero similarity. The equation used for finding the dice coefficient is given in \ref{eq:eq_two}. Consider I1 \& I2, as non-zero voxels from two images. We computed the voxelwise differences with the help of FSL tools for calculating the dice similarity coefficient. The script we used to compute NRMSE value is available in \href{https://github.com/big-data-lab-team/repro-tools/blob/master/metrics/dice.sh}{GitHub}.
 
 \begin{equation}
   \label{eq:eq_two}
