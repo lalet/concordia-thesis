@@ -3,18 +3,9 @@
 %Intro 
 
 %\todo{A few sentences of introduction to outline the chapter}
-The tools and platforms used for the reproducibility evaluations of 
-neuroinformatics pipelines are discussed in this chapter.
-\todo{The rest of this paragraph is irrelevant. You should just describe the outline of the chapter here.}
-The 
-neurogimaging pipelines discussed here are mainly the preprocessing 
-pipelines used for removing the noise from the neuroimaging data. For 
-the ease of conducting the experiment and for the reproducibility, 
-neuroimaging pipelines were containerized. The experiments were 
-repeated several times under different conditions. We made use of a web 
-platform (CBRAIN) for managing the containers and data. To find out the 
-cause of the reproducibility issues, interposition techniques were used 
-for the provenance capture.
+The tools and platforms used for the reproducibility evaluations of neuroimaging pipelines are discussed in this chapter.
+%\todo{The rest of this paragraph is irrelevant. You should just describe the outline of the chapter here.}
+Section~\ref{neuroimaging} discusses the various Neuroimaging pipelines. Section~\ref{reproducibility_neuroimaging} discusses studies conducted on the topic of reproducibility and the effect of operating systems on neuroimaging pipelines. Section~\ref{containers} discusses about containers and various virtualization techniques. Section~\ref{web_platforms} contains web platforms and tools commonly used to run containers and the last section (Section~\ref{Interposition}) consists of interposition techniques used for provenance capture.
 
 \section{Neuroimaging Pipelines}\label{neuroimaging}
 %What is neuroimagaing
@@ -28,11 +19,11 @@ Among the neuroimaging techniques listed above, fMRI became so popular among neu
 In neuroimaging, relevant information has to be extracted from noisy images of the brain~\cite{WOOLRICH2009S173}. To help extraction of structural, functional or diffusion MRI data, there are several pipelines freely available. Some of the most popular pipelines are The FMRIB Software Library\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}} (FSL), FreeSurfer\footnote{\url{https://surfer.nmr.mgh.harvard.edu/}} and HCP Pipelines\footnote{\url{https://github.com/Washington-University/Pipelines}}.
  
 %Add more details
-\todo{Rewrite the following sentence so that you don't have to have quotes}
-FSL~\cite{JENKINSON2012782}, ``is a comprehensive library of analysis tools for FMRI, MRI and DTI brain imaging data". This toolbox consists of over 230 individual command line tools and 23 GUIs, among which only a sub-set is commonly used. Table \ref{tab:tools_fsl} lists the most popular FSL tools. fMRI pre-processing can be implemented from FSL tools, for both task-based and resting-state fMRI. Among other things, FSL can do motion correction, distortion correction, spatial smoothing, temporal filtering and registration of images.
+%\todo{Rewrite the following sentence so that you don't have to have quotes}
+FSL is a library consisting of a set of tools for analyzing fMRI, MRI and DTI brain imaging data~\cite{JENKINSON2012782}. This toolbox consists of over 230 individual command line tools and 23 GUIs, among which only a sub-set is commonly used. Table \ref{tab:tools_fsl} lists the most popular FSL tools. fMRI pre-processing can be implemented from FSL tools, for both task-based and resting-state fMRI. Among other things, FSL can do motion correction, distortion correction, spatial smoothing, temporal filtering and registration of images.
 
-\todo{Rewrite the following sentence so that you don't have to have quotes}
-According to~\cite{freesurfer_website}, ``FreeSurfer is a software package for the analysis and visualization of structural and functional neuroimaging data from cross-sectional or longitudinal studies". It consists of a set of tools that provide automated analysis of main features of human brain. The main tasks include volumetric segmentation, hippocampal subfield segmentation, inter-subject alignment based on the folding pattern of cortex, cortical gray matter thickness detection and human cerebral cortex surface model construction~\cite{Fischl2012}. 
+%\todo{Rewrite the following sentence so that you don't have to have quotes}
+FreeSurfer software package helps in analyzing and visualizing the structural and functional neuroimaging data~\cite{freesurfer_website}. It consists of a set of tools that provide automated analysis of main features of human brain. The main tasks include volumetric segmentation, hippocampal subfield segmentation, inter-subject alignment based on the folding pattern of cortex, cortical gray matter thickness detection and human cerebral cortex surface model construction~\cite{Fischl2012}. 
 
 \begin{center}
 \tabulinesep=1.2mm
@@ -69,18 +60,18 @@ According to~\cite{freesurfer_website}, ``FreeSurfer is a software package for t
 \end{center}
 
 %Workbench
-\todo{Rewrite the following sentence so that you don't have to have quotes}
-According to~\cite{Gla13}, ``The Human Connectome Project (HCP) faces the challenging task of bringing multiple magnetic resonance imaging modalities, structural, functional and diffusion, together into a common automated preprocessing framework across a large cohort of subjects". The pipeline for processing the images from HCP is open and freely accessible. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions. So these preprocessing pipelines creates results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used~\cite{HODGE20161102}. The pipeline consists of separate processing flow for structural and functional images. The structural pre-processing consists of PreFreeSurfer, FreeSurfer and PostFreeSurfer. Functional pre-processing consists of fMRIVolume and fMRISurface~\cite{FSL}.
+%\todo{Rewrite the following sentence so that you don't have to have quotes}
+Human Connectome Project has the end goal of developing an automated preprocessing framework that can handle multiple magnetic resonance imaging modalities such as structural, functional and diffusion without compromising the quality of data~\cite{Gla13}. The pipeline for processing the images from HCP is open and freely accessible. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions. So these preprocessing pipelines creates results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used~\cite{HODGE20161102}. The pipeline consists of separate processing flow for structural and functional images. The structural pre-processing consists of PreFreeSurfer, FreeSurfer and PostFreeSurfer. Functional pre-processing consists of fMRIVolume and fMRISurface~\cite{FSL}.
 
 The main goals of structural and functional pipelines~\cite{Gla13} are provided below. The main goals of PreFreeSurfer are: 1) Produce an undistorted native structural volume space for each subject. 2) Align T1W and T2W images. 3) Perform Bias Field correction. 4) Registration of the structural volume to MNI space (a statistical MRI atlas for brain mapping). FreeSurfer goals are: 1) Segmentation of the volume into predefined structures. 2) Reconstruction of white and pial cortical surfaces. 3) Surface registration. PostFreeSurfer main goals are: 1) Creation of myelin maps and brain mask. 2) Preparation of registered surfaces for connectivity analysis by downsampling. 3) Surface Registration. 4) Production of GIFTI\footnote{\url{https://www.nitrc.org/projects/gifti}} and NIfTI\footnote{\url{https://nifti.nimh.nih.gov}} files which are used for visualizing data by Connectome Workbench (a tool for visualizing HCP data). fMRIVolume pipeline goals are: 1) Removes spatial distortions. 2) Corrects subject motion. 3) Reduces bias field. 4) Reduction of 4D images to global mean. 5) Application of final brain mask to data. The main goal of fMRISurface, is the creation of CIFTI files.
 
-\todo{Rewrite the following sentence so that you don't have to have quotes}
-Connectome Workbench~\cite{wb_workbench} is, ``an open source, freely available visualization and discovery tool used to map neuroimaging data, especially data generated by the Human Connectome Project. The distribution includes wb\_view, a GUI-based visualization platform, and wb\_command, a command-line program for performing a variety of algorithmic tasks using volume, surface, and grayordinate data". The data generated by HCP preprocessing and analysis pipelines are of different modalities and connectome workbench can be used for visualizing them. Workbench extended its support to include CIFTI\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}} files also other than standard neuroimaging formats like NIfTI and GIFTI~\cite{journals/neuroimage/MarcusHSJWGBABRHHHOMHHRHCSECE13}.
+%\todo{Rewrite the following sentence so that you don't have to have quotes}
+Connectome Workbench is an open source tool created by the HCP team for the visualization of neuroimaging data (HCP Data)~\cite{wb_workbench}. This package includes wb\_view, a GUI-based visualization platform, and wb\_command, a command-line program for performing a variety of algorithmic tasks using volume, surface, and gray-ordinate data. The data generated by HCP preprocessing and analysis pipelines are of different modalities and Connectome Workbench can be used for visualizing them. Workbench extended its support to include CIFTI\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsl/fslwiki}} files also other than standard neuroimaging formats like NIfTI and GIFTI~\cite{journals/neuroimage/MarcusHSJWGBABRHHHOMHHRHCSECE13}.
  
 %Rephrase the sentences
 %HCP minimal preprocessing pipelines are designed to minimize the amount of information actually removed from the data. These pipelines are dependent on the underlying operating system libraries for many of its functions. Hence, when there are updates in operating system versions, there could be changes in the ways which the rounding off and truncation of floating-point numbers are handled. We are trying to quantify the differences occuring due to the operating system updates on HCP preprocessing pipelines.
 
-\section{Reproducibility of neuroimaging pipelines across operating systems}
+\section{Reproducibility of neuroimaging pipelines across operating systems}\label{reproducibility_neuroimaging}
 
 The study~\cite{10.1371/journal.pone.0038234} conducted on FreeSurfer had identified the variabilities resulting from different data processing conditions like software version, operating system and hardware. The differences found in images were due to updates in the operating system versions (OSX 10.6 and OSX 10.5) as well as FreeSurfer (v4.3.1 vs. v4.5.0, v4.3.1 vs. v5.0.0, and v4.5.0 vs. v5.0.0) software. They also identified differences in the images when they were processed on different set of hardware (Mac vs HP systems). Study~\cite{10.1371/journal.pone.0038234} concludes that ``users are discouraged to update to a new major release of either FreeSurfer or operating system or to switch to a different type of workstation without repeating the analysis".
 
@@ -97,7 +88,7 @@ A similar study~\cite{Gla15}, on FSL\footnote{\url{https://fsl.fmrib.ox.ac.uk/fs
 %Gronenschild study summary
 The above studies point out the reasons that can cause differences in the output images. The difference in the output images due to updates, compilation process, software library version, kernel version or the architecture of the hardware it uses for execution are some of the main reasons. With the use of containers, the variance in these reproducibility issues can be minimized to a certain extent. We focus on the reproducibility aspect of HCP pipelines across operating systems, like how stable the pipeline is, if the results are different across operating systems, quantify them and find the reason behind the differences.
 
-\section{Containers}
+\section{Containers}\label{containers}
 %Containers intro
 A container is a self-contained, ready-to-use software component with all the necessary dependencies and softwares~\cite{7158965}. Containers allow a user to run an application and its dependencies in resource-isolated processes by encapsulating the entire software environment. Containers thus help in tackling one of the serious challenges associated with making an experiment computationally reproducible, i.e., the rapidly changing nature of computer environments.
 %2 History of containers
@@ -234,9 +225,9 @@ The main goals of Singularity are, 1) Mobility of compute 2) Reproducibility 3) 
 %Singularity how it helps
 Singularity image encapsulates the operating system environment and all application dependencies necessary to run a defined workflow. Singularity container supports different kinds of uniform resource identifiers (http:// and https://) and also other container formats like Docker (docker:// - for pulling images from docker hub, shub:// - for pulling images from singularity hub). Singularity images thus can be created from existing Docker images.
 
-\section{Web platforms and tools to run containers}
+\section{Web platforms and tools to run containers}\label{web_platforms}
 %\subsection{Why do we need these platforms?}
-\subsection{Examples of web computing platforms}
+%\subsection{Examples of web computing platforms}
 %How do you put neuro into clusters and how do you scale.
 % Move boutiques to 2.3 
 \subsection{CBRAIN}
@@ -294,7 +285,7 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 \label{fig:output}
 \end{center}
 
-\section{Interposition Techniques}
+\section{Interposition Techniques}\label{Interposition}
 
 \subsection{System and Library call interposition}
 System call interposition is a mechanism that allows a process to monitor the system calls made by another process~\cite{Jain00user-levelinfrastructure}. System call interposition techniques can be used to implement several important features such as 1) system call tracing and monitoring, 2) the emulation of other system call implementations, 3) wrapper environment for testing untrusted binaries, 4) transactional software environments which keeps track of all the operations and can record a commit or abort message based on the transactions etc. \cite{Jones93}.
