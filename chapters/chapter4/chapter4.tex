@@ -1,10 +1,10 @@
 \chapter{Application to HCP pre-processing pipelines}\label{pipelines}
 \setlength{\parskip}{1em}
 \setlength{\parindent}{4em}
-We used the framework described in the previous chapter to carry out the reproducibility evaluation of the pipelines developed by the Human Conectome Project. This chapter introduces the HCP pipelines (Section~\ref{hcp_pipelines}), the data used in our expriments (Section~\ref{HCP_Data}) and describes the computing conditions used for processing (Section~\ref{processing_subjects}).
+We used the framework described in the previous chapter to carry out the reproducibility evaluation of the pipelines developed by the Human Conectome Project. This chapter introduces the HCP pipelines (Section~\ref{hcp_pipelines}), the data used in our experiments (Section~\ref{HCP_Data}), PreFreeSurfer pipeline (Section~\ref{sec:PrefreeSurfer}, FreeSurfer pipeline (Section~\ref{sec:FreeSurfer}), PostFreeSurfer pipeline (Section~\ref{sec:PostFreeSurfer}), fMRIVolume pipeline (Section~\ref{sec:fMRIVolume}), subjects used for the study (Section~\ref{subjects_used}), HCP Docker images (Section~\ref{hcp_docker}) and the last section describes the details of processing of the HCP subjects (Section~\ref{processing_subjects}).
 
 \section{HCP Pipelines (v3.19.0)} \label{hcp_pipelines}
-%Intro to HCP preprocessing 
+%Intro to HCP preprocessing
 Figure \ref{fig:hcp_pipelines_overview} illustrates the HCP Preprocessing Pipelines overview. HCP pipelines consists of three structural pipelines (PreFreeSurfer, FreeSurfer and PostFreeSurfer), two functional pipelines (fMRIVolume and fMRISurface) and a Diffusion PreProcessing pipeline~\cite{Gla13}. According to~\cite{Gla13}, the overall goals of HCP Preprocessing pipelines are, ``1) to remove spatial artifacts and distortions; 2) to generate cortical surfaces, segmentations, and myelin maps; 3) to make the data easily viewable in the Connectome Workbench visualization software; 4) to generate precise within-subject cross-modal registrations; 5) to handle surface and volume cross-subject registrations to standard volume and surface spaces; and 6) to make the data available in the Connectivity Informatics Technology Initiative (CIFTI) format in a standard ``grayordinate" space". Grayordinate represents the gray matter in the brain using a surface vertex or a volume voxel~\cite{Grayordinate}. The minimal preprocessed subjects are available in standard format which makes it easier to compare it with subjects from other studies. This standardization makes it easier for researchers to report their findings and replicate the studies. HCP preprocessing pipelines are designed to minimize the amount of information removed from the HCP data.
 
 \begin{center}
@@ -14,7 +14,7 @@ Figure \ref{fig:hcp_pipelines_overview} illustrates the HCP Preprocessing Pipeli
    \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-Out of the six pipelines illustrated in Figure \ref{fig:hcp_pipelines_overview}, we used three structural pipelines and one functional pipeline for study. The pipelines are listed below, 
+Out of the six pipelines illustrated in Figure \ref{fig:hcp_pipelines_overview}, we used three structural pipelines and one functional pipeline for study. The pipelines are listed below,
 \begin{itemize}
   \item PreFreeSurfer (Section \ref{sec:PrefreeSurfer})
   \item FreesSurfer   (Section \ref{sec:FreeSurfer})
@@ -125,9 +125,9 @@ As mentioned in the previous paragraph, the first task (1) of PostFreeSurfer is 
 
 Steps (6-10) leads to the creation of 32k Registered Surface Mesh Native Volume Space. It starts off with step (6) where the pipeline combines the structural transforms of T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images, and they are brought to the native volume and MNI spaces. Next step is creating a mid-thickness surface. It is created by averaging the white and pial surfaces. Mid-thickness file is used for creating inflated and very inflated files. The volume, label and metric files are then organized into a file called as specification file (spec file) which is used for easy visualization of anatomical data using Connectome Workbench. The surface files are stored as GIFTI files while the specs files are CIFTI files.
 
-Step (7) uses the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php//Caret:Atlases/Conte69\_Atlas}} (Human Surface-based Atlas and Reference Data) population-average surfaces for registering individual subject's native-mesh surfaces. This step consists of combined surface registration applied to all surfaces and surface data files. The end goal of this step is to bring the images to (8) 164k\_fs\_LR standard surface mesh space. 
+Step (7) uses the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php//Caret:Atlases/Conte69\_Atlas}} (Human Surface-based Atlas and Reference Data) population-average surfaces for registering individual subject's native-mesh surfaces. This step consists of combined surface registration applied to all surfaces and surface data files. The end goal of this step is to bring the images to (8) 164k\_fs\_LR standard surface mesh space.
 
-Registration step is followed by (9) the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR MNI volume space. These lower resolution images are suited for functional and connectivity analyses. The last step (10) in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space. 
+Registration step is followed by (9) the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR MNI volume space. These lower resolution images are suited for functional and connectivity analyses. The last step (10) in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space.
 
 %Specification File (commonly called “Spec File”) is a file used to organize a set of data files (such as volume, label, and metric files) to be loaded into Workbench
 
@@ -143,13 +143,13 @@ It is a prerequisite of fMRIVolume pipeline that the input files should have com
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-\section{Subjects used for the study}
+\section{Subjects used for the study}\label{subjects_used}
 \subsection{HCP Data Selection}
-The data was obtained from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Tables \ref{tab:hcp_subject_details} and \ref{tab:subject_scan_details} give more insight about the HCP subjects that were used for our study. 
+The data was obtained from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Tables \ref{tab:hcp_subject_details} and \ref{tab:subject_scan_details} give more insight about the HCP subjects that were used for our study.
 
 \begin{center}
 \tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] | X[l] | } 
+\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] | X[l] | }
   \hline
   Subject & Release & Acquisition & Gender & Age \\
   \hline
@@ -191,7 +191,7 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 \end{center}
 
 \begin{center}
-  \begin{longtabu} to \textwidth{ | X[l] | X[l] | X[l] | X[l] | }  
+  \begin{longtabu} to \textwidth{ | X[l] | X[l] | X[l] | X[l] | }
   \hline
   Subject & MR Session Scanner 3T & MR Session Scans 3T & MR Session Label 3T \\
   \hline
@@ -211,14 +211,14 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 \caption*{Data retrieved from \cite{DBConnectomeSite}}
 \end{center}
 
-\section{HCP Docker Images}
+\section{HCP Docker Images}\label{hcp_docker}
 We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
 These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
 \begin{itemize}
 \item A 64-bit Linux Operating System
 \item FSL Version - 5.0.6
 \item FreeSurfer Version - 5.3.0-HCP
-\item Connectome Workbench Version - 1.0 
+\item Connectome Workbench Version - 1.0
 \item HCP version of gradunwarp version 1.0.2 (this is optional and needs to be installed only if gradient nonlinearity corrections needs to be done)
 \end{itemize}
 FSL 5.0.6\footnote{\url{https://fsl.fmrib.ox.ac.uk/fsldownloads/oldversions/}}, FreeSurfer 5.3.0-HCP\footnote{\url{http://ftp.nmr.mgh.harvard.edu/pub/dist/freesurfer/5.3.0-HCP/}} (CentOS 4 build) and Connectome Workbench 1.0\footnote{\url{https://www.humanconnectome.org/software/get-connectome-workbench}} were installed in the containers with the help of DockerFiles.
@@ -233,7 +233,7 @@ Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and av
 
 \begin{center}
 \tabulinesep=1.2mm
-\begin{tabular}{ | l | l | l | } 
+\begin{tabular}{ | l | l | l | }
   \hline
     \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
   \hline
