@@ -104,8 +104,25 @@ A container is a self-contained, ready-to-use software component with all the ne
 The container technology has been around for a while and there are numerous implementations of it. In the year 2000, FreeBSD (4.0) featured the Jails system which focused on providing a virtual environment running on the host machine with its own files, processes, user and superuser accounts. Later came Solaris Containers, providing not only isolation services but also mechanisms related to snapshot and cloning. A snapshot is a read-only copy of a file system or volume while a clone is a writable volume or file system created from a snapshot. In 2005, OpenVZ\footnote{\url{https://openvz.org/Main_Page}} was announced as a containerization technology supporting Linux systems and Virtuozzo\footnote{\url{https://openvz.org/Virtuozzo}} containers was built on top of OpenVZ components. Linux containers (LXC), took advantage of the namespace concept and extended its isolation property to users, processes and networking. Linux Programmer's Manual~\cite{namespaces} describes namespace as, ``a global system resource in an abstraction that makes it appear to the processes within the namespace that they have their own isolated instance of the global resource". In 2006, Google started a project which implemented a functionality to limit the resource usage of containers. This project was later merged into the Linux kernel and it was named as ``cgroups" feature. Linux Programmer's Manual~\cite{cgroups} defines cgroup as, ``Control cgroups, usually referred to as cgroups, are a Linux kernel feature which allows processes to be organized into hierarchical groups whose usage of various types of resources can then be limited and monitored". Docker, was started as an open source project in 2013, which basically added an additional layer on top of Linux Containers (LXC), exposing additional features such as mounted storage, network port redirection, and container catalog management. Singularity, was started in 2015, with focus on experimental reproducibility and isolation~\cite{Xavier:2013:PEC:2497369.2497577}.
 
 %Different kinds of virtualization
-Full virtualization, paravirtualization and containers are different kinds of virtualization. In full virtualization, guest operating systems can run without modifications on top of the host operating system and the virtual machine monitor (VMM)~\cite{7382987}. According to~\cite{hypervisor}, ``Hypervisor also known as Virtual Machine Monitor, is the basic software for providing virtualization. Virtualization creates the environment for various operating system to run on a single node or host computer or machine. The main purpose of the hypervisor is to monitor the Virtual Machine (VM) that runs above the VMM. This enables more than one guest machine to utilize the hardware resources of a single host machine". In paravirtualization, the guest OS (the one being virtualized) is aware that it is in a virtualized environment and the guest's kernel is modified to communicate directly with the virtualization hypervisor~\cite{7382987}. OS-Layer virtualization or container-based virtualization differs from full or paravirtualization by modifying the underlying OS to isolate instances. It utilizes host OS kernel to provide isolation and multi-tenancy layer.
-
+Full virtualization, paravirtualization and containers are different 
+kinds of virtualization. In full virtualization, guest operating 
+systems can run without modifications on top of the host operating 
+system and the virtual machine monitor (VMM)~\cite{7382987}. According 
+to~\cite{hypervisor}, ``Hypervisor also known as Virtual Machine 
+Monitor, is the basic software for providing virtualization. 
+Virtualization creates the environment for various operating system to 
+run on a single node or host computer or machine. The main purpose of 
+the hypervisor is to monitor the Virtual Machine (VM) that runs above 
+the VMM. This enables more than one guest machine to utilize the 
+hardware resources of a single host machine". In paravirtualization, 
+the guest OS (the one being virtualized) is aware that it is in a 
+virtualized environment and the guest's kernel is modified to 
+communicate directly with the virtualization hypervisor~\cite{7382987}. 
+OS-Layer virtualization or container-based virtualization differs from 
+full or paravirtualization by modifying the underlying OS to isolate 
+instances. It utilizes host OS kernel to provide isolation and 
+multi-tenancy layer.
+\todo{There are a lot of direct quotations in the previous paragraphs.}
 \begin{center}
 \includegraphics[width=\linewidth]{cont-vm.png}
   \captionof{figure}[Comparison of hypervisor and container]{Comparison of hypervisor-based (a) and container-based (b) instances.}
@@ -131,6 +148,7 @@ Some of the notable features of containers~\cite{docker-run}~\cite{DBLP:journals
 
 However, containers are not the ultimate solution for reproducible computations. Reproducibility issues may arise from other causes than software libraries, for instance amount of available resources or hardware heterogeneity, which are not covered by containers. Table~\ref{tab:table_docker} shows the various issues found while using Docker containers.
 %Include the problems listed in link https://goo.gl/zodrok
+\todo{I don't think you should include the table as is. It raises many questions that your text doesn't answer. I'd just remove it.}
 
 \begin{center}
 \tabulinesep=1.2mm
@@ -158,8 +176,16 @@ Niak\footnote{\url{http://niak.simexp-lab.org/niak\_pipelines.html}} is a prepro
 
 MRtrix3\footnote{\url{http://www.mrtrix.org/}} is a set of tools to analyze the diffusion MRI data. MRtrix3 has architecture specific compilation flags. Therefore, the application seems to crash when it is executed on a hardware with different architecture.
 
+\todo{Remove the two previous paragraphs on Niak and MRtrix3, they would really require much more explanations.}
+
 \subsection{Pipeline Containerization}
-Figure~\ref{fig:container_architecture} illustrates the container image architecture. The architecture is based on LXC which makes use of cgroups and namespaces. The images are layered on top of each other and the writable container image is kept at the top. The top layer is executable and it can have a state. The container can be considered as a directory containing everything needed for execution of an application~\cite{7158965}.\\
+Figure~\ref{fig:container_architecture} illustrates the container image 
+architecture. \todo{Is this figure yours? It looks like the base image has to be CentOS} The architecture is based on 
+LXC which makes use of cgroups and namespaces. The images are layered 
+on top of each other and the writable container image is kept at the 
+top. The top layer is executable and it can have a state. The container 
+can be considered as a directory containing everything needed for 
+execution of an application~\cite{7158965}.\\
 
 \begin{center}
 \includegraphics[width=\linewidth]{container_architecture_unedit.png}
@@ -170,8 +196,35 @@ Figure~\ref{fig:container_architecture} illustrates the container image architec
 Namespace isolation prevents processes from seeing resources allocated to each other. Container technologies use separate namespaces dedicated for each functionality, such as, process isolation, network interfaces, interprocess communication etc. Control groups manage and limit resource access for process groups through limit enforcement, accounting and isolation. Thus, namespace and cgroups makes it easier to manage and execute multi-tenant containers on the host system.
 
 \subsection{Docker}
+
 %Docker intro
-As illustrated in Figure~\ref{fig:docker_architecture}, Docker uses a client-server architecture. The Docker software runs as a daemon on host machine. This daemon can launch containers, control their isolation level, monitor them to trigger actions, and spawn shells into running containers for administration purposes. Daemon can change firewall rules on the host and create network interfaces. Docker can create and store images encapsulating an entire software environment. Docker images can be stored locally or it can be stored in Dockerhub\footnote{\url{https://hub.docker.com/}}. Dockerhub is an online repository that helps developers to manage the Docker images. Anyone who sign up on the Dockerhub has access to public images, and they can also host their own images. There is also feature to automate the image creation with the help of Git\footnote{\url{https://git-scm.com/}}. Any user can create repository under his account and the repositories are namespaced using the format, "\textless developer\textgreater/\textless repository\textgreater"~\cite{7742298}. The management of the images on the host machine, pushing and pulling of images from Dockerhub\footnote{\url{https://www.hub.docker.com/}}, building images from Dockerfile are all taken care by the daemon. The daemon itself runs as a root user on the host machine and it is remotely controlled through a Unix socket. The Docker client talks to the Docker daemon and the daemon does all the heavy lifting like pushing, pulling and building images. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface. The client and daemon need not necessarily be on the same machine~\cite{docker-documentation}.
+As illustrated in Figure~\ref{fig:docker_architecture}, Docker uses a 
+client-server architecture. The Docker software runs as a daemon on 
+host machine. This daemon can launch containers, control their 
+isolation level, monitor them to trigger actions, and spawn shells into 
+running containers for administration purposes. Daemon can change 
+firewall rules on the host and create network interfaces. Docker can 
+create and store images encapsulating an entire software environment. 
+Docker images can be stored locally or it can be stored in 
+Dockerhub\footnote{\url{https://hub.docker.com/}}. Dockerhub is an 
+online repository that helps developers to manage the Docker images. 
+Anyone who signs up on the Dockerhub has access to public images, and 
+they can also host their own images. There is also feature to automate 
+the image creation with the help of 
+Git\footnote{\url{https://git-scm.com/}}. Any user can create 
+repository under his account and the repositories are namespaced using 
+the format, "\textless developer\textgreater/\textless 
+repository\textgreater"~\cite{7742298}. The management of the images on 
+the host machine, pushing and pulling of images from 
+Dockerhub\footnote{\url{https://www.hub.docker.com/}}, building images 
+from Dockerfile are all taken care by the daemon. The daemon itself 
+runs as a root user on the host machine and it is remotely controlled 
+through a Unix socket. The Docker client talks to the Docker daemon and 
+the daemon does all the heavy lifting like pushing, pulling and 
+building images. The Docker client and daemon communicate using a REST 
+API, over UNIX sockets or a network interface. The client and daemon 
+need not necessarily be on the same 
+machine~\cite{docker-documentation}.
 
 \begin{center}
 \includegraphics[width=\linewidth]{docker_architecture.png}
@@ -185,7 +238,25 @@ As illustrated in Figure~\ref{fig:docker_architecture}, Docker uses a client-ser
 % Explain dockerfile sample
 %Docker Features
 
-Docker provides access to virtualization facilities provided by the Linux kernel, along with some abstracted virtualized interfaces such as libvirt\footnote{\url{https://libvirt.org/}}, LXC and systemd-nspawn\footnote{\url{https://www.freedesktop.org/software/systemd/man/systemdnspawn.html}}. The control over the host's resources is provided thorough Control Groups (cgroups) and thus it limits the amount of resources used by a container such as memory, disk space and I/O. Docker features a layered file system called AuFS (Advanced Multi Layered Unification File System) which allows to overlay one or more existing file systems. AuFS feature provides capabilities such as image versioning management and exposing base images to more specialized virtualized systems. One of the main reason for the wide adoption of Docker containers is that it can leverage the infrastructure consolidation (an organization's strategy to reduce IT assets by using more efficient technologies) and it exhibits a low resource footprint. Docker also boosted the adoption of service oriented architectures (e.g. micro services) because that makes the deployment of self-contained modules easy. They are also able to independently interact with third parties using existing network protocols (e.g. web services)~\cite{Xavier:2013:PEC:2497369.2497577}. 
+Docker provides access to virtualization facilities provided by the 
+Linux kernel, along with some abstracted virtualized interfaces such as 
+libvirt\footnote{\url{https://libvirt.org/}}, LXC and 
+systemd-nspawn\footnote{\url{https://www.freedesktop.org/software/systemd/man/systemdnspawn.html}}. 
+The control over the host's resources is provided thorough Control 
+Groups (cgroups) and thus it limits the amount of resources used by a 
+container such as memory, disk space and I/O. Docker features a layered 
+file system called AuFS (Advanced Multi Layered Unification File 
+System) which allows to overlay one or more existing file systems. AuFS 
+feature provides capabilities such as image versioning management and 
+exposing base images to more specialized virtualized systems. One of 
+the main reasons for the wide adoption of Docker containers is that it 
+can leverage the infrastructure consolidation (an organization's 
+strategy to reduce IT assets by using more efficient technologies) and 
+it exhibits a low resource footprint. Docker also boosted the adoption 
+of service oriented architectures (e.g. micro services) because that 
+makes the deployment of self-contained modules easy. They are also able 
+to independently interact with third parties using existing network 
+protocols (e.g. web services)~\cite{Xavier:2013:PEC:2497369.2497577}. 
 
 \begin{center}
 \includegraphics[width=\linewidth]{docker_sample_format}
@@ -201,7 +272,18 @@ Docker provides access to virtualization facilities provided by the Linux kernel
 \end{center}
 
 %Docker build commands
-The sample file format of a Dockerfile is shown in Figure~\ref{fig:docker_format}. The development of standardized Dockerfile format as illustrated in Figure~\ref{fig:docker_file_format}, for describing and managing software containers is very straightforward. FROM keyword is used to mention the parent image name. WORKDIR sets the current working directory and ADD helps to copy files or directories. RUN is used to run a specific command and EXPOSE keyword helps to open ports for access outside the container. ENV command is used for setting the environment variables and CMD command helps us to run scripts along with its arguments. There are many more commands and the complete documentation is available at~\cite{docker_commands}.
+The sample file format of a Dockerfile is shown in 
+Figure~\ref{fig:docker_format} \todo{I don't think you need a figure for that.}. The development of standardized 
+Dockerfile format as illustrated in 
+Figure~\ref{fig:docker_file_format}, for describing and managing 
+software containers is very straightforward. FROM keyword is used to 
+mention the parent image name. WORKDIR sets the current working 
+directory and ADD helps to copy files or directories. RUN is used to 
+run a specific command and EXPOSE keyword helps to open ports for 
+access outside the container. ENV command is used for setting the 
+environment variables and CMD command helps us to run scripts along 
+with its arguments. There are many more commands and the complete 
+documentation is available at~\cite{docker_commands}.
 
 %How it helps run experiments
 Docker helps developers to easily create standard containers for their software applications or services. For a system administrator, Docker helps in the automation of deployment and management of business level services with the help of containers. Docker can be used as a part of virtualization layer for deploying and managing the execution environments. Another advantage is that Docker containers provide reliable and predictable execution environments and thus helps in reducing the issues related to deployment~\cite{DBLP:journals/corr/MorrisVHM17}.
