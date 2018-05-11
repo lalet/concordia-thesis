@@ -1,5 +1,5 @@
 \chapter{Results}\label{results}
-This chapter discusses the results we obtained by processing data using the HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by section \ref{sec:Freesurfer} on FreeSurfer results, section \ref{sec:Postfreesurfer} on PostFreeSurfer results, section \ref{sec:fMRI} discusses fMRIVolume pipeline results and section \ref{sec:comparison} compares the effect of operating systems on HCP pipelines against the anatomical variations in the subjects.
+This chapter discusses the results we obtained by processing data using the HCP pipelines. The differences we observed and the quantified metric values are discussed in detail for each pipeline. Section \ref{sec:Prefreesurfer} discusses PrefreeSurfer results, followed by Section \ref{sec:Freesurfer} on FreeSurfer results, Section \ref{sec:Postfreesurfer} on PostFreeSurfer results, Section \ref{sec:fMRI} discusses fMRIVolume pipeline results and Section \ref{sec:comparison} compares the effect of operating systems on HCP pipelines against the anatomical variations in the subjects.
 
 \section{PreFreeSurfer} \label{sec:Prefreesurfer}
 The subjects were processed on CentOS6 and CentOS7 using the PreFreeSurfer pipeline. Among the 92 NIfTI imaging files common to all 5 subjects, 76 (.nii.gz) files differed between CentOS6 and CentOS7. Figure~\ref{fig:prefreesurfer_metric_values} shows the Dice coefficient and NRMSE values of the NIfTI files that were found to have differences in between operating systems.
@@ -136,7 +136,7 @@ Figure~\ref{fig:freesurfer_wm_file} illustrates the differences in the ``wm.hire
 
 \begin{center}
 \includegraphics[width=\linewidth]{wm-red-white.png}
-\captionof{figure}[Differences in WM hire file]{Differences in WM hire file (Red spots in the image shows the differences). \href{https://drive.google.com/file/d/1i6WpH6Le5xry4j-RtRZxt0_NP3Ulm5AT/view?usp=sharing}{Link}\\(Subject: 105216; Filename: wm.hires.nii.gz; Dice coeff.: 0.994 ; NRMSE: 0.074)}
+\captionof{figure}[Differences in WM hire file]{Differences in WM hire file (Red spots in the image shows the differences). \href{https://drive.google.com/file/d/1i6WpH6Le5xry4j-RtRZxt0_NP3Ulm5AT/view?usp=sharing}{Link to the animated illustration of differences}\\(Subject: 105216; Filename: wm.hires.nii.gz; Dice coeff.: 0.994 ; NRMSE: 0.074)}
 \label{fig:freesurfer_wm_file}
 \end{center}
 
@@ -207,7 +207,7 @@ The general findings about the differences in the output images due to the fMRIV
 \begin{tabular}{|l|l|l|}
 \hline
 \textbf{Item}      & \textbf{Nrmse}  & \textbf{Dice} \\ \hline
-Mean               & 0.0160    & 0.5605   \\ \hline
+Mean               & 0.0160     & 0.5605   \\ \hline
 Median             & 0.0090     & 0.7511   \\ \hline
 Standard Deviation & 0.0196     & 0.3769   \\ \hline
 \end{tabular}
