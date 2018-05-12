@@ -134,7 +134,7 @@ multi-tenancy layer.
 Figure \ref{fig:Comparison of container vs. hypervisor} illustrates the differences based on hypervisor and container. Containers have a closer access to operating system services than their counterpart virtualization tools which makes their performance closer to the performance exhibited on top of native environments~\cite{Xavier:2013:PEC:2497369.2497577}. Containers access the host operating system directly, which reduces the overhead compared to other types of virtualization.
 
 % Features of containers
-Some of the notable features of containers~\cite{docker-run}~\cite{DBLP:journals/corr/HaleLRW16}~\cite{Julian:2016:CRI:2949550.2949562}~\cite{10.1109/ISPASS.2015.7095802} which facilitate conducting experiments easily are listed below:
+Some of the notable features of containers~\cite{docker-run,DBLP:journals/corr/HaleLRW16,Julian:2016:CRI:2949550.2949562,10.1109/ISPASS.2015.7095802} which facilitate conducting experiments easily are listed below:
 
 \begin{itemize}
   \item Helps in encapsulating the entire software environment.
@@ -146,42 +146,43 @@ Some of the notable features of containers~\cite{docker-run}~\cite{DBLP:journals
 
 %\todo{Write this: What are its limitations. Introduce and comment on the table.}
 
-However, containers are not the ultimate solution for reproducible computations. Reproducibility issues may arise from other causes than software libraries, for instance amount of available resources or hardware heterogeneity, which are not covered by containers. Table~\ref{tab:table_docker} shows the various issues found while using Docker containers.
+However, containers are not the ultimate solution for reproducible computations. Reproducibility issues may arise from other causes than software libraries, for instance amount of available resources or hardware heterogeneity, which are not covered by containers.
+%Table~\ref{tab:table_docker} shows the various issues found while using Docker containers.
 %Include the problems listed in link https://goo.gl/zodrok
-\todo{I don't think you should include the table as is. It raises many questions that your text doesn't answer. I'd just remove it.}
+%\todo{I don't think you should include the table as is. It raises many questions that your text doesn't answer. I'd just remove it.}
 
-\begin{center}
-\tabulinesep=1.2mm
-\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] |}
-  \hline
-  \textbf{Error type} & \textbf{Cause} & \textbf{Software} &  \textbf{Solved by containers?} \\
-  \hline
-  Numerical differences & OS libraries & FSL, Freesurfer, CIVET & Masked \\
-  \hline
-  Numerical differences & Unnoticed crash & FSL (epi\_reg) & Depends on crash cause \\
-  \hline
-  Crash & Hardware-specific instructions & MRtrix3 (default compilation options have architecture-specific compilation flags) & No \\
-  \hline
-  Crash & Out of memory & FSL (applywarp) & No \\
-  \hline
-\end{tabu}
-\captionof{table}{Container Issues}
-\label{tab:table_docker}
-\end{center}
+%\begin{center}
+%\tabulinesep=1.2mm
+%\begin{tabu} to \textwidth { | X[l] | X[l] | X[l] | X[l] |}
+%  \hline
+%  \textbf{Error type} & \textbf{Cause} & \textbf{Software} &  \textbf{Solved by containers?} \\
+%  \hline
+%  Numerical differences & OS libraries & FSL, Freesurfer, CIVET & Masked \\
+%  \hline
+%  Numerical differences & Unnoticed crash & FSL (epi\_reg) & Depends on crash cause \\
+%  \hline
+%  Crash & Hardware-specific instructions & MRtrix3 (default compilation options have architecture-specific compilation flags) & No \\
+%  \hline
+%  Crash & Out of memory & FSL (applywarp) & No \\
+%  \hline
+%\end{tabu}
+%\captionof{table}{Container Issues}
+%\label{tab:table_docker}
+%\end{center}
 
 %Numerical issues in containers
 Containers help in reducing the variability in the images caused due to the numerical instability of pipelines. The differences found in FSL, FreeSurfer and CIVET are actually masked by the use of containers, since, the condition on which the processing takes place doesn't change if we are using the same container image. If the image gets updated, the results might be different.
 
-Niak\footnote{\url{http://niak.simexp-lab.org/niak\_pipelines.html}} is a preprocessing pipeline consisting of tools for the connectivity analysis in fMRI. Niak pipeline has numerical instability stemming from the differences in the host kernel used by the container. 
+%Niak\footnote{\url{http://niak.simexp-lab.org/niak\_pipelines.html}} is a preprocessing pipeline consisting of tools for the connectivity analysis in fMRI. Niak pipeline has numerical instability stemming from the differences in the host kernel used by the container. 
 
-MRtrix3\footnote{\url{http://www.mrtrix.org/}} is a set of tools to analyze the diffusion MRI data. MRtrix3 has architecture specific compilation flags. Therefore, the application seems to crash when it is executed on a hardware with different architecture.
+%MRtrix3\footnote{\url{http://www.mrtrix.org/}} is a set of tools to analyze the diffusion MRI data. MRtrix3 has architecture specific compilation flags. Therefore, the application seems to crash when it is executed on a hardware with different architecture.
 
-\todo{Remove the two previous paragraphs on Niak and MRtrix3, they would really require much more explanations.}
+%\todo{Remove the two previous paragraphs on Niak and MRtrix3, they would really require much more explanations.}
 
 \subsection{Pipeline Containerization}
 Figure~\ref{fig:container_architecture} illustrates the container image 
-architecture. \todo{Is this figure yours? It looks like the base image has to be CentOS} The architecture is based on 
-LXC which makes use of cgroups and namespaces. The images are layered 
+architecture. %\todo{Is this figure yours? It looks like the base image has to be CentOS} 
+The architecture is based on LXC which makes use of cgroups and namespaces. The images are layered 
 on top of each other and the writable container image is kept at the 
 top. The top layer is executable and it can have a state. The container 
 can be considered as a directory containing everything needed for 
@@ -259,11 +260,11 @@ makes the deployment of self-contained modules easy. They are also able
 to independently interact with third parties using existing network 
 protocols (e.g. web services)~\cite{Xavier:2013:PEC:2497369.2497577}. 
 
-\begin{center}
-\includegraphics[width=\linewidth]{docker_sample_format}
-\captionof{figure}{Docker Sample Format}
-\label{fig:docker_format}
-\end{center}
+%\begin{center}
+%\includegraphics[width=\linewidth]{docker_sample_format}
+%\captionof{figure}{Docker Sample Format}
+%\label{fig:docker_format}
+%\end{center}
 
 \begin{center}
 \includegraphics[width=\linewidth]{Docker_Sample_File}
@@ -273,9 +274,8 @@ protocols (e.g. web services)~\cite{Xavier:2013:PEC:2497369.2497577}.
 \end{center}
 
 %Docker build commands
-The sample file format of a Dockerfile is shown in 
-Figure~\ref{fig:docker_format} \todo{I don't think you need a figure for that.}. The development of standardized 
-Dockerfile format as illustrated in 
+%The sample file format of a Dockerfile is shown in Figure~\ref{fig:docker_format} \todo{I don't think you need a figure for that.}. 
+The development of standardized Dockerfile format as illustrated in 
 Figure~\ref{fig:docker_file_format}, for describing and managing 
 software containers is very straightforward. FROM keyword is used to 
 mention the parent image name. WORKDIR sets the current working 
