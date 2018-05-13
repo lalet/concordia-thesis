@@ -5,7 +5,7 @@
 %\todo{A few sentences of introduction to outline the chapter}
 The tools and platforms used for the reproducibility evaluations of neuroimaging pipelines are discussed in this chapter.
 %\todo{The rest of this paragraph is irrelevant. You should just describe the outline of the chapter here.}
-Section~\ref{neuroimaging} discusses the various Neuroimaging pipelines. Section~\ref{reproducibility_neuroimaging} discusses studies conducted on the topic of reproducibility and the effect of operating systems on neuroimaging pipelines. Section~\ref{containers} discusses about containers and various virtualization techniques. Section~\ref{web_platforms} describes the web platforms and tools commonly used to run containers and the last section (Section~\ref{Interposition}) consists of interposition techniques used for provenance capture.
+Section~\ref{neuroimaging} discusses the various Neuroimaging pipelines. Section~\ref{reproducibility_neuroimaging} discusses studies conducted on the topic of reproducibility and the effect of operating systems on neuroimaging pipelines. Section~\ref{containers} talks about containers and various virtualization techniques. Section~\ref{web_platforms} describes the web platforms and tools commonly used to run containers and the last section (Section~\ref{Interposition}) consists of interposition techniques used for provenance capture.
 
 \section{Neuroimaging Pipelines}\label{neuroimaging}
 %What is neuroimagaing
@@ -108,14 +108,9 @@ Namespaces help the Linux operating system in preventing naming collisions of id
 Full virtualization, paravirtualization and containers are different 
 kinds of virtualization. In full virtualization, guest operating 
 systems can run without modifications on top of the host operating 
-system and the virtual machine monitor (VMM)~\cite{7382987}. According 
-to~\cite{hypervisor}, ``Hypervisor also known as Virtual Machine 
-Monitor, is the basic software for providing virtualization. 
-Virtualization creates the environment for various operating system to 
-run on a single node or host computer or machine. The main purpose of 
-the hypervisor is to monitor the Virtual Machine (VM) that runs above 
-the VMM. This enables more than one guest machine to utilize the 
-hardware resources of a single host machine". In paravirtualization, 
+system and the Virtual Machine Monitor (VMM)~\cite{7382987}. 
+The Hypervisor, also known as Virtual Machine Monitor enables the running of multiple
+virtual machines, on top of the hypervisor by utilizing the resources of the host machine alone~\cite{hypervisor}. In paravirtualization, 
 the guest OS (the one being virtualized) is aware that it is in a 
 virtualized environment and the guest's kernel is modified to 
 communicate directly with the virtualization hypervisor~\cite{7382987}. 
@@ -123,7 +118,7 @@ OS-Layer virtualization or container-based virtualization differs from
 full or paravirtualization by modifying the underlying OS to isolate 
 instances. It utilizes host OS kernel to provide isolation and 
 multi-tenancy layer.
-\todo{There are a lot of direct quotations in the previous paragraphs.}
+%\todo{There are a lot of direct quotations in the previous paragraphs.}
 \begin{center}
 \includegraphics[width=\linewidth]{cont-vm.png}
   \captionof{figure}[Comparison of hypervisor and container]{Comparison of hypervisor-based (a) and container-based (b) instances.}
@@ -135,7 +130,7 @@ multi-tenancy layer.
 Figure \ref{fig:Comparison of container vs. hypervisor} illustrates the differences based on hypervisor and container. Containers have a closer access to operating system services than their counterpart virtualization tools which makes their performance closer to the performance exhibited on top of native environments~\cite{Xavier:2013:PEC:2497369.2497577}. Containers access the host operating system directly, which reduces the overhead compared to other types of virtualization.
 
 % Features of containers
-Some of the notable features of containers~\cite{docker-run,DBLP:journals/corr/HaleLRW16,Julian:2016:CRI:2949550.2949562,10.1109/ISPASS.2015.7095802} which facilitate conducting experiments easily are listed below:
+Some notable features of containers~\cite{docker-run,DBLP:journals/corr/HaleLRW16,Julian:2016:CRI:2949550.2949562,10.1109/ISPASS.2015.7095802} which facilitate conducting experiments easily are listed below:
 
 \begin{itemize}
   \item Helps in encapsulating the entire software environment.
