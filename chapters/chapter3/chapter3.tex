@@ -1,5 +1,15 @@
 \chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}\label{framework}
-The Repro-tools is a framework developed for analyzing the reproducibility issues occurring in the neuroimaging pipelines. Though this framework is developed with various neuroimaging pipelines in focus, in principle, it can be also be used for analyzing data belonging to various other disciplines. The term ``condition" with respect to this framework refers to different operating systems on which the data processing takes place. Likewise, the term ``subject" with respect to this framework is used to denote the directories containing the data, that are kept under each condition. 
+In this thesis I developed Repro-tools, a framework to analyze the 
+reproducibility issues occurring in the neuroimaging pipelines. Though 
+this framework is developed with various neuroimaging pipelines in 
+focus, in principle, it can be also be used for analyzing data 
+belonging to various other disciplines. The term ``condition" with 
+respect to this framework refers to different operating systems on 
+which the data processing takes place. Likewise, the term ``subject" 
+with respect to this framework is used to denote the directories 
+containing the data, that are kept under each condition. 
+
+\todo{A "subject" cannot be defined as "directories containing the data".}
 
 This chapter discusses the overall workflow of the framework (Section~\ref{workflow}), Docker images (Section~\ref{docker_images}), how the pipelines were encapsulated (Section~\ref{encapsulation}), how they were deployed (Section~\ref{deployment}), analysis of results (Section~\ref{file_analysis}), provenance capture (Section~\ref{provenance}) and the metrics used for quantifying the differences (Section~\ref{sec:num1}).
 
@@ -22,7 +32,15 @@ This chapter discusses the overall workflow of the framework (Section~\ref{workf
 Figure \ref{fig:framework_architecture} illustrates the overall workflow. The Docker image creation is automated. For each commit, made to the Dockerfile stored in Github\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer}}, a new build is triggered in Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These images are then used by CBRAIN for processing the subjects. Boutiques helps in deploying these containers to CBRAIN platform. CBRAIN can harness the power of computational clusters as well. The subjects processed under different conditions are then analyzed using the Repro-tools.
 
 \section{Docker Images}\label{docker_images}
-Repro-tools framework uses Docker containers for reproducibility studies. A Docker container is the running instance of a Docker image. Dockerfiles are used for specifiying the operating system and the libraries needed for creating a Docker image. With the help of automated image creation feature in Dockerhub, whenever a commit is made to the Dockerfile, a new image build gets triggered (Figure~\ref{fig:Docker_build}). Thus, the automated build makes sure that the changes are always reflected in the Docker images.
+Repro-tools framework uses Docker containers for reproducibility 
+studies. A Docker container is the running instance of a Docker image. 
+Dockerfiles are used for specifiying the operating system and the 
+libraries needed for creating a Docker image. With the help of 
+automated image creation feature in Dockerhub, whenever a commit is 
+made to the Dockerfile, a new image build gets triggered 
+(Figure~\ref{fig:Docker_build} \todo{I don't find this figure very 
+useful.}). Thus, the automated build makes sure that the changes are 
+always reflected in the Docker images.
 
 Repro-tools, before the beginning of processing a subject, makes a check to ensure that the image that is getting used is the latest one. This check makes sure that the processing is done with the up-to-date changes in the Docker images.
 
@@ -35,7 +53,7 @@ Repro-tools, before the beginning of processing a subject, makes a check to ensu
 
 \section{Pipeline Encapsulation}\label{encapsulation}
 %Add Why wrapper and advantages
-Wrapper scripts\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} were created on top of the pipeline to have the features which are listed below,
+Wrapper scripts\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} were created on top of the pipeline to add the following features:
 \begin{itemize}
   \item Compute the checksum of the files in each subject before and after the execution
   \item Create execution directory and copy the subject to prevent corrupting the input data
@@ -177,7 +195,12 @@ The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), accordin
 \fi
 
 \subsection{Dice Similarity Coefficient}
+
+\todo{Add capital to Dice.}
+
 Dice Similarity Coefficient~\cite{ECY:ECY1945263297} can be used as a statistical validation metric for measuring the reproducibility of magnetic resonance images~\cite{Zou2004}. To measure the similarity of image files in reproducibility study, we used dice similarity coefficient. The coefficient ranges from [0.0,1.0]. 1.0 meaning the images are exactly similiar and 0 meaning there is zero similarity. The equation used for finding the dice coefficient is given in \ref{eq:eq_two}. Consider I1 \& I2, as non-zero voxels from two images. We computed the voxelwise differences with the help of FSL tools for calculating the dice similarity coefficient. The script we used to compute NRMSE value is available in \href{https://github.com/big-data-lab-team/repro-tools/blob/master/metrics/dice.sh}{GitHub}.
+
+\todo{You didn't define |.|}
 
 \begin{equation}
   \label{eq:eq_two}
