@@ -167,7 +167,7 @@ However, containers are not the ultimate solution for reproducible computations.
 %\end{center}
 
 %Numerical issues in containers
-Containers help in reducing the variability in the images caused due to the numerical instability of pipelines. The differences found in FSL, FreeSurfer and CIVET are actually masked by the use of containers, since, the condition on which the processing takes place doesn't change if we are using the same container image~\cite{Gla15}. If the image gets updated, the results might be different.
+%Containers help in reducing the variability in the images caused due to the numerical instability of pipelines. The differences found in FSL, FreeSurfer and CIVET are actually masked by the use of containers, since, the condition on which the processing takes place doesn't change if we are using the same container image~\cite{Gla15}. If the image gets updated, the results might be different.
 
 %Niak\footnote{\url{http://niak.simexp-lab.org/niak\_pipelines.html}} is a preprocessing pipeline consisting of tools for the connectivity analysis in fMRI. Niak pipeline has numerical instability stemming from the differences in the host kernel used by the container. 
 
@@ -381,16 +381,15 @@ cloud computing is that it can eliminate the need for up-front capital
 for infrastructure as businesses can leverage the scale of computing 
 according to the demand and thus save significant amount of money. 
 Cloud computing models\footnote{\url{https://aws.amazon.com/types-of-cloud-computing/}} 
-of three types (i) Infrastructure as a Service (IaaS), provides access to 
+of three types are available in Amazon Web Services. They are (i) Infrastructure as a Service (IaaS), which provides access to 
 networking features, computing infrastructure and data storage 
-capability. (ii) Platform as a Service (PaaS), offers complete 
+capability, (ii) Platform as a Service (PaaS), which offers complete 
 management of the infrastructure including resource procurement, 
-planning, maintenance, patching etc. (iii) Software as a Service 
-(SaaS), provides completed product that is run and managed by the 
+planning, maintenance, patching etc., and (iii) Software as a Service 
+(SaaS), which provides completed product that is run and managed by the 
 service provider. There are a variety of cloud-platform services 
 provided by AWS. Elastic Compute Cloud (EC2) and Simple Storage Service 
-(S3) are the most popularly used ones in terms of computing and 
-storage.
+(S3) are the most popularly used ones in terms of computing and storage.
 
 %Amazon EC2
 EC2 provides you total control over the virtual machines (instances) which you can create and you have to pay according to the resources that you actually use. Each virtual machine configuration that a user can create from the AWS user interface is called an ``instance type". The pricing strategies of EC2 are of three kinds: (i) On Demand Instances - where you pay for compute capacity by the hour. (ii) Reserved instances - where you have the flexibility to change families, OS types etc and also a significant discount (up to 75\%). (iii) Spot Instances - where users are allowed to bid on spare EC2 computing capacity. If the bid amount goes higher than the bid price by the user, the instance is terminated instantly.
@@ -407,8 +406,6 @@ To enable sharing of ideas and software, it is a common practice to port the app
 Docker and Singularity helps in the creation of reproducible and portable software experiments by containerzing the software environment that can be shared easily~\cite{boutiques}. The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. This template, also known as \textit{manifests}, are created in order to share them among the research community and for using it on various execution platforms. These manifests are also used as the reference to validate the input parameters. The preferred way of describing these command line template, input and argument is through a JSON document. The manifest contains the details to a container where the intended application is installed. The proper command line argument is built at runtime with the help of manifest and the template gets replaced by the actual values given by the user. For validating the inputs an invocation schema is used.
 
 %\todo{Lots of direct quotations on Boutiques too.}
-
-\todo{Lots of direct quotations on Boutiques too.}
 
 Here is an example of a typical command-line template:
 
