@@ -25,9 +25,15 @@ Out of the six pipelines illustrated in Figure \ref{fig:hcp_pipelines_overview},
 The HCP pipeline is open sourced, and the study is conducted using the version 3.19.0\footnote{\url{https://github.com/Washington-University/Pipelines/releases/tag/v3.19.0}}. The details of pipeines are listed below.
 
 \section{HCP Data} \label{HCP_Data}
-HCP Data is collected from a population of adult twins and their non-twin siblings in the age range of 22-35 years. Data from 1200 subjects is available in the ConnectomeDB repository \footnote{\url{https://db.humanconnectome.org/}}. Each HCP data set, is data collected from an individual person and such a directory containing the HCP data is denoted by the term, ``subject". Each subject contains data belonging to four modalities. They are structural MRI, resting-state fMRI (rfMRI), task fMRI (tfMRI), and diffusion MRI (dMRI)~\cite{HCPData}.
+HCP Data is collected from a population of adult twins and their non-twin siblings in the age range of 22-35 years. \todo{The previous sentence is a direct quotation} Data from 1200 subjects is available in the ConnectomeDB repository \footnote{\url{https://db.humanconnectome.org/}}. Each HCP data set, is data collected from an individual person and such a directory containing the HCP data is denoted by the term, ``subject". Each subject contains data belonging to four modalities. They are structural MRI, resting-state fMRI (rfMRI), task fMRI (tfMRI), and diffusion MRI (dMRI)~\cite{HCPData}.
 
-\indent Terms ``T1-weighted" and ``T2-weighted" are used quite often in the realm of structural images. As per the definition given by~\cite{t1w_t2w}, T1-weighted images provides good contrast between gray matter and white matter in brain while cerebrospinal fluid is void of signal (black color) and T2-weighted images provides good contrast between cerebrospinal fluid and brain tissue. Figures~\ref{fig:T1w} and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
+\indent Terms ``T1-weighted" and ``T2-weighted" are used quite often in 
+the realm of structural images. As per the definition given 
+by~\cite{t1w_t2w}, T1-weighted images provides good contrast between 
+gray matter and white matter in brain while cerebrospinal fluid is void 
+of signal (black color) and T2-weighted images provides good contrast 
+between cerebrospinal fluid and brain tissue. \todo{The previous sentence is a direct quotation.} Figures~\ref{fig:T1w} 
+and~\ref{fig:T2w} illustrates T1-weighted and T2-weighted images.\\
 
 \begin{center}
   \includegraphics[width=\linewidth]{T1_v3}
@@ -43,7 +49,19 @@ HCP Data is collected from a population of adult twins and their non-twin siblin
   \caption*{Extracted from \cite{t1w_t2w}}
 \end{center}
 
-\indent Functional data consists of task based and resting state fMRI data. Emotion, gambling, language, motor, relational and social are examples of task based fMRI data available in the HCP Subjects. Resting state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task based fMRI data is used for studying functional brain networks under task performance. Task based fMRI analyses can identify and characterize functionally distinct nodes in human brain\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}. Resting state fMRI consists of data that is collected when the subject is not performing an explicit task. This can be used to map the regional interactions happening in the brain at the time of rest~\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}.
+\indent Functional data consists of task based and resting state fMRI 
+data. Emotion, gambling, language, motor, relational and social are 
+examples of task based fMRI data available in the HCP Subjects. Resting 
+state data consists of 2 sets (Rest1 and Rest2) in HCP subjects. Task 
+based fMRI data is used for studying functional brain networks under 
+task performance. Task based fMRI analyses can identify and 
+characterize functionally distinct nodes in human 
+brain\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}. 
+Resting state fMRI consists of data that is collected when the subject 
+is not performing an explicit task. This can be used to map the 
+regional interactions happening in the brain at the time of 
+rest~\footnote{\url{https://www.humanconnectome.org/study/hcp-young-adult/project-protocol/resting-state-fmri}}.
+
 
 \section{PreFreeSurfer} \label{sec:PrefreeSurfer}
 Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an undistorted ``native" structural volume space for each subject; 2) align the T1W and T2W images; 3) perform bias field correction; 4) register the subject's native structural volume space to MNI space''. The workflow of PreFreeSurfer is illustrated in Figure \ref{fig:prefreesurfer_overview}.
@@ -63,6 +81,7 @@ Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an u
   \label{fig:gradient_nonlinearity}
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
+\todo{I think you can remove Figure~\ref{fig:gradient_nonlinearity}, you reused a lot of figures already!}
 
 \indent Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the reference template for the ease of visualization.
 
@@ -76,7 +95,7 @@ Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an u
 \indent The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
 
 \section{FreeSurfer} \label{sec:FreeSurfer}
-HCP pipelines uses FreeSurfer version 5.2 with a lot of enhancements made particularly focusing HCP data. The main goals, according to~\cite{Gla13} are, ``1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage)''. The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
+HCP pipelines use FreeSurfer version 5.2 with a lot of enhancements made particularly focusing HCP data. The main goals, according to~\cite{Gla13} are, ``1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage)''. The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
 
 \begin{center}
   \includegraphics[width=\linewidth]{FreeSurfer_Architecture}
@@ -101,6 +120,7 @@ The set of steps in the FreeSurfer pipeline is for generating the Pial surfaces.
   \label{fig:pial_surface_generation}
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
+\todo{Figure~\ref{fig:pial_surface_generation} is again directly extracted. If you want to illustrate the pipeline steps, you should rather use your own images.}
 
 After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellation (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
 
@@ -122,6 +142,7 @@ As mentioned in the previous paragraph, the first task (1) of PostFreeSurfer is 
   \label{fig:residual_bias_correction}
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
+\todo{Same comment as before.}
 
 Steps (6-10) leads to the creation of 32k Registered Surface Mesh Native Volume Space. It starts off with step (6) where the pipeline combines the structural transforms of T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images, and they are brought to the native volume and MNI spaces. Next step is creating a mid-thickness surface. It is created by averaging the white and pial surfaces. Mid-thickness file is used for creating inflated and very inflated files. The volume, label and metric files are then organized into a file called as specification file (spec file) which is used for easy visualization of anatomical data using Connectome Workbench. The surface files are stored as GIFTI files while the specs files are CIFTI files.
 
