@@ -429,8 +429,8 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 \end{center}
 
 \section{Interposition Techniques}\label{Interposition}
-Interposition techniques are used to intercept and store the details regarding the processes and the files of a reference execution. 
-\todo{It's not clear why you are talking about this here. Why is it useful for the thesis?}
+Interposition techniques are used to intercept and store the details regarding the processes and the files of a reference execution. The data that gets stored can be used as the reference to trace back the origin of files or to identify the parameters used by a process at a particular step in the execution. Another advantage of interposition technique is that it doesn't have the overhead of making any changes to the application code. This makes interposition technique a good candidate for tracing the provenance of neuroimaging pipelines since it adds no overhead to the processing.
+%\todo{It's not clear why you are talking about this here. Why is it useful for the thesis?}
 
 This section discusses system and library call interposition techniques and the ReproZip tool which we used for recording the provenance of neuroimaging pipelines.
 \subsection{System and Library call interposition}
