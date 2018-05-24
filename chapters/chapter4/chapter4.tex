@@ -67,12 +67,33 @@ Main goals of PreFreeSurfer, according to~\cite{Gla13} are, ``1) to produce an u
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
-\indent Figure~\ref{fig:prefreesurfer_overview} illustrates the numbered sequence of steps in the PreFreeSurfer pipeline. The input to the pipeline are T1w and T2w images and the registerted field map. Second step(2) is gradient nonlinearity correction. This distortion is caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. According to~\cite{Zou2004}, ``Gradient nonlinearity is a static characteristic of the gradient coil system known to system engineers and universally utilized for correction of geometric distortions for routine MRI scans''. Gradient nonlinearity distortion must be corrected from all images used for structural preprocessing (T1w, T2w, the field map and phase). Figure~\ref{fig:gradient_nonlinearity} represent gradient nonlinearity distortion correction. Gradient\_nonlin\_unwarp package available in FreeSurfer is used for correcting this distortion. For correcting the gradient nonlinearity distortion, the images are converted into a field map (in units of radians per second) using the fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A field map is an image of the intensity of the magnetic field across space''. Gradient nonlinearity distortion is then corrected with the help of field map. This is followed by warping of the field map magnitude image, according to the readout distortion. Separate registrations of the field map are then done to the T1w and T2w images using FLIRT.
+\indent Figure~\ref{fig:prefreesurfer_overview} illustrates the 
+numbered sequence of steps in the PreFreeSurfer pipeline. The input to 
+the pipeline are T1w and T2w images and the registered field map. 
+Second step (2) is gradient nonlinearity correction. This distortion is 
+caused by magnetic resonance gradient nonlinearity~\cite{Gla13}. 
+According to~\cite{Zou2004}, ``Gradient nonlinearity is a static 
+characteristic of the gradient coil system known to system engineers 
+and universally utilized for correction of geometric distortions for 
+routine MRI scans''. Gradient nonlinearity distortion must be corrected 
+from all images used for structural preprocessing (T1w, T2w, the field 
+map and phase). Figure~\ref{fig:gradient_nonlinearity} represent 
+gradient nonlinearity distortion correction. Gradient\_nonlin\_unwarp 
+package available in FreeSurfer is used for correcting this distortion. 
+For correcting the gradient nonlinearity distortion, the images are 
+converted into a field map (in units of radians per second) using the 
+fsl\_prepare\_fieldmap\_script. According to \cite{field_map}, ``A 
+field map is an image of the intensity of the magnetic field across 
+space''. Gradient nonlinearity distortion is then corrected with the 
+help of field map. This is followed by warping of the field map 
+magnitude image, according to the readout distortion. Separate 
+registrations of the field map are then done to the T1w and T2w images 
+using FLIRT.
 
 \begin{center}
   \includegraphics[width=.5\linewidth]{t1w_without_gdc.png}%
   \includegraphics[width=.5\linewidth]{t1w_with_gdc.png}
-  \captionof{figure}[Effect of gradient nonlinearity distortion on the T1w image]{Effect of gradient nonlinearity distortion on the T1w image. Panel A is the T1w image before gradient distortion correction, whereas Panel B is the T1w image after gradient distortion correction (Changes are marked with the red line). Files are taken from subject 105216.}
+  \captionof{figure}[Effect of gradient nonlinearity distortion on the T1w image]{Effect of gradient nonlinearity distortion on the T1w image. Panel A is the T1w image before gradient distortion correction, whereas Panel B is the T1w image after gradient distortion correction (the white/gray matter boundary was delineated manually). Files are taken from subject 105216.}
   \label{fig:gradient_nonlinearity}
   %\caption*{Extracted from \cite{Gla13}}
 \end{center}
@@ -105,9 +126,31 @@ The first step (1) in the FreeSurfer pipeline is inputting the disortion and bia
 
 The output of step (3) is white-matter surface created with the help of recon-all process. The resultant white matter surface is generated using a segmentation of the 1 mm downsampled T1w image.
 
-Final white matter surface placement is done with the help of the original high resolution T1w images at step (4). The required FreeSurfer volume and surface files are brought into the .7 mm native volume space and intensity normalization is done on the high resolution T1w image. Also, the white matter surface position is adjusted at those points, where it is placed too superficially into the gray matter, based on intensity gradients in the .7 mm T1w image. The latter part of step (4) handles T2w to T1w registration. This registration step is fine-tuned using FreeSurfer's BBRegister algorithm since it gives more accurate results than FLIRT's BBR implementation. The corrected white matter surfaces are then brought back into FreeSurfer space and recon-all processing resumes.
+Final white matter surface placement is done with the help of the 
+original high resolution T1w images at step (4). The required 
+FreeSurfer volume and surface files are brought into the .7 mm native 
+volume space and intensity normalization is done on the high resolution 
+T1w image. Also, the white matter surface position is adjusted at those 
+points, where it is placed too superficially into the gray matter, 
+based on intensity gradients in the .7 mm T1w image. The latter part of 
+step (4) handles T2w to T1w registration. This registration step is 
+fine-tuned using FreeSurfer's BBRegister algorithm since it gives more 
+accurate results than FLIRT's BBR implementation. The corrected white 
+matter surfaces are then brought back into FreeSurfer space and 
+recon-all processing resumes. \todo{is the previous paragraph yours?}
 
-The set of steps in the FreeSurfer pipeline is for generating the Pial surfaces. The first step (5) in pial surface generation is normalization of T1w and T2w images to a standard mean white matter intensity. The initial pial surfaces are generated (6) from the high-resolution PreFreeSurfer bias-corrected T1w image and not the FreeSurfer white matter specific intensity normalized image. This kind of generation of pial surfaces tend to include large amounts of dura (a thick membrane that is the outermost of the three layers of the meninges that surround the brain and spinal cord) and blood vessels. The dura and blood vessels present in the image are removed (7) with the help of T2w images since dura and blood vessels are very different in intensity from gray matter in the T2w image. 
+The set of steps in the FreeSurfer pipeline is for generating the Pial 
+surfaces. The first step (5) in pial surface generation is 
+normalization of T1w and T2w images to a standard mean white matter 
+intensity. The initial pial surfaces are generated (6) from the 
+high-resolution PreFreeSurfer bias-corrected T1w image and not the 
+FreeSurfer white matter specific intensity normalized image. This kind 
+of generation of pial surfaces tend to include large amounts of dura (a 
+thick membrane that is the outermost of the three layers of the 
+meninges that surround the brain and spinal cord) and blood vessels. 
+The dura and blood vessels present in the image are removed (7) with 
+the help of T2w images since dura and blood vessels are very different 
+in intensity from gray matter in the T2w image. \todo{is the previous paragraph yours?}
 %Figure \ref{fig:pial_surface_generation} showcases the pial surface generation with the help of T2w images. This initially generated pial surface is smoothened and high pass filtering is done in order to generate the final pial surface.
 
 %\begin{center}
@@ -121,7 +164,16 @@ The set of steps in the FreeSurfer pipeline is for generating the Pial surfaces.
 After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellation (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
 
 \section{PostFreeSurfer} \label{sec:PostFreeSurfer}
-Main goals of PostFreeSurfer, according to~\cite{Gla13} are, ``1) produces all the NIFTI volume and GIFTI surface files necessary for viewing the data in Connectome Workbench, 2) application of surface registration; Surface registration algorithms help in mapping the 3D points accurately in rotational and translational motion between the two views~\cite{DBLP:journals/corr/HrgeticP13}, 3) downsampling registered surfaces for connectivity analyses; 4) creating the final brain mask, and creating myelin maps''. Figure \ref{fig:postfreesurfer_overview} illustrates the workflow of PostFreeSurfer.
+Main goals of PostFreeSurfer, according to~\cite{Gla13} are, ``1) 
+produces all the NIFTI volume and GIFTI surface files necessary for 
+viewing the data in Connectome Workbench, 2) application of surface 
+registration; Surface registration algorithms help in mapping the 3D 
+points accurately in rotational and translational motion between the 
+two views~\cite{DBLP:journals/corr/HrgeticP13}, 3) downsampling 
+registered surfaces for connectivity analyses; 4) creating the final 
+brain mask, and creating myelin maps''. Figure 
+\ref{fig:postfreesurfer_overview} illustrates the workflow of 
+PostFreeSurfer. \todo{you could make the figure smaller, to have the same size as the other ones.}
 
 \begin{center}
   \includegraphics[width=\linewidth]{PostFreeSurfer_Overview}
@@ -148,6 +200,8 @@ Step (7) uses the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php
 Registration step is followed by (9) the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR MNI volume space. These lower resolution images are suited for functional and connectivity analyses. The last step (10) in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space.
 
 %Specification File (commonly called “Spec File”) is a file used to organize a set of data files (such as volume, label, and metric files) to be loaded into Workbench
+
+\todo{Please check in the previous paragraph that the text is yours or properly cited.}
 
 \section{fMRIVolume} \label{sec:fMRIVolume}
 Main goals of, fMRIVolume, according to~\cite{Gla13} are, ``1) remove spatial distortions; 2) realignment of volumes to adjust subject motion; 3) registration of fMRI data to structural volume; 4) normalizaton of the 4D image; 5) mask the data with final brain mask''. Figure \ref{fig:fMRIVolume_overview} illustrates the workflow of fMRIVolume pipeline.
@@ -229,6 +283,8 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 \caption*{Data retrieved from \cite{DBConnectomeSite}}
 \end{center}
 
+\todo{Not sure if table~\ref{tab:subject_scan_details} is necessary.} 
+
 \section{HCP Docker Images}\label{hcp_docker}
 We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
 These containers were installed with all the necessary softwares and libraries required to run the HCP pipelines. HCP pipelines prerequisites are listed below,
@@ -248,6 +304,8 @@ The data was processed in the order PreFreeSurfer, FreeSurfer, PostFreeSurfer an
 Table \ref{tab:prefreesurfer_processing_details} contains the details about processing time and file-size on CentOS6 and CentOS7 respectively.
 Average time taken for PreFreeSurfer processing is 73.7 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.08 GB (5 subjects) on CentOS6.
 Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.10 GB (5 subjects) on CentOS7.
+
+\todo{You should say "average time \emph{per subject}" instead of just "average time", everywhere.}
 
 \begin{center}
 \tabulinesep=1.2mm
