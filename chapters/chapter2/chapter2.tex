@@ -20,7 +20,7 @@ In neuroimaging, relevant information has to be extracted from noisy images of t
  
 %Add more details
 %\todo{Rewrite the following sentence so that you don't have to have quotes}
-FSL is a library consisting of a set of tools for analyzing fMRI, MRI and DTI brain imaging data~\cite{JENKINSON2012782}. This toolbox consists of over 230 individual command line tools and 23 GUIs, among which only a sub-set is commonly used. Table \ref{tab:tools_fsl} lists the most popular FSL tools. fMRI pre-processing can be implemented from FSL tools, for both task-based and resting-state fMRI. Among other things, FSL can do motion correction, distortion correction, spatial smoothing, temporal filtering and registration of images.
+FSL is a library consisting of a set of tools for analyzing fMRI, MRI and DTI brain imaging data~\cite{JENKINSON2012782}. This toolbox consists of over 230 individual command line tools and 23 GUIs, among which only a sub-set is commonly used. Table \ref{tab:tools_fsl} lists the most popular FSL tools \todo{I don't find this table particularly useful}. fMRI pre-processing can be implemented from FSL tools, for both task-based and resting-state fMRI. Among other things, FSL can do motion correction, distortion correction, spatial smoothing, temporal filtering and registration of images.
 
 %\todo{Rewrite the following sentence so that you don't have to have quotes}
 FreeSurfer software package helps in analyzing and visualizing the structural and functional neuroimaging data~\cite{freesurfer_website}. It consists of a set of tools that provide automated analysis of main features of human brain. The main tasks include volumetric segmentation, hippocampal subfield segmentation, inter-subject alignment based on the folding pattern of cortex, cortical gray matter thickness detection and human cerebral cortex surface model construction~\cite{Fischl2012}. 
@@ -61,7 +61,7 @@ FreeSurfer software package helps in analyzing and visualizing the structural an
 
 %Workbench
 %\todo{Rewrite the following sentence so that you don't have to have quotes}
-Human Connectome Project has the end goal of developing an automated preprocessing framework that can handle multiple magnetic resonance imaging modalities such as structural, functional and diffusion without compromising the quality of data~\cite{Gla13}. The pipeline for processing the images from HCP is open and freely accessible. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions. So these preprocessing pipelines creates results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used~\cite{HODGE20161102}. The pipeline consists of separate processing flow for structural and functional images. The structural pre-processing consists of PreFreeSurfer, FreeSurfer and PostFreeSurfer. Functional pre-processing consists of fMRIVolume and fMRISurface~\cite{FSL}.
+Human Connectome Project has the end goal of developing an automated preprocessing framework that can handle multiple magnetic resonance imaging modalities such as structural, functional and diffusion without compromising the quality of data~\cite{Gla13}. The pipeline for processing the images from HCP is open and freely accessible. The dataset from the HCP, are qualitatively different from standard neuroimaging data, having higher spatial and temporal resolutions. So these preprocessing pipelines create results that are available in standard volume and combined surface and volume spaces which makes it easier for researchers to compare the images across the neuroimaging spectrum. Since the images from the HCP dataset are cutting edge in terms of quality, it is anticipated to be widely used~\cite{HODGE20161102}. The pipeline consists of separate processing flow for structural and functional images. The structural pre-processing consists of PreFreeSurfer, FreeSurfer and PostFreeSurfer. Functional pre-processing consists of fMRIVolume and fMRISurface~\cite{FSL}.
 
 The main goals of structural and functional pipelines~\cite{Gla13} are provided below. The main goals of PreFreeSurfer are: 1) Produce an undistorted native structural volume space for each subject. 2) Align T1W and T2W images. 3) Perform Bias Field correction. 4) Registration of the structural volume to MNI space (a statistical MRI atlas for brain mapping). FreeSurfer goals are: 1) Segmentation of the volume into predefined structures. 2) Reconstruction of white and pial cortical surfaces. 3) Surface registration. PostFreeSurfer main goals are: 1) Creation of myelin maps and brain mask. 2) Preparation of registered surfaces for connectivity analysis by downsampling. 3) Surface Registration. 4) Production of GIFTI\footnote{\url{https://www.nitrc.org/projects/gifti}} and NIfTI\footnote{\url{https://nifti.nimh.nih.gov}} files which are used for visualizing data by Connectome Workbench (a tool for visualizing HCP data). fMRIVolume pipeline goals are: 1) Removes spatial distortions. 2) Corrects subject motion. 3) Reduces bias field. 4) Reduction of 4D images to global mean. 5) Application of final brain mask to data. The main goal of fMRISurface, is the creation of CIFTI files.
 
@@ -280,14 +280,36 @@ run a specific command and EXPOSE keyword helps to open ports for
 access outside the container. ENV command is used for setting the 
 environment variables and CMD command helps us to run scripts along 
 with its arguments. There are many more commands and the complete 
-documentation is available at~\cite{docker_commands}.
+documentation is available at~\cite{docker_commands}. \todo{The previous paragraph might be omitted or shortened to 1 sentence, it's a bit unnecessary.}
 
 %How it helps run experiments
-Docker helps developers to easily create standard containers for their software applications or services. For a system administrator, Docker helps in the automation of deployment and management of business level services with the help of containers. Docker can be used as a part of virtualization layer for deploying and managing the execution environments. Another advantage is that Docker containers provide reliable and predictable execution environments and thus helps in reducing the issues related to deployment~\cite{DBLP:journals/corr/MorrisVHM17}.
+Docker helps developers to easily create standard containers for their 
+software applications or services. For a system administrator, Docker 
+helps in the automation of deployment and management of business level 
+services with the help of containers. Docker can be used as a part of 
+virtualization layer for deploying and managing the execution 
+environments. Another advantage is that Docker containers provide 
+reliable and predictable execution environments and thus helps in 
+reducing the issues related to 
+deployment~\cite{DBLP:journals/corr/MorrisVHM17}.
 
 \subsection{Singularity}
 %Singularity intro
-Singularity containers is an open source initiative started by the Lawrence Berkeley National Laboratory (LBNL). The main reason for this technology initiative was to overcome the high security concerns of using Docker containers in a high performance computing cluster. The main issue with Docker containers running on the high performance computing clusters was that the daemon has to run as a root user which could lead to unnecessary risks like coercing the daemon process into granting the users escalated privileges. With the help of system and software engineers along with researchers, a containerization technology suited for the high performance computing environments was thus created under the Singularity initiative. Singularity containers are agnostic to the host environment~\cite{10.1371/journal.pone.0177459}. Figure~\ref{fig:singularity_workflow} illustrates the Singularity usage workflow.
+Singularity is an open source initiative started by the Lawrence 
+Berkeley National Laboratory (LBNL). The main reason for this 
+technology initiative was to overcome the high security concerns of 
+using Docker containers in a high performance computing cluster. The 
+main issue with Docker containers running on high performance 
+computing clusters is that the daemon has to run as a root user which 
+could lead to unnecessary risks like coercing the daemon process into 
+granting the users escalated privileges. With the help of system and 
+software engineers along with researchers, a containerization 
+technology suited for the high performance computing environments was 
+thus created under the Singularity initiative. Singularity containers 
+are agnostic to the host 
+environment~\cite{10.1371/journal.pone.0177459}. 
+Figure~\ref{fig:singularity_workflow} illustrates the Singularity usage 
+workflow.
 
 \begin{center}
 \includegraphics[width=\linewidth]{singularity.png}
@@ -299,10 +321,50 @@ Singularity containers is an open source initiative started by the Lawrence Berk
 % Add spaces after bracket
 % Add nextflow paper
 
-The main goals of Singularity are, 1) Mobility of compute 2) Reproducibility 3) User Freedom 4) Support on existing traditional HPC resources. According to~\cite{10.1371/journal.pone.0177459}, ``Mobility of compute is defined as the ability to define, create, and maintain a workflow locally while remaining confident that the workflow can be executed on different hosts, Linux operating systems, and/or cloud service providers". Singularity achieves this by utilizing a distributable image format that encapsulates the entire container and stack into a single image file. The feature that supports reproducibility is the use of hashing. Any singularity image can make use of the hash feature to create hash and store it as metadata with built images. Users can verify these hashes to check if the image is modified or not. User freedom is granted by the ability to define their own working environment and copy the Singularity image containing the entire details of that environment along with the code to a shared resource and reproduce the workflow inside that image. Singularity supports the existing and traditional HPC resources easily as installing a single package onto host operating system. Singularity is compatible with RHEL and Linux distributions dating back to Linux2.2. It natively supports the resource managers (e.g SLURM\footnote{\url{https://slurm.schedmd.com/}} - a free and open-source job scheduler for Linux and Unix-like kernels, Torque\footnote{\url{http://www.adaptivecomputing.com/products/open-source/torque/}} - an open-source Resource and QUEue Manager is a distributed resource manager providing control over batch jobs and distributed compute nodes, SGE\footnote{\url{https://en.wikipedia.org/wiki/Oracle_Grid_Engine}} - a grid computing computer cluster software system, etc.) and supports technologies such as InfiniBand\footnote{\url{https://en.wikipedia.org/wiki/InfiniBand}}(A computer-networking communications standard used in high-performance computing that features very high throughput and very low latency) and Lustre\footnote{\url{https://en.wikipedia.org/wiki/Lustre_(file_system)}}(Open source, parallel file system that supports many requirements of leadership class HPC simulation environments).
+The main goals of Singularity are, 1) Mobility of compute 2) 
+Reproducibility 3) User Freedom 4) Support on existing traditional HPC 
+resources. According to~\cite{10.1371/journal.pone.0177459}, ``Mobility 
+of compute is defined as the ability to define, create, and maintain a 
+workflow locally while remaining confident that the workflow can be 
+executed on different hosts, Linux operating systems, and/or cloud 
+service providers". Singularity achieves this by utilizing a 
+distributable image format that encapsulates the entire container and 
+stack into a single image file. The feature that supports 
+reproducibility is the use of hashing. Any singularity image can make 
+use of the hash feature to create hash and store it as metadata with 
+built images. Users can verify these hashes to check if the image is 
+modified or not. User freedom is granted by the ability to define their 
+own working environment and copy the Singularity image containing the 
+entire details of that environment along with the code to a shared 
+resource and reproduce the workflow inside that image. Singularity 
+supports the existing and traditional HPC resources easily as 
+installing a single package onto host operating system. Singularity is 
+compatible with RHEL and Linux distributions dating back to Linux~2.2. 
+It natively supports cluster resource managers (e.g 
+SLURM\footnote{\url{https://slurm.schedmd.com/}} - a free and 
+open-source job scheduler for Linux and Unix-like kernels, 
+Torque\footnote{\url{http://www.adaptivecomputing.com/products/open-source/torque/}} 
+- an open-source Resource and QUEue Manager is a distributed resource 
+manager providing control over batch jobs and distributed compute 
+nodes, 
+SGE\footnote{\url{https://en.wikipedia.org/wiki/Oracle_Grid_Engine}} - 
+a grid computing computer cluster software system, etc.) and supports 
+technologies such as 
+InfiniBand\footnote{\url{https://en.wikipedia.org/wiki/InfiniBand}}(A 
+computer-networking communications standard used in high-performance 
+computing that features very high throughput and very low latency) and 
+Lustre\footnote{\url{https://en.wikipedia.org/wiki/Lustre_(file_system)}}(Open 
+source, parallel file system that supports many requirements of 
+leadership class HPC simulation environments).
 
 %Singularity how it helps
-Singularity image encapsulates the operating system environment and all application dependencies necessary to run a defined workflow. Singularity container supports different kinds of uniform resource identifiers (http:// and https://) and also other container formats like Docker (docker:// - for pulling images from docker hub, shub:// - for pulling images from singularity hub). Singularity images thus can be created from existing Docker images.
+A Singularity image encapsulates the operating system environment and 
+all application dependencies necessary to run a defined workflow. 
+Singularity container supports different kinds of uniform resource 
+identifiers (http:// and https://) and also other container formats 
+like Docker (docker:// - for pulling images from docker hub, shub:// - 
+for pulling images from singularity hub). Singularity images thus can 
+be created from existing Docker images.
 
 \section{Web platforms and tools to run containers}\label{web_platforms}
 This section discusses the various tools and platforms that can be used to run the containers. The platforms and tools described in this section are CBRAIN, Amazon Web Services, and Boutiques descriptors.
@@ -317,7 +379,7 @@ The Canadian Brain Imaging Research Platform (CBRAIN), is a web
 platform developed at the Montreal Neurological Institute (MNI) to 
 tackle the Big-Data research and heavy computational challenges faced 
 by neuroimaging researchers. Even though it is mainly used for 
-neuroimaging, the framework is so generic that it can work on data and 
+neuroimaging, the framework is generic enough to work on data and 
 tools irrespective of discipline~\cite{DBLP:journals/fini/DasGRSPMSRSKMKR17}. Literature on
 CBRAIN~\cite{DBLP:journals/fini/DasGRSPMSRSKMKR17} defines the platform 
 as, ``a controlled and secure platform which is user-friendly, 
@@ -369,7 +431,7 @@ by editing these Ruby classes. However, one caveat in using this mode
 is that manual intervention is needed whenever the descriptors get 
 updated to update these classes.
 
-\subsection{Amazon}
+\subsection{Amazon Web Services}
 %AWS Intro
 Amazon Web Services\footnote{\url{https://aws.amazon.com/}} (AWS) 
 offers cloud computing services. The white paper on 
@@ -403,7 +465,7 @@ In neuroimaging, processing of datasets are done using complicated pipelines tha
 \subsection{Boutiques}
 To enable sharing of ideas and software, it is a common practice to port the applications to common platforms so that the community as a whole is able to make use of the ready-to-use applications. However, porting applications to a high performance computing infrastructure or a web platform is not so easy. Application porting needs considerable effort to install the application depending on the infrastructure/operating system, to make the application compatible with the execution platform, and for the generation of proper user interfaces~\cite{boutiques}. These installations and deployments are platform specific and thus the same tasks has to be repeated from one platform to another. Boutiques, an open source tool, can be used to save time and cost spent on these repeated actions to deploy applications on various platforms.
 
-Docker and Singularity helps in the creation of reproducible and portable software experiments by containerzing the software environment that can be shared easily~\cite{boutiques}. The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. This template, also known as \textit{manifests}, are created in order to share them among the research community and for using it on various execution platforms. These manifests are also used as the reference to validate the input parameters. The preferred way of describing these command line template, input and argument is through a JSON document. The manifest contains the details to a container where the intended application is installed. The proper command line argument is built at runtime with the help of manifest and the template gets replaced by the actual values given by the user. For validating the inputs an invocation schema is used.
+Docker and Singularity help in the creation of reproducible and portable software experiments by containerzing the software environment that can be shared easily~\cite{boutiques}. The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. This template, also known as \textit{manifests}, are created in order to share them among the research community and for using it on various execution platforms. These manifests are also used as the reference to validate the input parameters. The preferred way of describing these command line template, input and argument is through a JSON document. The manifest contains the details to a container where the intended application is installed. The proper command line argument is built at runtime with the help of manifest and the template gets replaced by the actual values given by the user. For validating the inputs an invocation schema is used.
 
 %\todo{Lots of direct quotations on Boutiques too.}
 
@@ -432,7 +494,7 @@ At runtime, with the help of the JSON descriptor, Boutiques substitutes all the 
 \section{Interposition Techniques}\label{Interposition}
 Interposition techniques are used to intercept and store the details regarding the processes and the files of a reference execution. 
 The data that gets stored can be used as the reference to trace back the origin of files or to identify the parameters used by a process at a particular step in the execution. 
-Another advantage of interposition technique is that it doesn't have the overhead of making any changes to the application code. 
+Another advantage of interposition technique is that they don't require any change to the application code. 
 This makes interposition technique a good candidate for tracing the provenance of neuroimaging pipelines since it adds no overhead to the processing.
 %\todo{It's not clear why you are talking about this here. Why is it useful for the thesis?}
 
