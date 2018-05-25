@@ -104,7 +104,7 @@ Standard Deviation & 0.0181     & 0.4051   \\ \hline
 \label{tab:FreeSurfer_Metic_Values}
 \end{center}
 
-Table \ref{tab:FreeSurfer_Metic_Values} contains the mean, median and standard deviation of files having differences from FreeSurfer preprocessing on CentOS6 and CentOS7. Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was 69\% similarity while taking the average of Dice coeffiecient of every file that we found to have a checksum difference.
+Table \ref{tab:FreeSurfer_Metic_Values} contains the mean, median and standard deviation of files having differences from FreeSurfer preprocessing on CentOS6 and CentOS7. Dice Coefficient shows that out of the results we obtained from FreeSurfer processing on two conditions, there was 69\% similarity while taking the average of Dice coefficient of every file that we found to have a checksum difference.
 \begin{center}
 \includegraphics[width=.5\linewidth]{freesurfer-nrmse.png}%
 \includegraphics[width=.5\linewidth]{freesurfer-dice.png}
@@ -282,4 +282,4 @@ Median             & 0.078    & .0109       & 0.004          & 0.0217           
 
 Comparing the metric values obtained from anatomical differences and effect of operating system differences, differences due to the effect of operating systems, quantified by NRMSE value on subject 101006, is 1/14\textsuperscript{th} (0.92/.0066) of the differences that are caused by the anatomical variations of the subjects (101006 vs. 101107). Similarly, the effect of the operating system on subject 101107, is 1/12\textsuperscript{th} (0.092/.0077) of the differences that are caused by the anatomical variations of the subjects (101006 vs. 101107).
 
-Analyzing the dice coefficient value of similarity, in the same manner,  shows that the differences due to operating systems are so close to the differences due to anatomical variations (101006, dice coeff. ratio, .265/.30 = 0.88; 101107, dice coeff. ratio, .265/.30 = 0.88). The differences caused by anatomical variations in the subjects is 0.88 times the differences caused by operating system version updates. Thus, operating system updates are having a strong influence on the output images from the pipelines.
+Analyzing the Dice coefficient value of similarity, in the same manner,  shows that the differences due to operating systems are so close to the differences due to anatomical variations (101006, Dice coeff. ratio, .265/.30 = 0.88; 101107, Dice coeff. ratio, .265/.30 = 0.88). The differences caused by anatomical variations in the subjects is 0.88 times the differences caused by operating system version updates. Thus, operating system updates are having a strong influence on the output images from the pipelines.

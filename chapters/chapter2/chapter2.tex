@@ -273,8 +273,8 @@ protocols (e.g. web services)~\cite{Xavier:2013:PEC:2497369.2497577}.
 %The sample file format of a Dockerfile is shown in Figure~\ref{fig:docker_format} \todo{I don't think you need a figure for that.}. 
 The development of standardized Dockerfile format as illustrated in 
 Figure~\ref{fig:docker_file_format}, for describing and managing 
-software containers is very straightforward. The commands and the complete 
-documentation is available at~\cite{docker_commands}. 
+software containers is very straightforward. The details about the Docker commands and the complete 
+documentation about various other Docker features is available at~\cite{docker_commands}.
 %\todo{The previous paragraph might be omitted or shortened to 1 sentence, it's a bit unnecessary.}
 
 %How it helps run experiments
@@ -402,7 +402,7 @@ also extends its support to Boutiques. Thus, with the help of container
 technologies and Boutiques, applications can be ported to CBRAIN. Any 
 user who has access to this application can try to reproduce the 
 experiments since the data and the application are accessible within 
-the framework. However, one caveat is that, the neuroimaginng pipelines 
+the framework. However, one caveat is that, the neuroimaging pipelines 
 might have different results due to differences in computing platforms 
 on which the images are getting processed 
 ~\cite{10.3389/conf.fninf.2014.18.00076}.
@@ -460,7 +460,7 @@ In neuroimaging, processing of datasets are done using complicated pipelines tha
 \subsection{Boutiques}
 To enable sharing of ideas and software, it is a common practice to port the applications to common platforms so that the community as a whole is able to make use of the ready-to-use applications. However, porting applications to a high performance computing infrastructure or a web platform is not so easy. Application porting needs considerable effort to install the application depending on the infrastructure/operating system, to make the application compatible with the execution platform, and for the generation of proper user interfaces~\cite{boutiques}. These installations and deployments are platform specific and thus the same tasks has to be repeated from one platform to another. Boutiques, an open source tool, can be used to save time and cost spent on these repeated actions to deploy applications on various platforms.
 
-Docker and Singularity help in the creation of reproducible and portable software experiments by containerzing the software environment that can be shared easily~\cite{boutiques}. The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. This template, also known as \textit{manifests}, are created in order to share them among the research community and for using it on various execution platforms. These manifests are also used as the reference to validate the input parameters. The preferred way of describing these command line template, input and argument is through a JSON document. The manifest contains the details to a container where the intended application is installed. The proper command line argument is built at runtime with the help of manifest and the template gets replaced by the actual values given by the user. For validating the inputs an invocation schema is used.
+Docker and Singularity help in the creation of reproducible and portable software experiments by containerizing the software environment that can be shared easily~\cite{boutiques}. The software or applications inside these containers should be invoked through proper command line to run an application. Boutiques makes use of a flexible template that could properly describe the inputs and outputs an application produces. This template, also known as \textit{manifests}, are created in order to share them among the research community and for using it on various execution platforms. These manifests are also used as the reference to validate the input parameters. The preferred way of describing these command line template, input and argument is through a JSON document. The manifest contains the details to a container where the intended application is installed. The proper command line argument is built at runtime with the help of manifest and the template gets replaced by the actual values given by the user. For validating the inputs an invocation schema is used.
 
 %\todo{Lots of direct quotations on Boutiques too.}
 
