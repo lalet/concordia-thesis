@@ -99,16 +99,8 @@ using FLIRT.
 \end{center}
 %\todo{I think you can remove Figure~\ref{fig:gradient_nonlinearity}, you reused a lot of figures already!}
 
-\indent Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the reference template for the ease of visualization.
-
-\indent Step (4) is ACPC (Anterior commisure, Posterior commisure) alignment. Step (5) includes a robust initial brain extraction, using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step (6) in creating the subject's undistorted native volume space. %Readout distortion is caused when the digital data is retrieved from an electronic medium and is displayed in a human understandable format.
-%Readout distortion definition
-
-\indent The distortion corrected images are used as the input for the next series of steps. To completely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject.
-
-\indent Step (9) consist of cross-modal registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogeneity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration.
-
-\indent The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space images~\cite{Gla13}.
+Next step (3) is aligning the T1w and T2w images, using FSL's FLIRT. Subsequent step is aligning the average T1w and T2w images to the MNI space template. The main purpose behind this step is to have the same orientation as the reference template for the ease of visualization. Step (4) is ACPC (Anterior commisure, Posterior commisure) alignment. Step (5) includes a robust initial brain extraction, using FSL's linear (FLIRT) and non-linear (FNIRT) registration. Removing the readout distortion is the last step (6) in creating the subject's undistorted native volume space. The distortion corrected images are used as the input for the next series of steps. To completely remove the distortion, the T1w and T2w images are transformed according to of the field map registration. After that, the T1w and T2w images are unwarped, removing the differential readout distortion present in them. The T1w image without readout and spatial distortion, represents the native volume space for each subject. Step (9) consist of cross-modal registration of undistorted T2w image to the T1w image using FLIRT's boundary based registration (BBR) cost function. Aligning the intensity gradients across tissue boundaries is the focus of boundary based registration. Once T1w and T2w images are in the same space, (10) intensity inhomogeneity correction is applied on these images. After the bias field correction, T1w image is (11) registered to MNI space after a FLIRT registration followed by FNIRT nonlinear registration. 
+The output of PreFreeSurfer pipeline are organized into a folder called ``T1w" that contains native volume space images and a second folder (MNINonLinear) that contains MNI space image.~\cite{Gla13}
 
 \section{FreeSurfer} \label{sec:FreeSurfer}
 HCP pipelines use FreeSurfer version 5.2 with a lot of enhancements made particularly focusing HCP data. The main goals, according to~\cite{Gla13} are, ``1) improve the robustness of brain extraction; 2) fine tune T2w to T1w registration; 3) accurately place the white and pial surface with high resolution data; 4) perform FreeSurfer's standard folding-based surface registration to their surface atlas (fsaverage)''. The workflow of FreeSurfer is illustrated in Figure~\ref{fig:freesurfer_overview}.
@@ -122,10 +114,7 @@ HCP pipelines use FreeSurfer version 5.2 with a lot of enhancements made particu
 
 After the PreFreeSurfer processing, FreeSurfer's recon-all (cortical reconstruction process)\footnote{\url{https://surfer.nmr.mgh.harvard.edu/fswiki/recon-all}} pipeline is used widely in FreeSurfer pipeline. One limitation with the recon-all pipeline is that it is not able to process structural images having high resolution. So HCP data has to be downsampled to meet the requirements of the recon-all pipeline.
 
-The first step (1) in the FreeSurfer pipeline is inputting the disortion and bias free native volume space image from PreFreeSurfer. The T1w registration in the FreeSurfer is aided using the initial brain mask generated in PreFreeSurfer. The important steps that takes place before the recon-all process includes, automated segmentation of the T1w volume and tessellation and topology correction of the initial white matter surface. Also, downsampling of images to a lower resolution takes place at step (2), such that it matches the requirements of recon-all process.
-
-The output of step (3) is white-matter surface created with the help of recon-all process. The resultant white matter surface is generated using a segmentation of the 1 mm downsampled T1w image.
-
+The first step (1) in the FreeSurfer pipeline is inputting the disortion and bias free native volume space image from PreFreeSurfer. The T1w registration in the FreeSurfer is aided using the initial brain mask generated in PreFreeSurfer. The important steps that takes place before the recon-all process includes, automated segmentation of the T1w volume and tessellation and topology correction of the initial white matter surface. Also, downsampling of images to a lower resolution takes place at step (2), such that it matches the requirements of recon-all process. The output of step (3) is white-matter surface created with the help of recon-all process. The resultant white matter surface is generated using a segmentation of the 1 mm downsampled T1w image. 
 Final white matter surface placement is done with the help of the 
 original high resolution T1w images at step (4). The required 
 FreeSurfer volume and surface files are brought into the .7 mm native 
@@ -137,7 +126,7 @@ step (4) handles T2w to T1w registration. This registration step is
 fine-tuned using FreeSurfer's BBRegister algorithm since it gives more 
 accurate results than FLIRT's BBR implementation. The corrected white 
 matter surfaces are then brought back into FreeSurfer space and 
-recon-all processing resumes. \todo{is the previous paragraph yours?}
+recon-all processing resumes. \cite{Gla13} %\todo{is the previous paragraph yours?}
 
 The set of steps in the FreeSurfer pipeline is for generating the Pial 
 surfaces. The first step (5) in pial surface generation is 
@@ -150,18 +139,8 @@ thick membrane that is the outermost of the three layers of the
 meninges that surround the brain and spinal cord) and blood vessels. 
 The dura and blood vessels present in the image are removed (7) with 
 the help of T2w images since dura and blood vessels are very different 
-in intensity from gray matter in the T2w image. \todo{is the previous paragraph yours?}
-%Figure \ref{fig:pial_surface_generation} showcases the pial surface generation with the help of T2w images. This initially generated pial surface is smoothened and high pass filtering is done in order to generate the final pial surface.
-
-%\begin{center}
- % \includegraphics[width=\linewidth]{pial_surface_generation}
-  %\captionof{figure}[Pial surface generation with the help of T2w image]{Pial surface generation with the help of T2w image. The blood vessels and dura are close in intensity with gray matter in the T1w image (A), however they are clearly of different intensity in the T2w image (B), allowing them to be easily excluded from the gray matter ribbon. The red surface is from the T1w image whereas the cyan surface is after cleanup with the T2w image.}
-  %\label{fig:pial_surface_generation}
-  %\caption*{Extracted from \cite{Gla13}}
-%\end{center}
-%\todo{Figure~\ref{fig:pial_surface_generation} is again directly extracted. If you want to illustrate the pipeline steps, you should rather use your own images.}
-
-After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellation (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.
+in intensity from gray matter in the T2w image.
+After the pial surface generation, recon-all continues. Final step (8) include anatomical parcellation (surface and volume) and morphometric measurements of structural volumes, surface areas, and thickness.~\cite{Gla13}
 
 \section{PostFreeSurfer} \label{sec:PostFreeSurfer}
 Main goals of PostFreeSurfer, according to~\cite{Gla13} are, ``1) 
@@ -173,40 +152,25 @@ two views~\cite{DBLP:journals/corr/HrgeticP13}, 3) downsampling
 registered surfaces for connectivity analyses; 4) creating the final 
 brain mask, and creating myelin maps''. Figure 
 \ref{fig:postfreesurfer_overview} illustrates the workflow of 
-PostFreeSurfer. \todo{you could make the figure smaller, to have the same size as the other ones.}
+PostFreeSurfer. 
 
 \begin{center}
-  \includegraphics[width=\linewidth]{PostFreeSurfer_Overview}
+  \includegraphics[scale=0.5]{PostFreeSurfer_Overview}
   \captionof{figure}{PostFreeSurfer Overview}
   \label{fig:postfreesurfer_overview}
   \caption*{Extracted from \cite{Gla13}}
 \end{center}
 
 As mentioned in the previous paragraph, the first task (1) of PostFreeSurfer is to convert the recon-all outputs to NIFTI and GIFTI formats. The white, pial, spherical and registered spherical surfaces are all converted GIFTI surface files. Thickness, curvature and sulc files are converted into GIFTI shape files. The cortical parcellations from FreeSurfer are converted to GIFTI label files and three full subcortical volume parcellations are converted into NIFTI label files. One among the three volume parcellations (wmparc) is used to create a final gray and white matter brain mask (2), which is used as the reference in the subsequent steps. Step (3) creates cortical ribbon volume and that step is followed by (4) cortical myelin map creation. Next step (5) is the generation of Conte69 Group Average by normalizing the Myelin Maps. 
-%Figure \ref{fig:residual_bias_correction} illustrates the residual bias field correction that takes place in myelin maps.
-
-%\begin{center}
-  %\includegraphics[width=\linewidth]{residual_bias_correction}
-  %\captionof{figure}[The effect of residual bias field correction]{The effect of residual bias field correction on a particularly inhomogeneous HCP subject. (A) Original Myelin Map. (B) Reference group average myelin map (C) Estimated residual bias field. (D) Bias corrected myelin map.}
-  %\label{fig:residual_bias_correction}
-  %\caption*{Extracted from \cite{Gla13}}
-%\end{center}
-%\todo{Same comment as before.}
-
-Steps (6-10) leads to the creation of 32k Registered Surface Mesh Native Volume Space. It starts off with step (6) where the pipeline combines the structural transforms of T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images, and they are brought to the native volume and MNI spaces. Next step is creating a mid-thickness surface. It is created by averaging the white and pial surfaces. Mid-thickness file is used for creating inflated and very inflated files. The volume, label and metric files are then organized into a file called as specification file (spec file) which is used for easy visualization of anatomical data using Connectome Workbench. The surface files are stored as GIFTI files while the specs files are CIFTI files.
-
-Step (7) uses the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php//Caret:Atlases/Conte69\_Atlas}} (Human Surface-based Atlas and Reference Data) population-average surfaces for registering individual subject's native-mesh surfaces. This step consists of combined surface registration applied to all surfaces and surface data files. The end goal of this step is to bring the images to (8) 164k\_fs\_LR standard surface mesh space.
-
-Registration step is followed by (9) the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR MNI volume space. These lower resolution images are suited for functional and connectivity analyses. The last step (10) in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space.
-
+Steps (6-10) leads to the creation of 32k Registered Surface Mesh Native Volume Space. It starts off with step (6) where the pipeline combines the structural transforms of T1w and T2w images from the PreFreeSurfer and FreeSurfer pipelines. This transformed file is then applied to the averaged T1w and T2w images, and they are brought to the native volume and MNI spaces. Next step is creating a mid-thickness surface. It is created by averaging the white and pial surfaces. Mid-thickness file is used for creating inflated and very inflated files. The volume, label and metric files are then organized into a file called as specification file (spec file) which is used for easy visualization of anatomical data using Connectome Workbench. The surface files are stored as GIFTI files while the specs files are CIFTI files. Step (7) uses the Conte69\footnote{\url{http://brainvis.wustl.edu/wiki/index.php//Caret:Atlases/Conte69\_Atlas}} (Human Surface-based Atlas and Reference Data) population-average surfaces for registering individual subject's native-mesh surfaces. This step consists of combined surface registration applied to all surfaces and surface data files. The end goal of this step is to bring the images to (8) 164k\_fs\_LR standard surface mesh space. Registration step is followed by (9) the downsampling of the 164k Registered surface mesh to 32k\_fs\_LR MNI volume space. These lower resolution images are suited for functional and connectivity analyses. The last step (10) in this pipeline is transformation of the 32k\_fs\_LR mesh from MNI space to native volume space.~\cite{Gla13}
 %Specification File (commonly called “Spec File”) is a file used to organize a set of data files (such as volume, label, and metric files) to be loaded into Workbench
 
-\todo{Please check in the previous paragraph that the text is yours or properly cited.}
+%\todo{Please check in the previous paragraph that the text is yours or properly cited.}
 
 \section{fMRIVolume} \label{sec:fMRIVolume}
 Main goals of, fMRIVolume, according to~\cite{Gla13} are, ``1) remove spatial distortions; 2) realignment of volumes to adjust subject motion; 3) registration of fMRI data to structural volume; 4) normalizaton of the 4D image; 5) mask the data with final brain mask''. Figure \ref{fig:fMRIVolume_overview} illustrates the workflow of fMRIVolume pipeline.
 
-It is a prerequisite of fMRIVolume pipeline that the input files should have completed the structural processing (PreFreeSurfer, FreeSurfer and PostFreeSurfer). Similiar to the PreFreeSurfer pipeline, fMRIVolume pipeline starts with the gradient-nonlinearity-induced distortion correction step (2), though it is optional. It is followed by (3) subject motion correction using FLIRT. The distortion in the phase encoding direction is corrected in the next step (4). In the next step (5), with the use of FLIRT, BBR cost function and FreeSurfer's BBRegister, an accurate registration between fMRI data and the structural data is created. The final step (8) in the fMRIVolume pipeline consists of concatenating all the transforms for each registration and distortion correction into a single nonlinear transformation.
+It is a prerequisite of fMRIVolume pipeline that the input files should have completed the structural processing (PreFreeSurfer, FreeSurfer and PostFreeSurfer). Similiar to the PreFreeSurfer pipeline, fMRIVolume pipeline starts with the gradient-nonlinearity-induced distortion correction step (2), though it is optional. It is followed by (3) subject motion correction using FLIRT. The distortion in the phase encoding direction is corrected in the next step (4). In the next step (5), with the use of FLIRT, BBR cost function and FreeSurfer's BBRegister, an accurate registration between fMRI data and the structural data is created. The final step (8) in the fMRIVolume pipeline consists of concatenating all the transforms for each registration and distortion correction into a single nonlinear transformation.~\cite{Gla13}
 
 \begin{center}
   \includegraphics[width=\linewidth]{fMRI_Volume}
@@ -217,7 +181,7 @@ It is a prerequisite of fMRIVolume pipeline that the input files should have com
 
 \section{Subjects used for the study}\label{subjects_used}
 \subsection{HCP Data Selection}
-The data was obtained from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Tables \ref{tab:hcp_subject_details} and \ref{tab:subject_scan_details} give more insight about the HCP subjects that were used for our study.
+The data was obtained from Human Connectome Project\footnote{\url{https://db.humanconnectome.org}}. We used the subjects 101006, 101017, 101410, 104820 and 105216. All these subjects were scanned using the HCP3T type of scanner. Table \ref{tab:hcp_subject_details} can provide more insight into the HCP subjects that were used for our study.
 
 \begin{center}
 \tabulinesep=1.2mm
@@ -262,6 +226,7 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 \label{tab:hcp_subject_size}
 \end{center}
 
+\iffalse
 \begin{center}
   \begin{longtabu} to \textwidth{ | X[l] | X[l] | X[l] | X[l] | }
   \hline
@@ -282,8 +247,9 @@ The data was obtained from Human Connectome Project\footnote{\url{https://db.hum
 \end{longtabu}
 \caption*{Data retrieved from \cite{DBConnectomeSite}}
 \end{center}
+\fi
 
-\todo{Not sure if table~\ref{tab:subject_scan_details} is necessary.} 
+%\todo{Not sure if table~\ref{tab:subject_scan_details} is necessary.} 
 
 \section{HCP Docker Images}\label{hcp_docker}
 We conducted our study across Docker containers created out of CentOS 6.8 and CentOS 7.2.1511. CentOS\footnote{\url{https://en.wikipedia.org/wiki/CentOS}} (Community Enterprise Operating System) according to~\cite{CentOS}, is a widely used operating system among the Neuroscience community. CentOS operating system is widely known for the community support, network functions, safety, portability and openness~\cite{5665431}. All these qualities make CentOS a popular choice among the research community and high performance computing clusters.
@@ -305,13 +271,13 @@ Table \ref{tab:prefreesurfer_processing_details} contains the details about proc
 Average time taken for PreFreeSurfer processing is 73.7 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.08 GB (5 subjects) on CentOS6.
 Average time taken for PreFreeSurfer processing is 80.2 minutes (10 runs) and average output file size of PreFreeSurfer processing is 13.10 GB (5 subjects) on CentOS7.
 
-\todo{You should say "average time \emph{per subject}" instead of just "average time", everywhere.}
+%\todo{You should say "average time \emph{per subject}" instead of just "average time", everywhere.}
 
 \begin{center}
 \tabulinesep=1.2mm
 \begin{tabular}{ | l | l | l | }
   \hline
-    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+  \textbf{Condition} & \textbf{Average Time Per Subject} & \textbf{Average File Size} \\
   \hline
     CentOS 6 & 73.7 min. & 13.08 GB \\
   \hline
@@ -346,7 +312,7 @@ Average time taken for FreeSurfer processing is 7.58 hours (10 runs) and average
 \begin{center}
 \begin{tabular}{ | l | l | l | }
   \hline
-    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+    \textbf{Condition} & \textbf{Average Time Per Subject} & \textbf{Average File Size} \\
   \hline
     CentOS 6 & 7.4 hours & 15.2 GB \\
   \hline
@@ -381,7 +347,7 @@ Average time taken for FreeSurfer processing is 28.3 minutes (10 runs) and avera
 \begin{center}
 \begin{tabular}{ | l | l | l | }
   \hline
-    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+    \textbf{Condition} & \textbf{Average Time Per Subject} & \textbf{Average File Size} \\
   \hline
     CentOS 6 & 22.5 min. & 16.02 GB \\
   \hline
@@ -416,7 +382,7 @@ Average time taken for FreeSurfer processing is 24.76 hours (10 runs) and averag
 \begin{center}
 \begin{tabular}{ | l | l | l | }
   \hline
-    \textbf{Condition} & \textbf{Average Time} & \textbf{Average File Size} \\
+    \textbf{Condition} & \textbf{Average Time Per Subject} & \textbf{Average File Size} \\
   \hline
     CentOS 6 & 24.68 hours & 221.2 GB \\
   \hline
