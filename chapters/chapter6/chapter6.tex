@@ -1,8 +1,8 @@
 \chapter{Conclusions}\label{conclusion}
-This chapter discusses the general conclusions from this study and the future work.
+This chapter discusses the general conclusions and contributions from this study and the future work.
 
 \section{General conclusions}
-From this study, we can conclude that the operating system library 
+We conclude that the operating system library 
 version updates are affecting the output images from HCP preprocessing 
 pipelines. The analysis of results obtained by processing subjects in 
 different CentOS versions shows that inter-OS differences in these 
@@ -10,20 +10,19 @@ images are visually substantial.
 
 For finding the inter-run differences, analysis was done on results 
 obtained from processing subjects twice in the same condition. No 
-inter-run differences were identified from these results. From this, we 
-can conclude that there are no pseudo-random processes occurring in the HCP preprocessing pipelines.
+inter-run differences were identified from these results. We 
+conclude that pseudo-random processes in the HCP preprocessing pipelines are not causing any differences.
 %\todo{What if the same slient crashes occur in every run?}
 
 The likely causes, of the inter-OS differences are, (i) the evolution 
-of math libraries over the time (ii) the pipelines are unstable, i.e, 
+of math libraries over the time and, (ii) the instability of the pipelines, i.e, 
 these pipelines amplify the small numerical differences that are 
 created by the differences in the underlying operating system 
 libraries.
 
 There are two ways to tackle this problem. The easy but less preferred 
-solution to this problem would be masking the instabilities. But, the 
-preferred solution is to fix the instabilities in the pipeline, that 
-is, to make the pipelines more stable.
+solution to this problem would be masking the instabilities. The 
+preferred solution is to fix the instabilities in the pipeline.
 
 The masking of instabilities can be done by using, (i) single operating 
 system for the processing of subjects, (ii) containerizing the 
@@ -34,36 +33,36 @@ pipelines, (iv) following stricter truncation and rounding standard
 (IEEE 754), (v) building static executable by removing the host 
 operating system library dependency.
 
-The above mentioned way is said to be less preferred because it just 
+The masking of instabilities is said to be less preferred because it just 
 makes the problem invisible but the instability still remains. If we 
 conduct the study with a change of condition like a newer version of 
 operating system or on an entirely different operating system, the 
 results we obtain would be different.
 
 The preferred solution is to fix the particular functions/scripts in 
-the preprocessing pipelines that are unstable. This would reduce the 
-variance in results considerably and thus, it could make the output 
+the preprocessing pipelines that are unstable. To reduce the 
+variance in results considerably and thus, to the output 
 more stable and reliable.
 
-\section{Contributions of this thesis}
+\section{Contributions}
 All the software tools developed for this study are open-source.
 %\todo{Be careful here: you used a lot of stuff which is not yours. You should say "All the software tools developed for this project are open-source."}
  Docker images created for this study are hosted on 
  Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. 
  Dockerhub status shows that these images has been pulled from the 
- repository more than 8000 times. Repro-tools can be used to analyze 
- the datasets in order to find out the differences in checksum or size 
+ repository more than, 8000 times. Repro-tools can be used to analyze 
+ the datasets to find out the differences in checksum or size 
  of files. It can also quantify the differences with the use of 
  metrics. Different metrics can be configured in Repro-tools 
  (verifyFiles script) to quantify the differences with respect to the 
- file formats. The differences in the files from PreFreeSurfer pipeline was presented at Neuroinformatics (INCF-2017) conference held at Kuala Lumpur, Malaysia \href{https://abstracts.g-node.org/abstracts/1d0afd7e-0542-4b79-99df-e15c5e0e4487}{(Abstract)}. The visualizations we have added to the results section 
- clearly portrays the effect of changing the operating system for 
- conducting the experiments. These images clearly convey the message 
- that operating systems on which the preprocessing takes place has a 
+ file formats. The differences in the files from PreFreeSurfer pipeline was presented at Neuroinformatics (INCF-2017) conference held at Kuala Lumpur, Malaysia\footnote{\url{https://abstracts.g-node.org/abstracts/1d0afd7e-0542-4b79-99df-e15c5e0e4487}}. The visualizations that we have added to the results section 
+ portrays the effect of changing the operating system when
+ conducting experiments. These images convey the message 
+ that operating systems on which the preprocessing takes place have a 
  strong effect on the output image.
 
 \section{Future work}
-Though we could identify the files that are having differences and quantify these differences using the metrics, the functions in the pipeline that causes these differences should be identified.
+Though we could identify the differences in these files and quantify these differences using the metrics, the functions in the pipeline that causes these differences should be identified.
 Pipelines should be studied in detail to identify the first instance of difference that gets created and how this difference is propagated through the pipeline.
-Since the pipelines are linked to each other (previous pipeline's output becomes next pipeline's input), each pipeline needs to be examined in detail to find out if the pipeline just propagates the error, whether it amplifies them and also if it creates new files with differences as well. 
+Because the pipelines are linked to each other (previous pipeline's output becomes next pipeline's input), each pipeline must be examined in detail to find out if the pipeline just propagates the error, whether it amplifies them, or it creates new files with differences as well. 
 Study can be extended to other pipelines in the HCP pipelines (e.g., fMRISurface and Diffusion Preprocessing pipeline).

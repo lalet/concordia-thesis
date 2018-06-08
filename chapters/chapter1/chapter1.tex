@@ -1,9 +1,9 @@
 \chapter{Introduction}
-This chapter introduces the concept of reproducibility, reproducibility crisis, the general opinion of scientific community about reproducible experiments and the reproducibility issues in the field of neuroimaging. 
+This chapter introduces the concept of reproducibility, the reproducibility crisis, the general opinion of scientific community about reproducible experiments and the reproducibility issues in the field of neuroimaging. 
 
-\section{Definitions of reproducibility}
+\section{Definitions of Reproducibility}
 
-``Reproducibility" is defined by the Oxford English Dictionary as ``the extent to which consistent results are obtained when produced repeatedly". The R-words, ``Repeatability, Replicability and Reproducibility" are used as a substitute of each other and there are many variations of definitions available for each of these terms \cite{Plesser2018}. Drummond defined clear distinction between reproducibility and replicability, as reproducibility accommodates changes, but replicability avoids them \cite{Drummond}. The Association of Computer Machinery defined these terms to make the usage uniform across the community, which is listed below \cite{ACM2016}.
+The R-words, ``Repeatability, Replicability, and Reproducibility" are used as a substitute to each other and there are many variations of definitions available for each of these terms \cite{Plesser2018}. Drummond defined clear distinction between reproducibility and replicability, as reproducibility accommodates changes, but replicability avoids them \cite{Drummond}. The Association of Computer Machinery defined these terms to make the usage uniform across the community, which is listed below \cite{ACM2016}.
 
 \begin{itemize}
 \item {Repeatability (Same team, same experimental setup)\\}
@@ -14,7 +14,7 @@ This chapter introduces the concept of reproducibility, reproducibility crisis, 
       ``The measurement can be obtained with stated precision by a different team, a different measuring system, in a different location on multiple trials. For computational experiments, this means that an independent group can obtain the same result using artifacts which they develop completely independently."
 \end{itemize}
 
-Though the ACM terminology clearly defined the distinction between the R-words, the definition of reproducibility was not complete. To avoid this confusion, Goodman et. al, defined a new lexicon exclusively for reproducibility \cite{Goodman2016} which is listed below,
+Though the ACM terminology clearly defined the distinction between the R-words, the definition of reproducibility was not complete. To avoid this confusion, Goodman et al.\, defined a new lexicon exclusively for reproducibility \cite{Goodman2016}, which is listed below:
 
 \begin{itemize}
 \item {Methods reproducibility: ``provide sufficient detail about procedures and data so that the same procedures could be exactly repeated."}
@@ -22,45 +22,44 @@ Though the ACM terminology clearly defined the distinction between the R-words, 
 \item {Inferential reproducibility: ``draw the same conclusions from either an independent replication of a study or a reanalysis of the original study".}
 \end{itemize}
 
-According to~\cite{Patil2016}, reproducibility is defined as, ``re-performing the same analysis with the same code using a different analyst" and replicability is defined as, ``re-performing the experiment and collecting new data".
+According to Prasad Patil et al.\, reproducibility is defined as, ``re-performing the same analysis with the same code using a different analyst" and replicability is defined as, ``re-performing the experiment and collecting new data".
 
 In the context of this study, ``reproducibility" refers to the definition given in~\cite{Patil2016}. 
 
-\section{Reproducibility crisis and its relevance}
+\section{Reproducibility Crisis and its Relevance}
 Reproducibility of scientific claims should be the measure with which a scientific study should be given credits~\cite{aac4716}. According to~\cite{Plesser2018}, ``A cornerstone of science is the possibility to critically assess the correctness of scientific claims made and conclusions drawn by other scientists".
-To make a study reproducible, it is necessary to have a good documentation about the methods/experiment, resources and availability of data used for the study. In an ideal scenario, an experiment described in sufficient detail could undergo reproducibility test carried out by other scientists with sufficient knowledge, and, if the results are within the range of experimental deviation, the experiment can be considered as reproducible \cite{Plesser2018}. The lack of well documented methodologies and reluctance to make the data publicly available leads to reproducibility crisis~\cite{Baker2016}.
+To make a study reproducible, it is necessary to have a good documentation about the methods/experiment, resources and availability of data used for the study. In an ideal scenario, an experiment described in sufficient detail could undergo reproducibility test carried out by other scientists with sufficient knowledge and, if the results are within the range of experimental deviation, the experiment can be considered as reproducible \cite{Plesser2018}. The lack of well documented methods/experiment and reluctance to make the data publicly available leads to reproducibility crisis~\cite{Baker2016}.
 
-The reproducibility crisis across several domains in the field of 
-science has been attaining a lot of attention in the recent years 
+The reproducibility crisis across several domains in science gained a lot of attention in the recent years 
 \cite{aac4716,Begley2012,Button2013,Baker2016,Gla15}. 
 A study conducted on reproducibility of psychological experiments 
-revealed that over half of them failed reproducibility test 
+revealed that over half of them failed reproducibility tests
 \cite{aac4716}. Another study in the field of cancer biology also had 
-similar findings that majority of the effort to reproduce well-known 
-studies failed \cite{Begley2012}. From the survey conducted on 1576 
+the similar findings: the majority of the effort to reproduce well-known 
+studies failed \cite{Begley2012}. From the survey conducted with 1576 
 scientists spanning across several scientific disciplines, 52\% 
-responded that there is reproducibility crisis~\cite{Nature_survey}. With the rapid changes 
-happening in software and infrastructure, several external factors like 
+responded that there is a reproducibility crisis~\cite{Baker2016}. With the rapid changes 
+happening in software and infrastructure, several external factors, like 
 the version of software libraries and the hardware architecture play
 an important role in the 
 reproducibility~\cite{10.1371/journal.pone.0038234,Gla15} of 
-experiments. Peng defined a reproducibility standard, and emphasized on 
+experiments. Peng defined a reproducibility standard and emphasized 
 the importance on sharing of code and data among the scientific 
 community~\cite{Peng2011} to tackle the reproducibility  crisis.
 
-\section{Reproducibility in the context of neuroimaging pipelines}
-Neuroimaging pipelines are computationally intensive software which are 
+\section{Reproducibility in the context of Neuroimaging Pipelines}
+Neuroimaging pipelines are computationally intensive software that are 
 commonly used for the analysis and visualization of neuroimaging data. 
 Studies~\cite{10.1371/journal.pone.0038234,Gla15} shows that 
 neuroimaging pipelines can have varying results based on the hardware 
-architecture, software versions and operating system on which the 
+architecture, software versions, and operating system on which the 
 processing takes place. The reproducibility issues associated with the 
 neuroimaging pipelines is discussed in Section \ref{neuroimaging}.
 
 This study focuses on reproducibility of the Human Connectome Project (HCP) pipelines~\cite{Gla13}. 
-Through this study, we are trying to (i) identify the effect of operating system on neuroimaging pipelines (ii) quantify the effect of operating systems on neuroimaging pipelines. 
+Through this study, we are trying to (i) identify the effect of operating system on neuroimaging pipelines and (ii) quantify the effect of operating systems on neuroimaging pipelines. 
 Human Connectome Project pipelines are developed in order to make high quality of neuroimaging data freely accessible and to create highly valuable software pipelines for characterizing human brain connectivity and function~\cite{VanEssen2013}. 
-We selected HCP pipelines for our study due to its high impact in the neuroimaging domain.
+We selected HCP pipelines for our study due to their high impact in the neuroimaging domain.
 
 The pipelines are available in 
 GitHub\footnote{\url{https://github.com/Washington-University/Pipelines}} 

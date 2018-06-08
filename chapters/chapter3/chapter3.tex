@@ -53,16 +53,16 @@ Repro-tools, before the beginning of processing a subject, makes a check to ensu
 %Add Why wrapper and advantages
 Wrapper scripts\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} were created on top of the pipeline to add the following features:
 \begin{itemize}
-  \item Compute the checksum of the files in each subject before and after the execution
-  \item Create execution directory and copy the subject to prevent corrupting the input data
-  \item Record all the software (library versions) present in the container and hardware specifications of the workstation
-  \item Ability to trace the execution using Reprozip (optional)
+  \item Compute the checksum of the files in each subject before and after the execution.
+  \item Create execution directory and copy the subject to prevent corrupting the input data.
+  \item Record all the software (library versions) present in the container and hardware specifications of the workstation.
+  \item Ability to trace the execution using Reprozip (optional).
 \end{itemize}
 
-The checksums are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the input data. Another feature, recording of the software library versions and hardware specifications are done in order to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing feature is used to record the details of the pipeline while the processing takes place so that it can be used as a reference for provenance tracing.
+The checksums are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the input data. Another feature, recording of the software library versions and hardware specifications to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing records the details of the pipeline while the processing takes place so that it can be used as a reference for provenance tracing.
 
 \section{Pipeline Deployment}\label{deployment}
-The Docker container containing the pipelines along with the Boutiques descriptor was deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we were able to process the subjects. Single server was used in order to prevent differences occurring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the pipelines on CBRAIN are available at \cite{HCP_descriptors}.
+The Docker container containing the pipelines along with the Boutiques descriptor is deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we process the subjects. Single server was used to prevent differences occurring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the pipelines on CBRAIN are available at \cite{HCP_descriptors}.
 
 %\begin{itemize}
  % \item Single server to ensure no hardware differences
@@ -72,9 +72,9 @@ The Docker container containing the pipelines along with the Boutiques descripto
 
 \section{File comparisons across conditions}\label{file_analysis}
 %Checksum
-Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint'' or ``message digest''~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integrity than security and how fast the algorithm is able to create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
+Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint'' or ``message digest''~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integrity than security and how fast the algorithm can create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
 
-Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference which occur due the operating system library updates and the other type, inter-run differences, occurs due to the pseudo-random processes used in the pipelines or due to silent crashes due in the pipeline. An example of a pseudo-random process function is, a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
+Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference that occur due the operating system library updates and the other type, inter-run differences, occurs due to the pseudo-random processes used in the pipelines or due to silent crashes in the pipeline. An example of a pseudo-random process function is a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
 
 The files that are common to all the subjects only are taken into consideration for comparison. The first step is identification of files with differences in their checksums. This is identified using the checksums that are recorded after the processing. Inter-run differences are identified using the run-number added as the suffix for the conditions. For example, the two batches of subjects processed under the same condition (CentOS6) are stored as run-1 and run-2. The files belonging to the subjects stored under the above mentioned conditions are treated as inter-runs.
 
@@ -87,7 +87,7 @@ the various metrics used for quantifying the differences. Section
 These metric values help us understand how big or small the differences 
 are. Apart from quantifying the differences using type specific 
 metrics, Repro-tools can also be used to trace the provenance of these 
-differences. It is able to identify all the processes and associated 
+differences. It can identify all the processes and associated 
 parameters that wrote the files having differences. These details about 
 various processes is helpful in debugging the pipelines. This 
 information helps in recreating the processing step by step and also to 
@@ -127,7 +127,7 @@ identify the processes that creates the differences.
 }
 \vskip 0.2in
 
-Algorithm 1, Section \ref{alg:algorithm_diff} shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. For this, we iterate through every subject in all the conditions and creates a list of files that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time etc. This list is then sorted according to the modification time. 
+Algorithm 1, Section \ref{alg:algorithm_diff} shows the high-level logic for identifying the files with differences and quantifying the differences with the help of metrices described in Section \ref{sec:num1}. First step is to get the name of all the files that are common to all the subjects and conditions. We iterate through every subject in all the conditions and creates a list of files that are common to all the subjects. Along with the file\_name, we collect also the creation time, modification time, etc.\ This list is then sorted according to the modification time. 
 
 A pair of condition is taken at a time as the following step (Line 6). 
 The files under the subject in two different conditions are then 
@@ -159,13 +159,13 @@ SELECT DISTINCT executed\_files.name, executed\_files.argv, executed\_files.envp
 \captionof{figure}{Query for provenance information}
 \label{fig:provenance-query}
 
-Query above returns us the details about the 1) processes that wrote the file; 2) command line arguments used by those processes; 3) Environment variables used; 4) timestamp; 5) working directory. By the help of query shown in Figure \ref{fig:provenance-query} and its output from the Reprozip database, we can identify the processes in the pipeline that create these differences.
+Query above returns us the details about: (1) the processes that wrote the file, (2) command line arguments used by those processes, (3) Environment variables used, (4) timestamp, and (5) working directory. By the help of query shown in Figure \ref{fig:provenance-query} and its output from the Reprozip database, we can identify the processes in the pipeline that create these differences.
 
 \section{Metrics} \label{sec:num1}
 The metrics that are used to quantify the differences are described below.
 
 \subsection{Normalized Root Mean Square Error (NRMSE)}
-The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), according to~\cite{khosrow2017handbook} is, ``a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". The equation we used for computing the NRMSE value is shown in equation~\ref{eq_one}. We computed the minimum and maximum intensities as well as the mean square difference between the images with the help of FSL tools. The script we used to compute NRMSE value is available in \href{https://github.com/lalet/repro-tools/blob/master/metrics/nrmse.sh}{GitHub}.
+The Root Mean Square Deviation (RMSD) or root-mean-square error (RMSE), according to~\cite{khosrow2017handbook} is, ``a frequently used measure of the difference between values predicted by a model or an estimator and the values actually observed". The equation we used for computing the NRMSE value is shown in equation~\ref{eq_one}. We computed the minimum and maximum intensities of the image (I1) as well as the mean square difference between the images with the help of FSL tools. The script we used to compute NRMSE value is available in \href{https://github.com/lalet/repro-tools/blob/master/metrics/nrmse.sh}{GitHub}.
 
 \begin{equation}
   \label{eq_one}
@@ -218,7 +218,7 @@ image files in reproducibility study, we used Dice Similarity
 Coefficient. The coefficient ranges from [0.0,1.0]. 1.0 meaning the 
 images are exactly similar and 0 meaning there is zero similarity. The 
 equation used for finding the Dice coefficient is given in 
-\ref{eq:eq_two}. $|I1|\&|I2|$, are the number of voxels in the images. We computed the voxelwise 
+\ref{eq:eq_two}. $|I1| and |I2|$, are the total number of voxels in the images I1 and I2. $|I1 - I2|$ computes the non-zero voxel differences. We computed the voxel 
 differences with the help of FSL tools for calculating the Dice 
 Similarity Coefficient. The script we used to compute Dice value is 
 available in 
@@ -266,4 +266,4 @@ available in
 \fi
 
 \subsection{Text Filtering}
-Since the hardware architecture used for processing the neuroimages has an effect on the output images~\cite{10.1371/journal.pone.0038234}, text filtering is done in order to make sure that, the hardware specifications remains the same throughout the experiment. The wrapper script around the HCP preprocessing pipelines records the hardware specification of the machine on which the subject gets processed. This recorded text file contains the details about the processor, vendor\_id, CPU family, model name etc. With the help of these details, text filtering metric return a '0' if the records are equal and '1' if any of these details are found to be different. This metric is more ideal in case of a study that uses high performance cluster with heterogeneous machines for processing the data. For this study, we used a single sever to maintain the homogeneity of the processing environment.
+Because the hardware architecture used for processing the neuroimages has an effect on the output images~\cite{10.1371/journal.pone.0038234}, text filtering is done to make sure that the hardware specifications remains the same throughout the experiment. The wrapper script around the HCP preprocessing pipelines records the hardware specification of the machine on which the subject gets processed. This recorded text file contains the details about the processor, vendor\_id, CPU family, model name etc. With the help of these details, text filtering metric return a '0' if the records are equal and '1' if any of these details are found to be different. This metric is more suited in case of a study that uses high performance cluster with heterogeneous machines for processing the data than using it for a study which uses a single machine. For this study, we used a single sever to maintain the homogeneity of the processing environment.
