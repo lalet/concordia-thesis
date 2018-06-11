@@ -1,7 +1,7 @@
 \chapter{A framework for analyzing the reproducibility issues of neuroimaging pipelines}\label{framework}
 In this thesis I developed Repro-tools, a framework to analyze the 
 reproducibility issues occurring in the neuroimaging pipelines. Though 
-this framework is developed with various neuroimaging pipelines in 
+this framework is developed with some neuroimaging pipelines in 
 focus, in principle, it can be also be used for analyzing data 
 belonging to various other disciplines. The term ``condition" with 
 respect to this framework refers to different operating systems on 
@@ -28,7 +28,7 @@ This chapter discusses the overall workflow of the framework (Section~\ref{workf
 \end{center}
 \vskip 0.2in
 
-Figure \ref{fig:framework_architecture} illustrates the overall workflow. The Docker image creation is automated. For each commit, made to the Dockerfile stored in Github\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer}}, a new build is triggered in Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These images are then used by CBRAIN for processing the subjects. Boutiques helps in deploying these containers to CBRAIN platform. CBRAIN can harness the power of computational clusters as well. The subjects processed under different conditions are then analyzed using the Repro-tools.
+Figure \ref{fig:framework_architecture} illustrates the overall workflow. The Docker image creation is automated. For each commit, made to the Dockerfile stored in Github\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer}}, a new build is triggered in Dockerhub\footnote{\url{https://hub.docker.com/r/bigdatalabteam/hcp-prefreesurfer/}}. These images (containging HCP Pipelines) are then used by CBRAIN for processing the subjects. Boutiques helps in deploying these containers to CBRAIN platform. CBRAIN can harness the power of computational clusters as well. The subjects processed under different conditions are then analyzed using the Repro-tools.
 
 \section{Docker Images}\label{docker_images}
 Repro-tools framework uses Docker containers for reproducibility 
@@ -40,7 +40,7 @@ made to the Dockerfile, a new image build gets triggered.
 %(Figure~\ref{fig:Docker_build} \todo{I don't find this figure very useful.}). 
 Thus, the automated build makes sure that the changes made in the Dockerfile are always reflected in the Docker images.
 
-Repro-tools, before the beginning of processing a subject, makes a check to ensure that the image that is getting used is the latest one. This check makes sure that the processing is done with the up-to-date changes in the Docker images.
+Repro-tools, at the beginning of processing a subject, makes a check to ensure that the image that is getting used is the latest one. This check makes sure that the processing is done with the image containing the latest changes that are made to the HCP Docker file.
 
 %\begin{center}
   %\includegraphics[width=\linewidth]{automated_build}
@@ -54,12 +54,12 @@ Repro-tools, before the beginning of processing a subject, makes a check to ensu
 Wrapper scripts\footnote{\url{https://github.com/big-data-lab-team/Dockerfiles-HCP-PreFreesurfer/blob/master/PreFreeSurfer-DockerFiles/command-line-script.sh}} were created on top of the pipeline to add the following features:
 \begin{itemize}
   \item Compute the checksum of the files in each subject before and after the execution.
-  \item Create execution directory and copy the subject to prevent corrupting the input data.
-  \item Record all the software (library versions) present in the container and hardware specifications of the workstation.
+  \item Create execution directory and copy the subject (data) to prevent corrupting the input data.
+  \item Record all the software (library versions) present in the container and hardware specifications of the workstation\footnote{Recording the software and hardware details and making sure that all the subjects were processed in the same condition}.
   \item Ability to trace the execution using Reprozip (optional).
 \end{itemize}
 
-The checksums are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the input data. Another feature, recording of the software library versions and hardware specifications to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing records the details of the pipeline while the processing takes place so that it can be used as a reference for provenance tracing.
+The checksums of files are computed before and after execution so that corruption check can be done with the use of recorded checksums. After the execution directory creation, the subject folder is copied into the execution directory and thus, it prevents the corruption of the input data. Another feature, recording of the software library versions and hardware specifications to make sure that the only factor that changes in these experiments is the operating system version. The optional Reprozip tracing records the details of the pipeline while the processing takes place so that it can be used as a reference for provenance tracing.
 
 \section{Pipeline Deployment}\label{deployment}
 The Docker container containing the pipelines along with the Boutiques descriptor is deployed on a server setup as part of our study. With the help of CBRAIN along with the containers and the descriptors, we process the subjects. Single server was used to prevent differences occurring in the files due to differences arising from the hardware architecture. Boutiques descriptors used for deploying the pipelines on CBRAIN are available at \cite{HCP_descriptors}.
@@ -72,17 +72,16 @@ The Docker container containing the pipelines along with the Boutiques descripto
 
 \section{File comparisons across conditions}\label{file_analysis}
 %Checksum
-Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint'' or ``message digest''~\cite{md5}. Though MD5 is not completely secure against collision attack, Repro-tools focus more on the data integrity than security and how fast the algorithm can create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
+Repro-tools framework can compare the files across different conditions based on the checksum. We have used MD5\footnote{\url{https://tools.ietf.org/html/rfc1321}} algorithm for calculating the checksum of files. The output of a MD5 algorithm is a 128-bit ``fingerprint'' or ``message digest''~\cite{md5}. Though MD5 is susceptible to hash collision\footnote{\url{https://en.wikipedia.org/wiki/Collision_(computer_science)}}, Repro-tools focus more on the data integrity than security and how fast the algorithm can create the checksum. These qualities make MD5 a good choice for checksum generation in Repro-tools.
 
 Two types of differences can occur in the subjects due to the differences in the operating systems. One is inter-OS difference that occur due the operating system library updates and the other type, inter-run differences, occurs due to the pseudo-random processes used in the pipelines or due to silent crashes in the pipeline. An example of a pseudo-random process function is a random number generator that would get initialized using a seed state. Repro-tools can be used to identify both kind of differences.
 
 The files that are common to all the subjects only are taken into consideration for comparison. The first step is identification of files with differences in their checksums. This is identified using the checksums that are recorded after the processing. Inter-run differences are identified using the run-number added as the suffix for the conditions. For example, the two batches of subjects processed under the same condition (CentOS6) are stored as run-1 and run-2. The files belonging to the subjects stored under the above mentioned conditions are treated as inter-runs.
 
 For the files that are identified to have differences, different kind 
-of metrics are used base on the file type to quantify the differences. 
+of metrics (Section~\ref{sec:num1}) are used base on the file type to quantify the differences. 
 Normalized root mean square error, Dice coefficient and text filter are 
-the various metrics used for quantifying the differences. Section 
-\ref{sec:num1} explains the metrics in detail.
+the various metrics used for quantifying the differences.
 
 These metric values help us understand how big or small the differences 
 are. Apart from quantifying the differences using type specific 
@@ -217,8 +216,8 @@ magnetic resonance images~\cite{Zou2004}. To measure the similarity of
 image files in reproducibility study, we used Dice Similarity 
 Coefficient. The coefficient ranges from [0.0,1.0]. 1.0 meaning the 
 images are exactly similar and 0 meaning there is zero similarity. The 
-equation used for finding the Dice coefficient is given in 
-\ref{eq:eq_two}. $|I1| and |I2|$, are the total number of voxels in the images I1 and I2. $|I1 - I2|$ computes the non-zero voxel differences. We computed the voxel 
+equation used for finding the Dice Coefficient is given in 
+equation~\ref{eq:eq_two}. $|I1|$ and $|I2|$, are the total number of voxels in the images I1 and I2, and $|I1 - I2|$ computes the non-zero voxel differences. We computed the voxel 
 differences with the help of FSL tools for calculating the Dice 
 Similarity Coefficient. The script we used to compute Dice value is 
 available in 
@@ -266,4 +265,4 @@ available in
 \fi
 
 \subsection{Text Filtering}
-Because the hardware architecture used for processing the neuroimages has an effect on the output images~\cite{10.1371/journal.pone.0038234}, text filtering is done to make sure that the hardware specifications remains the same throughout the experiment. The wrapper script around the HCP preprocessing pipelines records the hardware specification of the machine on which the subject gets processed. This recorded text file contains the details about the processor, vendor\_id, CPU family, model name etc. With the help of these details, text filtering metric return a '0' if the records are equal and '1' if any of these details are found to be different. This metric is more suited in case of a study that uses high performance cluster with heterogeneous machines for processing the data than using it for a study which uses a single machine. For this study, we used a single sever to maintain the homogeneity of the processing environment.
+Because the hardware architecture used for processing the neuroimages has an effect on the output images~\cite{10.1371/journal.pone.0038234}, text filtering is done to make sure that the hardware specifications remains the same throughout the experiment. The wrapper script around the HCP preprocessing pipelines records the hardware specification of the machine on which the subject gets processed. This recorded text file contains the details about the processor, vendor\_id, CPU family, model name etc. With the help of these details, text filtering metric return a 0 if the records are equal and 1 if any of these details are found to be different. This metric is more suited in case of a study that uses high performance cluster with heterogeneous machines for processing the data than using it for a study which uses a single machine. For this study, we used a single sever to maintain the homogeneity of the processing environment.
